@@ -1,0 +1,25 @@
+.form {
+
+}
+
+#create-bouquet {
+	#bouquet-image {
+		display: none;
+	}
+}
+
+.select-flowers {
+	@media (--desktop-small-above) {
+		align-items: center;
+		display: flex;
+	}
+	> * {
+		@media (--desktop-small-above) {
+		width: 50%;
+		}
+	}
+}
+
+#form-navigation {
+	
+}
