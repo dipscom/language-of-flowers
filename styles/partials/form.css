@@ -18,6 +18,32 @@
 		width: 50%;
 		}
 	}
+	form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+label {
+	cursor: pointer;
+	width: 21%;
+}
+	input[type=checkbox] {
+	background-color: blue;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	cursor: inherit;
+	height: 100px;
+	width: 100px;
+
+	appearance: none;
+	&:checked {
+	background-color: red;	
+	}
+	&:disabled {
+		opacity: 0.5;
+	}
+}
 }
 
 #form-navigation {

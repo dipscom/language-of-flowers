@@ -25,6 +25,9 @@ export default class CreateBouquet extends Component {
   } 
   renderFlower(key) {
     const flower = this.props.flowers[key];
+    const styles = {
+      backgroundImage: 'url(/images/flowers/' + key + '.png)',
+    };
     let checked = false,
         disabled = false;
     if (this.props.bouquet.length >= 3) {
@@ -38,7 +41,7 @@ export default class CreateBouquet extends Component {
     }
     return (
       <label key={key}>
-      <input name="flower" value={key} type="checkbox" defaultChecked={checked} disabled={disabled} onMouseOver={() => this.flowerDetails(key)} onClick={() => this.props.selectBouquet(key)} />
+      <input name="flower" value={key} type="checkbox" style={styles} defaultChecked={checked} disabled={disabled} onMouseOver={() => this.flowerDetails(key)} onClick={() => this.props.selectBouquet(key)} />
       <h2>{flower.name}</h2>
       <h3>Meaning</h3>
       <strong>{flower.meaning}</strong>
@@ -74,7 +77,7 @@ export default class CreateBouquet extends Component {
           </div>
         </div>
         <div className="flower-description">
-          <img src={flowers[activeFlower].image} alt={flowers[activeFlower].name} title={flowers[activeFlower].name} />
+          <img src={'/images/flowers/' + activeFlower + '.png'} alt={flowers[activeFlower].name} title={flowers[activeFlower].name} />
           <h1>{flowers[activeFlower].name}</h1>
           <strong>{flowers[activeFlower].meaning}</strong>
           <p>{flowers[activeFlower].description}</p>
