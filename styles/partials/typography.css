@@ -45,3 +45,27 @@
   font-weight: bolder;
   src: url('/fonts/lovato/bolder.woff2') format('woff2');
 }
+
+#root {
+  h1,
+  p,
+  strong,
+  button {
+    text-align: center;
+  }
+
+  p {
+    font-style: italic;
+  }
+
+  button {
+    background-color: hsl(141, 21%, 73%);
+
+    border: 1px solid black;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    box-shadow: 1px 1px 0 black;
+
+    padding: 14px 44px;
+  }
+}
