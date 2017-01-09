@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 export default class Introduction extends Component {
-  let TweenMax;
   componentDidMount() {
     TweenMax.from("#introduction", 1, {autoAlpha:0});
   }
