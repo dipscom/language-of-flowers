@@ -8,7 +8,22 @@ import Description from './components/Description';
 import Form from './components/Form';
 import Confirmation from './components/Confirmation';
 
-class App extends Component {
+const initialState = {
+        bouquet: [],
+        flowers: flowers,
+        products: products,
+        recipient: {
+          name: null,
+          email: null
+        },
+        sender: {
+          name: null,
+          email: null
+        },
+        stage: 1
+      };
+      
+export default class App extends Component {
   constructor(){
     super();
     this.nextStage = this.nextStage.bind(this);
@@ -16,20 +31,8 @@ class App extends Component {
     this.selectBouquet = this.selectBouquet.bind(this);
     this.updateField = this.updateField.bind(this);
     this.bouquetMeaning = this.bouquetMeaning.bind(this);
-    this.state = {
-      bouquet: [],
-      flowers: flowers,
-      products: products,
-      recipient: {
-        name: null,
-        email: null
-      },
-      sender: {
-        name: null,
-        email: null
-      },
-      stage: 1
-    }
+    this.reset = this.reset.bind(this);
+    this.state = initialState;
   }
   componentWillMount(){
     const stageRef = Number(localStorage.getItem('stage'));
@@ -51,6 +54,9 @@ class App extends Component {
     this.setState({
       stage : this.state.stage - 1
     });
+  }
+  reset() {
+    this.setState(initialState);
   }
   selectBouquet(key) {
     let bouquet = this.state.bouquet;
@@ -118,8 +124,12 @@ class App extends Component {
     }
   }
   render() {
-    return this.showStage();
+    return (
+      <div>
+      {this.showStage()}
+      <button onClick={this.reset}>Start Again</button>
+      </div>
+    )
+    
   }
 }
-
-export default App;

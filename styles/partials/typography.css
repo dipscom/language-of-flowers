@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Brandon Grotesque';
+  font-weight: ligher;
+  src: url('/fonts/brandon-grotesque/lighter.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  font-weight: normal;
+  src: url('/fonts/brandon-grotesque/normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  font-weight: bold;
+  src: url('/fonts/brandon-grotesque/bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  font-weight: bolder;
+  src: url('/fonts/brandon-grotesque/bolder.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lovato';
+  font-weight: lighter;
+  src: url('/fonts/lovato/lighter.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lovato';
+  font-weight: normal;
+  src: url('/fonts/lovato/normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lovato';
+  font-weight: bold;
+  src: url('/fonts/lovato/bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lovato';
+  font-weight: bolder;
+  src: url('/fonts/lovato/bolder.woff2') format('woff2');
+}
