@@ -10,11 +10,12 @@
     "cssnano": "^3.9.1",
     "normalize-css": "^2.3.1",
     "postcss": "^5.2.6",
+    "postcss-cli": "^2.6.0",
     "postcss-custom-media": "^5.0.1",
     "postcss-import": "^9.0.0",
+    "postcss-pxtorem": "^3.3.1",
     "postcss-scss": "^0.4.0",
     "precss": "^1.4.0",
-    "pxtorem": "^1.0.0",
     "react-scripts": "0.8.4",
     "source-map": "^0.5.6"
   },
