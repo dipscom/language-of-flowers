@@ -31,7 +31,6 @@ class App extends Component {
         email: null
       },
       stage: 1,
-      TweenMax: window.TweenMax
     }
   }
   componentWillMount(){
@@ -46,14 +45,35 @@ class App extends Component {
     localStorage.setItem('stage', nextState.stage);
   }
   nextStage() {
-    this.setState({
-      stage : this.state.stage + 1
+    // this.setState({
+    //   stage : this.state.stage + 1
+    // });
+    TweenMax.to("#introduction", 1, { // eslint-disable-line
+      autoAlpha:0,
+      x:"+=100",
+      onComplete:function () {
+        this.setState({
+          stage : this.state.stage + 1
+        });
+      },
+      onCompleteScope:this
     });
   }
   prevStage() {
-    this.setState({
-      stage : this.state.stage - 1
+    // this.setState({
+    //   stage : this.state.stage - 1
+    // });
+    TweenMax.to("#description", 1, { // eslint-disable-line
+      autoAlpha:0,
+      x:"+=100",
+      onComplete:function () {
+        this.setState({
+          stage : this.state.stage - 1
+        });
+      },
+      onCompleteScope:this
     });
+
   }
   selectBouquet(key) {
     let bouquet = this.state.bouquet;
@@ -94,7 +114,6 @@ class App extends Component {
         return <Introduction nextStage={this.nextStage} />
       case 1:
         return <Introduction
-          tweenMax={this.state.TweenMax}
            nextStage={this.nextStage} />
       case 2:
         return <Description

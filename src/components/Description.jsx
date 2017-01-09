@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 export default class Description extends Component {
+  componentDidMount() {
+    TweenMax.from("#description", 1, {autoAlpha:0, x:"+=100"});// eslint-disable-line
+  }
+
   render() {
     return (
       <div id="description" className="stage">

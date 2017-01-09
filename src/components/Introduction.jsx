@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 
 export default class Introduction extends Component {
   componentDidMount() {
-    this.props.tweenMax.from("#introduction", 10, {autoAlpha:0});
+    TweenMax.from("#introduction", 1, {autoAlpha:0, x:"+=100"});// eslint-disable-line
   }
+
+  // componentWillUnmount() {
+  //   TweenMax.to("#introduction", 1, {autoAlpha:0, x:"+=100"});// eslint-disable-line
+  //
+  // }
 
   render() {
     return (
