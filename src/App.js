@@ -34,7 +34,6 @@ export default class App extends Component {
     this.bouquetMeaning = this.bouquetMeaning.bind(this);
     this.reset = this.reset.bind(this);
     this.state = initialState;
-
   }
   componentWillMount(){
     const stageRef = Number(localStorage.getItem('stage'));
