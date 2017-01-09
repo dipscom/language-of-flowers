@@ -8,7 +8,9 @@ import Description from './components/Description';
 import Form from './components/Form';
 import Confirmation from './components/Confirmation';
 
+
 class App extends Component {
+
   constructor(){
     super();
     this.nextStage = this.nextStage.bind(this);
@@ -28,7 +30,8 @@ class App extends Component {
         name: null,
         email: null
       },
-      stage: 1
+      stage: 1,
+      TweenMax: window.TweenMax
     }
   }
   componentWillMount(){
@@ -80,7 +83,7 @@ class App extends Component {
       <li key={key}>{flower.meaning}</li>
       )
   }
-  updateField(e) {    
+  updateField(e) {
     const person = {...this.state[e.target.className]};
     person[e.target.name] = e.target.value;
     this.setState({ [e.target.className] : person });
@@ -90,16 +93,18 @@ class App extends Component {
       default:
         return <Introduction nextStage={this.nextStage} />
       case 1:
-        return <Introduction nextStage={this.nextStage} />
+        return <Introduction
+          tweenMax={this.state.TweenMax}
+           nextStage={this.nextStage} />
       case 2:
-        return <Description 
+        return <Description
                 nextStage={this.nextStage}
                 prevStage={this.prevStage} />
       case 3:
         return <Form
                 bouquet={this.state.bouquet}
                 flowers={this.state.flowers}
-                selectBouquet={this.selectBouquet} 
+                selectBouquet={this.selectBouquet}
                 nextStage={this.nextStage}
                 prevStage={this.prevStage}
                 recipient={this.state.recipient}
@@ -107,7 +112,7 @@ class App extends Component {
                 updateField={this.updateField}
                 bouquetMeaning={this.bouquetMeaning} />
       case 4:
-        return <Confirmation 
+        return <Confirmation
                 bouquet={this.state.bouquet}
                 flowers={this.state.flowers}
                 nextStage={this.nextStage}

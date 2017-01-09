@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Introduction extends Component {
   componentDidMount() {
-    TweenMax.from("#introduction", 1, {autoAlpha:0});
+    this.props.tweenMax.from("#introduction", 10, {autoAlpha:0});
   }
 
   render() {
