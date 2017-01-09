@@ -23,7 +23,7 @@ const initialState = {
         },
         stage: 1
       };
-      
+
 export default class App extends Component {
   constructor(){
     super();
@@ -34,6 +34,7 @@ export default class App extends Component {
     this.bouquetMeaning = this.bouquetMeaning.bind(this);
     this.reset = this.reset.bind(this);
     this.state = initialState;
+
   }
   componentWillMount(){
     const stageRef = Number(localStorage.getItem('stage'));
@@ -87,7 +88,7 @@ export default class App extends Component {
       <li key={key}>{flower.meaning}</li>
       )
   }
-  updateField(e) {    
+  updateField(e) {
     const person = {...this.state[e.target.className]};
     person[e.target.name] = e.target.value;
     this.setState({ [e.target.className] : person });
@@ -99,14 +100,14 @@ export default class App extends Component {
   //     case 1:
   //       return <Introduction nextStage={this.nextStage} />
   //     case 2:
-  //       return <Description 
+  //       return <Description
   //               nextStage={this.nextStage}
   //               prevStage={this.prevStage} />
   //     case 3:
   //       return <Form
   //               bouquet={this.state.bouquet}
   //               flowers={this.state.flowers}
-  //               selectBouquet={this.selectBouquet} 
+  //               selectBouquet={this.selectBouquet}
   //               nextStage={this.nextStage}
   //               prevStage={this.prevStage}
   //               recipient={this.state.recipient}
@@ -114,7 +115,7 @@ export default class App extends Component {
   //               updateField={this.updateField}
   //               bouquetMeaning={this.bouquetMeaning} />
   //     case 4:
-  //       return <Confirmation 
+  //       return <Confirmation
   //               bouquet={this.state.bouquet}
   //               flowers={this.state.flowers}
   //               nextStage={this.nextStage}
@@ -127,8 +128,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        {this.props.children && React.cloneElement(this.props.children, 
-          {...this.state, 
+        {this.props.children && React.cloneElement(this.props.children,
+          {...this.state,
             selectBouquet: this.selectBouquet,
             bouquetMeaning: this.bouquetMeaning,
             updateField: this.updateField
@@ -136,6 +137,6 @@ export default class App extends Component {
       <IndexLink to="/" onClick={this.reset}>Start Again</IndexLink>
       </div>
     )
-    
+
   }
 }
