@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import TransitionGroup from 'react-addons-transition-group'
+
 // import bouquets from './data/bouquets';
 import flowers from './data/flowers';
 import products from './data/products';
@@ -45,35 +47,14 @@ class App extends Component {
     localStorage.setItem('stage', nextState.stage);
   }
   nextStage() {
-    // this.setState({
-    //   stage : this.state.stage + 1
-    // });
-    TweenMax.to("#introduction", 1, { // eslint-disable-line
-      autoAlpha:0,
-      x:"+=100",
-      onComplete:function () {
-        this.setState({
-          stage : this.state.stage + 1
-        });
-      },
-      onCompleteScope:this
+    this.setState({
+      stage : this.state.stage + 1
     });
   }
   prevStage() {
-    // this.setState({
-    //   stage : this.state.stage - 1
-    // });
-    TweenMax.to("#description", 1, { // eslint-disable-line
-      autoAlpha:0,
-      x:"+=100",
-      onComplete:function () {
-        this.setState({
-          stage : this.state.stage - 1
-        });
-      },
-      onCompleteScope:this
+    this.setState({
+      stage : this.state.stage - 1
     });
-
   }
   selectBouquet(key) {
     let bouquet = this.state.bouquet;
@@ -111,7 +92,11 @@ class App extends Component {
   showStage() {
     switch (this.state.stage) {
       default:
-        return <Introduction nextStage={this.nextStage} />
+        return (
+                <TransitionGroup>
+                  <Introduction nextStage={this.nextStage} />
+                </TransitionGroup>
+              )
       case 1:
         return <Introduction
            nextStage={this.nextStage} />
@@ -143,6 +128,11 @@ class App extends Component {
   }
   render() {
     return this.showStage();
+    // return (
+    //   <TransitionGroup>
+    //     <Introduction nextStage={this.nextStage} />
+    //   </TransitionGroup>
+    // )
   }
 }
 
