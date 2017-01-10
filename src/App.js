@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { IndexLink } from 'react-router';
+import TransitionGroup from 'react-addons-transition-group'
+
 // import bouquets from './data/bouquets';
 import flowers from './data/flowers';
 import products from './data/products';
@@ -136,6 +138,5 @@ export default class App extends Component {
       <IndexLink to="/" onClick={this.reset}>Start Again</IndexLink>
       </div>
     )
-
   }
 }
