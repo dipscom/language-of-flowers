@@ -4,18 +4,10 @@ import { Link } from 'react-router';
 export default class CreateBouquet extends Component {
   constructor() {
     super();
-    this.flowerDetails = this.flowerDetails.bind(this);
     this.bouquetList = this.bouquetList.bind(this);
     this.renderFlower = this.renderFlower.bind(this);
     this.state = {
       flower: null
-    }
-  }
-  flowerDetails(key) {
-    if (this.state.flower !== key) {
-      this.setState({
-        flower: key
-      })
     }
   }
   bouquetList(key) {
@@ -42,7 +34,7 @@ export default class CreateBouquet extends Component {
     }
     return (
       <label key={key}>
-      <input name="flower" value={key} type="checkbox" style={styles} defaultChecked={checked} disabled={disabled} onMouseOver={() => this.flowerDetails(key)} onClick={() => this.props.selectBouquet(key)} />
+      <input name="flower" value={key} type="checkbox" style={styles} defaultChecked={checked} disabled={disabled} onMouseOver={() => this.props.activeFlower(key)} onClick={() => this.props.selectBouquet(key)} />
       <h2>{flower.name}</h2>
       <h3>Meaning</h3>
       <strong>{flower.meaning}</strong>
@@ -58,8 +50,6 @@ export default class CreateBouquet extends Component {
     }
   }
   render() {
-    const flowers = this.props.flowers;
-    const activeFlower = this.state.flower;
     return (
       <div className="select-flowers">
         <div className="flowers-form">
@@ -68,20 +58,14 @@ export default class CreateBouquet extends Component {
           <form>{
             Object
             .keys(this.props.flowers)
-            .map(this.renderFlower)
+            .map(this.renderFlower) 
           }</form>
           <div>
           <ul>
-            {this.props.bouquet.map(this.bouquetList) }   
+            {this.props.bouquet.map(this.bouquetList)}   
           </ul>
           <Link to="/view-bouquet">View your bouquet</Link>
           </div>
-        </div>
-        <div className="flower-description">
-          <img src={'/images/flowers/' + activeFlower + '.png'} alt={flowers[activeFlower].name} title={flowers[activeFlower].name} />
-          <h1>{flowers[activeFlower].name}</h1>
-          <strong>{flowers[activeFlower].meaning}</strong>
-          <p>{flowers[activeFlower].description}</p>
         </div>
       </div>
     )

@@ -1,41 +1,35 @@
 import React, { Component } from 'react';
-// import CreateBouquet from './CreateBouquet';
-// import ViewBouquet from './ViewBouquet';
-// import RecipientDetails from './RecipientDetails';
-// import SenderDetails from './SenderDetails';
 
 export default class Form extends Component {
   constructor(){
     super();
-    this.nextStage = this.nextStage.bind(this);
-    this.prevStage = this.prevStage.bind(this);
-    this.selectStage = this.selectStage.bind(this);
+    this.stageProps = this.stageProps.bind(this);
     this.renderNavigation = this.renderNavigation.bind(this);
+    this.activeFlower = this.activeFlower.bind(this);
     this.state = {
       'currentStage': 1,
-      stages: ['Create Bouquet', 'View Bouquet', 'Recipient Details', 'Sender Details']
+      stages: ['Create Bouquet', 'View Bouquet', 'Recipient Details', 'Sender Details'],
+      activeFlower: null
     }
   }
-  nextStage() {
-    const currentStage = this.state.currentStage + 1
-    this.setState({
-      'currentStage': currentStage
-    });
-    const stage = this.state.stages[currentStage - 1].replace(/ /g, '');
-    this.refs[stage].checked = true;
+  // selectStage(e) {
+  //   this.setState({
+  //     'currentStage': parseInt(e.target.value, 10)
+  //   });
+  // }
+  componentWillMount(){
+    if (!this.state.activeFlower) {
+      this.setState({
+        activeFlower: Object.keys(this.props.flowers)[0]
+      });
+    }
   }
-  prevStage() {
-    const currentStage = this.state.currentStage - 1
-    this.setState({
-      'currentStage': currentStage
-    });
-    const stage = this.state.stages[currentStage - 1].replace(/ /g, '');
-    this.refs[stage].checked = true;
-  }
-  selectStage(e) {
-    this.setState({
-      'currentStage': parseInt(e.target.value, 10)
-    });
+  activeFlower(key) {
+    if (this.state.activeFlower !== key) {
+      this.setState({
+        activeFlower: key
+      })
+    }
   }
   renderNavigation(key) {
     const index = this.state.stages.indexOf(key) + 1;
@@ -47,47 +41,52 @@ export default class Form extends Component {
       <input key={key.toLowerCase().replace(/ /g, '-')} ref={key.replace(/ /g, '')} type="radio" name="navigation" value={index} defaultChecked={checked} onClick={(e) => this.selectStage(e)} />
       )
   } 
-  // showStage() {
-  //   switch (this.state.currentStage) {
-  //     default:
-  //       return <CreateBouquet 
-  //               bouquet={this.props.bouquet}
-  //               flowers={this.props.flowers}
-  //               selectBouquet={this.props.selectBouquet} 
-  //               nextStage={this.nextStage} />
-  //     case 1:
-  //       return <CreateBouquet
-  //               bouquet={this.props.bouquet}
-  //               flowers={this.props.flowers}
-  //               selectBouquet={this.props.selectBouquet} 
-  //               nextStage={this.nextStage} />
-  //     case 2:
-  //     return <ViewBouquet 
-  //             bouquet={this.props.bouquet}
-  //             bouquetMeaning={this.props.bouquetMeaning}
-  //             flowers={this.props.flowers}
-  //             nextStage={this.nextStage}
-  //             prevStage={this.prevStage}
-  //              />
-  //     case 3:
-  //     return <RecipientDetails 
-  //             nextStage={this.nextStage}
-  //             recipient={this.props.recipient}
-  //             updateField={this.props.updateField} />
-  //     case 4:
-  //     return <SenderDetails 
-  //             nextStage={this.props.nextStage}
-  //             sender={this.props.sender}
-  //             updateField={this.props.updateField} />
-  //   }
-  // }
-  render() {
-    // const id = this.state.stages[this.state.currentStage - 1].toLowerCase().replace(/ /g, '-');
-    return (
+  stageProps(name, side) {
+    switch (name) {
+      default:
+        return null
+      case 'Bouquet':
+        return React.cloneElement((side === 'left' ? this.props.left : this.props.right), { 
+          bouquet:[...this.props.bouquet],
 
+        });
+      case 'Flower':
+        return React.cloneElement((side === 'left' ? this.props.left : this.props.right), { 
+          activeFlower: this.state.activeFlower,
+          flowers:{...this.props.flowers},
+        });
+      case 'CreateBouquet':
+        return React.cloneElement((side === 'left' ? this.props.left : this.props.right), { 
+          bouquet:[...this.props.bouquet],
+          flowers:{...this.props.flowers},
+          selectBouquet: this.props.selectBouquet,
+          activeFlower: this.activeFlower,
+        });
+       case 'ViewBouquet':
+        return React.cloneElement((side === 'left' ? this.props.left : this.props.right), { 
+          bouquet:[...this.props.bouquet],
+          flowers:{...this.props.flowers},
+          bouquetMeaning: this.props.bouquetMeaning
+        });
+      case 'RecipientDetails':
+        return React.cloneElement((side === 'left' ? this.props.left : this.props.right), { 
+          recipient:{...this.props.recipient},
+          updateField: this.props.updateField
+        });
+      case 'SenderDetails':
+        return React.cloneElement((side === 'left' ? this.props.left : this.props.right), { 
+          sender:{...this.props.sender},
+          updateField: this.props.updateField
+        });
+     }
+  }
+  render() {
+    const leftProps = this.stageProps(this.props.left.type.name, 'left');
+    const rightProps = this.stageProps(this.props.right.type.name, 'right');
+    return (
       <div className="stage form">
-        <img id="bouquet-image" src={'/images/bouquets/' + [...this.props.bouquet].sort().toString().replace(/,/g, '_') + '.png'} alt="Bouquet" title="Bouquet" />
-        {this.props.children && React.cloneElement(this.props.children, this.props)}
+      <div className="column left">{(leftProps ? this.props.left && leftProps : this.props.left)}</div>
+      <div className="column right">{(rightProps ? this.props.right && rightProps : this.props.right)}</div>
         <form id="form-navigation">
           { /*this.state.stages.map(this.renderNavigation) */}
         </form>
