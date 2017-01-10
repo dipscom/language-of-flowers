@@ -127,12 +127,12 @@ class App extends Component {
     }
   }
   render() {
-    return this.showStage();
-    // return (
-    //   <TransitionGroup>
-    //     <Introduction nextStage={this.nextStage} />
-    //   </TransitionGroup>
-    // )
+    // return this.showStage();
+    return (
+      <TransitionGroup>
+        <Introduction nextStage={this.nextStage} />
+      </TransitionGroup>
+    )
   }
 }
 

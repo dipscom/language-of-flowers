@@ -20,6 +20,10 @@ export default class Introduction extends Component {
     console.log("Did appear");
   }
 
+  componentWillLeave() {
+    console.log("Will leave");
+  }
+
   componentDidMount() {
     console.log("Did mount");
   }
