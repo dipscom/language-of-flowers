@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { IndexLink } from 'react-router';
 import TransitionGroup from 'react-addons-transition-group'
-
+import { IndexLink } from 'react-router';
 // import bouquets from './data/bouquets';
 import flowers from './data/flowers';
 import products from './data/products';
@@ -127,16 +126,23 @@ export default class App extends Component {
   //   }
   // }
   render() {
+    const { pathname } = this.props.location;
+    const key = pathname.split('/')[1] || 'root';
+
     return (
       <div>
-        {this.props.children && React.cloneElement(this.props.children,
-          {...this.state,
-            selectBouquet: this.selectBouquet,
-            bouquetMeaning: this.bouquetMeaning,
-            updateField: this.updateField
-          })}
+        <TransitionGroup data-route={pathname}>
+          {this.props.children && React.cloneElement(this.props.children,
+            {...this.state,
+              selectBouquet: this.selectBouquet,
+              bouquetMeaning: this.bouquetMeaning,
+              updateField: this.updateField,
+              key: key
+            })}
+        </TransitionGroup>
       <IndexLink to="/" onClick={this.reset}>Start Again</IndexLink>
       </div>
     )
+
   }
 }
