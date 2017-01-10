@@ -15,7 +15,7 @@ export default class Introduction extends Component {
     TweenMax.to(this.el, 1, { // eslint-disable-line
       autoAlpha:0,
       x:"+=100",
-      ease: Power2.easeIn, // eslint-disable-line
+      ease: "Power4.easeIn",
       onComplete:callback
     });
   }
