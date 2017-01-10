@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class Confirmation extends Component {
   render() {
@@ -14,7 +15,7 @@ export default class Confirmation extends Component {
         <p className="terms">Be in with a chance to win the full Penhaligon's portraits collection.</p>
         <p className="terms">plus join the very Penhaligon's club and discover our online secrets <label htmlFor="terms">I agree with the Terms and Conditions/Privacy Policy</label><input type="checkbox" name="terms" /></p>
       </div>
-      <button onClick={this.props.nextStage}>Send Now</button>
+      <Link to="/success">Send Now</Link>
       </div>
     )
   }

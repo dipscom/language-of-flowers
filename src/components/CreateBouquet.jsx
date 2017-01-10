@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class CreateBouquet extends Component {
   constructor() {
@@ -71,9 +72,9 @@ export default class CreateBouquet extends Component {
           }</form>
           <div>
           <ul>
-            { this.props.bouquet.map(this.bouquetList) }   
+            {this.props.bouquet.map(this.bouquetList) }   
           </ul>
-          <button onClick={this.props.nextStage}>View your bouquet</button>
+          <Link to="/view-bouquet">View your bouquet</Link>
           </div>
         </div>
         <div className="flower-description">

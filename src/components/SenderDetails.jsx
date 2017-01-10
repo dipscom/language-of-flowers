@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class SenderDetails extends Component {
   render() {
@@ -11,7 +12,7 @@ export default class SenderDetails extends Component {
         <label htmlFor="recipient-email">Your email</label>
         <input type="email" id="sender-email" className="sender" name="email" onChange={(e) => this.props.updateField(e)} />
       </div>
-      <button onClick={this.props.nextStage}>Confirm & Send</button>
+      <Link to="/confirmation">Confirm & Send</Link>
       </div>
     )
   }

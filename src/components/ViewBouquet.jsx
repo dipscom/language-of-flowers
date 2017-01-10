@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router';
 
 export default class ViewBouquet extends Component {
   render() {
@@ -9,10 +10,9 @@ export default class ViewBouquet extends Component {
         <ul>
             { this.props.bouquet.map(this.props.bouquetMeaning) }   
         </ul>
-        <button onClick={this.props.prevStage}>Change your bouquet</button>
+        <Link to="/create-bouquet">Change your bouquet</Link>
       </div>
-      <button onClick={this.props.nextStage}>Their Details</button>
-        
+      <Link to="/recipient">Their Details</Link>
       </div>
     )
   }

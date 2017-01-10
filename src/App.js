@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { IndexLink } from 'react-router';
 // import bouquets from './data/bouquets';
 import flowers from './data/flowers';
 import products from './data/products';
 // import Bouquet from './components/Bouquet';
-import Introduction from './components/Introduction';
-import Description from './components/Description';
-import Form from './components/Form';
-import Confirmation from './components/Confirmation';
+// import Introduction from './components/Introduction';
+// import Description from './components/Description';
+// import Form from './components/Form';
+// import Confirmation from './components/Confirmation';
 
 const initialState = {
         bouquet: [],
@@ -26,8 +27,8 @@ const initialState = {
 export default class App extends Component {
   constructor(){
     super();
-    this.nextStage = this.nextStage.bind(this);
-    this.prevStage = this.prevStage.bind(this);
+    // this.nextStage = this.nextStage.bind(this);
+    // this.prevStage = this.prevStage.bind(this);
     this.selectBouquet = this.selectBouquet.bind(this);
     this.updateField = this.updateField.bind(this);
     this.bouquetMeaning = this.bouquetMeaning.bind(this);
@@ -45,16 +46,16 @@ export default class App extends Component {
   componentWillUpdate(nextProps, nextState) {
     localStorage.setItem('stage', nextState.stage);
   }
-  nextStage() {
-    this.setState({
-      stage : this.state.stage + 1
-    });
-  }
-  prevStage() {
-    this.setState({
-      stage : this.state.stage - 1
-    });
-  }
+  // nextStage() {
+  //   this.setState({
+  //     stage : this.state.stage + 1
+  //   });
+  // }
+  // prevStage() {
+  //   this.setState({
+  //     stage : this.state.stage - 1
+  //   });
+  // }
   reset() {
     this.setState(initialState);
   }
@@ -91,43 +92,48 @@ export default class App extends Component {
     person[e.target.name] = e.target.value;
     this.setState({ [e.target.className] : person });
   }
-  showStage() {
-    switch (this.state.stage) {
-      default:
-        return <Introduction nextStage={this.nextStage} />
-      case 1:
-        return <Introduction nextStage={this.nextStage} />
-      case 2:
-        return <Description 
-                nextStage={this.nextStage}
-                prevStage={this.prevStage} />
-      case 3:
-        return <Form
-                bouquet={this.state.bouquet}
-                flowers={this.state.flowers}
-                selectBouquet={this.selectBouquet} 
-                nextStage={this.nextStage}
-                prevStage={this.prevStage}
-                recipient={this.state.recipient}
-                sender={this.state.sender}
-                updateField={this.updateField}
-                bouquetMeaning={this.bouquetMeaning} />
-      case 4:
-        return <Confirmation 
-                bouquet={this.state.bouquet}
-                flowers={this.state.flowers}
-                nextStage={this.nextStage}
-                prevStage={this.prevStage}
-                recipient={this.state.recipient}
-                sender={this.state.sender}
-                bouquetMeaning={this.bouquetMeaning} />
-    }
-  }
+  // showStage() {
+  //   switch (this.state.stage) {
+  //     default:
+  //       return <Introduction nextStage={this.nextStage} />
+  //     case 1:
+  //       return <Introduction nextStage={this.nextStage} />
+  //     case 2:
+  //       return <Description 
+  //               nextStage={this.nextStage}
+  //               prevStage={this.prevStage} />
+  //     case 3:
+  //       return <Form
+  //               bouquet={this.state.bouquet}
+  //               flowers={this.state.flowers}
+  //               selectBouquet={this.selectBouquet} 
+  //               nextStage={this.nextStage}
+  //               prevStage={this.prevStage}
+  //               recipient={this.state.recipient}
+  //               sender={this.state.sender}
+  //               updateField={this.updateField}
+  //               bouquetMeaning={this.bouquetMeaning} />
+  //     case 4:
+  //       return <Confirmation 
+  //               bouquet={this.state.bouquet}
+  //               flowers={this.state.flowers}
+  //               nextStage={this.nextStage}
+  //               prevStage={this.prevStage}
+  //               recipient={this.state.recipient}
+  //               sender={this.state.sender}
+  //               bouquetMeaning={this.bouquetMeaning} />
+  //   }
+  // }
   render() {
     return (
       <div>
-      {this.showStage()}
-      <button onClick={this.reset}>Start Again</button>
+        {this.props.children && React.cloneElement(this.props.children, 
+          {...this.state, 
+            selectBouquet: this.selectBouquet,
+            bouquetMeaning: this.bouquetMeaning,
+            updateField: this.updateField
+          })}
+      <IndexLink to="/" onClick={this.reset}>Start Again</IndexLink>
       </div>
     )
     

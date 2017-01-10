@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router';
 export default class Introduction extends Component {
   render() {
     return (
@@ -8,7 +8,8 @@ export default class Introduction extends Component {
           <h1>Some things are unutterable and secret. Other thoughts are so hard to say...</h1>
           <p>Thank Heavens for the coded art of flowers...</p>
           <strong>Penhaligon's invites you to send your very own coded bouquet.</strong>
-          <button onClick={this.props.nextStage}>Lets Begin</button>
+          <Link to="/description">Lets Begin</Link>
+          
       </div>
     )
   }

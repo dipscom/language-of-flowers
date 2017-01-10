@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import CreateBouquet from './CreateBouquet';
-import ViewBouquet from './ViewBouquet';
-import RecipientDetails from './RecipientDetails';
-import SenderDetails from './SenderDetails';
+// import CreateBouquet from './CreateBouquet';
+// import ViewBouquet from './ViewBouquet';
+// import RecipientDetails from './RecipientDetails';
+// import SenderDetails from './SenderDetails';
 
 export default class Form extends Component {
   constructor(){
@@ -47,48 +47,49 @@ export default class Form extends Component {
       <input key={key.toLowerCase().replace(/ /g, '-')} ref={key.replace(/ /g, '')} type="radio" name="navigation" value={index} defaultChecked={checked} onClick={(e) => this.selectStage(e)} />
       )
   } 
-  showStage() {
-    switch (this.state.currentStage) {
-      default:
-        return <CreateBouquet 
-                bouquet={this.props.bouquet}
-                flowers={this.props.flowers}
-                selectBouquet={this.props.selectBouquet} 
-                nextStage={this.nextStage} />
-      case 1:
-        return <CreateBouquet
-                bouquet={this.props.bouquet}
-                flowers={this.props.flowers}
-                selectBouquet={this.props.selectBouquet} 
-                nextStage={this.nextStage} />
-      case 2:
-      return <ViewBouquet 
-              bouquet={this.props.bouquet}
-              bouquetMeaning={this.props.bouquetMeaning}
-              flowers={this.props.flowers}
-              nextStage={this.nextStage}
-              prevStage={this.prevStage}
-               />
-      case 3:
-      return <RecipientDetails 
-              nextStage={this.nextStage}
-              recipient={this.props.recipient}
-              updateField={this.props.updateField} />
-      case 4:
-      return <SenderDetails 
-              nextStage={this.props.nextStage}
-              sender={this.props.sender}
-              updateField={this.props.updateField} />
-    }
-  }
+  // showStage() {
+  //   switch (this.state.currentStage) {
+  //     default:
+  //       return <CreateBouquet 
+  //               bouquet={this.props.bouquet}
+  //               flowers={this.props.flowers}
+  //               selectBouquet={this.props.selectBouquet} 
+  //               nextStage={this.nextStage} />
+  //     case 1:
+  //       return <CreateBouquet
+  //               bouquet={this.props.bouquet}
+  //               flowers={this.props.flowers}
+  //               selectBouquet={this.props.selectBouquet} 
+  //               nextStage={this.nextStage} />
+  //     case 2:
+  //     return <ViewBouquet 
+  //             bouquet={this.props.bouquet}
+  //             bouquetMeaning={this.props.bouquetMeaning}
+  //             flowers={this.props.flowers}
+  //             nextStage={this.nextStage}
+  //             prevStage={this.prevStage}
+  //              />
+  //     case 3:
+  //     return <RecipientDetails 
+  //             nextStage={this.nextStage}
+  //             recipient={this.props.recipient}
+  //             updateField={this.props.updateField} />
+  //     case 4:
+  //     return <SenderDetails 
+  //             nextStage={this.props.nextStage}
+  //             sender={this.props.sender}
+  //             updateField={this.props.updateField} />
+  //   }
+  // }
   render() {
-    const id = this.state.stages[this.state.currentStage - 1].toLowerCase().replace(/ /g, '-');
+    // const id = this.state.stages[this.state.currentStage - 1].toLowerCase().replace(/ /g, '-');
     return (
-      <div id={id} className="stage form">
+
+      <div className="stage form">
         <img id="bouquet-image" src={'/images/bouquets/' + [...this.props.bouquet].sort().toString().replace(/,/g, '_') + '.png'} alt="Bouquet" title="Bouquet" />
-        {this.showStage()}
+        {this.props.children && React.cloneElement(this.props.children, this.props)}
         <form id="form-navigation">
-          {this.state.stages.map(this.renderNavigation)}
+          { /*this.state.stages.map(this.renderNavigation) */}
         </form>
       </div>
     )
