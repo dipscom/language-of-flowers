@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TransitionGroup from 'react-addons-transition-group'
 import { IndexLink } from 'react-router';
 import flowers from './data/flowers';
 import products from './data/products';
@@ -64,42 +65,51 @@ export default class App extends Component {
       <li key={key}>{flower.meaning}</li>
       )
   }
-  updateField(e) {    
+  updateField(e) {
     const person = {...this.state[e.target.className]};
     person[e.target.name] = e.target.value;
     this.setState({ [e.target.className] : person });
   }
-  stageProps(name) {
+  stageProps(name, key) {
     switch (name) {
       default:
-        return null
+      return React.cloneElement(this.props.children, {
+        key: key
+      });
       case 'Form':
-        return React.cloneElement(this.props.children, { 
+        return React.cloneElement(this.props.children, {
           bouquet:[...this.state.bouquet],
           flowers:{...this.state.flowers},
           recipient:{...this.state.recipient},
           sender:{...this.state.sender},
           selectBouquet: this.selectBouquet,
           bouquetMeaning: this.bouquetMeaning,
-          updateField: this.updateField
+          updateField: this.updateField,
+          key: key
         });
       case 'Confirmation':
-        return React.cloneElement(this.props.children, { 
+        return React.cloneElement(this.props.children, {
           bouquet:[...this.state.bouquet],
           flowers:{...this.state.flowers},
           recipient:{...this.state.recipient},
           sender:{...this.state.sender},
-          bouquetMeaning: this.bouquetMeaning
+          bouquetMeaning: this.bouquetMeaning,
+          key: key
         });
      }
   }
   render() {
-    const parentProps = this.stageProps(this.props.children.type.name);
+    const { pathname } = this.props.location;
+    const key = pathname.split('/')[1] || 'root';
+    const parentProps = this.stageProps(this.props.children.type.name, key);
+
     return (
       <div>
-        {(parentProps ? this.props.children && parentProps : this.props.children)}
+        <TransitionGroup data-route={pathname}>
+        {parentProps}
+      </TransitionGroup>
       <IndexLink to="/" onClick={this.reset}>Start Again</IndexLink>
       </div>
-    )  
+    )
   }
 }

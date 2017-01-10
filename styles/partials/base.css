@@ -1,6 +1,6 @@
 html {
     box-sizing: border-box;
-    font-family: 'Brandon Grotesque';   
+    font-family: 'Brandon Grotesque';
     -webkit-font-smoothing: antialiased;
     height: 100%;
 }
@@ -16,4 +16,46 @@ html {
 
 body {
 	height: 100%;
+  background-color: rgb(240, 237, 229);
+}
+
+
+#root {
+  box-sizing: border-box;
+  padding: 16px;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  @media (--tablet-small-above) {
+    border: 3px solid white;
+  }
+
+  .stage {
+    position: absolute;
+    width: 200px;
+  }
+
+  > div {
+    > a {
+      position: fixed;
+      bottom: 0;
+    }
+  }
+}
+
+#introduction {
+
+  > img,
+  > button {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  > img {
+    /*margin: 30px 50px;*/
+    max-width: 182px;
+  }
 }
