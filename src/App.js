@@ -17,7 +17,8 @@ const initialState = {
     name: null,
     email: null
   },
-  stage: 1
+  stage: 1,
+  loaded: false
 };
 export default class App extends Component {
   constructor(){
@@ -27,6 +28,7 @@ export default class App extends Component {
     this.selectBouquet = this.selectBouquet.bind(this);
     this.stageProps = this.stageProps.bind(this);
     this.updateField = this.updateField.bind(this);
+    this.pageLoaded = this.pageLoaded.bind(this);
     this.state = initialState;
   }
   componentWillMount(){
@@ -71,11 +73,18 @@ export default class App extends Component {
     person[e.target.name] = e.target.value;
     this.setState({ [e.target.className] : person });
   }
+  pageLoaded(){
+    console.log('page loaded');
+    this.setState({
+      loaded: true
+    })
+  }
   stageProps(name, key) {
     switch (name) {
       default:
       return React.cloneElement(this.props.children, {
-        key: key
+        key: key,
+        loaded:this.state.loaded
       });
       case 'Form':
         return React.cloneElement(this.props.children, {
@@ -86,7 +95,8 @@ export default class App extends Component {
           selectBouquet: this.selectBouquet,
           bouquetMeaning: this.bouquetMeaning,
           updateField: this.updateField,
-          key: key
+          key: key,
+          loaded:this.state.loaded
         });
       case 'Confirmation':
         return React.cloneElement(this.props.children, {
@@ -95,7 +105,8 @@ export default class App extends Component {
           recipient:{...this.state.recipient},
           sender:{...this.state.sender},
           bouquetMeaning: this.bouquetMeaning,
-          key: key
+          key: key,
+          loaded:this.state.loaded
         });
      }
   }
@@ -105,14 +116,12 @@ export default class App extends Component {
     const parentProps = this.stageProps(this.props.children.type.name, key);
     return (
       <div>
-        <div key="component" id="component">
-          <div key="midground" id="midground"></div>
-          <TransitionGroup >
-            {parentProps}
-          </TransitionGroup>
-        </div>
+        <TransitionGroup component="div" id="component">
+          {parentProps}
+        </TransitionGroup>
         <TransitionGroup>
-          <Overlay />
+          <Overlay 
+          pageLoaded={this.pageLoaded} />
           <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
         </TransitionGroup>
       </div>

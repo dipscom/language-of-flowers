@@ -15,12 +15,13 @@ html {
 }
 
 body {
-    align-items: center;
-    display: flex;
     height: 100%;
-    justify-content: center;
+    overflow: hidden;
 
     @media (orientation: landscape) {
+      align-items: center;
+      display: flex;justify-content: center;
+
         @media (--largescreen-below) {
             padding: 1.876172607879925%;
         }
@@ -64,24 +65,30 @@ body {
 }
 
 #component {
-    align-items: center;
-    display: flex;
+background-color: rgba(255, 255, 255, 0.95);
     height: 100%;
-    justify-content: center;
+    overflow: auto;
     position: relative;
     width: 100%;
+
+    @media (orientation: landscape) {
+      align-items: center;
+    display: flex;
+    justify-content: center;
+    }
 }
 
 .stage {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
     position: relative;
 
     @media (orientation: landscape) {
-        width: 60%;
+      align-items: center;
+    display: flex;
+    flex-direction: column;
+        width: 50%;
     }
     @media (orientation: portrait) {
+        margin: 0 auto;
         width: 80%;
     }
     /* > div {
@@ -92,18 +99,26 @@ body {
     } */
 }
 .form {
+  text-align: left;
+
   @media (orientation: landscape) {
+    display: flex;
+    flex-direction: row;
+        height: 90%;
         width: 90%;
+
+        > * {
+          width: 50%;
+        }
+
     }
 }
-
-#midground {
-    background-color: rgba(255, 255, 255, 0.95);
-    height: 100%;
-    position: absolute;
+#form-navigation {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
     width: 100%;
-    left: 0;
-    top: 0;
+
 }
 
 #introduction {
@@ -133,11 +148,13 @@ body {
     }
 }
 
+
 .button {
     background-color: hsl(141, 21%, 73%);
     border: 1px solid black;
     border-bottom: 2px solid black;
     border-right: 2px solid black;
     box-shadow: 1px 1px 0 black;
+  display: inline-block;
     padding: 14px 44px;
   }

@@ -1,51 +1,78 @@
-.form {
+.form {}
 
+#select-flowers {
+    @media (orientation: landscape) {
+        width: 95%;
+    }
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    label {
+    		border: 8px solid transparent;
+        cursor: pointer;
+        width: 100%;
+
+        @media (orientation: portrait) {
+            align-items: center;
+            display: flex;
+        }
+        @media (orientation: landscape) {
+            width: 24%;
+        }
+        > div {
+        	&:first-child {
+        		@media (orientation: portrait) {
+        	width: 30%;
+        }
+        	}
+        	&:last-child{
+            @media (orientation: landscape) {
+                display: none;
+            }}
+        }
+    }
+    input[type=checkbox] {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        cursor: inherit;
+        padding-top: 100%;
+        width: 100%;
+
+        appearance: none;
+        &:checked {
+            background-color: #ffffff;
+        }
+        &:disabled {
+            opacity: 0.5;
+        }
+    }
 }
 
-#create-bouquet {
-	#bouquet-image {
-		display: none;
-	}
+#flower-details {
+    align-items: center;
+    display: flex;
+
+    @media (orientation: landscape) {
+        margin: 0 0 0 auto;
+        width: 95%;
+    }
+    @media (orientation: portrait) {
+        display: none;
+    }
+    img {
+        height: auto;
+        width: 60%;
+    }
+    >div {}
 }
 
-.select-flowers {
-	@media (--desktop-small-above) {
-		align-items: center;
-		display: flex;
-	}
-	> * {
-		@media (--desktop-small-above) {
-		width: 50%;
-		}
-	}
-	form {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-label {
-	cursor: pointer;
-	width: 21%;
-}
-	input[type=checkbox] {
-	background-color: blue;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	cursor: inherit;
-	height: 100px;
-	width: 100px;
-
-	appearance: none;
-	&:checked {
-	background-color: red;	
-	}
-	&:disabled {
-		opacity: 0.5;
-	}
-}
+.left {
+    @media (orientation: landscape) {
+        border-right: 1px rgba(0, 0, 0, 0.3) solid;
+    }
 }
 
-#form-navigation {
-	
-}
+#form-navigation {}
