@@ -3,6 +3,7 @@ import TransitionGroup from 'react-addons-transition-group'
 import { IndexLink } from 'react-router';
 import flowers from './data/flowers';
 import products from './data/products';
+import Overlay from './components/Overlay'
 
 const initialState = {
   bouquet: [],
@@ -103,13 +104,12 @@ export default class App extends Component {
     const key = pathname.split('/')[1] || 'root';
     const parentProps = this.stageProps(this.props.children.type.name, key);
     return (
-      <TransitionGroup component="div" data-route={pathname}>  
-      <div id="component">
+      <TransitionGroup component="div" data-route={pathname}>
+        <div id="component">
           <div id="midground"></div>
           {parentProps}
         </div>
-        <div id="overlay"></div>
-        
+        <Overlay />
         <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
       </TransitionGroup>
     )
