@@ -109,13 +109,8 @@ export default class App extends Component {
           <div id="midground"></div>
           {parentProps}
         </div>
-<<<<<<< HEAD
         <Overlay />
-        <IndexLink to="/" onClick={this.reset}>Start Again</IndexLink>
-=======
-        <div id="overlay"></div>
         <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
->>>>>>> master
       </TransitionGroup>
     )
   }
