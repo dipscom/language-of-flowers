@@ -4,6 +4,7 @@
   overflow: hidden;
   left: 0;
   top: 0;
+  pointer-events: none;
 
   > img {
     position: absolute;
@@ -78,7 +79,4 @@
     right: -6%;
   }
 
- #in {
-   
- }
 }
