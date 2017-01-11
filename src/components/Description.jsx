@@ -22,12 +22,12 @@ export default class Description extends Component {
   }
 
   componentWillEnter(callback) {
-    console.log("description Will enter", this.el);
+    console.log("description Will enter");
     this.animateIn(callback, 1);
   }
 
   componentWillAppear(callback) {
-    console.log("description Will appear", this.el);
+    console.log("description Will appear");
   }
 
   componentDidAppear() {

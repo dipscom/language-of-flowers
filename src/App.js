@@ -114,13 +114,23 @@ export default class App extends Component {
     const { pathname } = this.props.location;
     const key = pathname.split('/')[1] || 'root';
     const parentProps = this.stageProps(this.props.children.type.name, key);
+
+    const isLoaded = this.state.loaded;
+
+    let content;
+    if(isLoaded) {
+      content = parentProps
+    } else {
+      content = <span></span>
+    }
+
     return (
       <div>
         <TransitionGroup component="div" id="component">
-          {parentProps}
+          {content}
         </TransitionGroup>
         <TransitionGroup>
-          <Overlay 
+          <Overlay
           pageLoaded={this.pageLoaded} />
           <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
         </TransitionGroup>
