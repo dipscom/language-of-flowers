@@ -51,15 +51,20 @@ h1 {
     font-size: 7.8125vw;
     font-weight: normal;
     margin: 0;
+    text-align: center;
     text-transform: uppercase;
 
     @media (--phablet-large-above) {
         font-size: 43px;
     }
 }
+h2,h3 {
+  margin: 0;
+}
 
 p {
     font-size: 22px;
+    margin: 0;
 }
 
 strong {

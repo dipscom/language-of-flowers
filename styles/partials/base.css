@@ -89,7 +89,8 @@ background-color: rgba(255, 255, 255, 0.95);
     }
     @media (orientation: portrait) {
         margin: 0 auto;
-        width: 80%;
+        min-height: 100%;
+        width: 90%;
     }
     /* > div {
         > a {
@@ -97,28 +98,6 @@ background-color: rgba(255, 255, 255, 0.95);
             position: fixed;
         }
     } */
-}
-.form {
-  text-align: left;
-
-  @media (orientation: landscape) {
-    display: flex;
-    flex-direction: row;
-        height: 90%;
-        width: 90%;
-
-        > * {
-          width: 50%;
-        }
-
-    }
-}
-#form-navigation {
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-    width: 100%;
-
 }
 
 #introduction {
@@ -149,12 +128,18 @@ background-color: rgba(255, 255, 255, 0.95);
 }
 
 
+
 .button {
     background-color: hsl(141, 21%, 73%);
     border: 1px solid black;
     border-bottom: 2px solid black;
     border-right: 2px solid black;
     box-shadow: 1px 1px 0 black;
-  display: inline-block;
+    color: #ffffff;
+    display: inline-block;
+    font-family: 'Lovato';
+    line-height: 1;
     padding: 14px 44px;
+    text-decoration: none;
+    text-transform: uppercase;
   }
