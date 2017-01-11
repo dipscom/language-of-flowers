@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class Form extends Component {
   constructor(){
@@ -10,11 +11,6 @@ export default class Form extends Component {
       activeFlower: null
     }
   }
-  // selectStage(e) {
-  //   this.setState({
-  //     'currentStage': parseInt(e.target.value, 10)
-  //   });
-  // }
   componentWillMount(){
     if (!this.state.activeFlower) {
       this.setState({
@@ -81,14 +77,17 @@ export default class Form extends Component {
   render() {
     const leftProps = this.stageProps(this.props.left.type.name, 'left');
     const rightProps = this.stageProps(this.props.right.type.name, 'right');
-    console.log(this);
+
     return (
-      <div id={this.key} className="stage form">
-      <div className="column left">{(leftProps ? this.props.left && leftProps : this.props.left)}</div>
-      <div className="column right">{(rightProps ? this.props.right && rightProps : this.props.right)}</div>
-        <form id="form-navigation">
-          { /*this.state.stages.map(this.renderNavigation) */}
-        </form>
+      <div id={this.props.location.pathname.replace('/', '')} className="stage form">
+        <div className="column left">{(leftProps ? this.props.left && leftProps : this.props.left)}</div>
+        <div className="column right">{(rightProps ? this.props.right && rightProps : this.props.right)}</div>
+        <nav id="form-navigation">
+          <Link to="/create-bouquet" title="Create Bouquet"></Link>
+          <Link to="/view-bouquet" title="View Bouquet"></Link>
+          <Link to="/recipient" title="Recipient"></Link>
+          <Link to="/sender" title="Sender"></Link>
+        </nav>
       </div>
     )
   }

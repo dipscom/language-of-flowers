@@ -65,7 +65,7 @@ export default class CreateBouquet extends Component {
           <ul>
             {this.props.bouquet.map(this.bouquetList)}   
           </ul>
-          <Link to="/view-bouquet">View your bouquet</Link>
+          <Link className="button" to="/view-bouquet">View your bouquet</Link>
           </div>
     
       </div>
