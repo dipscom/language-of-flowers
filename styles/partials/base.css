@@ -15,12 +15,13 @@ html {
 }
 
 body {
-    align-items: center;
-    display: flex;
     height: 100%;
-    justify-content: center;
+    overflow: hidden;
 
     @media (orientation: landscape) {
+      align-items: center;
+      display: flex;justify-content: center;
+
         @media (--largescreen-below) {
             padding: 1.876172607879925%;
         }
@@ -64,9 +65,9 @@ body {
 }
 
 #component {
-  background-color: rgba(255, 255, 255, 0.95);
+background-color: rgba(255, 255, 255, 0.95);
     height: 100%;
-overflow: scroll;
+    overflow: auto;
     position: relative;
     width: 100%;
 
@@ -112,22 +113,12 @@ overflow: scroll;
 
     }
 }
-
-/* #midground {
-    background-color: rgba(255, 255, 255, 0.95);
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-
-} */
-
 #form-navigation {
   bottom: 0;
   left: 50%;
-  position: absolute;
   transform: translateX(-50%);
+    width: 100%;
+
 }
 
 #introduction {
@@ -157,11 +148,13 @@ overflow: scroll;
     }
 }
 
+
 .button {
     background-color: hsl(141, 21%, 73%);
     border: 1px solid black;
     border-bottom: 2px solid black;
     border-right: 2px solid black;
     box-shadow: 1px 1px 0 black;
+  display: inline-block;
     padding: 14px 44px;
   }
