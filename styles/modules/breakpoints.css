@@ -4,8 +4,8 @@
 @custom-media --phablet-small-below (width < 400px);
 @custom-media --phablet-medium-above (width >=450px);
 @custom-media --phablet-medium-below (width < 450px);
-@custom-media --phablet-large-above (width >=500px);
-@custom-media --phablet-large-below (width < 500px);
+@custom-media --phablet-large-above (width >=550px);
+@custom-media --phablet-large-below (width < 550px);
 @custom-media --tablet-small-above (width >=600px);
 @custom-media --tablet-small-below (width < 600px);
 @custom-media --tablet-medium-above (width >=700px);

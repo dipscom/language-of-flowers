@@ -62,7 +62,7 @@ export default class Description extends Component {
           <p>Whilst we don't like to gossip...</p>
           <strong>Choose the flowers and the recipient wisely</strong>
           <IndexLink to="/">Back</IndexLink>
-          <Link to="/create-bouquet">Create your own bouquet</Link>
+          <Link className="button" to="/create-bouquet">Create your own bouquet</Link>
       </div>
     )
   }
