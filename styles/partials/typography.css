@@ -1,71 +1,71 @@
 @font-face {
-  font-family: 'Brandon Grotesque';
-  font-weight: ligher;
-  src: url('/fonts/brandon-grotesque/lighter.woff2') format('woff2');
+    font-family: 'Brandon Grotesque';
+    font-weight: ligher;
+    src: url('/fonts/brandon-grotesque/lighter.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Brandon Grotesque';
-  font-weight: normal;
-  src: url('/fonts/brandon-grotesque/normal.woff2') format('woff2');
+    font-family: 'Brandon Grotesque';
+    font-weight: normal;
+    src: url('/fonts/brandon-grotesque/normal.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Brandon Grotesque';
-  font-weight: bold;
-  src: url('/fonts/brandon-grotesque/bold.woff2') format('woff2');
+    font-family: 'Brandon Grotesque';
+    font-weight: bold;
+    src: url('/fonts/brandon-grotesque/bold.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Brandon Grotesque';
-  font-weight: bolder;
-  src: url('/fonts/brandon-grotesque/bolder.woff2') format('woff2');
+    font-family: 'Brandon Grotesque';
+    font-weight: bolder;
+    src: url('/fonts/brandon-grotesque/bolder.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Lovato';
-  font-weight: lighter;
-  src: url('/fonts/lovato/lighter.woff2') format('woff2');
+    font-family: 'Lovato';
+    font-weight: lighter;
+    src: url('/fonts/lovato/lighter.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Lovato';
-  font-weight: normal;
-  src: url('/fonts/lovato/normal.woff2') format('woff2');
+    font-family: 'Lovato';
+    font-weight: normal;
+    src: url('/fonts/lovato/normal.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Lovato';
-  font-weight: bold;
-  src: url('/fonts/lovato/bold.woff2') format('woff2');
+    font-family: 'Lovato';
+    font-weight: bold;
+    src: url('/fonts/lovato/bold.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Lovato';
-  font-weight: bolder;
-  src: url('/fonts/lovato/bolder.woff2') format('woff2');
+    font-family: 'Lovato';
+    font-weight: bolder;
+    src: url('/fonts/lovato/bolder.woff2') format('woff2');
 }
 
-#root {
-  h1,
-  p,
-  strong,
-  button {
+h1 {
+    font-family: 'Lovato';
+    font-size: 7.8125vw;
+    font-weight: normal;
+
+    @media (--phablet-large-above) {
+        font-size: 43px;
+    }
+}
+
+p {
+    font-size: 22px;
+}
+
+strong {
+    font-family: 'Lovato';
+    font-size: 26px;
+    font-weight: normal;
+}
+
+.stage {
     text-align: center;
-  }
-
-  p {
-    font-style: italic;
-  }
-
-  button {
-    background-color: hsl(141, 21%, 73%);
-
-    border: 1px solid black;
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
-    box-shadow: 1px 1px 0 black;
-
-    padding: 14px 44px;
-  }
 }
