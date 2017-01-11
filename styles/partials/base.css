@@ -15,47 +15,73 @@ html {
 }
 
 body {
-	height: 100%;
-  background-color: rgb(240, 237, 229);
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+#root {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+
+    @media (orientation: landscape) {
+        max-height: 960px;
+        max-width: 1660px;
+        padding: 1.8072289156626504%;
+    }
+    > * {
+        height: 100%;
+        padding: 3.125%;
+
+        @media (orientation: landscape) {
+            background-image: url('/images/background/landscape.jpg');
+        }
+        @media (orientation: portrait) {
+            background-image: url('/images/background/portrait.jpg');
+        }
+    }
+}
+#component {
+  height: 100%;
+  position: relative;
+}
+
+.stage {
+    height: 100%;
+    padding: 3.125%;
+    width: 100%;
+
+    /* > div {
+        > a {
+            bottom: 0;
+            position: fixed;
+        }
+    } */
 }
 
 
-#root {
-  box-sizing: border-box;
-  padding: 16px;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-
-  @media (--tablet-small-above) {
-    border: 3px solid white;
-  }
-
-  .stage {
-    position: absolute;
-    width: 200px;
-  }
-
-  > div {
-    > a {
-      position: fixed;
-      bottom: 0;
-    }
-  }
+ #midground {
+  background-color: rgba(255,255,255,0.95);
+  height: 100%;
+  position: absolute;
+  width: 100%;
 }
 
 #introduction {
-
-  > img,
-  > button {
-    display: block;
-    height: auto;
-    margin: 0 auto;
-  }
-
-  > img {
-    /*margin: 30px 50px;*/
-    max-width: 182px;
-  }
+    > img,
+    > button {
+        display: block;
+        height: auto;
+        margin: 0 auto;
+    }
+    > img {
+        /*margin: 30px 50px;*/
+        max-width: 182px;
+    }
 }
