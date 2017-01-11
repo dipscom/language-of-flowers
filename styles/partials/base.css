@@ -19,42 +19,58 @@ body {
     display: flex;
     height: 100%;
     justify-content: center;
+
+    @media (orientation: landscape) {
+        @media (--largescreen-below) {
+            padding: 1.876172607879925%;
+        }
+        @media (--largescreen-above) {
+            padding: 30px;
+        }
+    }
 }
 
 #root {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
-    overflow: hidden;
+    box-sizing: content-box;
+    display: flex;
+    height: 100%;
     position: relative;
-    width: 100vw;
+    width: 100%;
 
     @media (orientation: landscape) {
         max-height: 960px;
-        max-width: 1660px;
-        padding: 1.8072289156626504%;
+        max-width: 1600px;
     }
     > * {
-        height: 100%;
-        padding: 3.125%;
+        display: flex;
+        width: 100%;
 
         @media (orientation: landscape) {
             background-image: url('/images/background/landscape.jpg');
+            padding: 3.125%;
         }
         @media (orientation: portrait) {
             background-image: url('/images/background/portrait.jpg');
+
+            @media (--desktop-small-below) {
+                padding: 6.25%;
+            }
+            @media (--desktop-small-above) {
+                padding: 50px;
+            }
         }
     }
 }
+
 #component {
-  height: 100%;
-  position: relative;
+    position: relative;
+    width: 100%;
 }
 
 .stage {
-    height: 100%;
-    padding: 3.125%;
     width: 100%;
 
     /* > div {
@@ -65,12 +81,11 @@ body {
     } */
 }
 
-
- #midground {
-  background-color: rgba(255,255,255,0.95);
-  height: 100%;
-  position: absolute;
-  width: 100%;
+#midground {
+    background-color: rgba(255, 255, 255, 0.95);
+    height: 100%;
+    position: absolute;
+    width: 100%;
 }
 
 #introduction {
@@ -83,5 +98,19 @@ body {
     > img {
         /*margin: 30px 50px;*/
         max-width: 182px;
+    }
+}
+
+#overlay {
+    position: absolute;
+}
+
+#reset-button {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+
+    @media (orientation: landscape) {
+        transform: translateY(100%);
     }
 }
