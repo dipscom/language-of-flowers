@@ -50,6 +50,8 @@ h1 {
     font-family: 'Lovato';
     font-size: 7.8125vw;
     font-weight: normal;
+    margin: 0;
+    text-transform: uppercase;
 
     @media (--phablet-large-above) {
         font-size: 43px;
@@ -64,6 +66,7 @@ strong {
     font-family: 'Lovato';
     font-size: 26px;
     font-weight: normal;
+    text-transform: uppercase;
 }
 
 .stage {

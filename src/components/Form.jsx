@@ -7,8 +7,6 @@ export default class Form extends Component {
     this.renderNavigation = this.renderNavigation.bind(this);
     this.activeFlower = this.activeFlower.bind(this);
     this.state = {
-      'currentStage': 1,
-      stages: ['Create Bouquet', 'View Bouquet', 'Recipient Details', 'Sender Details'],
       activeFlower: null
     }
   }
@@ -83,8 +81,9 @@ export default class Form extends Component {
   render() {
     const leftProps = this.stageProps(this.props.left.type.name, 'left');
     const rightProps = this.stageProps(this.props.right.type.name, 'right');
+    console.log(this);
     return (
-      <div className="stage form">
+      <div id={this.key} className="stage form">
       <div className="column left">{(leftProps ? this.props.left && leftProps : this.props.left)}</div>
       <div className="column right">{(rightProps ? this.props.right && rightProps : this.props.right)}</div>
         <form id="form-navigation">

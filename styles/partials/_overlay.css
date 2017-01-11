@@ -1,82 +1,68 @@
 #overlay {
-  width: 100%;
+  display: none;
   height: 100%;
-  overflow: hidden;
   left: 0;
-  top: 0;
+  overflow: hidden;
   pointer-events: none;
+  top: 0;
+  width: 100%;
 
   > img {
-    position: absolute;
     height: auto;
+    position: absolute;
   }
-
-
   > .top {
     top: 0;
   }
-
   > .right {
     right: 0;
   }
-
   > .bottom {
     bottom: 0;
   }
-
   > .left {
     left: 0;
   }
-
-
   > #flowersBottom {
-    width: 100%;
     bottom: -3%;
+    width: 100%;
   }
-
   > #flowersBottomRight {
-    width: 22%;
-    right: -2.5%;
     bottom: -10%;
+    right: -2.5%;
+    width: 22%;
   }
-
   > #flowersMidLeft {
-    width: 25%;
-    left: -2%;
     bottom: 10%;
-  }
-
-  > #flowersTopLeft {
-    width: 32%;
     left: -2%;
+    width: 25%;
   }
-
+  > #flowersTopLeft {
+    left: -2%;
+    width: 32%;
+  }
   > #flowersTopRight {
     width: 30%;
   }
-
   > #lady {
-    width: 22%;
     bottom: 0;
     left: 10%;
+    width: 22%;
   }
-
   > #man {
-    width: 17%;
     bottom: -17%;
     right: 9%;
+    width: 17%;
   }
-
   > #peacock {
-    width: 30%;
     bottom: -15%;
     left: 7%;
+    width: 30%;
   }
-
   > #stag {
-    width: 34%;
     bottom: -20%;
     right: -6%;
+    width: 34%;
   }
 
 }

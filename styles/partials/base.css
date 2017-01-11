@@ -64,24 +64,30 @@ body {
 }
 
 #component {
-    align-items: center;
-    display: flex;
+  background-color: rgba(255, 255, 255, 0.95);
     height: 100%;
-    justify-content: center;
+overflow: scroll;
     position: relative;
     width: 100%;
+
+    @media (orientation: landscape) {
+      align-items: center;
+    display: flex;
+    justify-content: center;
+    }
 }
 
 .stage {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
     position: relative;
 
     @media (orientation: landscape) {
-        width: 60%;
+      align-items: center;
+    display: flex;
+    flex-direction: column;
+        width: 50%;
     }
     @media (orientation: portrait) {
+        margin: 0 auto;
         width: 80%;
     }
     /* > div {
@@ -92,16 +98,36 @@ body {
     } */
 }
 .form {
+  text-align: left;
+
   @media (orientation: landscape) {
+    display: flex;
+    flex-direction: row;
+        height: 90%;
         width: 90%;
+
+        > * {
+          width: 50%;
+        }
+
     }
 }
 
-#midground {
+/* #midground {
     background-color: rgba(255, 255, 255, 0.95);
-    height: 100%;
+    bottom: 0;
+    left: 0;
     position: absolute;
-    width: 100%;
+    right: 0;
+    top: 0;
+
+} */
+
+#form-navigation {
+  bottom: 0;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
 }
 
 #introduction {

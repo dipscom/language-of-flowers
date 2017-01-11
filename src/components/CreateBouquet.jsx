@@ -34,11 +34,12 @@ export default class CreateBouquet extends Component {
     }
     return (
       <label key={key}>
-      <input name="flower" value={key} type="checkbox" style={styles} defaultChecked={checked} disabled={disabled} onMouseOver={() => this.props.activeFlower(key)} onClick={() => this.props.selectBouquet(key)} />
-      <h2>{flower.name}</h2>
+      <div>
+      <input name="flower" value={key} type="checkbox" style={styles} defaultChecked={checked} disabled={disabled} onMouseOver={() => this.props.activeFlower(key)} onClick={() => this.props.selectBouquet(key)} /></div>
+      <div><h2>{flower.name}</h2>
       <h3>Meaning</h3>
       <strong>{flower.meaning}</strong>
-      <p>{flower.description}</p>
+      <p>{flower.description}</p></div>
       </label>
     )
   }
@@ -51,8 +52,8 @@ export default class CreateBouquet extends Component {
   }
   render() {
     return (
-      <div className="select-flowers">
-        <div className="flowers-form">
+      <div id="select-flowers">
+       
           <h1>Create your bouquet</h1>
           <p>Select 3 flowers:</p>
           <form>{
@@ -66,7 +67,7 @@ export default class CreateBouquet extends Component {
           </ul>
           <Link to="/view-bouquet">View your bouquet</Link>
           </div>
-        </div>
+    
       </div>
     )
   }
