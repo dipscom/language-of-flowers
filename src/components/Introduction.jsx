@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 export default class Introduction extends Component {
 
+  constructor() {
+    super();
+
+    this.tl;
+  }
+
   animateIn(callback, delay) {
-    TweenMax.from(this.el, 1, { // eslint-disable-line
+    return TweenMax.from(this.el, 1, { // eslint-disable-line
       autoAlpha:0,
       x:"+=100",
       delay: delay || 0,
