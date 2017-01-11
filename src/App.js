@@ -102,14 +102,13 @@ export default class App extends Component {
     const { pathname } = this.props.location;
     const key = pathname.split('/')[1] || 'root';
     const parentProps = this.stageProps(this.props.children.type.name, key);
-
     return (
-      <div>
-        <TransitionGroup data-route={pathname}>
+      <TransitionGroup component="div" data-route={pathname}>  
+        <div id="midground"></div>
         {parentProps}
+        <div id="overlay"></div>
+        <IndexLink to="/" onClick={this.reset}>Start Again</IndexLink>
       </TransitionGroup>
-      <IndexLink to="/" onClick={this.reset}>Start Again</IndexLink>
-      </div>
     )
   }
 }
