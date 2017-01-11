@@ -109,7 +109,7 @@ export default class App extends Component {
           {parentProps}
         </div>
         <div id="overlay"></div>
-        <IndexLink to="/" onClick={this.reset}>Start Again</IndexLink>
+        <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
       </TransitionGroup>
     )
   }
