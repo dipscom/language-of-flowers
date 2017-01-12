@@ -13,13 +13,13 @@ export default class Form extends Component {
       activeFlower: null
     }
   }
-  componentWillMount(){
-    if (!this.state.activeFlower) {
-      this.setState({
-        activeFlower: Object.keys(this.props.flowers)[0]
-      });
-    }
-  }
+  // componentWillMount(){
+  //   if (!this.state.activeFlower) {
+  //     this.setState({
+  //       activeFlower: Object.keys(this.props.flowers)[0]
+  //     });
+  //   }
+  // }
   activeFlower(key) {
     if (this.state.activeFlower !== key) {
       this.setState({
