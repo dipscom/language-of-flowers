@@ -36,7 +36,7 @@ main {
         max-width: 1660px;
     }
     @media (orientation: portrait) {
-      position: fixed;
+        position: fixed;
     }
     > * {
         height: 100%;
@@ -70,32 +70,38 @@ main {
         }
     }
 }
+
 #background {
-  background-color: rgba(255, 255, 255, 0.95);
-  height: 100%;
-  width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    height: 100%;
+    width: 100%;
 }
 
 .stage {
-    left: 50%;
+    height: 100%;
+    left: 0;
+    padding: inherit;
     position: absolute;
+    top: 0;
+    width: 100%;
 
     @media (orientation: landscape) {
         align-items: center;
         display: flex;
-        flex-direction: column;
-        max-width: 750px;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 60%;
+        justify-content: center;
     }
-    @media (orientation: portrait) {
-        height: 100%;
-        margin: 0 auto;
+    > * {
         overflow: scroll;
-        padding: inherit;
-        top: 0;
-        transform: translateX(-50%);width: 100%;
+
+        @media (orientation: landscape) {
+            align-items: center;
+        display: flex;
+        flex-direction: column;
+            max-width: 750px;
+        }
+        @media (orientation: portrait) {
+            height: 100%;
+        }
     }
 }
 

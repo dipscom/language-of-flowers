@@ -14,7 +14,7 @@ export default class Description extends Component {
             this.el = el;
           }
         }
-      >
+      ><div>
       <img src="" alt="The Language of Flowers" title="The Language of Flowers" />
           <h1>Bouquets full of hidden meaning.</h1>
           <p>Whilst we don't like to gossip it would appear that there was a 'mistake' and the flowers from Lord George, meant for Lady Blanche, well they seem to have been sent to the divine Clara...With Penhaligon’s Floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas - but what could be more (ah-em) improbable!</p>
@@ -22,7 +22,7 @@ export default class Description extends Component {
           <IndexLink to="/">Back</IndexLink>
           <Link className="button" to="/create-bouquet">Create your own bouquet</Link>
           <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
-      </div>
+      </div></div>
     )
   }
 

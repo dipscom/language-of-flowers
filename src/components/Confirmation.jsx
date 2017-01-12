@@ -5,13 +5,15 @@ export default class Confirmation extends Component {
   render() {
     return (
       <div
+        id="confirmation"
         key="confirmation"
+        className="stage"
         ref={
           (el) => {
             this.el = el;
           }
         }
-      >
+      ><div>
         <div>
           <h1>Confirm & Send</h1>
           <p>On this fine day we shalt send your message of:</p>
@@ -23,7 +25,7 @@ export default class Confirmation extends Component {
           <p className="terms">plus join the very Penhaligon's club and discover our online secrets <label htmlFor="terms">I agree with the Terms and Conditions/Privacy Policy</label><input type="checkbox" name="terms" /></p>
         </div>
         <Link className="button" to="/success">Send Now</Link>
-      </div>
+      </div></div>
     )
   }
 
