@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 
 export default class Overlay extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.dur = 0.8;
     this.tl = null;
 
   }
@@ -42,6 +41,18 @@ export default class Overlay extends Component {
 
 
   render() {
+
+    switch (this.props.location.pathname) {
+      case "/create-bouquet":
+      case "/view-bouquet":
+      case "/recipient":
+      case "/sender":
+        if(this.tl) this.tl.reverse();
+        break;
+      default:
+        if(this.tl) this.tl.play();
+    }
+
     return (
       <div
         id="overlay"
@@ -69,7 +80,6 @@ export default class Overlay extends Component {
 
         <img id="peacock" src="/images/overlay/peacock.png" alt="" />
         <img id="stag" src="/images/overlay/stag.png" alt="" />
-
 
       </div>
     )

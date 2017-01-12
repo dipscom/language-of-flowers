@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { IndexLink } from 'react-router';
 import TransitionGroup from 'react-addons-transition-group'
 import flowers from './data/flowers';
 import products from './data/products';
@@ -112,7 +111,7 @@ export default class App extends Component {
         <TransitionGroup component="div">
           <Background />
           {parentProps}
-          <Overlay />
+          <Overlay location={this.props.location} />
         </TransitionGroup>
     )
   }
