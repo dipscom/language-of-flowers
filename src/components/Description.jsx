@@ -3,46 +3,6 @@ import { IndexLink, Link } from 'react-router';
 
 export default class Description extends Component {
 
-  animateIn(callback, delay) {
-    TweenMax.from(this.el, 1, { // eslint-disable-line
-      autoAlpha:0,
-      delay: delay || 0,
-      onComplete:callback
-    });
-  }
-
-  animateOut(callback) {
-    TweenMax.to(this.el, 1, { // eslint-disable-line
-      autoAlpha:0,
-      ease: Power2.easeIn, // eslint-disable-line
-      onComplete:callback
-    });
-  }
-
-  componentWillEnter(callback) {
-    console.log("description Will enter");
-    this.animateIn(callback, 1);
-  }
-
-  componentWillAppear(callback) {
-    console.log("description Will appear");
-  }
-
-  componentDidAppear() {
-    console.log("description Did appear");
-  }
-
-  componentWillLeave(callback) {
-    console.log("description Will leave");
-    this.animateOut(callback);
-  }
-
-  componentDidMount() {
-    console.log("description Did mount");
-  }
-
-
-
   render() {
     return (
       <div
@@ -64,4 +24,53 @@ export default class Description extends Component {
       </div>
     )
   }
+
+
+
+
+  /* Animation */
+  animateIn(callback, delay) {
+    TweenMax.from(this.el, 1, { // eslint-disable-line
+      autoAlpha:0,
+      delay: delay || 0,
+      onComplete:callback
+    });
+  }
+
+  animateOut(callback) {
+    TweenMax.to(this.el, 1, { // eslint-disable-line
+      autoAlpha:0,
+      ease: "Power4.easeIn",
+      onComplete:callback
+    });
+  }
+
+
+  /* React Animation Callbacks */
+  componentWillEnter(callback) {
+    console.log("Description Will enter");
+    this.animateIn(callback, 1);
+  }
+
+  componentDidEnter() {
+    console.log("Description Did enter");
+  }
+
+  componentWillAppear(callback) {
+    console.log("Description Will appear");
+  }
+
+  componentDidAppear() {
+    console.log("Description Did appear");
+  }
+
+  componentWillLeave(callback) {
+    console.log("Description Will leave");
+    this.animateOut(callback);
+  }
+
+  componentDidLeave() {
+    console.log("Description Did leave");
+  }
+
 }
