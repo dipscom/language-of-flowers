@@ -4,8 +4,8 @@ import TransitionGroup from 'react-addons-transition-group';
 
 
 export default class Form extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.stageProps = this.stageProps.bind(this);
     this.renderNavigation = this.renderNavigation.bind(this);
     this.activeFlower = this.activeFlower.bind(this);
