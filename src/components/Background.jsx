@@ -9,16 +9,6 @@ export default class Background extends Component {
 
   }
 
-  /* Animation */
-  componentWillAppear(callback) {
-    console.log("Background Will appear");
-
-  }
-
-  componentDidAppear(callback) {
-    console.log("Background Did appear");
-  }
-
 
   render() {
 
@@ -43,10 +33,20 @@ export default class Background extends Component {
           }
         }
       >
-      <img id="top-left" className="corner" src="/images/background/detail-corner.svg" />
-      <img id="top-right" className="corner" src="/images/background/detail-corner.svg" />
-      <img id="bottom-left" className="corner" src="/images/background/detail-corner.svg" />
-      <img id="bottom-right" className="corner" src="/images/background/detail-corner.svg" />
+        <div
+          id="paper"
+          key="paper"
+          ref={
+            (el) => {
+              this.el = el;
+            }
+          }
+        >
+          <img role="presentation" id="top-left" className="corner" src="/images/background/detail-corner.svg" />
+          <img role="presentation" id="top-right" className="corner" src="/images/background/detail-corner.svg" />
+          <img role="presentation" id="bottom-left" className="corner" src="/images/background/detail-corner.svg" />
+          <img role="presentation" id="bottom-right" className="corner" src="/images/background/detail-corner.svg" />
+        </div>
       </div>
     )
   }
@@ -74,27 +74,27 @@ export default class Background extends Component {
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    console.log("Background Will enter");
+    // console.log("Background Will enter");
   }
 
   componentDidEnter() {
-    console.log("Background Did enter");
+    // console.log("Background Did enter");
   }
 
   componentWillAppear(callback) {
-    console.log("Background Will appear");
+    // console.log("Background Will appear");
   }
 
   componentDidAppear() {
-    console.log("Background Did appear");
+    // console.log("Background Did appear");
   }
 
   componentWillLeave(callback) {
-    console.log("Background Will leave");
+    // console.log("Background Will leave");
   }
 
   componentDidLeave() {
-    console.log("Background Did leave");
+    // console.log("Background Did leave");
   }
 
 }
