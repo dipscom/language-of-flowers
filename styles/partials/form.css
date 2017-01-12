@@ -2,18 +2,39 @@
     text-align: left;
 
     @media (orientation: landscape) {
-        display: flex;
-        flex-direction: row;
+        height: 100%;
         max-width: none;
-        width: 90%;
-
+        padding: inherit;
+        width: 100%;
+    }
+    > * {
+        @media (orientation: landscape) {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            max-width: none;
+            padding: 5%;
+            position: relative;
+            width: 100%;
+        }
+        @media (orientation: portrait) {
+            display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        }
         > * {
-            width: 50%;
+@media (orientation: portrait) {
+    width: 100%;
+}
+            @media (orientation: landscape) {
+                width: 50%;
+            }
         }
     }
     .button {
         @media (orientation: landscape) {
             bottom: 0;
+            margin: 0 5% 5% 0;
             position: absolute;
             right: 0;
         }
@@ -115,9 +136,6 @@
         margin: 0 0 0 auto;
         width: 95%;
     }
-    @media (orientation: portrait) {
-        display: none;
-    }
     img {
         height: auto;
         width: 60%;
@@ -125,16 +143,21 @@
 }
 
 #form-navigation {
+    align-items: flex-end;
     display: flex;
     justify-content: space-around;
 
     @media (orientation: landscape) {
         bottom: 0;
         left: 50%;
+        margin-bottom: 5%;
         max-width: 140px;
         position: absolute;
         transform: translateX(-50%);
         width: 100%;
+    }
+    @media (orientation: portrait) {
+        max-width: 300px;
     }
     a {
         background-color: #4a4547;
@@ -162,7 +185,7 @@
         height: auto;
         margin: 0 auto;
         max-width: 450px;
-        width: 100%;
+        width: 75%;
     }
 }
 
@@ -226,5 +249,13 @@
                 margin-top: 30px;
             }
         }
+    }
+}
+
+#create-bouquet {
+    .right {
+         @media (orientation: portrait) {
+            display: none;
+         }
     }
 }

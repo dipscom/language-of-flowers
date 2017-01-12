@@ -1,19 +1,29 @@
-#background {
-	background-color: rgba(255, 255, 255, 0.95);
+#background {background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
     height: 100%;
-	position: relative;
     width: 100%;
 
-    * {
-    	@media (orientation: portrait) {
-    		display: none;
-    	}
-    }
+    @media (orientation: landscape) {
+                background-image: url('/images/background/landscape.jpg');
+    	padding: 3.125%;
+                
+            }
+            @media (orientation: portrait) {
+                background-image: url('/images/background/portrait.jpg');
+
+               @media (--desktop-small-below) {
+                    padding: 6.25%;
+                }
+                @media (--desktop-small-above) {
+                    padding: 50px;
+                }
+            }
 	.corner {
 		height: auto;
 		position: absolute;
 		width: 3.75%;
-	}
+	};
 	#top-left{
 		left: 0;
 		margin: 1.25% 0 0 1.25%;
@@ -38,4 +48,16 @@
 		right: 0;
 		transform: rotate(90deg);
 	}
+}
+
+#paper {
+	background-color: rgba(255, 255, 255, 0.95);
+	height: 100%;
+	position: relative;
+
+	* {
+    	@media (orientation: portrait) {
+    		display: none;
+    	}
+    }
 }
