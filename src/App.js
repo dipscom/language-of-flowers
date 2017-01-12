@@ -4,6 +4,7 @@ import { IndexLink } from 'react-router';
 import flowers from './data/flowers';
 import products from './data/products';
 import Overlay from './components/Overlay'
+import Background from './components/Background'
 
 const initialState = {
   bouquet: [],
@@ -115,26 +116,15 @@ export default class App extends Component {
     const key = pathname.split('/')[1] || 'root';
     const parentProps = this.stageProps(this.props.children.type.name, key);
 
-    const isLoaded = this.state.loaded;
-
-    let content;
-    if(isLoaded) {
-      content = parentProps
-    } else {
-      content = <span></span>
-    }
 
     return (
-      <div>
         <TransitionGroup component="div" id="component">
-          {content}
-        </TransitionGroup>
-        <TransitionGroup>
-          <Overlay
-          pageLoaded={this.pageLoaded} />
+          <Background />
+          {parentProps}
+          <Overlay />
           <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
         </TransitionGroup>
-      </div>
+
     )
   }
 }

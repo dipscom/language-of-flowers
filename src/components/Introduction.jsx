@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 export default class Introduction extends Component {
 
-  constructor() {
-    super();
-
-    console.log("constructor");
-
-    this.tl = null;
-  }
 
   animateIn(callback, delay) {
     TweenMax.from(this.el, 1, { // eslint-disable-line
@@ -38,7 +31,7 @@ export default class Introduction extends Component {
 
   componentWillAppear(callback) {
     console.log("introduction Will appear");
-    this.animateIn(callback);
+    this.animateIn(callback, 1);
   }
 
   componentDidAppear() {

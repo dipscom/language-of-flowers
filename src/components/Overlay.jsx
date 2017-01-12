@@ -37,7 +37,7 @@ export default class Overlay extends Component {
   componentDidAppear(callback) {
     console.log("Overlay Did appear");
     // Send a response to animate in the introduction section
-    this.props.pageLoaded();
+    // this.props.pageLoaded();
   }
 
 
