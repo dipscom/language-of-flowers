@@ -1,28 +1,4 @@
 @font-face {
-    font-family: 'Brandon Grotesque';
-    font-weight: ligher;
-    src: url('/fonts/brandon-grotesque/lighter.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Brandon Grotesque';
-    font-weight: normal;
-    src: url('/fonts/brandon-grotesque/normal.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Brandon Grotesque';
-    font-weight: bold;
-    src: url('/fonts/brandon-grotesque/bold.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Brandon Grotesque';
-    font-weight: bolder;
-    src: url('/fonts/brandon-grotesque/bolder.woff2') format('woff2');
-}
-
-@font-face {
     font-family: 'Lovato';
     font-weight: lighter;
     src: url('/fonts/lovato/lighter.woff2') format('woff2');
@@ -49,13 +25,15 @@
 h1 {
     font-family: 'Lovato';
     font-size: 7.8125vw;
-    font-weight: normal;
     margin: 0;
     text-align: center;
     text-transform: uppercase;
 
     @media (--phablet-large-above) {
         font-size: 43px;
+    }
+    @media (orientation: landscape) {
+      margin: 10px;
     }
 }
 
@@ -65,20 +43,34 @@ h2,h3 {
 h2 {
   font-family: 'Lovato';
   font-weight: normal;
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 p {
-    font-size: 22px;
+    font-size: 16px;
     line-height: 1.2;
     margin: 0;
+    max-width: 700px;
+
+    @media (--tablet-small-above) {
+      font-size: 20px;
+    }
+    @media (--desktop-small-above) {
+      font-size: 22px;
+    }
 }
 
 strong {
+    display: block;
     font-family: 'Lovato';
-    font-size: 26px;
-    font-weight: normal;
+    font-size: 5vw;
+    margin-top: 20px;
+    max-width: 550px;
     text-transform: uppercase;
+
+    @media (--phablet-large-above) {
+      font-size: 28px;
+    }
 }
 
 .stage {
