@@ -45,38 +45,21 @@ main {
             padding: 1.8072289156626504%;
         }
         > * {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
             height: 100%;
             position: relative;
             width: 100%;
-
-            @media (orientation: landscape) {
-                background-image: url('/images/background/landscape.jpg');
-                padding: 3.125%;
-            }
-            @media (orientation: portrait) {
-                background-image: url('/images/background/portrait.jpg');
-
-                @media (--desktop-small-below) {
-                    padding: 6.25%;
-                }
-                @media (--desktop-small-above) {
-                    padding: 50px;
-                }
-            }
         }
     }
 }
+
 img {
-  display: inline-block;
-  max-width: 100%;
-  vertical-align: baseline;
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: baseline;
 }
 
 hr {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 #paper {
@@ -118,33 +101,41 @@ hr {
     width: 100%;
 
     @media (orientation: landscape) {
-        align-items: center;
-        display: flex;
-        justify-content: center;
+        padding: 3.125%;
+    }
+    @media (orientation: portrait) {
+        @media (--desktop-small-below) {
+            padding: 6.25%;
+        }
+        @media (--desktop-small-above) {
+            padding: 50px;
+        }
     }
     > * {
-      display: flex;
-      flex-wrap:wrap;
-      justify-content: center;
-      overflow: scroll;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow: scroll;
 
         @media (orientation: landscape) {
-            align-items: center;
+            left: 50%;
             max-width: 800px;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%,-50%);
         }
         @media (orientation: portrait) {
-          align-content: space-around;
-            align-items: space-around;
             height: 100%;
 
             @media (--tablet-small-below) {
-              padding: 3.571428571428571%;
+                padding: 3.571428571428571%;
             }
             @media (--tablet-small-above) {
-              padding: 7.8125%;
+                padding: 7.8125%;
             }
         }
         > * {
+          min-height: min-content;
           width: 100%;
         }
     }
@@ -157,7 +148,7 @@ hr {
 #reset-button {
     bottom: 0;
     color: inherit;
-  font-family: 'Lovato';
+    font-family: 'Lovato';
     font-size: 12px;
     line-height: 1;
     position: absolute;
