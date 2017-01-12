@@ -43,13 +43,13 @@ export default class CreateBouquet extends Component {
       </label>
     )
   }
-  componentWillMount(){
-    if (!this.state.flower) {
-      this.setState({
-        flower: Object.keys(this.props.flowers)[0]
-      });
-    }
-  }
+  // componentWillMount(){
+  //   if (!this.state.flower) {
+  //     this.setState({
+  //       flower: Object.keys(this.props.flowers)[0]
+  //     });
+  //   }
+  // }
   render() {
     return (
       <div id="select-flowers">

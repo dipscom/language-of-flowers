@@ -23,9 +23,9 @@
         justify-content: center;
         }
         > * {
-@media (orientation: portrait) {
-    width: 100%;
-}
+            @media (orientation: portrait) {
+                width: 100%;
+            }
             @media (orientation: landscape) {
                 width: 50%;
             }
