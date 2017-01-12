@@ -14,6 +14,7 @@ export default class Form extends Component {
     }
   }
   componentWillMount(){
+    console.log(this.props);
     console.log(Object.keys(this.props.flowers)[0]);
     if (!this.state.activeFlower) {
       this.setState({
