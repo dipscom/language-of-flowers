@@ -15,7 +15,7 @@ export default class CreateBouquet extends Component {
     return (
       <li key={key}><strong>{flower.name}</strong> ({flower.meaning})</li>
       )
-  } 
+  }
   renderFlower(key) {
     const flower = this.props.flowers[key];
     const styles = {
@@ -28,9 +28,9 @@ export default class CreateBouquet extends Component {
         checked = true;
       } else {
         disabled = true;
-      }  
+      }
     } else {
-      disabled = false; 
+      disabled = false;
     }
     return (
       <label key={key}>
@@ -53,21 +53,21 @@ export default class CreateBouquet extends Component {
   render() {
     return (
       <div id="select-flowers">
-       
+
           <h1>Create your bouquet</h1>
           <p>Select 3 flowers:</p>
           <form>{
             Object
             .keys(this.props.flowers)
-            .map(this.renderFlower) 
+            .map(this.renderFlower)
           }</form>
           <div>
-          <ol>
-            {this.props.bouquet.map(this.bouquetList)}   
-          </ol>
-          <Link className="button" to="/view-bouquet">View your bouquet</Link>
+            <ol>
+              {this.props.bouquet.map(this.bouquetList)}
+            </ol>
+            <Link className="button" to="/view-bouquet">View your bouquet</Link>
           </div>
-    
+
       </div>
     )
   }

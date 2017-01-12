@@ -3,57 +3,6 @@ import { Link } from 'react-router';
 export default class Introduction extends Component {
 
 
-  animateIn(callback, delay) {
-    TweenMax.from(this.el, 1, { // eslint-disable-line
-      autoAlpha:0,
-      delay: delay || 0,
-      onComplete:callback
-    });
-  }
-
-  animateOut(callback) {
-    TweenMax.to(this.el, 1, { // eslint-disable-line
-      autoAlpha:0,
-      ease: "Power4.easeIn",
-      onComplete:callback
-    });
-  }
-
-
-  componentWillEnter(callback) {
-    console.log("introduction Will enter");
-    this.animateIn(callback);
-  }
-
-  componentDidEnter() {
-    console.log("introduction Did enter");
-  }
-
-  componentWillAppear(callback) {
-    console.log("introduction Will appear");
-    this.animateIn(callback, 1);
-  }
-
-  componentDidAppear() {
-    console.log("introduction Did appear");
-  }
-
-  componentWillLeave(callback) {
-    console.log("introduction Will leave");
-    this.animateOut(callback);
-  }
-
-  componentDidLeave() {
-    console.log("introduction Did leave");
-  }
-
-  componentDidMount() {
-    console.log("introduction Did mount");
-  }
-
-  componentWillUnmount() {
-    console.log("introduction Will unmount");
-  }
 
   render() {
     return (
@@ -75,4 +24,53 @@ export default class Introduction extends Component {
       </div>
     )
   }
+
+
+
+  /* Animation */
+  animateIn(callback, delay) {
+    TweenMax.from(this.el, 1, { // eslint-disable-line
+      autoAlpha:0,
+      delay: delay || 0,
+      onComplete:callback
+    });
+  }
+
+  animateOut(callback) {
+    TweenMax.to(this.el, 1, { // eslint-disable-line
+      autoAlpha:0,
+      ease: "Power4.easeIn",
+      onComplete:callback
+    });
+  }
+
+
+  /* React Animation Callbacks */
+  componentWillEnter(callback) {
+    console.log("Introduction Will enter");
+    this.animateIn(callback, 1);
+  }
+
+  componentDidEnter() {
+    console.log("Introduction Did enter");
+  }
+
+  componentWillAppear(callback) {
+    console.log("Introduction Will appear");
+    this.animateIn(callback, 1);
+  }
+
+  componentDidAppear() {
+    console.log("Introduction Did appear");
+  }
+
+  componentWillLeave(callback) {
+    console.log("Introduction Will leave");
+    this.animateOut(callback);
+  }
+
+  componentDidLeave() {
+    console.log("Introduction Did leave");
+  }
+
 }

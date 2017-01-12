@@ -79,7 +79,16 @@ export default class Form extends Component {
     const rightProps = this.stageProps(this.props.right.type.name, 'right');
 
     return (
-      <div id={this.props.location.pathname.replace('/', '')} className="stage form">
+      <div
+        id={this.props.location.pathname.replace('/', '')} className="stage form"
+        key={this.props.location.pathname.replace('/', '')}
+        ref={
+          (el) => {
+            this.el = el;
+          }
+        }
+
+      >
         <div className="column left">{(leftProps ? this.props.left && leftProps : this.props.left)}</div>
         <div className="column right">{(rightProps ? this.props.right && rightProps : this.props.right)}</div>
         <nav id="form-navigation">
@@ -91,4 +100,53 @@ export default class Form extends Component {
       </div>
     )
   }
+
+
+
+
+  /* Animation */
+  animateIn(callback, delay) {
+    TweenMax.from(this.el, 1, { // eslint-disable-line
+      autoAlpha:0,
+      delay: delay || 0,
+      onComplete:callback
+    });
+  }
+
+  animateOut(callback) {
+    TweenMax.to(this.el, 1, { // eslint-disable-line
+      autoAlpha:0,
+      ease: Power2.easeIn, // eslint-disable-line
+      onComplete:callback
+    });
+  }
+
+
+  /* React Animation Callbacks */
+  componentWillEnter(callback) {
+    console.log("CreateBouquet Will enter");
+    this.animateIn(callback, 1);
+  }
+
+  componentDidEnter() {
+    console.log("CreateBouquet Did enter");
+  }
+
+  componentWillAppear(callback) {
+    console.log("CreateBouquet Will appear");
+  }
+
+  componentDidAppear() {
+    console.log("CreateBouquet Did appear");
+  }
+
+  componentWillLeave(callback) {
+    console.log("CreateBouquet Will leave");
+    this.animateOut(callback);
+  }
+
+  componentDidLeave() {
+    console.log("CreateBouquet Did leave");
+  }
+
 }
