@@ -9,16 +9,6 @@ export default class Background extends Component {
 
   }
 
-  /* Animation */
-  componentWillAppear(callback) {
-    console.log("Background Will appear");
-
-  }
-
-  componentDidAppear(callback) {
-    console.log("Background Did appear");
-  }
-
 
   render() {
 
@@ -43,7 +33,7 @@ export default class Background extends Component {
           }
         }
       >
-      <img src="/images/background/detail-corner.svg" />
+      <img src="/images/background/detail-corner.svg" alt="" />
 
       </div>
     )
@@ -72,27 +62,27 @@ export default class Background extends Component {
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    console.log("Background Will enter");
+    // console.log("Background Will enter");
   }
 
   componentDidEnter() {
-    console.log("Background Did enter");
+    // console.log("Background Did enter");
   }
 
   componentWillAppear(callback) {
-    console.log("Background Will appear");
+    // console.log("Background Will appear");
   }
 
   componentDidAppear() {
-    console.log("Background Did appear");
+    // console.log("Background Did appear");
   }
 
   componentWillLeave(callback) {
-    console.log("Background Will leave");
+    // console.log("Background Will leave");
   }
 
   componentDidLeave() {
-    console.log("Background Did leave");
+    // console.log("Background Did leave");
   }
 
 }

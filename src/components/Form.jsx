@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import TransitionGroup from 'react-addons-transition-group'
+import TransitionGroup from 'react-addons-transition-group';
 
 
 export default class Form extends Component {
@@ -89,19 +89,20 @@ export default class Form extends Component {
             this.el = el;
           }
         }
-
-      ><div id={this.props.location.pathname.replace('/', '')} className="form">
-        <div className="column left">{(leftProps ? this.props.left && leftProps : this.props.left)}</div>
-        <TransitionGroup component="div" className="column right">
-            {(rightProps ? this.props.right && rightProps : this.props.right)}
-        </TransitionGroup>
-        <nav id="form-navigation">
-          <Link to="/create-bouquet" title="Create Bouquet"></Link>
-          <Link to="/view-bouquet" title="View Bouquet"></Link>
-          <Link to="/recipient" title="Recipient"></Link>
-          <Link to="/sender" title="Sender"></Link>
-        </nav>
-      </div></div>
+      >
+        <div id={this.props.location.pathname.replace('/', '')} className="form">
+          <div className="column left">{(leftProps ? this.props.left && leftProps : this.props.left)}</div>
+          <TransitionGroup component="div" className="column right">
+              {(rightProps ? this.props.right && rightProps : this.props.right)}
+          </TransitionGroup>
+          <nav id="form-navigation">
+            <Link to="/create-bouquet" title="Create Bouquet"></Link>
+            <Link to="/view-bouquet" title="View Bouquet"></Link>
+            <Link to="/recipient" title="Recipient"></Link>
+            <Link to="/sender" title="Sender"></Link>
+          </nav>
+        </div>
+      </div>
     )
   }
 

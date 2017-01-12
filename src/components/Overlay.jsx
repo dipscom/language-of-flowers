@@ -63,7 +63,7 @@ export default class Overlay extends Component {
     return TweenMax.from(el, 1, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:"Power4.easeOut"}); // eslint-disable-line
   }
   componentWillAppear(callback) {
-    console.log("Overlay Will appear");
+    // console.log("Overlay Will appear");
 
     this.tl = new TimelineLite({onComplete:callback}); // eslint-disable-line
 
@@ -84,8 +84,6 @@ export default class Overlay extends Component {
   }
 
   componentDidAppear(callback) {
-    console.log("Overlay Did appear");
-    // Send a response to animate in the introduction section
-    // this.props.pageLoaded();
+    // console.log("Overlay Did appear");
   }
 }

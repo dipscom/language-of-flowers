@@ -49,30 +49,30 @@ export default class Introduction extends Component {
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    console.log("Introduction Will enter");
+    // console.log("Introduction Will enter");
     this.animateIn(callback, 1);
   }
 
   componentDidEnter() {
-    console.log("Introduction Did enter");
+    // console.log("Introduction Did enter");
   }
 
   componentWillAppear(callback) {
-    console.log("Introduction Will appear");
+    // console.log("Introduction Will appear");
     this.animateIn(callback, 1);
   }
 
   componentDidAppear() {
-    console.log("Introduction Did appear");
+    // console.log("Introduction Did appear");
   }
 
   componentWillLeave(callback) {
-    console.log("Introduction Will leave");
+    // console.log("Introduction Will leave");
     this.animateOut(callback);
   }
 
   componentDidLeave() {
-    console.log("Introduction Did leave");
+    // console.log("Introduction Did leave");
   }
 
 }
