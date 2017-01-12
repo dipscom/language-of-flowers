@@ -15,68 +15,70 @@ html {
 }
 
 body {
+    background-color: #ff0000;
     height: 100%;
-    overflow: hidden;
 
     @media (orientation: landscape) {
         align-items: center;
         display: flex;
         justify-content: center;
-
-        @media (--largescreen-below) {
-            padding: 1.876172607879925%;
-        }
-        @media (--largescreen-above) {
-            padding: 30px;
-        }
     }
 }
 
-#root {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+main {
+    background-color: #ffffff;
     height: 100%;
     position: relative;
     width: 100%;
 
     @media (orientation: landscape) {
-        max-height: 960px;
-        max-width: 1600px;
+        max-height: 1020px;
+        max-width: 1660px;
+    }
+    @media (orientation: portrait) {
+      position: fixed;
     }
     > * {
         height: 100%;
         width: 100%;
 
         @media (orientation: landscape) {
-            background-image: url('/images/background/landscape.jpg');
-            padding: 3.125%;
+            padding: 1.8072289156626504%;
         }
-        @media (orientation: portrait) {
-            background-image: url('/images/background/portrait.jpg');
+        > * {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            position: relative;
+            width: 100%;
 
-            @media (--desktop-small-below) {
-                padding: 6.25%;
+            @media (orientation: landscape) {
+                background-image: url('/images/background/landscape.jpg');
+                padding: 3.125%;
             }
-            @media (--desktop-small-above) {
-                padding: 50px;
+            @media (orientation: portrait) {
+                background-image: url('/images/background/portrait.jpg');
+
+                @media (--desktop-small-below) {
+                    padding: 6.25%;
+                }
+                @media (--desktop-small-above) {
+                    padding: 50px;
+                }
             }
         }
     }
 }
-
-#component {
-    background-color: rgba(255, 255, 255, 0.95);
-    height: 100%;
-    overflow: auto;
-    position: relative;
-    width: 100%;
+#background {
+  background-color: rgba(255, 255, 255, 0.95);
+  height: 100%;
+  width: 100%;
 }
 
 .stage {
     left: 50%;
     position: absolute;
-    width: 90%;
 
     @media (orientation: landscape) {
         align-items: center;
@@ -85,11 +87,15 @@ body {
         max-width: 750px;
         top: 50%;
         transform: translate(-50%, -50%);
+        width: 60%;
     }
     @media (orientation: portrait) {
+        height: 100%;
         margin: 0 auto;
-        min-height: 100%;
-        transform: translateX(-50%);
+        overflow: scroll;
+        padding: inherit;
+        top: 0;
+        transform: translateX(-50%);width: 100%;
     }
 }
 

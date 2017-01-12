@@ -116,15 +116,12 @@ export default class App extends Component {
     const key = pathname.split('/')[1] || 'root';
     const parentProps = this.stageProps(this.props.children.type.name, key);
 
-
     return (
-        <TransitionGroup component="div" id="component">
+        <TransitionGroup component="div">
           <Background />
           {parentProps}
           <Overlay />
-          <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
         </TransitionGroup>
-
     )
   }
 }

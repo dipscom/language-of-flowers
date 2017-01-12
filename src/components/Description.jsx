@@ -61,6 +61,7 @@ export default class Description extends Component {
           <strong>Choose the flowers and the recipient wisely</strong>
           <IndexLink to="/">Back</IndexLink>
           <Link className="button" to="/create-bouquet">Create your own bouquet</Link>
+          <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
       </div>
     )
   }
