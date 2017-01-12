@@ -43,8 +43,10 @@ export default class Background extends Component {
           }
         }
       >
-      <img src="/images/background/detail-corner.svg" />
-
+      <img id="top-left" className="corner" src="/images/background/detail-corner.svg" />
+      <img id="top-right" className="corner" src="/images/background/detail-corner.svg" />
+      <img id="bottom-left" className="corner" src="/images/background/detail-corner.svg" />
+      <img id="bottom-right" className="corner" src="/images/background/detail-corner.svg" />
       </div>
     )
   }

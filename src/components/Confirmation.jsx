@@ -14,8 +14,10 @@ export default class Confirmation extends Component {
           }
         }
       ><div>
-        <div>
-          <h1>Confirm & Send</h1>
+      <div>
+          <h1>Confirm & Send
+          <hr />
+          </h1>
           <p>On this fine day we shalt send your message of:</p>
           <ul>
               { this.props.bouquet.map(this.props.bouquetMeaning) }
