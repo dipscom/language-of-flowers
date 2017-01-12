@@ -18,8 +18,7 @@ const initialState = {
     name: null,
     email: null
   },
-  stage: 1,
-  loaded: false
+  stage: 1
 };
 export default class App extends Component {
   constructor(){
@@ -29,7 +28,6 @@ export default class App extends Component {
     this.selectBouquet = this.selectBouquet.bind(this);
     this.stageProps = this.stageProps.bind(this);
     this.updateField = this.updateField.bind(this);
-    this.pageLoaded = this.pageLoaded.bind(this);
     this.state = initialState;
   }
   componentWillMount(){
@@ -73,12 +71,6 @@ export default class App extends Component {
     const person = {...this.state[e.target.className]};
     person[e.target.name] = e.target.value;
     this.setState({ [e.target.className] : person });
-  }
-  pageLoaded(){
-    console.log('page loaded');
-    this.setState({
-      loaded: true
-    })
   }
   stageProps(name, key) {
     switch (name) {
