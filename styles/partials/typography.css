@@ -58,12 +58,19 @@ h1 {
         font-size: 43px;
     }
 }
+
 h2,h3 {
   margin: 0;
+}
+h2 {
+  font-family: 'Lovato';
+  font-weight: normal;
+    text-transform: uppercase;
 }
 
 p {
     font-size: 22px;
+    line-height: 1.2;
     margin: 0;
 }
 

@@ -19,8 +19,9 @@ body {
     overflow: hidden;
 
     @media (orientation: landscape) {
-      align-items: center;
-      display: flex;justify-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
 
         @media (--largescreen-below) {
             padding: 1.876172607879925%;
@@ -65,39 +66,31 @@ body {
 }
 
 #component {
-background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.95);
     height: 100%;
     overflow: auto;
     position: relative;
     width: 100%;
-
-    @media (orientation: landscape) {
-      align-items: center;
-    display: flex;
-    justify-content: center;
-    }
 }
 
 .stage {
-    position: relative;
+    left: 50%;
+    position: absolute;
+    width: 90%;
 
     @media (orientation: landscape) {
-      align-items: center;
-    display: flex;
-    flex-direction: column;
-        width: 50%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        max-width: 750px;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
     @media (orientation: portrait) {
         margin: 0 auto;
         min-height: 100%;
-        width: 90%;
+        transform: translateX(-50%);
     }
-    /* > div {
-        > a {
-            bottom: 0;
-            position: fixed;
-        }
-    } */
 }
 
 #introduction {
@@ -108,7 +101,6 @@ background-color: rgba(255, 255, 255, 0.95);
         margin: 0 auto;
     }
     > img {
-        /*margin: 30px 50px;*/
         max-width: 182px;
     }
 }
@@ -127,8 +119,6 @@ background-color: rgba(255, 255, 255, 0.95);
     }
 }
 
-
-
 .button {
     background-color: hsl(141, 21%, 73%);
     border: 1px solid black;
@@ -142,4 +132,4 @@ background-color: rgba(255, 255, 255, 0.95);
     padding: 14px 44px;
     text-decoration: none;
     text-transform: uppercase;
-  }
+}

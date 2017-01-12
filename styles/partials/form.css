@@ -2,27 +2,35 @@
     text-align: left;
 
     @media (orientation: landscape) {
+        bottom: 5%;
         display: flex;
         flex-direction: row;
-        height: 90%;
-        width: 90%;
+        left: 5%;
+        max-width: none;
+        right: 5%;
+        top: 5%;
+        transform: none;
 
         > * {
             width: 50%;
         }
     }
     .button {
-    	@media (orientation: landscape) {
-    		bottom: 0;
-    		position: absolute;
-    		right: 0;
-    	}
+        @media (orientation: landscape) {
+            bottom: 0;
+            position: absolute;
+            right: 0;
+        }
     }
 }
 
 #select-flowers {
     @media (orientation: landscape) {
         width: 95%;
+    }
+    p {
+        font-size: 23px;
+        line-height: 1;
     }
     form {
         display: flex;
@@ -87,6 +95,20 @@
             opacity: 0.5;
         }
     }
+    h2 {
+        font-size: 18px;
+    }
+    h3 {
+        font-size: 16px;
+    }
+    strong {
+        font-family: 'Brandon Grotesque';
+        font-size: 16px;
+        font-weight: normal;
+    }
+    p {
+        font-size: 14px;
+    }
 }
 
 #flower-details {
@@ -107,15 +129,16 @@
     >div {}
 }
 
-.left {
+
+/* .left {
     @media (orientation: landscape) {
         border-right: 1px rgba(0, 0, 0, 0.3) solid;
     }
-}
+} */
 
 #form-navigation {
-	display: flex;
-	justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 
     @media (orientation: landscape) {
         bottom: 0;
@@ -134,8 +157,8 @@
         width: 30px;
 
         @media (orientation: landscape) {
-        	height: 20px;
-        	width: 20px;
+            height: 20px;
+            width: 20px;
         }
     }
 }
