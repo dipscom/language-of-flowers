@@ -6,9 +6,6 @@ export default class CreateBouquet extends Component {
     super();
     this.bouquetList = this.bouquetList.bind(this);
     this.renderFlower = this.renderFlower.bind(this);
-    this.state = {
-      flower: null
-    }
   }
   bouquetList(key) {
     const flower = this.props.flowers[key];
@@ -35,7 +32,7 @@ export default class CreateBouquet extends Component {
     return (
       <label key={key}>
       <div>
-      <input name="flower" value={key} type="checkbox" style={styles} defaultChecked={checked} disabled={disabled} onMouseOver={() => this.props.activeFlower(key)} onClick={() => this.props.selectBouquet(key)} /></div>
+      <input name="flower" value={key} type="checkbox" style={styles} defaultChecked={checked} disabled={disabled} onMouseOver={() => this.props.getActiveFlower(key)} onClick={() => this.props.selectBouquet(key)} /></div>
       <div><h2>{flower.name}</h2>
       <h3>Meaning</h3>
       <strong>{flower.meaning}</strong>

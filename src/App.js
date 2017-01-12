@@ -25,7 +25,7 @@ export default class App extends Component {
     this.bouquetMeaning = this.bouquetMeaning.bind(this);
     this.reset = this.reset.bind(this);
     this.selectBouquet = this.selectBouquet.bind(this);
-    this.stageProps = this.stageProps.bind(this);
+    // this.stageProps = this.stageProps.bind(this);
     this.updateField = this.updateField.bind(this);
     this.state = initialState;
   }
@@ -71,46 +71,52 @@ export default class App extends Component {
     person[e.target.name] = e.target.value;
     this.setState({ [e.target.className] : person });
   }
-  stageProps(name, key) {
-    switch (name) {
-      default:
-      return React.cloneElement(this.props.children, {
-        key: key,
-        loaded:this.state.loaded
-      });
-      case 'Form':
-        return React.cloneElement(this.props.children, {
-          bouquet:[...this.state.bouquet],
-          flowers:{...this.state.flowers},
-          recipient:{...this.state.recipient},
-          sender:{...this.state.sender},
-          selectBouquet: this.selectBouquet,
-          bouquetMeaning: this.bouquetMeaning,
-          updateField: this.updateField,
-          key: key,
-          loaded:this.state.loaded
-        });
-      case 'Confirmation':
-        return React.cloneElement(this.props.children, {
-          bouquet:[...this.state.bouquet],
-          flowers:{...this.state.flowers},
-          recipient:{...this.state.recipient},
-          sender:{...this.state.sender},
-          bouquetMeaning: this.bouquetMeaning,
-          key: key,
-          loaded:this.state.loaded
-        });
-     }
-  }
+  // stageProps(name, key) {
+  //   switch (name) {
+  //     default:
+  //     return React.cloneElement(this.props.children, {
+  //       key: key,
+  //       loaded:this.state.loaded
+  //     });
+  //     case 'Form':
+  //       return React.cloneElement(this.props.children, {
+  //         bouquet:[...this.state.bouquet],
+  //         flowers:{...this.state.flowers},
+  //         recipient:{...this.state.recipient},
+  //         sender:{...this.state.sender},
+  //         selectBouquet: this.selectBouquet,
+  //         bouquetMeaning: this.bouquetMeaning,
+  //         updateField: this.updateField,
+  //         key: key,
+  //         loaded:this.state.loaded
+  //       });
+  //     case 'Confirmation':
+  //       return React.cloneElement(this.props.children, {
+  //         bouquet:[...this.state.bouquet],
+  //         flowers:{...this.state.flowers},
+  //         recipient:{...this.state.recipient},
+  //         sender:{...this.state.sender},
+  //         bouquetMeaning: this.bouquetMeaning,
+  //         key: key,
+  //         loaded:this.state.loaded
+  //       });
+  //    }
+  // }
   render() {
     const { pathname } = this.props.location;
     const key = pathname.split('/')[1] || 'root';
-    const parentProps = this.stageProps(this.props.children.type.name, key);
-
+    // const parentProps = this.stageProps(this.props.children.type.name, key);
     return (
         <TransitionGroup component="div">
           <Background location={this.props.location} />
-          {parentProps}
+          {this.props.children && React.cloneElement(this.props.children, 
+          {...this.state, 
+            selectBouquet: this.selectBouquet,
+            bouquetMeaning: this.bouquetMeaning,
+            updateField: this.updateField,
+            rest: this.reset,
+            key: key,
+          })}
           <Overlay location={this.props.location} />
         </TransitionGroup>
     )
