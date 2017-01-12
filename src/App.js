@@ -110,13 +110,17 @@ export default class App extends Component {
         <TransitionGroup component="div">
           <Background location={this.props.location} />
           {this.props.children && React.cloneElement(this.props.children, 
-          {...this.state, 
-            selectBouquet: this.selectBouquet,
-            bouquetMeaning: this.bouquetMeaning,
-            updateField: this.updateField,
-            rest: this.reset,
-            key: key,
-          })}
+          {
+          bouquet:[...this.state.bouquet],
+           flowers:{...this.state.flowers},
+           recipient:{...this.state.recipient},
+           sender:{...this.state.sender},
+           selectBouquet: this.selectBouquet,
+           bouquetMeaning: this.bouquetMeaning,
+           updateField: this.updateField,
+           key: key,
+           
+         })}
           <Overlay location={this.props.location} />
         </TransitionGroup>
     )

@@ -76,6 +76,7 @@ export default class Form extends Component {
   //       });
   //    }
   // }
+
   render() {
     // const leftProps = this.stageProps(this.props.left.type.name, 'left');
     // const rightProps = this.stageProps(this.props.right.type.name, 'right');
@@ -95,29 +96,27 @@ export default class Form extends Component {
           <div>
           <div className="column left">
             {this.props.left && React.cloneElement(this.props.left, 
-              {...this.state, ...this.props,
-              selectBouquet: this.selectBouquet,
-              bouquetMeaning: this.bouquetMeaning,
-              updateField: this.updateField,
-              selectBouquet: this.props.selectBouquet,
-              getActiveFlower: this.getActiveFlower,
-              renderNavigation: this.renderNavigation,
-              bouquetMeaning: this.props.bouquetMeaning,
-              updateField: this.props.updateField,
-            })}
+              {bouquet:[...this.props.bouquet],
+           activeFlower: this.state.activeFlower,
+           getActiveFlower: this.getActiveFlower,
+           flowers:{...this.props.flowers},
+           selectBouquet: this.props.selectBouquet,
+           bouquetMeaning: this.props.bouquetMeaning,
+           recipient:{...this.props.recipient},
+           sender:{...this.props.sender},
+           updateField: this.props.updateField})}
           </div>
           <TransitionGroup component="div" className="column right">
             {this.props.right && React.cloneElement(this.props.right, 
-              {...this.state, ...this.props,
-                selectBouquet: this.selectBouquet,
-                bouquetMeaning: this.bouquetMeaning,
-                updateField: this.updateField,
-                bouquetMeaning: this.props.bouquetMeaning,
-                selectBouquet: this.props.selectBouquet,
-                getActiveFlower: this.getActiveFlower,
-                renderNavigation: this.renderNavigation,
-                updateField: this.props.updateField,
-            })}
+              {bouquet:[...this.props.bouquet],
+           activeFlower: this.state.activeFlower,
+           getActiveFlower: this.getActiveFlower,
+           flowers:{...this.props.flowers},
+           selectBouquet: this.props.selectBouquet,
+           bouquetMeaning: this.props.bouquetMeaning,
+           recipient:{...this.props.recipient},
+           sender:{...this.props.sender},
+           updateField: this.props.updateField})}
 
           </TransitionGroup>
           <nav id="form-navigation">
