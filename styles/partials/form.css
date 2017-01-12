@@ -2,14 +2,10 @@
     text-align: left;
 
     @media (orientation: landscape) {
-        bottom: 5%;
         display: flex;
         flex-direction: row;
-        left: 5%;
         max-width: none;
-        right: 5%;
-        top: 5%;
-        transform: none;
+        width: 90%;
 
         > * {
             width: 50%;
@@ -126,15 +122,7 @@
         height: auto;
         width: 60%;
     }
-    >div {}
 }
-
-
-/* .left {
-    @media (orientation: landscape) {
-        border-right: 1px rgba(0, 0, 0, 0.3) solid;
-    }
-} */
 
 #form-navigation {
     display: flex;

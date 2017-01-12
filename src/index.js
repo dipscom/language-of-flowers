@@ -36,5 +36,5 @@ render(
       <Route path="my-bouquet" component={MyBouquet} />
     </Route>
   </Router>,
-  document.getElementById('root')
+  document.getElementById('app')
 );

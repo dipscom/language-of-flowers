@@ -82,7 +82,7 @@ export default class Form extends Component {
 
     return (
       <div
-        id={this.props.location.pathname.replace('/', '')} className="stage form"
+        className="stage"
         key={this.props.location.pathname.replace('/', '')}
         ref={
           (el) => {
@@ -90,7 +90,7 @@ export default class Form extends Component {
           }
         }
 
-      >
+      ><div id={this.props.location.pathname.replace('/', '')} className="form">
         <div className="column left">{(leftProps ? this.props.left && leftProps : this.props.left)}</div>
         <TransitionGroup component="div" className="column right">
             {(rightProps ? this.props.right && rightProps : this.props.right)}
@@ -101,7 +101,7 @@ export default class Form extends Component {
           <Link to="/recipient" title="Recipient"></Link>
           <Link to="/sender" title="Sender"></Link>
         </nav>
-      </div>
+      </div></div>
     )
   }
 
