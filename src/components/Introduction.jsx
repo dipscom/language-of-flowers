@@ -13,7 +13,6 @@ export default class Introduction extends Component {
   animateIn(callback, delay) {
     TweenMax.from(this.el, 1, { // eslint-disable-line
       autoAlpha:0,
-      x:"+=100",
       delay: delay || 0,
       onComplete:callback
     });
@@ -22,7 +21,6 @@ export default class Introduction extends Component {
   animateOut(callback) {
     TweenMax.to(this.el, 1, { // eslint-disable-line
       autoAlpha:0,
-      x:"+=100",
       ease: "Power4.easeIn",
       onComplete:callback
     });
@@ -31,7 +29,11 @@ export default class Introduction extends Component {
 
   componentWillEnter(callback) {
     console.log("introduction Will enter");
-    this.animateIn(callback, 1);
+    this.animateIn(callback);
+  }
+
+  componentDidEnter() {
+    console.log("introduction Did enter");
   }
 
   componentWillAppear(callback) {
@@ -39,7 +41,7 @@ export default class Introduction extends Component {
     this.animateIn(callback);
   }
 
-  componentDidAppear(callback) {
+  componentDidAppear() {
     console.log("introduction Did appear");
   }
 
@@ -48,7 +50,7 @@ export default class Introduction extends Component {
     this.animateOut(callback);
   }
 
-  componentDidLeave(callback) {
+  componentDidLeave() {
     console.log("introduction Did leave");
   }
 

@@ -6,7 +6,6 @@ export default class Description extends Component {
   animateIn(callback, delay) {
     TweenMax.from(this.el, 1, { // eslint-disable-line
       autoAlpha:0,
-      x:"+=100",
       delay: delay || 0,
       onComplete:callback
     });
@@ -15,7 +14,6 @@ export default class Description extends Component {
   animateOut(callback) {
     TweenMax.to(this.el, 1, { // eslint-disable-line
       autoAlpha:0,
-      x:"+=100",
       ease: Power2.easeIn, // eslint-disable-line
       onComplete:callback
     });
