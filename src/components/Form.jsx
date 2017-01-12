@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import TransitionGroup from 'react-addons-transition-group'
+
 
 export default class Form extends Component {
   constructor(){
@@ -90,7 +92,9 @@ export default class Form extends Component {
 
       >
         <div className="column left">{(leftProps ? this.props.left && leftProps : this.props.left)}</div>
-        <div className="column right">{(rightProps ? this.props.right && rightProps : this.props.right)}</div>
+        <TransitionGroup component="div" className="column right">
+            {(rightProps ? this.props.right && rightProps : this.props.right)}
+        </TransitionGroup>
         <nav id="form-navigation">
           <Link to="/create-bouquet" title="Create Bouquet"></Link>
           <Link to="/view-bouquet" title="View Bouquet"></Link>

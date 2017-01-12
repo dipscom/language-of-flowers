@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TransitionGroup from 'react-addons-transition-group'
 import { IndexLink } from 'react-router';
+import TransitionGroup from 'react-addons-transition-group'
 import flowers from './data/flowers';
 import products from './data/products';
 import Overlay from './components/Overlay'
