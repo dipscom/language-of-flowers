@@ -8,36 +8,6 @@ export default class Overlay extends Component {
     this.tl = null;
 
   }
-  /* Animation */
-  fadeIn(el, opts = {xP:0, yP:0} ) {
-    return TweenMax.from(el, 1, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:"Power4.easeOut"}); // eslint-disable-line
-  }
-  componentWillAppear(callback) {
-    console.log("Overlay Will appear");
-
-    this.tl = new TimelineLite({onComplete:callback}); // eslint-disable-line
-
-    // We're using normal CSS selectors because we know for a fact that this component will not be unmounted and/or changed at any time during the existence of this webapp
-    this.tl
-      .add(this.fadeIn('#flowersBottom', {xP:0, yP:100}), 0)
-      .add(this.fadeIn('#flowersBottomRight', {xP:50, yP:10}), 0.1)
-      .add(this.fadeIn('#flowersMidLeft', {xP:-50, yP:10}), 0.1)
-      .add(this.fadeIn('#flowersTopLeft', {xP:-50, yP:-10}), 0.1)
-      .add(this.fadeIn('#flowersTopRight', {xP:50, yP:-10}), 0.1)
-      .add(this.fadeIn('#peacock', {xP:-20, yP:10}), 0.3)
-      .add(this.fadeIn('#stag', {xP:20, yP:10}), 0.3)
-      .add("People", 0.5)
-      .add(this.fadeIn('#man', {xP:50, yP:10}), "People")
-      .add(this.fadeIn('#lady', {xP:-50, yP:10}), "People")
-
-
-  }
-
-  componentDidAppear(callback) {
-    console.log("Overlay Did appear");
-    // Send a response to animate in the introduction section
-    // this.props.pageLoaded();
-  }
 
 
   render() {
@@ -83,5 +53,39 @@ export default class Overlay extends Component {
 
       </div>
     )
+  }
+
+
+
+
+  /* Animation */
+  fadeIn(el, opts = {xP:0, yP:0} ) {
+    return TweenMax.from(el, 1, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:"Power4.easeOut"}); // eslint-disable-line
+  }
+  componentWillAppear(callback) {
+    console.log("Overlay Will appear");
+
+    this.tl = new TimelineLite({onComplete:callback}); // eslint-disable-line
+
+    // We're using normal CSS selectors because we know for a fact that this component will not be unmounted and/or changed at any time during the existence of this webapp
+    this.tl
+      .add(this.fadeIn('#flowersBottom', {xP:0, yP:100}), 0)
+      .add(this.fadeIn('#flowersBottomRight', {xP:50, yP:10}), 0.1)
+      .add(this.fadeIn('#flowersMidLeft', {xP:-50, yP:10}), 0.1)
+      .add(this.fadeIn('#flowersTopLeft', {xP:-50, yP:-10}), 0.1)
+      .add(this.fadeIn('#flowersTopRight', {xP:50, yP:-10}), 0.1)
+      .add(this.fadeIn('#peacock', {xP:-20, yP:10}), 0.3)
+      .add(this.fadeIn('#stag', {xP:20, yP:10}), 0.3)
+      .add("People", 0.5)
+      .add(this.fadeIn('#man', {xP:50, yP:10}), "People")
+      .add(this.fadeIn('#lady', {xP:-50, yP:10}), "People")
+
+
+  }
+
+  componentDidAppear(callback) {
+    console.log("Overlay Did appear");
+    // Send a response to animate in the introduction section
+    // this.props.pageLoaded();
   }
 }

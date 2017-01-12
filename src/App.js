@@ -109,7 +109,7 @@ export default class App extends Component {
 
     return (
         <TransitionGroup component="div">
-          <Background />
+          <Background location={this.props.location} />
           {parentProps}
           <Overlay location={this.props.location} />
         </TransitionGroup>
