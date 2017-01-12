@@ -33,10 +33,20 @@ export default class Background extends Component {
           }
         }
       >
-        <img id="top-left" className="corner" src="/images/background/detail-corner.svg" />
-        <img id="top-right" className="corner" src="/images/background/detail-corner.svg" />
-        <img id="bottom-left" className="corner" src="/images/background/detail-corner.svg" />
-        <img id="bottom-right" className="corner" src="/images/background/detail-corner.svg" />
+        <div
+          id="paper"
+          key="paper"
+          ref={
+            (el) => {
+              this.el = el;
+            }
+          }
+        >
+          <img role="presentation" id="top-left" className="corner" src="/images/background/detail-corner.svg" />
+          <img role="presentation" id="top-right" className="corner" src="/images/background/detail-corner.svg" />
+          <img role="presentation" id="bottom-left" className="corner" src="/images/background/detail-corner.svg" />
+          <img role="presentation" id="bottom-right" className="corner" src="/images/background/detail-corner.svg" />
+        </div>
       </div>
     )
   }
