@@ -7,7 +7,7 @@ export default class FlowerDetails extends Component{
 
     return (
       <div
-        id="flower-details"
+        className="flower-details"
         key="flowerDetails"
         ref={
           (el) => {

@@ -19,8 +19,8 @@
         }
         @media (orientation: portrait) {
             display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         > * {
             @media (orientation: portrait) {
@@ -45,24 +45,26 @@
             right: 0;
         }
     }
-    .right{
+    .right {
         > * {
-        @media (orientation: landscape) {
-        margin: 0 0 0 auto;
-        width: 95%;
+            @media (orientation: landscape) {
+                margin: 0 0 0 auto;
+                width: 95%;
+            }
+        }
     }
 }
-    }
-}
+
 .column {
     @media (orientation: landscape) {
         align-items: center;
         display: flex;
+        height: 100%;
     }
     > * {
-       @media (orientation: landscape) {
-        width: 95%;
-       } 
+        @media (orientation: landscape) {
+            width: 95%;
+        }
     }
 }
 
@@ -79,7 +81,7 @@
         justify-content: space-between;
     }
     label {
-        border: 8px solid transparent;
+        /* border: 8px solid transparent; */
         cursor: pointer;
 
         @media (orientation: portrait) {
@@ -120,14 +122,14 @@
             }
         }
         p {
-        font-size: 14px;
-    }
-    h2 {
-        font-size: 18px;
-    }
-    h3 {
-        font-size: 16px;
-    }
+            font-size: 14px;
+        }
+        h2 {
+            font-size: 18px;
+        }
+        h3 {
+            font-size: 16px;
+        }
     }
     input[type=checkbox] {
         background-position: center;
@@ -140,13 +142,14 @@
         appearance: none;
         &:checked {
             background-color: #ffffff;
+            outline: 8px solid #373332;
         }
         &:disabled {
             opacity: 0.5;
         }
     }
     strong {
-        font-family: "brandon-grotesque",sans-serif;
+        font-family: "brandon-grotesque", sans-serif;
         font-size: 16px;
         font-weight: normal;
     }
@@ -159,7 +162,7 @@
         min-height: 89px;
 
         li {
-            &:not(:first-child){
+            &:not(:first-child) {
                 margin-top: 10px;
             }
         }
@@ -170,10 +173,10 @@
         }
         span {
             color: #373332;
-            font-family: "brandon-grotesque",sans-serif;
+            font-family: "brandon-grotesque", sans-serif;
             font-size: 20px;
         }
-    }   
+    }
 }
 
 #bouquet-list {
@@ -190,7 +193,7 @@
     }
     ul {
         list-style-type: none;
-        margin: 0;
+        margin: 30px 0;
         padding: 0;
 
         @media (orientation: portrait) {
@@ -213,18 +216,34 @@
             }
         }
         strong {
-            font-family: "brandon-grotesque",sans-serif;
+            font-family: "brandon-grotesque", sans-serif;
             font-size: 24px;
             margin-top: 5px;
             text-transform: none;
         }
     }
+    .change-bouquet {
+        color: #313131;
+        font-family: 'Lovato';
+        font-weight: bold;
+        opacity: 0.6;
+        text-decoration: none;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
 }
 
-#flower-details {
+.flower-details {
     align-items: center;
     display: flex;
+    top: 50%;
+    transform: translateY(-50%);
 
+    @media (orientation: landscape) {
+        position: absolute;
+    }
     img {
         height: auto;
         width: 60%;
@@ -233,7 +252,7 @@
         text-transform: none;
     }
     strong {
-        font-family: "brandon-grotesque",sans-serif;
+        font-family: "brandon-grotesque", sans-serif;
         font-size: 28px;
         font-weight: normal;
         margin-top: 0;
@@ -278,21 +297,32 @@
 }
 
 #bouquet {
+    @media (orientation: landscape) {
+        height: 100%;
+    }
     h1 {
         @media (orientation: landscape) {
             display: none;
         }
     }
-    img {
-        display: block;
-        height: auto;
+    figure {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100%;
         margin: 0 auto;
-        max-width: 330px;
-        width: 60%;
+        width: 100%;
+
+        @media (orientation: landscape) {
+            height: 100%;
+        width: 100%;
+        }
+        @media (orientation: portrait) {
+            padding-top: 100%;
+            width: 80%;
+        }
     }
 }
-
-
 
 #recipient,
 #sender {
@@ -304,8 +334,12 @@
 }
 
 #details-form {
+    @media (orientation: landscape) {
+        width: 80%;
+    }
     label {
         display: inline-block;
+        font-family: 'Lovato';
 
         @media (orientation: portrait) {
             display: none;
@@ -339,11 +373,16 @@
         }
     }
 }
-  
+
 #create-bouquet {
     .right {
-         @media (orientation: portrait) {
+        pointer-events: none;
+
+        @media (orientation: landscape) {
+            position: relative;
+        }
+        @media (orientation: portrait) {
             display: none;
-         }
+        }
     }
 }

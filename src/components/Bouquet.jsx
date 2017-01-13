@@ -5,7 +5,7 @@ export default class Bouquet extends Component{
     return (
     	<div id="bouquet">
     	<h1>Your Bouquet</h1>
-    	<img id="bouquet-image" src={'/images/bouquets/' + [...this.props.bouquet].sort().toString().replace(/,/g, '_') + '.png'} alt="Bouquet" title="Bouquet" />
+    	<figure id="bouquet-image" style={{backgroundImage: 'url(/images/bouquets/' + [...this.props.bouquet].sort().toString().replace(/,/g, '_') + '.png)'}}></figure>
     	</div>
     )
   }
