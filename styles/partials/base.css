@@ -111,11 +111,14 @@ hr {
           width: 100%;
         }
     }
+
+
+    .penhalions-logo {
+      width: auto;
+      height: 30%;
+    }
 }
 
-#overlay {
-    position: absolute;
-}
 
 #reset-button {
     bottom: 0;
