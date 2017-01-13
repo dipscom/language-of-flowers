@@ -49,6 +49,8 @@
         transform: rotate(90deg);
     }
     .logo {
+        display: none;
+
         @media (orientation: landscape) {
         height: 8vh;
         left: 50%;
@@ -71,18 +73,22 @@
         }
     }
     #line-top {
+      display: none;
       top: 15px;
     }
     #line-left {
+      display: none;
       height: 100%;
       left: 15px;
     }
     #line-right {
+      display: none;
       height: 100%;
       right: 15px;
     }
     #line-bottom {
       bottom: 15px;
+      display: none;
     }
     .cloud {
       height: 20%;
