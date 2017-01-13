@@ -50,7 +50,7 @@ export default class Description extends Component {
 
   /* Animation */
   animateIn(callback, delay) {
-    TweenMax.from(this.el, 1, { // eslint-disable-line
+    TweenMax.from(this.el, 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: delay || 0,
       onComplete:callback
@@ -58,7 +58,7 @@ export default class Description extends Component {
   }
 
   animateOut(callback) {
-    TweenMax.to(this.el, 1, { // eslint-disable-line
+    TweenMax.to(this.el, 0.5, { // eslint-disable-line
       autoAlpha:0,
       ease: "Power4.easeIn",
       onComplete:callback
@@ -69,7 +69,7 @@ export default class Description extends Component {
   /* React Animation Callbacks */
   componentWillEnter(callback) {
     // console.log("Description Will enter");
-    this.animateIn(callback, 1);
+    this.animateIn(callback, 0.5);
   }
 
   componentDidEnter() {

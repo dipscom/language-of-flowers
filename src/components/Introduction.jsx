@@ -48,7 +48,7 @@ export default class Introduction extends Component {
 
   /* Animation */
   animateIn(callback, delay) {
-    TweenMax.from(this.el, 1, { // eslint-disable-line
+    TweenMax.from(this.el, 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: delay || 0,
       onComplete:callback
@@ -56,7 +56,7 @@ export default class Introduction extends Component {
   }
 
   animateOut(callback) {
-    TweenMax.to(this.el, 1, { // eslint-disable-line
+    TweenMax.to(this.el, 0.5, { // eslint-disable-line
       autoAlpha:0,
       ease: "Power4.easeIn",
       onComplete:callback

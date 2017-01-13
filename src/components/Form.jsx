@@ -93,7 +93,7 @@ export default class Form extends Component {
 
   /* Animation */
   animateIn(callback, trg, delay) {
-    TweenMax.from(trg, 1, { // eslint-disable-line
+    TweenMax.from(trg, 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: delay || 0,
       onComplete:callback
@@ -101,7 +101,7 @@ export default class Form extends Component {
   }
 
   animateOut(callback, trg) {
-    TweenMax.to(trg, 1, { // eslint-disable-line
+    TweenMax.to(trg, 0.5, { // eslint-disable-line
       autoAlpha:0,
       ease: Power2.easeIn, // eslint-disable-line
       onComplete:callback
@@ -114,7 +114,7 @@ export default class Form extends Component {
     // console.log("Form Will enter", currentTarget);
 
     let currentTarget = this.el;
-    this.animateIn(callback, currentTarget, 1);
+    this.animateIn(callback, currentTarget, 0.5);
     // let tl = new TimelineMax(); // eslint-disable-line
     // tl.add(this.animateIn(callback, currentTarget, 1))
 
