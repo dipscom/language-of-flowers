@@ -38,6 +38,9 @@ export default class Form extends Component {
   }
 
   render() {
+
+    // console.log("Render Form");
+
     const parentProps = {
       bouquet:[...this.props.bouquet],
       activeFlower: this.state.activeFlower,
@@ -60,18 +63,19 @@ export default class Form extends Component {
       >
         <div id={this.props.location.pathname.replace('/', '')} className="form">
           <div>
-          <div className="column left">
+          <TransitionGroup component="div" className="column left">
             {this.props.left && React.cloneElement(this.props.left, parentProps)}
-          </div>
+          </TransitionGroup>
 
           <svg id="line-separator" className="line-decoration" viewBox="0 0 2 860">
             <path d="M0.5 0 V860" vectorEffect="non-scaling-stroke"  />
           </svg>
 
+          {/*It is possible that this TransitionGroup is not needed */}
           <TransitionGroup component="div" className="column right">
             {this.props.right && React.cloneElement(this.props.right, parentProps)}
-
           </TransitionGroup>
+
           <nav id="form-navigation">
             <Link to="/create-bouquet" title="Create Bouquet"></Link>
             <Link to="/view-bouquet" title="View Bouquet"></Link>
@@ -107,29 +111,29 @@ export default class Form extends Component {
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    console.log("CreateBouquet Will enter");
+    // console.log("Form Will enter");
     this.animateIn(callback, 1);
   }
 
   componentDidEnter() {
-    console.log("CreateBouquet Did enter");
+    // console.log("Form Did enter");
   }
 
   componentWillAppear(callback) {
-    console.log("CreateBouquet Will appear");
+    // console.log("Form Will appear");
   }
 
   componentDidAppear() {
-    console.log("CreateBouquet Did appear");
+    // console.log("Form Did appear");
   }
 
   componentWillLeave(callback) {
-    console.log("CreateBouquet Will leave");
+    // console.log("Form Will leave");
     this.animateOut(callback);
   }
 
   componentDidLeave() {
-    console.log("CreateBouquet Did leave");
+    // console.log("Form Did leave");
   }
 
 }

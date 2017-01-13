@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
 
 export default class FlowerDetails extends Component{
+
+  // constructor(props) {
+  //   super(props);
+  //
+  //   // console.log("Constructor", this.props);
+  //
+  //   // this.el = "initial";
+  // }
+
   render() {
 
-    console.log("Change FlowerDetails");
+    // console.log("Render FlowerDetails", this.props.activeFlower);
 
     return (
       <div
+        id={this.props.activeFlower}
+        key={this.props.activeFlower}
         className="flower-details"
-        key="flowerDetails"
         ref={
           (el) => {
             this.el = el;
           }
         }
       >
-        <img src={'/images/flowers/' + this.props.activeFlower + '.png'} alt={this.props.flowers[this.props.activeFlower].name} title={this.props.flowers[this.props.activeFlower].name}
+        <img
+          src={'/images/flowers/' + this.props.activeFlower + '.png'}
+          alt={this.props.flowers[this.props.activeFlower].name}
+          title={this.props.flowers[this.props.activeFlower].name}
           />
         <div>
           <h1>{this.props.flowers[this.props.activeFlower].name}            <svg className="doubleline-decoration" viewBox="0 0 1400 40">
@@ -36,17 +49,29 @@ export default class FlowerDetails extends Component{
 
   /* Animation */
   animateIn(callback, delay) {
-    TweenMax.from(this.el, 1, { // eslint-disable-line
+
+    let currentTarget = "#" + this.el.id;
+    console.log("ANIMATE-IN", currentTarget);
+
+    TweenMax.fromTo(currentTarget, 0.3, { // eslint-disable-line
       autoAlpha:0,
       delay: delay || 0,
-      onComplete:callback
+    }, {
+      autoAlpha: 1,
+      ease: "Power4.easeInOut",
+      onComplete:callback,
+      overwrite:"all"
     });
   }
 
   animateOut(callback) {
-    TweenMax.to(this.el, 1, { // eslint-disable-line
+
+    let currentTarget = "#" + this.el.id;
+    console.log("ANIMATE-OUT", currentTarget);
+
+    TweenMax.to(this.el, 0.3, { // eslint-disable-line
       autoAlpha:0,
-      ease: "Power4.easeIn",
+      ease: "Power4.easeInOut",
       onComplete:callback
     });
   }
@@ -54,12 +79,12 @@ export default class FlowerDetails extends Component{
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    // console.log("FlowerDetails Will enter");
-    this.animateIn(callback);
+    // console.log("FlowerDetails Will enter", this.el);
+    this.animateIn(callback, 0.3);
   }
 
   componentDidEnter() {
-    // console.log("FlowerDetails Did enter");
+    // console.log("FlowerDetails Did enter", this.el);
   }
 
   componentWillAppear(callback) {
@@ -73,12 +98,12 @@ export default class FlowerDetails extends Component{
   }
 
   componentWillLeave(callback) {
-    // console.log("FlowerDetails Will leave");
+    // console.log("FlowerDetails Will leave", this.el);
     this.animateOut(callback);
   }
 
   componentDidLeave() {
-    // console.log("FlowerDetails Did leave");
+    // console.log("FlowerDetails Did leave", this.el);
   }
 
 }
