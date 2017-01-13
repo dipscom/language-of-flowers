@@ -6,7 +6,7 @@ import Overlay from './components/Overlay'
 import Background from './components/Background'
 
 const initialState = {
-  bouquet: ["blue-bell", "lilley-valley", "orange-blossom"],
+  bouquet: [],
   flowers: flowers,
   products: products,
   recipient: {
@@ -72,7 +72,7 @@ export default class App extends Component {
     return (
         <TransitionGroup component="div">
           <Background location={this.props.location} />
-          {this.props.children && React.cloneElement(this.props.children, 
+          {this.props.children && React.cloneElement(this.props.children,
           {bouquet:[...this.state.bouquet],
            flowers:{...this.state.flowers},
            recipient:{...this.state.recipient},
