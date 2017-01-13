@@ -1,0 +1,18 @@
+#success {
+	> div {
+		> div {
+			align-items: center;
+			flex-direction: column;
+		}
+
+		
+	}
+	h1 {
+		font-size: 72px;
+		line-height: 0.5;
+	}
+	p {
+		font-family: 'Lovato';
+		text-transform: uppercase;
+	}
+}

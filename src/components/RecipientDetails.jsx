@@ -13,9 +13,9 @@ export default class RecipientDetails extends Component {
           </svg>
         </h1>
         <label htmlFor="recipient-name">Recipient first name</label>
-        <input type="text" id="recipient-name" className="recipient" name="name" placeholder="Name" onChange={(e) => this.props.updateField(e)} />
+        <input type="text" id="recipient-name" className="recipient" name="name" value={this.props.recipient.name} placeholder="Name" onChange={(e) => this.props.updateField(e)} />
         <label htmlFor="recipient-email">Recipient email</label>
-        <input type="email" id="recipient-email" className="recipient" name="email" placeholder="Email" onChange={(e) => this.props.updateField(e)} />
+        <input type="email" id="recipient-email" className="recipient" name="email" value={this.props.recipient.email} placeholder="Email" onChange={(e) => this.props.updateField(e)} />
 
       <Link className="button" to="/sender">Your Details</Link>
       </div>

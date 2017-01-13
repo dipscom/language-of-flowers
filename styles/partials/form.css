@@ -74,10 +74,14 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+
+        @media (orientation: landscape) {
+            line-height: 0;
+        }
     }
     label {
-        /* border: 8px solid transparent; */
         cursor: pointer;
+        margin: 8px ;
 
         @media (orientation: portrait) {
             align-items: center;
@@ -99,7 +103,8 @@
             }
         }
         @media (orientation: landscape) {
-            width: 24%;
+            flex-grow: 1;
+            width: 22%;
         }
         > div {
             &:first-child {
@@ -204,6 +209,7 @@
         }
         > div {
             &:first-child {
+                min-width: 18%;
                 width: 18%;
             }
             &:last-child {
@@ -216,8 +222,9 @@
             margin-top: 5px;
             text-transform: none;
         }
-    }
-    .change-bouquet {
+    }   
+}
+.back-link {
         color: #313131;
         font-family: 'Lovato';
         font-weight: bold;
@@ -228,7 +235,6 @@
             opacity: 1;
         }
     }
-}
 
 .flower-details {
     align-items: center;
