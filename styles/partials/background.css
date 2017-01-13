@@ -63,4 +63,20 @@
     svg {
     	display: none;
     }
+
+    .cloud {
+      height: 20%;
+      width: auto;
+      position: absolute;
+    }
+
+    #cloud1 {
+      left: 10%;
+      top: 5%;
+    }
+
+    #cloud2 {
+      left: 60%;
+      top: 60%;
+    }
 }
