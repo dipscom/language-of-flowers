@@ -63,33 +63,6 @@ hr {
     margin: 10px 0;
 }
 
-#paper {
-    height: 100%;
-    width: 100%;
-
-    > svg {
-        fill: none;
-        position: absolute;
-        stroke: black;
-
-        stroke-width: 1;
-    }
-    #line-top {
-        top: 15px;
-    }
-    #line-left {
-        height: 100%;
-        left: 15px;
-    }
-    #line-right {
-        height: 100%;
-        right: 15px;
-    }
-    #line-bottom {
-        bottom: 15px;
-    }
-}
-
 .stage {
     height: 100%;
     left: 0;
