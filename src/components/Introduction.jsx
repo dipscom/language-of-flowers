@@ -17,7 +17,9 @@ export default class Introduction extends Component {
         }
       >
         <div>
-          <img className="penhalions-logo" src="./images/penhalions-logo.png" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" />
+        <div>
+          <img src="./images/penhalions-logo.png" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" />
+          
           <h1>
 
             <svg className="doubleline-decoration" viewBox="0 0 1400 40">
@@ -38,6 +40,7 @@ export default class Introduction extends Component {
           <div>
             <Link className="button" to="/description">Lets Begin</Link>
           </div>
+         </div>
         </div>
       </div>
     )

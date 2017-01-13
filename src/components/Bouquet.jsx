@@ -10,7 +10,7 @@ export default class Bouquet extends Component{
           <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
         </svg>
       </h1>
-    	<img id="bouquet-image" src={'/images/bouquets/' + [...this.props.bouquet].sort().toString().replace(/,/g, '_') + '.png'} alt="Bouquet" title="Bouquet" />
+    	<figure id="bouquet-image" style={{backgroundImage: 'url(/images/bouquets/' + [...this.props.bouquet].sort().toString().replace(/,/g, '_') + '.png)'}}></figure>
     	</div>
     )
   }

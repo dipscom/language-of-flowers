@@ -15,6 +15,7 @@ html {
 
 body {
     background-color: #ff0000;
+    color: #373332;
     height: 100%;
 
     @media (orientation: landscape) {
@@ -56,8 +57,8 @@ main {
       left: 0;
       position: absolute;
       stroke: black;
-      stroke-width: 1;
       stroke-linejoin: "miter";
+      stroke-width: 1;
       top: 0;
     }
 
@@ -72,8 +73,6 @@ img {
 hr {
     margin: 10px 0;
 }
-
-
 
 .stage {
     height: 100%;
@@ -95,18 +94,13 @@ hr {
         }
     }
     > * {
-        display: flex;
+        /* display: flex;
         flex-wrap: wrap;
         justify-content: center;
+         */
+        /*  */
         overflow: scroll;
 
-        @media (orientation: landscape) {
-            left: 50%;
-            max-width: 800px;
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%,-50%);
-        }
         @media (orientation: portrait) {
             height: 100%;
 
@@ -117,16 +111,49 @@ hr {
                 padding: 7.8125%;
             }
         }
+        @media (orientation: landscape) {
+            height: 100%;
+            /* max-width: none; */
+            padding: 4%;
+            position: relative;
+            width: 100%;
+        }
         > * {
-          min-height: min-content;
-          width: 100%;
+            align-content: space-around;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 750px;
+            min-height: 100%;
+            width: 80%;
+
+            @media (orientation: portrait) {
+                /* min-height: min-content; */
+                width: 100%;
+            }
         }
     }
-
-
     .penhalions-logo {
-      height: 30%;
-      width: auto;
+        @media (orientation: portrait) {
+            align-self: flex-start;
+            width: 80%;
+        }
+        > img {
+        margin: 0 auto;
+        max-width: 100%;
+
+          @media (orientation: landscape) {
+              height: 20%;
+              width: auto;
+          }
+          @media (orientation: portrait) {
+          height: auto;
+          }
+        }
+    }
+    .content {
+        height: 80%;
     }
 
     .doubleline-decoration {
@@ -136,8 +163,8 @@ hr {
     .reflected {
       transform: scaleY(-1);
     }
-}
 
+}
 
 #reset-button {
     bottom: 0;
