@@ -62,6 +62,17 @@ export default class Overlay extends Component {
   fadeIn(el, opts = {xP:0, yP:0} ) {
     return TweenMax.from(el, 1, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:"Power4.easeOut"}); // eslint-disable-line
   }
+
+
+  /* React Animation Callbacks */
+  componentWillEnter(callback) {
+    // console.log("Overlay Will enter", this.el);
+  }
+
+  componentDidEnter() {
+    // console.log("Overlay Did enter", this.el);
+  }
+
   componentWillAppear(callback) {
     // console.log("Overlay Will appear");
 
@@ -80,10 +91,18 @@ export default class Overlay extends Component {
       .add(this.fadeIn('#man', {xP:50, yP:10}), "People")
       .add(this.fadeIn('#lady', {xP:-50, yP:10}), "People")
 
-
   }
 
   componentDidAppear(callback) {
     // console.log("Overlay Did appear");
   }
+
+  componentWillLeave(callback) {
+    // console.log("Overlay Will leave", this.el);
+  }
+
+  componentDidLeave() {
+    // console.log("Overlay Did leave", this.el);
+  }
+
 }

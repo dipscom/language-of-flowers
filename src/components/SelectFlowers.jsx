@@ -42,7 +42,15 @@ export default class SelectFlowers extends Component {
   }
   render() {
     return (
-      <div id="select-flowers">
+      <div
+        id="select-flowers"
+        key="select-flowers"
+        ref={
+          (el) => {
+            this.el = el;
+          }
+        }
+      >
         <h1>Create your bouquet
           <svg className="doubleline-decoration" viewBox="0 0 1400 40">
             <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
@@ -64,4 +72,54 @@ export default class SelectFlowers extends Component {
       </div>
     )
   }
+
+
+
+
+  // /* Animation */
+  // animateIn(callback, delay) {
+  //   TweenMax.from(this.el, 1, { // eslint-disable-line
+  //     autoAlpha:0,
+  //     delay: delay || 0,
+  //     onComplete:callback
+  //   });
+  // }
+  //
+  // animateOut(callback) {
+  //   TweenMax.to(this.el, 1, { // eslint-disable-line
+  //     autoAlpha:0,
+  //     ease: "Power4.easeIn",
+  //     onComplete:callback
+  //   });
+  // }
+  //
+  //
+  // /* React Animation Callbacks */
+  // componentWillEnter(callback) {
+  //   console.log("SelectFlowers Will enter");
+  //   // this.animateIn(callback, 1);
+  // }
+  //
+  // componentDidEnter() {
+  //   console.log("SelectFlowers Did enter");
+  // }
+  //
+  // componentWillAppear(callback) {
+  //   console.log("SelectFlowers Will appear");
+  //   this.animateIn(callback, 1);
+  // }
+  //
+  // componentDidAppear() {
+  //   console.log("SelectFlowers Did appear");
+  // }
+  //
+  // componentWillLeave(callback) {
+  //   console.log("SelectFlowers Will leave");
+  //   // this.animateOut(callback);
+  // }
+  //
+  // componentDidLeave() {
+  //   console.log("SelectFlowers Did leave");
+  // }
+
 }

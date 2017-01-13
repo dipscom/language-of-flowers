@@ -92,16 +92,16 @@ export default class Form extends Component {
 
 
   /* Animation */
-  animateIn(callback, delay) {
-    TweenMax.from(this.el, 1, { // eslint-disable-line
+  animateIn(callback, trg, delay) {
+    TweenMax.from(trg, 1, { // eslint-disable-line
       autoAlpha:0,
       delay: delay || 0,
       onComplete:callback
     });
   }
 
-  animateOut(callback) {
-    TweenMax.to(this.el, 1, { // eslint-disable-line
+  animateOut(callback, trg) {
+    TweenMax.to(trg, 1, { // eslint-disable-line
       autoAlpha:0,
       ease: Power2.easeIn, // eslint-disable-line
       onComplete:callback
@@ -111,29 +111,38 @@ export default class Form extends Component {
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    // console.log("Form Will enter");
-    this.animateIn(callback, 1);
+    // console.log("Form Will enter", currentTarget);
+
+    let currentTarget = this.el;
+    this.animateIn(callback, currentTarget, 1);
+    // let tl = new TimelineMax(); // eslint-disable-line
+    // tl.add(this.animateIn(callback, currentTarget, 1))
+
   }
 
   componentDidEnter() {
-    // console.log("Form Did enter");
+    console.log("Form Did enter");
   }
 
   componentWillAppear(callback) {
-    // console.log("Form Will appear");
+    console.log("Form Will appear");
   }
 
   componentDidAppear() {
-    // console.log("Form Did appear");
+    console.log("Form Did appear");
   }
 
   componentWillLeave(callback) {
-    // console.log("Form Will leave");
-    this.animateOut(callback);
+    console.log("Form Will leave");
+    let currentTarget = this.el;
+    // let tl = new TimelineMax(); // eslint-disable-line
+    // tl.add(this.animateOut(callback, currentTarget))
+    this.animateOut(callback, currentTarget);
+
   }
 
   componentDidLeave() {
-    // console.log("Form Did leave");
+    console.log("Form Did leave");
   }
 
 }
