@@ -15,7 +15,7 @@ html {
 }
 
 body {
-    background-color: #ff0000;
+    /* background-color: #ff0000; */
     color: $main-color;
     height: 100%;
 
@@ -34,6 +34,7 @@ main {
     width: 100%;
 
     @media (orientation: landscape) {
+        box-shadow: 0px 0px 70px -6px rgba(0,0,0,0.45);
         max-height: 1020px;
         max-width: 1660px;
     }
@@ -57,11 +58,11 @@ main {
 
 }
 
-/* img {
-    display: inline-block;
+ img {
+     display: block;
     max-width: 100%;
     vertical-align: baseline;
-} */
+} 
 
 svg {
       fill: none;
@@ -146,6 +147,14 @@ svg {
 
 }
 
+#description {
+    h1 {
+        width: 100%;
+    }
+    p {
+        max-width: 825px;
+    }
+}
 .doubleline-decoration {
       position: relative;
     }
