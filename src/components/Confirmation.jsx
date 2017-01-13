@@ -31,7 +31,7 @@ export default class Confirmation extends Component {
           <Link className="button" to="/success">Send Now</Link>
           <Link className="back-link" to="/sender">Change details</Link>
           </div>
- 
+
       </div></div></div>
     )
   }
@@ -41,7 +41,7 @@ export default class Confirmation extends Component {
 
   /* Animation */
   animateIn(callback, delay) {
-    TweenMax.from(this.el, 1, { // eslint-disable-line
+    TweenMax.from(this.el, 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: delay || 0,
       onComplete:callback
@@ -49,7 +49,7 @@ export default class Confirmation extends Component {
   }
 
   animateOut(callback) {
-    TweenMax.to(this.el, 1, { // eslint-disable-line
+    TweenMax.to(this.el, 0.5, { // eslint-disable-line
       autoAlpha:0,
       ease: Power2.easeIn, // eslint-disable-line
       onComplete:callback
@@ -60,7 +60,7 @@ export default class Confirmation extends Component {
   /* React Animation Callbacks */
   componentWillEnter(callback) {
     console.log("Confirmation Will enter");
-    this.animateIn(callback, 1);
+    this.animateIn(callback, 0.5);
   }
 
   componentDidEnter() {
