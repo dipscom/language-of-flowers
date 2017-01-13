@@ -16,7 +16,7 @@ export default class Flower extends Component{
         <FlowerDetails
           activeFlower={this.props.activeFlower}
           flowers={this.props.flowers}
-          key="flowersDetails"
+          key={this.props.activeFlower}
         />
       </TransitionGroup>
     )
