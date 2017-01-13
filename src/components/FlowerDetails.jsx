@@ -2,18 +2,7 @@ import React, { Component } from 'react';
 
 export default class FlowerDetails extends Component{
 
-  // constructor(props) {
-  //   super(props);
-  //
-  //   // console.log("Constructor", this.props);
-  //
-  //   // this.el = "initial";
-  // }
-
   render() {
-
-    // console.log("Render FlowerDetails", this.props.activeFlower);
-
     return (
       <div
         id={this.props.activeFlower}
@@ -51,7 +40,6 @@ export default class FlowerDetails extends Component{
   animateIn(callback, delay) {
 
     let currentTarget = "#" + this.el.id;
-    console.log("ANIMATE-IN", currentTarget);
 
     TweenMax.fromTo(currentTarget, 0.3, { // eslint-disable-line
       autoAlpha:0,
@@ -59,7 +47,6 @@ export default class FlowerDetails extends Component{
     }, {
       autoAlpha: 1,
       ease: "Power4.easeInOut",
-      // onComplete:callback,
       overwrite:"all"
     });
 
@@ -69,9 +56,8 @@ export default class FlowerDetails extends Component{
   animateOut(callback) {
 
     let currentTarget = "#" + this.el.id;
-    console.log("ANIMATE-OUT", currentTarget);
 
-    TweenMax.to(this.el, 0.3, { // eslint-disable-line
+    TweenMax.to(currentTarget, 0.3, { // eslint-disable-line
       autoAlpha:0,
       ease: "Power4.easeIn",
       onComplete:callback,
@@ -82,31 +68,30 @@ export default class FlowerDetails extends Component{
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    // console.log("FlowerDetails Will enter", this.el);
+    console.log("FlowerDetails Will enter");
     this.animateIn(callback);
   }
 
   componentDidEnter() {
-    // console.log("FlowerDetails Did enter", this.el);
+    console.log("FlowerDetails Did enter");
   }
 
   componentWillAppear(callback) {
-    // console.log("FlowerDetails Will appear");
+    console.log("FlowerDetails Will appear");
     this.animateIn(callback);
-
   }
 
   componentDidAppear() {
-    // console.log("FlowerDetails Did appear");
+    console.log("FlowerDetails Did appear");
   }
 
   componentWillLeave(callback) {
-    // console.log("FlowerDetails Will leave", this.el);
+    console.log("FlowerDetails Will leave");
     this.animateOut(callback);
   }
 
   componentDidLeave() {
-    // console.log("FlowerDetails Did leave", this.el);
+    console.log("FlowerDetails Did leave");
   }
 
 }
