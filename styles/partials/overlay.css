@@ -24,45 +24,45 @@
     left: 0;
   }
   > #flowersBottom {
-    bottom: -3%;
+    bottom: -7%;
     width: 100%;
   }
   > #flowersBottomRight {
     bottom: -10%;
     right: -2.5%;
-    width: 22%;
+    width: 18%;
   }
   > #flowersMidLeft {
     bottom: 10%;
     left: -2%;
-    width: 21%;
+    width: 18%;
   }
   > #flowersTopLeft {
     left: -2%;
-    width: 29%;
+    width: 25%;
   }
   > #flowersTopRight {
-    width: 26%;
+    width: 22%;
   }
   > #lady {
     bottom: 0;
     left: 7%;
-    width: 18%;
+    width: 15%;
   }
   > #man {
     bottom: -17%;
-    right: 9%;
-    width: 16%;
+    right: 4%;
+    width: 15%;
   }
   > #peacock {
     bottom: -10%;
-    left: 4%;
-    width: 25%;
+    left: 1%;
+    width: 22%;
   }
   > #stag {
-    bottom: -19%;
-    right: -1%;
-    width: 28%;
+    bottom: -10%;
+    right: -3%;
+    width: 24%;
   }
 
 }

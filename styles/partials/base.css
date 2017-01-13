@@ -114,7 +114,7 @@ hr {
         @media (orientation: landscape) {
             height: 100%;
             /* max-width: none; */
-            padding: 5%;
+            padding: 4%;
             position: relative;
             width: 100%;
         }
@@ -124,9 +124,9 @@ hr {
             flex-wrap: wrap;
             justify-content: center;
             margin: 0 auto;
-            max-width: 750px;
+            max-width: 850px;
             min-height: 100%;
-            width: 80%;
+            width: 90%;
 
             @media (orientation: portrait) {
                 /* min-height: min-content; */
@@ -134,26 +134,18 @@ hr {
             }
         }
     }
-    .penhalions-logo {
-        @media (orientation: portrait) {
-            align-self: flex-start;
-            width: 80%;
-        }
-        > img {
+    .logo {
         margin: 0 auto;
         max-width: 100%;
 
           @media (orientation: landscape) {
-              height: 20%;
+              height: 10vh;
               width: auto;
           }
           @media (orientation: portrait) {
           height: auto;
           }
-        }
-    }
-    .content {
-        height: 80%;
+        
     }
     .doubleline-decoration {
       position: relative;
@@ -197,7 +189,7 @@ hr {
     display: inline-block;
     font-family: 'Lovato';
     line-height: 1;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 14px 44px;
     text-decoration: none;
     text-transform: uppercase;

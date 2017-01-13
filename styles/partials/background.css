@@ -48,6 +48,15 @@
         right: 0;
         transform: rotate(90deg);
     }
+    .logo {
+        @media (orientation: landscape) {
+        height: 8vh;
+        left: 50%;
+        position: absolute;
+        top: 2%;
+        transform:translateX(-50%);
+    }
+    }
 }
 
 #paper {
@@ -60,37 +69,29 @@
             display: none;
         }
     }
-
     #line-top {
       top: 15px;
     }
-
     #line-left {
+      height: 100%;
       left: 15px;
-      height: 100%;
     }
-
     #line-right {
-      right: 15px;
       height: 100%;
+      right: 15px;
     }
-
     #line-bottom {
       bottom: 15px;
     }
-
-
     .cloud {
       height: 20%;
-      width: auto;
       position: absolute;
+      width: auto;
     }
-
     #cloud1 {
       left: 10%;
       top: 5%;
     }
-
     #cloud2 {
       left: 60%;
       top: 60%;

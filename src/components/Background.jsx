@@ -73,6 +73,7 @@ export default class Background extends Component {
           <img role="presentation" id="top-right" className="corner" src="/images/background/detail-corner.svg" />
           <img role="presentation" id="bottom-left" className="corner" src="/images/background/detail-corner.svg" />
           <img role="presentation" id="bottom-right" className="corner" src="/images/background/detail-corner.svg" />
+          <img className="logo" src="./images/lof-logo.png" alt="The Language of Flowers" title="The Language of Flowers" />
         </div>
       </div>
     )

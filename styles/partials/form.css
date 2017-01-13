@@ -4,7 +4,6 @@
     @media (orientation: landscape) {
         height: 100%;
         max-width: none;
-        padding: inherit;
         width: 100%;
     }
     > * {
@@ -47,6 +46,15 @@
                 width: 95%;
             }
         }
+    }
+    .logo {
+        @media (orientation: landscape) {
+        height: 8vh;
+        left: 50%;
+        position: absolute;
+        top: 5%;
+        transform:translateX(-50%);
+    }
     }
 }
 

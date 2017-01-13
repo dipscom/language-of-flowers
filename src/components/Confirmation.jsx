@@ -25,8 +25,8 @@ export default class Confirmation extends Component {
           <ul>
               { this.props.bouquet.map(this.props.bouquetMeaning) }
           </ul>
-          <p>...to your dearest <span>{this.props.recipient.name}</span> at the royal postal address of <span>{this.props.recipient.email}</span> from <span>{this.props.sender.name}</span><span>({this.props.sender.email})</span></p>
-          <p className="terms">Be in with a chance to win the full Penhaligon's portraits collection.<br/>plus join the very Penhaligon's club and discover our online secrets <label htmlFor="terms">(I agree with the Terms and Conditions/Privacy Policy) </label><input type="checkbox" name="terms" /></p>
+          <p>...to your dearest <span>{this.props.recipient.name}</span> at the royal postal address of <span>{this.props.recipient.email}</span> from <span>{this.props.sender.name}</span><span>({this.props.sender.email})</span>.</p>
+          <p className="terms">Be in with a chance to win the full Penhaligon's portraits collection.<br/>plus join the very Penhaligon's club and discover our online secrets <label htmlFor="terms">(I agree with the Terms and Conditions/Privacy Policy). </label><input type="checkbox" name="terms" /></p>
           <div className="separator">
           <Link className="button" to="/success">Send Now</Link>
           <Link className="back-link" to="/sender">Change details</Link>

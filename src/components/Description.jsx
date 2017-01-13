@@ -17,7 +17,7 @@ export default class Description extends Component {
       >
         <div>
         <div>
-          <img src="./images/lof-logo.png" alt="The Language of Flowers" title="The Language of Flowers" />
+          <img className="logo" src="./images/lof-logo.png" alt="The Language of Flowers" title="The Language of Flowers" />
             <h1>
 
               <svg className="doubleline-decoration" viewBox="0 0 1400 40">
