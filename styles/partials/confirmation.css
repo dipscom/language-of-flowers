@@ -1,0 +1,21 @@
+#confirmation {
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+ 
+		* {
+			display: inline;
+		}
+	}
+	li {
+		div {
+			&:first-child {
+				display: none;
+			}
+		}
+		h2, p {
+			display: none;
+		}
+	}
+}

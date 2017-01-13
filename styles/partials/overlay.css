@@ -34,34 +34,34 @@
   > #flowersMidLeft {
     bottom: 10%;
     left: -2%;
-    width: 25%;
+    width: 21%;
   }
   > #flowersTopLeft {
     left: -2%;
-    width: 32%;
+    width: 29%;
   }
   > #flowersTopRight {
-    width: 30%;
+    width: 26%;
   }
   > #lady {
     bottom: 0;
-    left: 10%;
-    width: 22%;
+    left: 7%;
+    width: 18%;
   }
   > #man {
     bottom: -17%;
     right: 9%;
-    width: 17%;
+    width: 16%;
   }
   > #peacock {
-    bottom: -15%;
-    left: 7%;
-    width: 30%;
+    bottom: -10%;
+    left: 4%;
+    width: 25%;
   }
   > #stag {
-    bottom: -20%;
-    right: -6%;
-    width: 34%;
+    bottom: -19%;
+    right: -1%;
+    width: 28%;
   }
 
 }

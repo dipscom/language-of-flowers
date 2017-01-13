@@ -10,4 +10,6 @@
 @import "./partials/typography.css";
 @import "./partials/base.css";
 @import "./partials/form.css";
-@import "./partials/overlay.css"
+@import "./partials/confirmation.css";
+@import "./partials/overlay.css";
+

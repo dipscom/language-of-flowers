@@ -6,7 +6,7 @@ export default class BouquetDetails extends Component {
     return (
       <div id="bouquet-list">
       <div>
-        <h1>Your Bouquet</h1>
+        <h1>Your Bouquet<hr /></h1>
         <ul>
             { this.props.bouquet.map(this.props.bouquetMeaning) }   
         </ul>
