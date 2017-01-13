@@ -36,7 +36,7 @@ export default class Form extends Component {
       <input key={key.toLowerCase().replace(/ /g, '-')} ref={key.replace(/ /g, '')} type="radio" name="navigation" value={index} defaultChecked={checked} onClick={(e) => this.selectStage(e)} />
       )
   }
-  
+
   render() {
     const parentProps = {
       bouquet:[...this.props.bouquet],
@@ -63,6 +63,11 @@ export default class Form extends Component {
           <div className="column left">
             {this.props.left && React.cloneElement(this.props.left, parentProps)}
           </div>
+
+          <svg id="line-separator" className="line-decoration" viewBox="0 0 2 860">
+            <path d="M0.5 0 V860" vectorEffect="non-scaling-stroke"  />
+          </svg>
+
           <TransitionGroup component="div" className="column right">
             {this.props.right && React.cloneElement(this.props.right, parentProps)}
 

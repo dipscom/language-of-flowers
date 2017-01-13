@@ -161,6 +161,12 @@ hr {
     .reflected {
       transform: scaleY(-1);
     }
+    #line-separator {
+      height: 60%;
+      left: 50%;
+      top: 20%;
+      width: 1px;
+    }
 
 }
 
