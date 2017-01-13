@@ -20,14 +20,15 @@ export default class FlowerDetails extends Component{
           title={this.props.flowers[this.props.activeFlower].name}
           />
         <div>
-          <h1>{this.props.flowers[this.props.activeFlower].name}            <svg className="doubleline-decoration" viewBox="0 0 1400 40">
-              <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
-              <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
-            </svg>
+          <h1 className="word">{this.props.flowers[this.props.activeFlower].name}
           </h1>
-          <h2>Meaning</h2>
-          <strong>{this.props.flowers[this.props.activeFlower].meaning}</strong>
-          <p>{this.props.flowers[this.props.activeFlower].description}</p>
+          <svg className="doubleline-decoration" viewBox="0 0 1400 40">
+            <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
+            <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
+          </svg>
+          <h2 className="word">Meaning</h2>
+          <strong className="word">{this.props.flowers[this.props.activeFlower].meaning}</strong>
+          <p className="word">{this.props.flowers[this.props.activeFlower].description}</p>
         </div>
       </div>
     )
@@ -37,18 +38,19 @@ export default class FlowerDetails extends Component{
 
 
   /* Animation */
-  animateIn(callback, delay) {
+  animateIn(callback) {
 
     let currentTarget = "#" + this.el.id;
 
-    TweenMax.fromTo(currentTarget, 0.3, { // eslint-disable-line
+    TweenMax.from(currentTarget + " img", 0.8, { // eslint-disable-line
       autoAlpha:0,
-      delay: delay || 0,
-    }, {
-      autoAlpha: 1,
       ease: "Power4.easeInOut",
-      overwrite:"all"
     });
+
+    TweenMax.staggerFrom(currentTarget + " .word", 0.3, { // eslint-disable-line
+      x: "+=50",
+      ease: "Power2.easeOut"
+    }, 0.05);
 
     callback();
   }
@@ -57,41 +59,40 @@ export default class FlowerDetails extends Component{
 
     let currentTarget = "#" + this.el.id;
 
-    TweenMax.to(currentTarget, 0.3, { // eslint-disable-line
+    TweenMax.to(currentTarget, 0.1, { // eslint-disable-line
       autoAlpha:0,
       ease: "Power4.easeIn",
-      onComplete:callback,
-      overwrite:"all"
+      onComplete:callback
     });
   }
 
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    console.log("FlowerDetails Will enter");
+    // console.log("FlowerDetails Will enter");
     this.animateIn(callback);
   }
 
   componentDidEnter() {
-    console.log("FlowerDetails Did enter");
+    // console.log("FlowerDetails Did enter");
   }
 
   componentWillAppear(callback) {
-    console.log("FlowerDetails Will appear");
+    // console.log("FlowerDetails Will appear");
     this.animateIn(callback);
   }
 
   componentDidAppear() {
-    console.log("FlowerDetails Did appear");
+    // console.log("FlowerDetails Did appear");
   }
 
   componentWillLeave(callback) {
-    console.log("FlowerDetails Will leave");
+    // console.log("FlowerDetails Will leave");
     this.animateOut(callback);
   }
 
   componentDidLeave() {
-    console.log("FlowerDetails Did leave");
+    // console.log("FlowerDetails Did leave");
   }
 
 }
