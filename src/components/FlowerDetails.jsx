@@ -59,9 +59,11 @@ export default class FlowerDetails extends Component{
     }, {
       autoAlpha: 1,
       ease: "Power4.easeInOut",
-      onComplete:callback,
+      // onComplete:callback,
       overwrite:"all"
     });
+
+    callback();
   }
 
   animateOut(callback) {
@@ -71,8 +73,9 @@ export default class FlowerDetails extends Component{
 
     TweenMax.to(this.el, 0.3, { // eslint-disable-line
       autoAlpha:0,
-      ease: "Power4.easeInOut",
-      onComplete:callback
+      ease: "Power4.easeIn",
+      onComplete:callback,
+      overwrite:"all"
     });
   }
 
@@ -80,7 +83,7 @@ export default class FlowerDetails extends Component{
   /* React Animation Callbacks */
   componentWillEnter(callback) {
     // console.log("FlowerDetails Will enter", this.el);
-    this.animateIn(callback, 0.3);
+    this.animateIn(callback);
   }
 
   componentDidEnter() {
