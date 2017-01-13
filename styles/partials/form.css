@@ -7,14 +7,13 @@
         width: 100%;
     }
     > * {
-        max-width: none;
-        width: 100%;
-
         @media (orientation: landscape) {
             align-items: center;
             display: flex;
             flex-direction: row;
             height: 100%;
+            max-width: none;
+            width: 100%;
         }
         > * {
             @media (orientation: portrait) {
@@ -46,15 +45,6 @@
                 width: 95%;
             }
         }
-    }
-    .logo {
-        @media (orientation: landscape) {
-        height: 8vh;
-        left: 50%;
-        position: absolute;
-        top: 5%;
-        transform:translateX(-50%);
-    }
     }
 }
 
@@ -103,7 +93,7 @@
                 }
             }
             @media (--tablet-small-above) {
-                width: 50%;
+                width: 40%;
 
                 &:nth-child(1n + 1) {
                     margin-top: 10px;
@@ -112,7 +102,7 @@
         }
         @media (orientation: landscape) {
             flex-grow: 1;
-            width: 22%;
+            width: 20%;
         }
         > div {
             &:first-child {
