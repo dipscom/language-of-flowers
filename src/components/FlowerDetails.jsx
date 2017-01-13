@@ -18,7 +18,11 @@ export default class FlowerDetails extends Component{
         <img src={'/images/flowers/' + this.props.activeFlower + '.png'} alt={this.props.flowers[this.props.activeFlower].name} title={this.props.flowers[this.props.activeFlower].name}
           />
         <div>
-          <h1>{this.props.flowers[this.props.activeFlower].name}<hr /></h1>
+          <h1>{this.props.flowers[this.props.activeFlower].name}            <svg className="doubleline-decoration" viewBox="0 0 1400 40">
+              <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
+              <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
+            </svg>
+          </h1>
           <h2>Meaning</h2>
           <strong>{this.props.flowers[this.props.activeFlower].meaning}</strong>
           <p>{this.props.flowers[this.props.activeFlower].description}</p>

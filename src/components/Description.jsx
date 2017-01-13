@@ -18,9 +18,19 @@ export default class Description extends Component {
         <div>
           <img src="" alt="The Language of Flowers" title="The Language of Flowers" />
             <h1>
-              <hr />
+
+              <svg className="doubleline-decoration" viewBox="0 0 1400 40">
+                <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
+                <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
+              </svg>
+
               Bouquets full of hidden&nbsp;meaning.
-              <hr />
+
+              <svg className="doubleline-decoration reflected" viewBox="0 0 1400 40">
+                <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
+                <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
+              </svg>
+
             </h1>
             <p>Whilst we don't like to gossip it would appear that there was a 'mistake' and the flowers from Lord George, meant for Lady Blanche, well they seem to have been sent to the divine Clara...With Penhaligon’s Floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas - but what could be more (ah-em) improbable!</p>
             <strong>Choose the flowers and the recipient wisely</strong>

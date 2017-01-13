@@ -60,14 +60,6 @@
             display: none;
         }
     }
-    svg {
-      stroke: black;
-      stroke-width: 1;
-      fill: none;
-      position: absolute;
-      display: none;
-    }
-
 
     #line-top {
       top: 15px;

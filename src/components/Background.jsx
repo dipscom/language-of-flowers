@@ -49,9 +49,8 @@ export default class Background extends Component {
         <img role="presentation" id="cloud2" className="cloud" src="/images/background/cloud-2.png" />
 
 
-          <svg id="line-top" className="line-decoration" viewBox="0 0 1400 20">
-            <path className="border-top" d="M700 10 Q700 0.5, 680 0.5 H0" vectorEffect="non-scaling-stroke"  />
-            <path className="border-top" d="M700 10 Q700 0.5, 720 0.5 H1400" vectorEffect='non-scaling-stroke'  />
+          <svg id="line-top" className="line-decoration" viewBox="0 0 1400 50">
+            <path className="segment" d="M0 0.5 H660 Q690 0.5, 700 20 Q710 0.5, 740 0.5 H1400" vectorEffect="non-scaling-stroke"  />
           </svg>
 
           <svg id="line-left" className="line-decoration" viewBox="0 0 2 860">
