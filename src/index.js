@@ -12,7 +12,6 @@ import RecipientDetails from './components/RecipientDetails';
 import SenderDetails from './components/SenderDetails';
 import Confirmation from './components/Confirmation';
 import Success from './components/Success';
-import Products from './components/Products';
 import MyBouquet from './components/MyBouquet';
 import Bouquet from './components/Bouquet';
 import Flower from './components/Flower';
@@ -32,7 +31,7 @@ render(
         <Route path="sender" components={{left:Bouquet, right:SenderDetails}} />
       </Route>
       <Route path="confirmation" component={Confirmation} />
-      <Route path="success" components={{first:Success, second:Products}} />
+      <Route path="success" component={Success} />
       <Route path="my-bouquet" components={{first:MyBouquet, second:BouquetDetails, third:ShareBouquet}} />
     </Route>
   </Router>,

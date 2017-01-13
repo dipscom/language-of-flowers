@@ -4,16 +4,24 @@ export default class Success extends Component{
   render() {
     return (
       <div
+      id="success"
         key="confirmation"
+        className="stage"
         ref={
           (el) => {
             this.el = el;
           }
         }
-      >
-        <h1>Thank You!</h1>
+      ><div>
+      <div>
+        <h1>Thank You!
+        <svg className="doubleline-decoration" viewBox="0 0 1400 40">
+          <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
+          <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
+        </svg>
+        </h1>
         <p>Your encoded bouquet has been sent.</p>
-      </div>
+      </div></div></div>
     )
   }
 

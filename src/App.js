@@ -6,16 +6,16 @@ import Overlay from './components/Overlay'
 import Background from './components/Background'
 
 const initialState = {
-  bouquet: [],
+  bouquet: ["blue-bell", "lilley-valley", "orange-blossom"],
   flowers: flowers,
   products: products,
   recipient: {
-    name: null,
-    email: null
+    name: 'Pedro',
+    email: 'pedro@email.com'
   },
   sender: {
-    name: null,
-    email: null
+    name: 'Jonny',
+    email: 'jonny@email.com'
   }
 };
 export default class App extends Component {
