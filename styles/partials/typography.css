@@ -33,7 +33,7 @@ h1 {
         font-size: 43px;
     }
     @media (orientation: landscape) {
-      margin: 10px;
+      margin: 10px 0;
     }
 }
 

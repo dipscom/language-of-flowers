@@ -18,7 +18,8 @@ export default class FlowerDetails extends Component{
         <img src={'/images/flowers/' + this.props.activeFlower + '.png'} alt={this.props.flowers[this.props.activeFlower].name} title={this.props.flowers[this.props.activeFlower].name}
           />
         <div>
-          <h1>{this.props.flowers[this.props.activeFlower].name}</h1>
+          <h1>{this.props.flowers[this.props.activeFlower].name}<hr /></h1>
+          <h2>Meaning</h2>
           <strong>{this.props.flowers[this.props.activeFlower].meaning}</strong>
           <p>{this.props.flowers[this.props.activeFlower].description}</p>
         </div>

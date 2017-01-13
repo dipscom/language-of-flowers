@@ -31,6 +31,12 @@
             }
         }
     }
+    h1 {
+        @media (orientation: landscape) {
+            margin: 0;
+            text-align: left;
+        }
+    }
     .button {
         @media (orientation: landscape) {
             bottom: 0;
@@ -39,15 +45,33 @@
             right: 0;
         }
     }
+    .right{
+        > * {
+        @media (orientation: landscape) {
+        margin: 0 0 0 auto;
+        width: 95%;
+    }
+}
+    }
+}
+.column {
+    @media (orientation: landscape) {
+        align-items: center;
+        display: flex;
+    }
+    > * {
+       @media (orientation: landscape) {
+        width: 95%;
+       } 
+    }
 }
 
 #select-flowers {
-    @media (orientation: landscape) {
-        width: 95%;
-    }
-    p {
+    > p {
+        font-family: 'Lovato';
         font-size: 23px;
         line-height: 1;
+        margin: 20px 0;
     }
     form {
         display: flex;
@@ -95,6 +119,15 @@
                 }
             }
         }
+        p {
+        font-size: 14px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    h3 {
+        font-size: 16px;
+    }
     }
     input[type=checkbox] {
         background-position: center;
@@ -112,33 +145,58 @@
             opacity: 0.5;
         }
     }
-    h2 {
-        font-size: 18px;
-    }
-    h3 {
-        font-size: 16px;
-    }
     strong {
-        font-family: 'Brandon Grotesque';
+        font-family: "brandon-grotesque",sans-serif;
         font-size: 16px;
         font-weight: normal;
     }
-    p {
-        font-size: 14px;
-    }
+    ol {
+        color: #678a73;
+        font-family: 'Lovato';
+        font-size: 23px;
+        line-height: 1;
+        margin: 20px 0 0;
+        min-height: 89px;
+
+        li {
+            &:not(:first-child){
+                margin-top: 10px;
+            }
+        }
+        strong {
+            display: inline;
+            font-family: inherit;
+            font-size: inherit;
+        }
+        span {
+            color: #373332;
+            font-family: "brandon-grotesque",sans-serif;
+            font-size: 20px;
+        }
+    }   
 }
 
 #flower-details {
     align-items: center;
     display: flex;
 
-    @media (orientation: landscape) {
-        margin: 0 0 0 auto;
-        width: 95%;
-    }
     img {
         height: auto;
         width: 60%;
+    }
+    h2 {
+        text-transform: none;
+    }
+    strong {
+        font-family: "brandon-grotesque",sans-serif;
+        font-size: 28px;
+        font-weight: normal;
+        margin-top: 0;
+        text-transform: none;
+    }
+    p {
+        font-size: 20px;
+        margin-top: 10px;
     }
 }
 
@@ -240,8 +298,12 @@
         }
     }
     input {
+        background: none;
         border: none;
         border-bottom: 1px solid #373332;
+        color: #678a73;
+        font-family: 'Lovato';
+        font-size: 34px;
         width: 100%;
 
         &:not(:first-of-type) {
@@ -251,7 +313,7 @@
         }
     }
 }
-
+  
 #create-bouquet {
     .right {
          @media (orientation: portrait) {

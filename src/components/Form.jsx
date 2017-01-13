@@ -6,7 +6,6 @@ import TransitionGroup from 'react-addons-transition-group';
 export default class Form extends Component {
   constructor(){
     super();
-    // this.stageProps = this.stageProps.bind(this);
     this.renderNavigation = this.renderNavigation.bind(this);
     this.getActiveFlower = this.getActiveFlower.bind(this);
     this.state = {
@@ -37,51 +36,18 @@ export default class Form extends Component {
       <input key={key.toLowerCase().replace(/ /g, '-')} ref={key.replace(/ /g, '')} type="radio" name="navigation" value={index} defaultChecked={checked} onClick={(e) => this.selectStage(e)} />
       )
   }
-  // stageProps(name, side) {
-  //   switch (name) {
-  //     default:
-  //       return null
-  //     case 'Bouquet':
-  //       return React.cloneElement((side === 'left' ? this.props.left : this.props.right), {
-  //         bouquet:[...this.props.bouquet],
-
-  //       });
-  //     case 'Flower':
-  //       return React.cloneElement((side === 'left' ? this.props.left : this.props.right), {
-  //         activeFlower: this.state.activeFlower,
-  //         flowers:{...this.props.flowers},
-  //       });
-  //     case 'CreateBouquet':
-  //       return React.cloneElement((side === 'left' ? this.props.left : this.props.right), {
-  //         bouquet:[...this.props.bouquet],
-  //         flowers:{...this.props.flowers},
-  //         selectBouquet: this.props.selectBouquet,
-  //         activeFlower: this.activeFlower,
-  //       });
-  //      case 'ViewBouquet':
-  //       return React.cloneElement((side === 'left' ? this.props.left : this.props.right), {
-  //         bouquet:[...this.props.bouquet],
-  //         flowers:{...this.props.flowers},
-  //         bouquetMeaning: this.props.bouquetMeaning
-  //       });
-  //     case 'RecipientDetails':
-  //       return React.cloneElement((side === 'left' ? this.props.left : this.props.right), {
-  //         recipient:{...this.props.recipient},
-  //         updateField: this.props.updateField
-  //       });
-  //     case 'SenderDetails':
-  //       return React.cloneElement((side === 'left' ? this.props.left : this.props.right), {
-  //         sender:{...this.props.sender},
-  //         updateField: this.props.updateField
-  //       });
-  //    }
-  // }
-
+  
   render() {
-    // const leftProps = this.stageProps(this.props.left.type.name, 'left');
-    // const rightProps = this.stageProps(this.props.right.type.name, 'right');
-    console.log(this.props);
-
+    const parentProps = {
+      bouquet:[...this.props.bouquet],
+      activeFlower: this.state.activeFlower,
+      getActiveFlower: this.getActiveFlower,
+      flowers:{...this.props.flowers},
+      selectBouquet: this.props.selectBouquet,
+      bouquetMeaning: this.props.bouquetMeaning,
+      recipient:{...this.props.recipient},
+      sender:{...this.props.sender},
+      updateField: this.props.updateField};
     return (
       <div
         className="stage"
@@ -95,28 +61,10 @@ export default class Form extends Component {
         <div id={this.props.location.pathname.replace('/', '')} className="form">
           <div>
           <div className="column left">
-            {this.props.left && React.cloneElement(this.props.left, 
-              {bouquet:[...this.props.bouquet],
-           activeFlower: this.state.activeFlower,
-           getActiveFlower: this.getActiveFlower,
-           flowers:{...this.props.flowers},
-           selectBouquet: this.props.selectBouquet,
-           bouquetMeaning: this.props.bouquetMeaning,
-           recipient:{...this.props.recipient},
-           sender:{...this.props.sender},
-           updateField: this.props.updateField})}
+            {this.props.left && React.cloneElement(this.props.left, parentProps)}
           </div>
           <TransitionGroup component="div" className="column right">
-            {this.props.right && React.cloneElement(this.props.right, 
-              {bouquet:[...this.props.bouquet],
-           activeFlower: this.state.activeFlower,
-           getActiveFlower: this.getActiveFlower,
-           flowers:{...this.props.flowers},
-           selectBouquet: this.props.selectBouquet,
-           bouquetMeaning: this.props.bouquetMeaning,
-           recipient:{...this.props.recipient},
-           sender:{...this.props.sender},
-           updateField: this.props.updateField})}
+            {this.props.right && React.cloneElement(this.props.right, parentProps)}
 
           </TransitionGroup>
           <nav id="form-navigation">

@@ -6,7 +6,7 @@ export default class SenderDetails extends Component {
     return (
       <div id="details-form">
       <div>
-        <h1>Your Details</h1>
+        <h1>Your Details<hr /></h1>
         <label htmlFor="sender-name">Your first name</label>
         <input type="text" id="sender-name" className="sender" name="name" placeholder="Name" onChange={(e) => this.props.updateField(e)} />
         <label htmlFor="recipient-email">Your email</label>
