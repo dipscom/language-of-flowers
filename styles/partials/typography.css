@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: 'Lovato';
     font-weight: lighter;
     src: url('/fonts/lovato/lighter.woff2') format('woff2');
@@ -14,12 +14,12 @@
     font-family: 'Lovato';
     font-weight: bold;
     src: url('/fonts/lovato/bold.woff2') format('woff2');
-}
+} */
 
 @font-face {
     font-family: 'Lovato';
     font-weight: bolder;
-    src: url('/fonts/lovato/bolder.woff2') format('woff2');
+    src: url('/fonts/lovato/black.woff2') format('woff2');
 }
 
 h1 {

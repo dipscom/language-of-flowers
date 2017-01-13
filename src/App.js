@@ -75,6 +75,7 @@ export default class App extends Component {
           {this.props.children && React.cloneElement(this.props.children,
           {bouquet:[...this.state.bouquet],
            flowers:{...this.state.flowers},
+           products:{...this.state.products},
            recipient:{...this.state.recipient},
            sender:{...this.state.sender},
            selectBouquet: this.selectBouquet,

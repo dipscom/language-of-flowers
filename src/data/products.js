@@ -1,9 +1,18 @@
 const products = {
-    'p01': {
-        name: 'Blue Bell',
-        description: 'Your humble servant',
-        flower: 'rose',
-        image: ''  
+    'clara': {
+        name: 'Clandestine Clara',
+        description: 'Nothing shy here',
+        link: 'http://www.penhaligons.com'
+    },
+    'radcliff': {
+        name: 'Roaring Radcliff',
+        description: 'Delectable deadence',
+        link: 'http://www.penhaligons.com'
+    },
+    'rose': {
+        name: 'Duchess Rose',
+        description: 'Oh heavenly joy',
+        link: 'http://www.penhaligons.com'
     }
 };
 

@@ -58,7 +58,7 @@ main {
       stroke: black;
       top: 0;
 
-      stroke-linejoin: "miter";
+      stroke-linejoin: miter;
       stroke-width: 1;
     }
 
