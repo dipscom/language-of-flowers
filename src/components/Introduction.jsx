@@ -17,7 +17,9 @@ export default class Introduction extends Component {
         }
       >
         <div>
-          <img src="" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" />
+        <div>
+          <img src="./images/penhalions-logo.png" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" />
+          
           <h1>
             <hr />
             Some things are unutterable and secret. Other thoughts are so hard to say...
@@ -28,6 +30,7 @@ export default class Introduction extends Component {
           <div>
             <Link className="button" to="/description">Lets Begin</Link>
           </div>
+         </div>
         </div>
       </div>
     )

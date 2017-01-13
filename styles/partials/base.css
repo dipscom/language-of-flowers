@@ -83,18 +83,13 @@ hr {
         }
     }
     > * {
-        display: flex;
+        /* display: flex;
         flex-wrap: wrap;
         justify-content: center;
+         */
+        /*  */
         overflow: scroll;
 
-        @media (orientation: landscape) {
-            left: 50%;
-            max-width: 800px;
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
         @media (orientation: portrait) {
             height: 100%;
 
@@ -105,15 +100,50 @@ hr {
                 padding: 7.8125%;
             }
         }
-        > * {
-            min-height: min-content;
+        @media (orientation: landscape) {
+            height: 100%;
+            /* max-width: none; */
+            padding: 4%;
+            position: relative;
             width: 100%;
         }
-    }
-}
+        > * {
+            align-content: space-around;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 750px;
+            min-height: 100%;
+            width: 80%;
 
-#overlay {
-    position: absolute;
+            @media (orientation: portrait) {
+                /* min-height: min-content; */
+                width: 100%;
+            }
+        }
+    }
+    .penhalions-logo { 
+        @media (orientation: portrait) {
+            align-self: flex-start;
+            width: 80%;
+        }
+        > img {
+        margin: 0 auto;
+        max-width: 100%;
+
+        @media (orientation: landscape) {
+            height: 20%;
+            width: auto;
+        }
+        @media (orientation: portrait) {
+        height: auto;
+        }  
+        }   
+    }
+    .content {
+        height: 80%;
+    }
 }
 
 #reset-button {

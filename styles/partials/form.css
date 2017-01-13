@@ -8,19 +8,14 @@
         width: 100%;
     }
     > * {
+        max-width: none;
+        width: 100%;
+
         @media (orientation: landscape) {
+            align-items: center;
             display: flex;
             flex-direction: row;
             height: 100%;
-            max-width: none;
-            padding: 5%;
-            position: relative;
-            width: 100%;
-        }
-        @media (orientation: portrait) {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
         }
         > * {
             @media (orientation: portrait) {

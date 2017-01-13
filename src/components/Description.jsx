@@ -16,6 +16,7 @@ export default class Description extends Component {
         }
       >
         <div>
+        <div>
           <img src="" alt="The Language of Flowers" title="The Language of Flowers" />
             <h1>
               <hr />
@@ -28,6 +29,7 @@ export default class Description extends Component {
               <Link className="button" to="/create-bouquet">Create your own bouquet</Link>
             </div>
             <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
+        </div>
         </div>
         </div>
     )
