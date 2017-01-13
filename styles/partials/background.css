@@ -61,8 +61,32 @@
         }
     }
     svg {
-    	display: none;
+      stroke: black;
+      stroke-width: 1;
+      fill: none;
+      position: absolute;
+      display: none;
     }
+
+
+    #line-top {
+      top: 15px;
+    }
+
+    #line-left {
+      left: 15px;
+      height: 100%;
+    }
+
+    #line-right {
+      right: 15px;
+      height: 100%;
+    }
+
+    #line-bottom {
+      bottom: 15px;
+    }
+
 
     .cloud {
       height: 20%;
