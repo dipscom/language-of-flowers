@@ -51,21 +51,23 @@ export default class Success extends Component{
           <div id="products">
             <p>Why not match one of our <a href="" target="_blank" title="Portrait fragrances">Portrait fragrances</a> to your bouquet...
             </p>
-            <ul>
+            
             <svg className="doubleline-decoration" viewBox="0 0 1400 40">
               <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
               <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
             </svg>
+            <ul>
               {
               Object
               .keys(this.props.products)
               .map(this.renderProduct)
             }
+            
+            </ul>
             <svg className="doubleline-decoration reflected" viewBox="0 0 1400 40">
               <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
               <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
             </svg>
-            </ul>
             <p>Alternatively you can find your perfect Penhaligon's scent with our online <a href="" target="_blank" title="Fragrance Profiling Experience">Fragrance Profiling Experience</a></p>
           </div>
 

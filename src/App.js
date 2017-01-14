@@ -10,12 +10,12 @@ const initialState = {
   flowers: flowers,
   products: products,
   recipient: {
-    name: 'Pedro',
-    email: 'pedro@email.com'
+    name: null,
+    email: null
   },
   sender: {
-    name: 'Jonny',
-    email: 'jonny@email.com'
+    name: null,
+    email: null
   }
 };
 export default class App extends Component {
