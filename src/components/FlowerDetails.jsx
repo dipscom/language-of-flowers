@@ -48,7 +48,7 @@ export default class FlowerDetails extends Component{
     });
 
     TweenMax.staggerFrom(currentTarget + " .word", 0.3, { // eslint-disable-line
-      x: "+=50",
+      x: "-=30",
       ease: "Power2.easeOut"
     }, 0.05);
 
