@@ -67,7 +67,7 @@ export default class SelectFlowers extends Component {
           <ol>
             {this.props.bouquet.map(this.bouquetList)}
           </ol>
-          <Link className="button" to="/view-bouquet">View your bouquet</Link>
+          <Link className="button" to="/bouquet/view">View your bouquet</Link>
         </div>
       </div>
     )

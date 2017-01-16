@@ -17,7 +17,7 @@ export default class RecipientDetails extends Component {
         <label htmlFor="recipient-email">Recipient email</label>
         <input type="email" id="recipient-email" className="recipient" name="email" value={this.props.recipient.email} placeholder="Email" onChange={(e) => this.props.updateField(e)} />
 
-      <Link className="button" to="/sender">Your Details</Link>
+      <Link className="button" to="/bouquet/sender">Your Details</Link>
       </div>
     )
   }

@@ -36,7 +36,9 @@ export default class Form extends Component {
       <input key={key.toLowerCase().replace(/ /g, '-')} ref={key.replace(/ /g, '')} type="radio" name="navigation" value={index} defaultChecked={checked} onClick={(e) => this.selectStage(e)} />
       )
   }
-
+  willTransitionTo(transition, params, query, callback) {
+    console.log('will transition to');
+  }
   render() {
 
     // console.log("Render Form");
