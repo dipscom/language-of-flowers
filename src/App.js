@@ -72,10 +72,9 @@ export default class App extends Component {
 
       person[e.target.name] = e.target.value;
       if (e.target.type === 'email') {
-        console.log('sdf');
         person['valid'] = e.target.checkValidity();
       }
-      this.setState({ 
+      this.setState({
         [e.target.className] : person
       });
     }

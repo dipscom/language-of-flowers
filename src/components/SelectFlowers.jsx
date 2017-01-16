@@ -31,12 +31,31 @@ export default class SelectFlowers extends Component {
     }
     return (
       <label key={key}>
-      <div>
-      <input name="flower" value={key} type="checkbox" style={styles} defaultChecked={checked} disabled={disabled} onMouseOver={() => this.props.getActiveFlower(key)} onClick={() => this.props.selectBouquet(key)} /></div>
-      <div><h2>{flower.name}</h2>
-      <h3>Meaning</h3>
-      <strong>{flower.meaning}</strong>
-      <p>{flower.description}</p></div>
+        <div>
+          <input
+            name="flower"
+            value={key}
+            type="checkbox"
+            style={styles}
+            defaultChecked={checked}
+            disabled={disabled}
+            onMouseOver={
+              () => {
+                this.props.getActiveFlower(key)
+              }
+            }
+            onClick={
+              () => {
+                this.props.selectBouquet(key);
+              }
+            } />
+        </div>
+        <div>
+          <h2>{flower.name}</h2>
+          <h3>Meaning</h3>
+          <strong>{flower.meaning}</strong>
+          <p>{flower.description}</p>
+        </div>
       </label>
     )
   }
@@ -45,6 +64,8 @@ export default class SelectFlowers extends Component {
     if (this.props.bouquet.length === 3) {
       linkClasses += ' active';
     }
+
+
     return (
       <div
         id="select-flowers"
@@ -60,14 +81,14 @@ export default class SelectFlowers extends Component {
             <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
             <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
           </svg>
-          </h1>
+        </h1>
         <p>Select 3 flowers:</p>
         <form>{
           Object
           .keys(this.props.flowers)
           .map(this.renderFlower)
         }</form>
-        <div>
+      <div className="selected-description">
           <ol>
             {this.props.bouquet.map(this.bouquetList)}
           </ol>
