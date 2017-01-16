@@ -220,7 +220,7 @@
             margin-top: 5px;
             text-transform: none;
         }
-    }   
+    }
 }
 .back-link {
         color: #313131;
@@ -332,7 +332,7 @@
     }
 }
 
-#details-form {
+.details-form {
     @media (orientation: landscape) {
         width: 80%;
     }

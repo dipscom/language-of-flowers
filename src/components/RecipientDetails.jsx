@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 export default class RecipientDetails extends Component {
   render() {
     return (
-      <div id="details-form">
+      <div id="recipient" className="details-form">
 
         <h1>Their Details
           <svg className="doubleline-decoration" viewBox="0 0 1400 40">

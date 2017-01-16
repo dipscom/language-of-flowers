@@ -76,7 +76,7 @@ export default class Overlay extends Component {
   componentWillAppear(callback) {
     // console.log("Overlay Will appear");
 
-    this.tl = new TimelineLite({onComplete:callback}); // eslint-disable-line
+    this.tl = new TimelineLite({onComplete:callback,delay:2.5}); // eslint-disable-line
 
     // We're using normal CSS selectors because we know for a fact that this component will not be unmounted and/or changed at any time during the existence of this webapp
     this.tl
