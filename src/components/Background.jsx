@@ -35,15 +35,7 @@ export default class Background extends Component {
           }
         }
       >
-        <div
-          id="paper"
-          key="paper"
-          ref={
-            (el) => {
-              this.el = el;
-            }
-          }
-        >
+        <div id="paper">
 
         <img role="presentation" id="cloud1" className="cloud" src="/images/background/cloud-1.png" />
         <img role="presentation" id="cloud2" className="cloud" src="/images/background/cloud-2.png" />
@@ -83,6 +75,8 @@ export default class Background extends Component {
 
 
   /* Animation */
+  fadeIn(el) {
+  }
   animateIn(callback, delay) {
     // TweenMax.from(this.el, 1, { // eslint-disable-line
     //   autoAlpha:0,
@@ -102,11 +96,11 @@ export default class Background extends Component {
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    console.log("Background Will enter");
+    // console.log("Background Will enter");
   }
 
   componentDidEnter() {
-    console.log("Background Did enter");
+    // console.log("Background Did enter");
   }
 
   componentWillAppear(callback) {
@@ -114,7 +108,7 @@ export default class Background extends Component {
 
     this.tl = new TimelineMax({onComplete:callback}); // eslint-disable-line
 
-    this.tl.from(this.el, 0.5, {autoAlpha:0})
+    this.tl.staggerFrom(["#background","#paper", ".corner"], 1, {autoAlpha:0}, 1)
     this.tl.from(".border-top", 0.8, {
       drawSVG: 0,
       ease: "Power1.easeInOut"

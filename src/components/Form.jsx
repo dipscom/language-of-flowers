@@ -9,7 +9,7 @@ export default class Form extends Component {
     this.renderNavigation = this.renderNavigation.bind(this);
     this.getActiveFlower = this.getActiveFlower.bind(this);
     this.state = {
-      activeFlower: null
+      activeFlower: null,
     }
   }
   componentWillMount(){
@@ -112,38 +112,68 @@ export default class Form extends Component {
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    // console.log("Form Will enter", currentTarget);
 
+    const currPath = this.props.location.pathname;
     let currentTarget = this.el;
-    this.animateIn(callback, currentTarget, 0.5);
-    // let tl = new TimelineMax(); // eslint-disable-line
-    // tl.add(this.animateIn(callback, currentTarget, 1))
 
+    console.log("Form Will enter", currPath);
+
+    switch (currPath) {
+      case "/create-bouquet":
+        this.animateIn(callback, currentTarget, 0.5);
+        break;
+      case "/view-bouquet":
+        this.animateIn(callback, ["#bouquet","#bouquet-list"], 0.5);
+        break;
+      case "/recipient":
+        this.animateIn(callback, ["#recipient"], 0.5);
+        break;
+      case "/sender":
+        // this.animateIn(callback, ["#sender"], 0.5);
+        break;
+      default:
+
+    }
   }
 
   componentDidEnter() {
-    console.log("Form Did enter");
+    // console.log("Form Did enter");
   }
 
   componentWillAppear(callback) {
-    console.log("Form Will appear");
+    // console.log("Form Will appear");
   }
 
   componentDidAppear() {
-    console.log("Form Did appear");
+    // console.log("Form Did appear");
   }
 
   componentWillLeave(callback) {
-    console.log("Form Will leave");
-    let currentTarget = this.el;
-    // let tl = new TimelineMax(); // eslint-disable-line
-    // tl.add(this.animateOut(callback, currentTarget))
-    this.animateOut(callback, currentTarget);
+    const currPath = this.props.location.pathname;
+    // let currentTarget = this.el;
 
+    console.log("Form Will leave", currPath);
+
+    switch (currPath) {
+      case "/create-bouquet":
+        this.animateOut(callback, ["#select-flowers", "#flowersDetails", "#view-bouquet-bt"]);
+        break;
+      case "/view-bouquet":
+        this.animateOut(callback, ["#bouquet-list","#their-details-bt"]);
+        break;
+      case "/recipient":
+        // this.animateOut(callback, ["#recipient"]);
+        break;
+      case "/sender":
+        // this.animateOut(callback, ["#sender"]);
+        break;
+      default:
+
+    }
   }
 
   componentDidLeave() {
-    console.log("Form Did leave");
+    // console.log("Form Did leave");
   }
 
 }
