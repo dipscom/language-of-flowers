@@ -62,13 +62,13 @@ main {
      display: block;
     max-width: 100%;
     vertical-align: baseline;
-} 
+}
 
 svg {
       fill: none;
       left: 0;
       position: absolute;
-      stroke: black;
+      stroke: rgba(0,0,0,0.3);
       top: 0;
 
       stroke-linejoin: miter;
@@ -123,7 +123,7 @@ svg {
             @media (orientation: landscape) {
              margin: 0 auto;
              max-width: 870px;
-             width: 90%;  
+             width: 90%;
             }
             @media (orientation: portrait) {
                 width: 100%;
@@ -141,9 +141,9 @@ svg {
           @media (orientation: portrait) {
           height: auto;
           }
-        
+
     }
-    
+
 
 }
 
