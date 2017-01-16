@@ -200,4 +200,9 @@ svg {
     text-decoration: none;
     text-transform: uppercase;
     width: auto;
+
+    &:not(.active) {
+        opacity: 0.5;
+        pointer-events: none;
+    }
 }

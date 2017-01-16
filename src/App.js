@@ -11,12 +11,15 @@ const initialState = {
   products: products,
   recipient: {
     name: '',
-    email: ''
+    email: '',
+    valid: false
   },
   sender: {
     name: '',
-    email: ''
-  }
+    email: '',
+    valid: false
+  },
+  terms: false
 };
 export default class App extends Component {
   constructor(){
@@ -62,9 +65,20 @@ export default class App extends Component {
       </li>)
   }
   updateField(e) {
-    const person = {...this.state[e.target.className]};
-    person[e.target.name] = e.target.value;
-    this.setState({ [e.target.className] : person });
+    if(e.target.name === 'terms') {
+      this.setState({ 'terms': e.target.checked });
+    } else {
+      const person = {...this.state[e.target.className]};
+
+      person[e.target.name] = e.target.value;
+      if (e.target.type === 'email') {
+        console.log('sdf');
+        person['valid'] = e.target.checkValidity();
+      }
+      this.setState({ 
+        [e.target.className] : person
+      });
+    }
   }
   render() {
     const { pathname } = this.props.location;
@@ -73,15 +87,16 @@ export default class App extends Component {
         <TransitionGroup component="div">
           <Background location={this.props.location} />
           {this.props.children && React.cloneElement(this.props.children,
-          {bouquet:[...this.state.bouquet],
-           flowers:{...this.state.flowers},
-           products:{...this.state.products},
-           recipient:{...this.state.recipient},
-           sender:{...this.state.sender},
+          {bouquet: [...this.state.bouquet],
+           flowers: {...this.state.flowers},
+           products: {...this.state.products},
+           recipient: {...this.state.recipient},
+           sender: {...this.state.sender},
+           terms: this.state.terms,
            selectBouquet: this.selectBouquet,
            bouquetMeaning: this.bouquetMeaning,
            updateField: this.updateField,
-           key: key,})}
+           key: key})}
           <Overlay location={this.props.location} />
         </TransitionGroup>
     )
