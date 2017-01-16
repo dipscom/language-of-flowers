@@ -60,7 +60,7 @@ export default class Overlay extends Component {
 
   /* Animation */
   fadeIn(el, opts = {xP:0, yP:0} ) {
-    return TweenMax.from(el, 1, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:"Power4.easeOut"}); // eslint-disable-line
+    return TweenMax.from(el, 3, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:Elastic.easeOut.config(0.5)}); // eslint-disable-line
   }
 
 
@@ -80,16 +80,15 @@ export default class Overlay extends Component {
 
     // We're using normal CSS selectors because we know for a fact that this component will not be unmounted and/or changed at any time during the existence of this webapp
     this.tl
-      .add(this.fadeIn('#flowersBottom', {xP:0, yP:100}), 0)
-      .add(this.fadeIn('#flowersBottomRight', {xP:50, yP:10}), 0.1)
-      .add(this.fadeIn('#flowersMidLeft', {xP:-50, yP:10}), 0.1)
-      .add(this.fadeIn('#flowersTopLeft', {xP:-50, yP:-10}), 0.1)
-      .add(this.fadeIn('#flowersTopRight', {xP:50, yP:-10}), 0.1)
-      .add(this.fadeIn('#peacock', {xP:-20, yP:10}), 0.3)
-      .add(this.fadeIn('#stag', {xP:20, yP:10}), 0.3)
-      .add("People", 0.5)
-      .add(this.fadeIn('#man', {xP:50, yP:10}), "People")
-      .add(this.fadeIn('#lady', {xP:-50, yP:10}), "People")
+      .add(this.fadeIn('#flowersBottom', {xP:0, yP:10}), 0)
+      .add(this.fadeIn('#flowersBottomRight', {xP:30, yP:10}), 0.1)
+      .add(this.fadeIn('#flowersMidLeft', {xP:-10, yP:1}), 0.13)
+      .add(this.fadeIn('#flowersTopLeft', {xP:-10, yP:-10}), 0.2)
+      .add(this.fadeIn('#flowersTopRight', {xP:10, yP:-10}), 0.23)
+      .add(this.fadeIn('#peacock', {xP:-5, yP:10}), 0.3)
+      .add(this.fadeIn('#stag', {xP:5, yP:10}), 0.3)
+      .add("People", 1.5)
+      .from(["#man","#lady"], 1, {autoAlpha:0}, "People")
 
   }
 

@@ -62,13 +62,13 @@ main {
      display: block;
     max-width: 100%;
     vertical-align: baseline;
-} 
+}
 
 svg {
       fill: none;
       left: 0;
       position: absolute;
-      stroke: black;
+      stroke: rgba(0,0,0,0.3);
       top: 0;
 
       stroke-linejoin: miter;
@@ -124,7 +124,6 @@ svg {
 
             @media (orientation: landscape) {
              max-width: 870px;
-             
             }
             
         }
@@ -143,9 +142,9 @@ svg {
           max-width: 330px;
           width: 60%;
           }
-        
+
     }
-    
+
 
 }
 

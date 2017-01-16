@@ -94,13 +94,12 @@
       height: 20%;
       position: absolute;
       width: auto;
+      left: -25%;
     }
     #cloud1 {
-      left: 10%;
       top: 5%;
     }
     #cloud2 {
-      left: 60%;
       top: 60%;
     }
 }

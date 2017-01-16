@@ -4,9 +4,7 @@ export default class Background extends Component {
 
   constructor(props) {
     super(props);
-
-    this.tl; // eslint-disable-line
-
+    this.tl = null;
   }
 
 
@@ -14,11 +12,11 @@ export default class Background extends Component {
 
     switch (this.props.location.pathname) {
       case "/create-bouquet":
-        if(this.tl) this.tl.resume();
+        // if(this.tl) this.tl.resume();
         break;
 
       case "/description":
-        if(this.tl) this.tl.tweenTo("Closed");
+        // if(this.tl) this.tl.tweenTo("Closed");
       break;
 
       default:
@@ -104,21 +102,36 @@ export default class Background extends Component {
   }
 
   componentWillAppear(callback) {
-    // console.log("Background Will appear");
+    const paperWidth = document.getElementById("paper").getBoundingClientRect().width * 1.5;
+
+    console.log("Background Will appear");
+
+    TweenMax.set(".cloud", {// eslint-disable-line
+    xPercent:-50,
+    x:function(i) {
+      return (i+1) * paperWidth/3;
+    }
+    });
+
+    TweenMax.to(".cloud", paperWidth*0.5, {// eslint-disable-line
+      x:"+="+paperWidth,
+      modifiers: {
+        x:function(x) {
+          return x % paperWidth
+        }
+      },
+      repeat: -1,
+      ease: "Linear.easeNone"
+    })
+
 
     this.tl = new TimelineMax({onComplete:callback}); // eslint-disable-line
 
-    this.tl.staggerFrom(["#background","#paper", ".corner"], 1, {autoAlpha:0}, 1)
-    this.tl.from(".border-top", 0.8, {
-      drawSVG: 0,
-      ease: "Power1.easeInOut"
-    })
-
-    this.tl.addPause("Closed")
-    this.tl.to(".border-top", 0.8, {
-      drawSVG:"10% 100%",
-      ease: "Power1.easeInOut"
-    })
+    this.tl.staggerFrom(["#background","#paper",".cloud",".corner"], 1, {autoAlpha:0}, 1)
+    // this.tl.from(".border-top", 0.8, {
+    //   drawSVG: 0,
+    //   ease: "Power1.easeInOut"
+    // })
 
   }
 

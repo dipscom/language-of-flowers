@@ -15,7 +15,7 @@ export default class Introduction extends Component {
           <div>
             <img className="logo" src="./images/penhalions-logo.png" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" />
             <h1>
-              <svg className="doubleline-decoration" viewBox="0 0 1400 40">
+              <svg className="doubleline-decoration" viewBox="0 0 1400 40" preserveAspectRatio="xMidYMid">
                 <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
                 <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
               </svg>
@@ -69,8 +69,11 @@ export default class Introduction extends Component {
   }
 
   componentWillAppear(callback) {
+    this.tl = new TimelineMax() // eslint-disable-line
     // console.log("Introduction Will appear");
-    TweenMax.staggerFrom([".logo", "h1", "p", "strong", ".button"], 1.5, {autoAlpha:0, delay:1.5, ease:"Power1.easeInOut", onComplete:callback}, 0.15); // eslint-disable-line
+    this.tl.staggerFrom([".logo", "h1", "p", "strong"], 1.5, {autoAlpha:0, delay:2.5, ease:"Power4.easeInOut"}, 0.5)
+      .staggerFrom(".segment", 1, {drawSVG:"50% 50%", ease:"Power2.easeInOut"}, 0.15, 3)
+      .from(".button", 1.5, {autoAlpha:0, ease:"Power4.easeInOut", onStart:callback}, "-=1")
   }
 
   componentDidAppear() {
@@ -78,7 +81,7 @@ export default class Introduction extends Component {
   }
 
   componentWillLeave(callback) {
-    // console.log("Introduction Will leave");
+    console.log("Introduction Will leave");
     this.animateOut(callback);
   }
 
