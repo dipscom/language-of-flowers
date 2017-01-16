@@ -36,7 +36,7 @@ export default class Description extends Component {
             <p>Whilst we don't like to gossip it would appear that there was a 'mistake' and the flowers from Lord George, meant for Lady Blanche, well they seem to have been sent to the divine Clara...With Penhaligon’s Floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas - but what could be more (ah-em) improbable!</p>
             <strong>Choose the flowers and the recipient wisely</strong>
             <div>
-              <Link className="button" to="/bouquet/create">Create your own bouquet</Link>
+              <Link className="button active" to="/create-bouquet">Create your own bouquet</Link>
             </div>
             <IndexLink to="/" id="reset-button" onClick={this.reset}>Start Again</IndexLink>
         </div>

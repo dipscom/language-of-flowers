@@ -3,6 +3,10 @@ import { Link } from 'react-router';
 
 export default class SenderDetails extends Component {
   render() {
+    let linkClasses = 'button';
+    if (this.props.bouquet.length === 3 && this.props.recipient.name !== '' && this.props.recipient.valid && this.props.sender.name !== '' && this.props.sender.valid) {
+      linkClasses += ' active';
+    }
     return (
       <div id="details-form">
       <div>
@@ -13,11 +17,11 @@ export default class SenderDetails extends Component {
       </svg>
         </h1>
         <label htmlFor="sender-name">Your first name</label>
-        <input type="text" id="sender-name" className="sender" name="name" value={this.props.sender.name} placeholder="Name" onChange={(e) => this.props.updateField(e)} />
+        <input type="text" id="sender-name" className="sender" name="name" value={this.props.sender.name} placeholder="Name" required onChange={(e) => this.props.updateField(e)} />
         <label htmlFor="recipient-email">Your email</label>
-        <input type="email" id="sender-email" className="sender" name="email" value={this.props.sender.email} placeholder="Email" onChange={(e) => this.props.updateField(e)} />
+        <input type="email" id="sender-email" className="sender" name="email" value={this.props.sender.email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
       </div>
-      <Link className="button" to="/confirmation">Confirm & Send</Link>
+      <Link className={linkClasses} to="/confirmation">Confirm & Send</Link>
       </div>
     )
   }

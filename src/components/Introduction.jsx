@@ -36,7 +36,7 @@ export default class Introduction extends Component {
           <p>Thank Heavens for the coded art of flowers. A mysterious language - of love? Cryptic communications, secret assignations, hidden revelations, coded declarations! Floriography. Oh! what a gift! Quel cadeau.</p>
           <strong>Penhaligon&#39;s invites you to send your very own coded bouquet.</strong>
           <div>
-            <Link className="button" to="/description">Lets Begin</Link>
+            <Link className="button active" to="/description">Lets Begin</Link>
           </div>
          </div>
         </div>

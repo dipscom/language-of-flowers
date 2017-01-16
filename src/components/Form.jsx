@@ -36,12 +36,8 @@ export default class Form extends Component {
       <input key={key.toLowerCase().replace(/ /g, '-')} ref={key.replace(/ /g, '')} type="radio" name="navigation" value={index} defaultChecked={checked} onClick={(e) => this.selectStage(e)} />
       )
   }
-  willTransitionTo(transition, params, query, callback) {
-    console.log('will transition to');
-  }
-  render() {
 
-    // console.log("Render Form");
+  render() {
 
     const parentProps = {
       bouquet:[...this.props.bouquet],
@@ -52,7 +48,8 @@ export default class Form extends Component {
       bouquetMeaning: this.props.bouquetMeaning,
       recipient:{...this.props.recipient},
       sender:{...this.props.sender},
-      updateField: this.props.updateField};
+      updateField: this.props.updateField};      
+
     return (
       <div
         className="stage"
@@ -79,10 +76,12 @@ export default class Form extends Component {
           </TransitionGroup>
 
           <nav id="form-navigation">
-            <Link to="/create-bouquet" title="Create Bouquet"></Link>
-            <Link to="/view-bouquet" title="View Bouquet"></Link>
-            <Link to="/recipient" title="Recipient"></Link>
-            <Link to="/sender" title="Sender"></Link>
+            <Link to="/create-bouquet" title="Create Bouquet" activeClassName="current" className="active"></Link>
+            <Link to="/view-bouquet" title="View Bouquet" activeClassName="current" className={(this.props.bouquet.length === 3 ? 'active' : '')}></Link>
+            <Link to="/recipient" title="Recipient" activeClassName="current" className={(this.props.bouquet.length === 3 ? 'active' : '')}></Link>
+            
+
+            <Link to="/sender" title="Sender" activeClassName="current" className={(this.props.bouquet.length === 3 ? (this.props.recipient.name !== '' && this.props.recipient.valid ? 'active' : '') : '')}></Link>
           </nav>
           </div>
         </div>
