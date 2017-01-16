@@ -48,7 +48,7 @@ export default class Form extends Component {
       bouquetMeaning: this.props.bouquetMeaning,
       recipient:{...this.props.recipient},
       sender:{...this.props.sender},
-      updateField: this.props.updateField};      
+      updateField: this.props.updateField};
 
     return (
       <div
@@ -79,7 +79,7 @@ export default class Form extends Component {
             <Link to="/create-bouquet" title="Create Bouquet" activeClassName="current" className="active"></Link>
             <Link to="/view-bouquet" title="View Bouquet" activeClassName="current" className={(this.props.bouquet.length === 3 ? 'active' : '')}></Link>
             <Link to="/recipient" title="Recipient" activeClassName="current" className={(this.props.bouquet.length === 3 ? 'active' : '')}></Link>
-            
+
 
             <Link to="/sender" title="Sender" activeClassName="current" className={(this.props.bouquet.length === 3 ? (this.props.recipient.name !== '' && this.props.recipient.valid ? 'active' : '') : '')}></Link>
           </nav>
@@ -129,7 +129,7 @@ export default class Form extends Component {
         this.animateIn(callback, ["#recipient"], 0.5);
         break;
       case "/sender":
-        // this.animateIn(callback, ["#sender"], 0.5);
+        this.animateIn(callback, ["#sender"], 0.5);
         break;
       default:
 
@@ -150,7 +150,7 @@ export default class Form extends Component {
 
   componentWillLeave(callback) {
     const currPath = this.props.location.pathname;
-    // let currentTarget = this.el;
+    let currentTarget = this.el;
 
     console.log("Form Will leave", currPath);
 
@@ -159,13 +159,13 @@ export default class Form extends Component {
         this.animateOut(callback, ["#select-flowers", "#flowersDetails", "#view-bouquet-bt"]);
         break;
       case "/view-bouquet":
-        this.animateOut(callback, ["#bouquet-list","#their-details-bt"]);
+        this.animateOut(callback, ["#bouquet-list"]);
         break;
       case "/recipient":
-        // this.animateOut(callback, ["#recipient"]);
+        this.animateOut(callback, ["#recipient"]);
         break;
       case "/sender":
-        // this.animateOut(callback, ["#sender"]);
+        this.animateOut(callback, currentTarget);
         break;
       default:
 

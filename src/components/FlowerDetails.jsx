@@ -50,8 +50,10 @@ export default class FlowerDetails extends Component{
     });
 
     TweenMax.staggerFrom(currentTarget + " .word", 0.3, { // eslint-disable-line
-      x: "-=30",
-      ease: "Power2.easeOut"
+      x: 30,
+      autoAlpha: 0,
+      ease: "Power2.easeOut",
+      delay:0.3
     }, 0.05);
 
     callback();
@@ -61,11 +63,18 @@ export default class FlowerDetails extends Component{
 
     let currentTarget = "#" + this.el.id;
 
-    TweenMax.to(currentTarget, 0.1, { // eslint-disable-line
+    TweenMax.to(currentTarget + " img", 0.3, { // eslint-disable-line
       autoAlpha:0,
-      ease: "Power4.easeIn",
+      ease: "Power4.easeInOut",
       onComplete:callback
     });
+
+    TweenMax.staggerTo(currentTarget + " .word", 0.3, { // eslint-disable-line
+      x: 30,
+      autoAlpha: 0,
+      ease: "Power2.easeIn",
+    }, 0.05);
+
   }
 
 
