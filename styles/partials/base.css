@@ -118,16 +118,15 @@ svg {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            margin: 0 auto;
             min-height: 100%;
+            width: 90%;
 
             @media (orientation: landscape) {
-             margin: 0 auto;
              max-width: 870px;
-             width: 90%;  
+             
             }
-            @media (orientation: portrait) {
-                width: 100%;
-            }
+            
         }
     }
     .logo {
@@ -139,7 +138,10 @@ svg {
               width: auto;
           }
           @media (orientation: portrait) {
+          align-self: flex-start;
           height: auto;
+          max-width: 330px;
+          width: 60%;
           }
         
     }

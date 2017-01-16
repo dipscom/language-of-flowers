@@ -1,0 +1,33 @@
+#my-bouquet {
+	> *  {
+	> * {
+		@media (orientation: landscape) {
+			align-content: center;
+			max-width: 670px;
+		}
+		}
+	}
+	h1 {
+		@media (orientation: landscape) {
+			width: 100%;
+		}
+	}
+	svg {
+		width:100%;
+	}
+	p {
+		font-family: 'Lovato';
+		font-weight: bolder;
+		width: 100%;
+
+		&:nth-of-type(2) {
+			font-weight: normal;
+
+			@media (orientation: landscape) {
+				margin: 20px 0;
+			}
+		}
+	}
+
+	
+}

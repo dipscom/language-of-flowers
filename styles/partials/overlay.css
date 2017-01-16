@@ -45,14 +45,14 @@
     width: 22%;
   }
   > #lady {
-    bottom: 0;
+    bottom: 2%;
     left: 7%;
     width: 15%;
   }
   > #man {
-    bottom: -17%;
-    right: 4%;
-    width: 15%;
+    bottom: -14%;
+    right: 6%;
+    width: 13%;
   }
   > #peacock {
     bottom: -10%;
@@ -61,8 +61,8 @@
   }
   > #stag {
     bottom: -10%;
-    right: -3%;
-    width: 24%;
+    right: 0;
+    width: 22%;
   }
 
 }

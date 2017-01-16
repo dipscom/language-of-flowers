@@ -79,7 +79,7 @@
     }
     label {
         cursor: pointer;
-        margin: 8px ;
+        margin: 16px;
 
         @media (orientation: portrait) {
             align-items: center;
@@ -243,9 +243,29 @@
     @media (orientation: landscape) {
         position: absolute;
     }
+    div {
+        @media (orientation: landscape) {
+        position: relative;
+        }
+        > div {
+            @media (orientation: landscape) {
+        position: absolute;
+        top: 100%;
+        }
+        }
+    }
     img {
-        height: auto;
+        height: auto;  
         width: 60%;
+    }
+    svg {
+        width: 100%;
+    }
+    h1 {
+        @media (orientation: landscape) {
+            bottom: 100%;
+            position: absolute;
+        }
     }
     h2 {
         text-transform: none;
@@ -278,7 +298,8 @@
         width: 100%;
     }
     @media (orientation: portrait) {
-        max-width: 300px;
+        margin: 30px 0 60px;
+        max-width: 200px;
     }
     a {
         background-color: #4a4547;

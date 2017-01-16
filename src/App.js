@@ -34,6 +34,7 @@ export default class App extends Component {
     this.setState(initialState);
   }
   selectBouquet(key) {
+    console.log(key);
     let bouquet = this.state.bouquet;
     const index = this.state.bouquet.indexOf(key);
     const flowers = {...this.state.flowers};
