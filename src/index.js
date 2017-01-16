@@ -20,32 +20,6 @@ import ShareBouquet from './components/ShareBouquet';
 
 import '../styles/bundle.css';
 
-function checkState(nextState, replace){
-  console.log(nextState);
-
-  switch(nextState.location.pathname){
-  case '/view-bouquet':
-     
-    break;
-    case '/recipient':
-
-    break;
-    case '/sender':
-
-    break;
-    case '/confirmation':
-
-    break;
-    case '/success':
-
-    break;
-    case '/my-bouquet':
-
-    break;
-    default:   
-  }
-}
-
 render(
   <Router history={browserHistory}>
     <Route path="/" component={App}>
@@ -53,14 +27,15 @@ render(
       <Route path="description" component={Description} />
       <Route component={Form}>
         <Route path="create-bouquet" components={{left:SelectFlowers, right:Flower}} />
-        <Route path="view-bouquet" components={{left:Bouquet, right:BouquetDetails}} onEnter={checkState} />
+        <Route path="view-bouquet" components={{left:Bouquet, right:BouquetDetails}} />
         <Route path="recipient" components={{left:Bouquet, right:RecipientDetails}} />
         <Route path="sender" components={{left:Bouquet, right:SenderDetails}} />
       </Route>
       <Route path="confirmation" component={Confirmation} />
       <Route path="success" component={Success} />
-      <Route path="my-bouquet" components={{first:MyBouquet, second:BouquetDetails, third:ShareBouquet}} />
+      <Route path="my-bouquet" component={MyBouquet} />
     </Route>
+    
   </Router>,
   document.getElementById('app')
 );
