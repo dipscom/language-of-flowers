@@ -15,9 +15,9 @@ export default class BouquetDetails extends Component {
         <ul>
             { this.props.bouquet.map(this.props.bouquetMeaning) }
         </ul>
-        <Link className="back-link" to="/create-bouquet">Change your bouquet</Link>
+        <Link className="back-link" to="bouquet/create">Change your bouquet</Link>
       </div>
-      <Link className="button" to="/recipient">Their Details</Link>
+      <Link className="button" to="bouquet/recipient">Their Details</Link>
       </div>
     )
   }
