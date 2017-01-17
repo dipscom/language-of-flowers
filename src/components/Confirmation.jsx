@@ -32,7 +32,7 @@ export default class Confirmation extends Component {
           <p>...to your dearest <span>{this.props.recipient.name}</span> at the royal postal address of <span>{this.props.recipient.email}</span> from <span>{this.props.sender.name}</span><span>({this.props.sender.email})</span>.</p>
           <p className="terms">Be in with a chance to win the full Penhaligon's portraits collection.<br/>plus join the very Penhaligon's club and discover our online secrets <label htmlFor="terms">(I agree with the Terms and Conditions/Privacy Policy). </label><input type="checkbox" name="terms" onChange={(e) => this.props.updateField(e)} /></p>
           <div className="separator">
-          <Link className={linkClasses} to="/success">Send Now</Link>
+          <Link className={linkClasses} to="/success">Send Now <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.1 127.4"><polygon points="0 0.3 221.1 64 0.1 127.4 35.4 66.9 "/></svg></Link>
           <Link className="back-link" to="/sender">Change details</Link>
           </div>
 

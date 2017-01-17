@@ -92,7 +92,7 @@ export default class SelectFlowers extends Component {
           <ol>
             {this.props.bouquet.map(this.bouquetList)}
           </ol>
-          <Link className={linkClasses} to="/view-bouquet">View your bouquet</Link>
+          <Link className={linkClasses} to="/view-bouquet">View your bouquet <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.1 127.4"><polygon points="0 0.3 221.1 64 0.1 127.4 35.4 66.9 "/></svg></Link>
         </div>
       </div>
     )

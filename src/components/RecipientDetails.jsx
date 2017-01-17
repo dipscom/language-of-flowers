@@ -22,7 +22,7 @@ export default class RecipientDetails extends Component {
         <label htmlFor="recipient-email">Recipient email</label>
         <input type="email" id="recipient-email" className="recipient" name="email" value={this.props.recipient.email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
 
-      <Link className={linkClasses} to="/sender">Your Details</Link>
+      <Link className={linkClasses} to="/sender">Your Details <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.1 127.4"><polygon points="0 0.3 221.1 64 0.1 127.4 35.4 66.9 "/></svg></Link>
       </div>
     )
   }

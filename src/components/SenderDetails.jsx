@@ -21,7 +21,7 @@ export default class SenderDetails extends Component {
         <label htmlFor="recipient-email">Your email</label>
         <input type="email" id="sender-email" className="sender" name="email" value={this.props.sender.email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
       </div>
-      <Link className={linkClasses} to="/confirmation">Confirm & Send</Link>
+      <Link className={linkClasses} to="/confirmation">Confirm & Send <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.1 127.4"><polygon points="0 0.3 221.1 64 0.1 127.4 35.4 66.9 "/></svg></Link>
       </div>
     )
   }
