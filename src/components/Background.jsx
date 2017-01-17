@@ -102,7 +102,18 @@ export default class Background extends Component {
     }
     });
 
-    TweenMax.to(".cloud", paperWidth*0.5, {// eslint-disable-line
+
+    TweenMax.to("#cloud1", paperWidth*0.4, {// eslint-disable-line
+      x:"+="+paperWidth,
+      modifiers: {
+        x:function(x) {
+          return x % paperWidth
+        }
+      },
+      repeat: -1,
+      ease: "Linear.easeNone"
+    })
+    TweenMax.to("#cloud2", paperWidth*0.09, {// eslint-disable-line
       x:"+="+paperWidth,
       modifiers: {
         x:function(x) {

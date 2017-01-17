@@ -110,6 +110,7 @@
       left: -25%;
       position: absolute;
       width: auto;
+      mix-blend-mode: multiply;
     }
     #cloud1 {
       top: 5%;
