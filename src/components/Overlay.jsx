@@ -68,7 +68,7 @@ export default class Overlay extends Component {
 
   /* Animation */
   fadeIn(el, opts = {xP:0, yP:0} ) {
-    return TweenMax.from(el, 2, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:"Power2.easeOut"}); // eslint-disable-line
+    return TweenMax.from(el, 2, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:Elastic.easeOut.config(0.4)}); // eslint-disable-line
   }
 
 
@@ -97,6 +97,8 @@ export default class Overlay extends Component {
       .add(this.fadeIn('#stag', {xP:5, yP:10}), 0.3)
       .add("People", 1.5)
       .from(["#man","#lady"], 1, {autoAlpha:0}, "People")
+      .from("#man", 1, {xPercent:10}, "People")
+      .from("#lady", 1, {xPercent:-10}, "People")
 
       // .add("EndIntro")
 

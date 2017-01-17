@@ -122,6 +122,7 @@ export default class Success extends Component{
 
   componentWillAppear(callback) {
     console.log("Confirmation Will appear");
+    this.animateIn(callback, 3);
   }
 
   componentDidAppear() {

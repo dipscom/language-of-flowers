@@ -142,6 +142,7 @@ export default class Form extends Component {
 
   componentWillAppear(callback) {
     // console.log("Form Will appear");
+    this.animateIn(callback, this.el, 3);
   }
 
   componentDidAppear() {
