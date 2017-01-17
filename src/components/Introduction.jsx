@@ -71,9 +71,20 @@ export default class Introduction extends Component {
   componentWillAppear(callback) {
     this.tl = new TimelineMax() // eslint-disable-line
     // console.log("Introduction Will appear");
-    this.tl.staggerFrom([".logo", "h1", "p", "strong"], 1.5, {autoAlpha:0, delay:2.5, ease:"Power4.easeInOut"}, 0.5)
-      .staggerFrom(".segment", 1, {drawSVG:"50% 50%", ease:"Power2.easeInOut"}, 0.15, 3)
-      .from(".button", 1.5, {autoAlpha:0, ease:"Power4.easeInOut", onStart:callback}, "-=1")
+    this.tl.staggerFrom([".logo", "h1", "p", "strong"], 1.5, {
+      autoAlpha:0,
+      delay:2.5,
+      ease:"Power1.easeInOut"
+    }, 0.1)
+      .staggerFrom(".segment", 1, {
+        drawSVG:"50% 50%",
+        ease:"Power2.easeInOut"
+      }, 0.15, 3)
+      .from(".button", 0.5, {
+        autoAlpha:0,
+        ease:"Power4.easeInOut",
+        onStart:callback
+      })
   }
 
   componentDidAppear() {
