@@ -11,7 +11,10 @@ html {
     min-height: 0;
     outline:0;
 
+    -ms-overflow-style: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    &::-webkit-scrollbar { width: 0 !important }
+
 }
 
 body {
@@ -183,6 +186,17 @@ svg {
 
     @media (orientation: landscape) {
         transform: translateY(150%);
+    }
+    svg {
+        display: inline-block;
+        height: 11px;
+        margin-left: 4px;
+        position: static;
+        width: 9px;
+
+        path {
+            fill: $main-color;
+        }
     }
 }
 

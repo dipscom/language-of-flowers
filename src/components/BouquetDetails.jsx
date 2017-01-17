@@ -17,7 +17,7 @@ export default class BouquetDetails extends Component {
         </ul>
         <Link className="back-link" to="/create-bouquet">Change your bouquet</Link>
       </div>
-      <Link className="button active" to="/recipient">Their Details</Link>
+      <Link className="button active" to="/recipient">Their Details <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.1 127.4"><polygon points="0 0.3 221.1 64 0.1 127.4 35.4 66.9 "/></svg></Link>
       </div>
     )
   }
