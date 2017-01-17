@@ -130,6 +130,10 @@ svg {
              max-width: 870px;
             }
 
+            > * {
+              position: relative;
+            }
+
         }
     }
     .logo {
