@@ -15,7 +15,7 @@ import Success from './components/Success';
 import MyBouquet from './components/MyBouquet';
 import Bouquet from './components/Bouquet';
 import Flower from './components/Flower';
-// import ShareBouquet from './components/ShareBouquet';
+import ShareBouquet from './components/ShareBouquet';
 
 
 import '../styles/bundle.css';
@@ -34,6 +34,8 @@ render(
       <Route path="confirmation" component={Confirmation} />
       <Route path="success" component={Success} />
       <Route path="my-bouquet" component={MyBouquet} />
+      <Route path="share-bouquet" component={ShareBouquet} />
+      <Route path="*" component={App}/>
     </Route>
 
   </Router>,
