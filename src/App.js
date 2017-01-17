@@ -48,12 +48,22 @@ export default class App extends Component {
       }
       }
     } else if (accessTime > timeStamp) {
-        bouquet = localStorage.getItem('bouquet').split(',');
-        recipient = {...JSON.parse(localStorage.getItem('recipient')) };
-        sender = {...JSON.parse(localStorage.getItem('sender'))}; 
-        flowers = {...JSON.parse(localStorage.getItem('flowers'))};
-        products = {...JSON.parse(localStorage.getItem('products'))};
-    } else {
+        if(localStorage.getItem('bouquet')) {
+          bouquet = localStorage.getItem('bouquet').split(',');
+        } 
+        if(localStorage.getItem('recipient')) {
+          recipient = {...JSON.parse(localStorage.getItem('recipient')) };
+        }
+        if(localStorage.getItem('sender')) {
+          sender = {...JSON.parse(localStorage.getItem('sender'))}; 
+        }
+        if(localStorage.getItem('flowers')) {
+          flowers = {...JSON.parse(localStorage.getItem('flowers'))};  
+        }
+        if(localStorage.getItem('products')) {
+          products = {...JSON.parse(localStorage.getItem('products'))};
+        }
+      } else {
       if(window.location.pathname !== '/') {
         window.location = '/';
       }
