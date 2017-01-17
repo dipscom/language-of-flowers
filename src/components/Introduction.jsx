@@ -30,7 +30,7 @@ export default class Introduction extends Component {
             <p>Thank Heavens for the coded art of flowers. A mysterious language - of love? Cryptic communications, secret assignations, hidden revelations, coded declarations! Floriography. Oh! what a gift! Quel cadeau.</p>
             <strong>Penhaligon&#39;s invites you to send your very own coded bouquet.</strong>
             <div>
-              <Link className="button active" to="/description">Lets Begin</Link>
+              <Link className="button active" to="/description">Lets Begin <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.1 127.4"><polygon points="0 0.3 221.1 64 0.1 127.4 35.4 66.9 "/></svg></Link>
             </div>
           </div>
         </div>

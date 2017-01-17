@@ -61,12 +61,27 @@
     }
 }
 
+.selected-description {
+    text-align: center;
+
+    ol {
+        text-align: left;
+    }
+}
+
 #select-flowers {
     > p {
         font-family: 'Lovato';
-        font-size: 23px;
+        font-size: 16px;
         line-height: 1;
         margin: 20px 0;
+
+        @media (--tablet-small-above) {
+            font-size: 19px;
+        }
+        @media (--desktop-small-above) {
+            font-size: 23px;
+        }
     }
     form {
         display: flex;
@@ -102,7 +117,7 @@
         }
         @media (orientation: landscape) {
             flex-grow: 1;
-            width: 20%;
+            width: 15%;
         }
         > div {
             &:first-child {
@@ -150,6 +165,7 @@
         font-family: "brandon-grotesque", sans-serif;
         font-size: 16px;
         font-weight: normal;
+        margin-top: 0;
     }
     ol {
         color: #678a73;
@@ -157,8 +173,10 @@
         font-size: 23px;
         line-height: 1;
         margin: 20px 0 0;
-        min-height: 89px;
 
+        @media (orientation: landscape) {
+            min-height: 89px;
+        }
         li {
             &:not(:first-child) {
                 margin-top: 10px;
@@ -167,7 +185,11 @@
         strong {
             display: inline;
             font-family: inherit;
+            font-size: 19px;
+
+        @media (--desktop-small-above) {
             font-size: inherit;
+        }
         }
         span {
             color: #373332;
