@@ -12,9 +12,12 @@ html {
     outline:0;
 
     -ms-overflow-style: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    &::-webkit-scrollbar { 
+        width: 0 !important 
+    }
 }
-*::-webkit-scrollbar { width: 0 !important }
+
 
 body {
     /* background-color: #ff0000; */
@@ -54,6 +57,7 @@ main {
         }
         > * {
             height: 100%;
+            overflow: hidden;
             position: relative;
             width: 100%;
         }
@@ -127,7 +131,7 @@ svg {
             @media (orientation: landscape) {
              max-width: 870px;
             }
-            
+
         }
     }
     .logo {

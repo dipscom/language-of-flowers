@@ -1,24 +1,39 @@
 #background {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100%;
     width: 100%;
 
     @media (orientation: landscape) {
-        background-image: url('/images/background/landscape.jpg');
-        padding: 3.125%;
+      padding: 3.125%;
     }
     @media (orientation: portrait) {
-        background-image: url('/images/background/portrait.jpg');
 
-        @media (--desktop-small-below) {
-            padding: 6.25%;
-        }
-        @media (--desktop-small-above) {
-            padding: 50px;
-        }
+      @media (--desktop-small-below) {
+        padding: 6.25%;
+      }
+      @media (--desktop-small-above) {
+        padding: 50px;
+      }
     }
+
+
+    #bg-image {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100%;
+      left:50%;
+      position: absolute;
+      top:50%;
+      width: 100%;
+
+      @media (orientation: landscape) {
+        background-image: url('/images/background/landscape.jpg');
+      }
+      @media (orientation: portrait) {
+        background-image: url('/images/background/portrait.jpg');
+      }
+    }
+
     .corner {
         height: auto;
         position: absolute;
@@ -92,9 +107,10 @@
     }
     .cloud {
       height: 20%;
+      left: -25%;
       position: absolute;
       width: auto;
-      left: -25%;
+      mix-blend-mode: multiply;
     }
     #cloud1 {
       top: 5%;

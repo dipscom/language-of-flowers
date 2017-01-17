@@ -34,10 +34,11 @@ export default class Background extends Component {
           }
         }
       >
+        <div id="bg-image"></div>
         <div id="paper">
 
-        <img role="presentation" id="cloud1" className="cloud" src="/images/background/cloud-1.png" />
-        <img role="presentation" id="cloud2" className="cloud" src="/images/background/cloud-2.png" />
+          <img role="presentation" id="cloud1" className="cloud" src="/images/background/cloud-1.png" />
+          <img role="presentation" id="cloud2" className="cloud" src="/images/background/cloud-2.png" />
 
 
           <svg id="line-top" className="line-decoration" viewBox="0 0 1400 50">
@@ -75,23 +76,6 @@ export default class Background extends Component {
 
 
   /* Animation */
-  fadeIn(el) {
-  }
-  animateIn(callback, delay) {
-    // TweenMax.from(this.el, 1, { // eslint-disable-line
-    //   autoAlpha:0,
-    //   delay: delay || 0,
-    //   onComplete:callback
-    // });
-  }
-
-  animateOut(callback) {
-    // TweenMax.to(this.el, 1, { // eslint-disable-line
-    //   autoAlpha:0,
-    //   ease: "Power4.easeIn",
-    //   onComplete:callback
-    // });
-  }
 
 
   /* React Animation Callbacks */
@@ -108,6 +92,9 @@ export default class Background extends Component {
 
     console.log("Background Will appear");
 
+    // Use GSAP to center the image for better layout resize handling
+    TweenMax.set("#bg-image", {xPercent:-50, yPercent:-50});// eslint-disable-line
+
     TweenMax.set(".cloud", {// eslint-disable-line
     xPercent:-50,
     x:function(i) {
@@ -115,7 +102,18 @@ export default class Background extends Component {
     }
     });
 
-    TweenMax.to(".cloud", paperWidth*0.5, {// eslint-disable-line
+
+    TweenMax.to("#cloud1", paperWidth*0.4, {// eslint-disable-line
+      x:"+="+paperWidth,
+      modifiers: {
+        x:function(x) {
+          return x % paperWidth
+        }
+      },
+      repeat: -1,
+      ease: "Linear.easeNone"
+    })
+    TweenMax.to("#cloud2", paperWidth*0.09, {// eslint-disable-line
       x:"+="+paperWidth,
       modifiers: {
         x:function(x) {
@@ -129,7 +127,8 @@ export default class Background extends Component {
 
     this.tl = new TimelineMax({onComplete:callback}); // eslint-disable-line
 
-    this.tl.staggerFrom(["#background","#paper",".cloud",".corner"], 1, {autoAlpha:0}, 1)
+    this.tl.staggerFrom(["#background","#paper",".cloud",".corner"], 1, {autoAlpha:0, ease:"Power2.easeInOut"}, 1)
+    this.tl.to("#bg-image", 1.5, {scale:1.025}, 0)
     // this.tl.from(".border-top", 0.8, {
     //   drawSVG: 0,
     //   ease: "Power1.easeInOut"
