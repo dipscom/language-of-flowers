@@ -94,7 +94,8 @@
     }
     label {
         cursor: pointer;
-        margin: 16px;
+        margin: 0;
+        padding: 8px;
 
         @media (orientation: portrait) {
             align-items: center;
@@ -117,7 +118,7 @@
         }
         @media (orientation: landscape) {
             flex-grow: 1;
-            width: 15%;
+            width: 24%;
         }
         > div {
             &:first-child {
