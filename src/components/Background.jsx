@@ -34,7 +34,7 @@ export default class Background extends Component {
           }
         }
       >
-        <div id="bg-image"></div>
+        <div id="forest"><figure></figure></div>
         <div id="paper">
 
           <img role="presentation" id="cloud1" className="cloud" src="/images/background/cloud-1.png" />
@@ -93,7 +93,7 @@ export default class Background extends Component {
     console.log("Background Will appear");
 
     // Use GSAP to center the image for better layout resize handling
-    TweenMax.set("#bg-image", {xPercent:-50, yPercent:-50});// eslint-disable-line
+    TweenMax.set("#forest", {xPercent:-50, yPercent:-50});// eslint-disable-line
 
     TweenMax.set(".cloud", {// eslint-disable-line
     xPercent:-50,
@@ -128,7 +128,7 @@ export default class Background extends Component {
     this.tl = new TimelineMax({onComplete:callback}); // eslint-disable-line
 
     this.tl.staggerFrom(["#background","#paper",".cloud",".corner"], 1, {autoAlpha:0, ease:"Power2.easeInOut"}, 1)
-    this.tl.to("#bg-image", 1.5, {scale:1.025}, 0)
+    this.tl.to("#forest figure", 1.5, {scale:1.025}, 0)
     // this.tl.from(".border-top", 0.8, {
     //   drawSVG: 0,
     //   ease: "Power1.easeInOut"

@@ -52,7 +52,8 @@ export default class Form extends Component {
 
     return (
       <div
-        className="stage"
+        id={this.props.location.pathname.replace('/', '')}
+        className="form"
         key={this.props.location.pathname.replace('/', '')}
         ref={
           (el) => {
@@ -60,7 +61,7 @@ export default class Form extends Component {
           }
         }
       >
-        <div id={this.props.location.pathname.replace('/', '')} className="form">
+        <div>
           <div>
           <TransitionGroup component="div" className="column left">
             {this.props.left && React.cloneElement(this.props.left, parentProps)}

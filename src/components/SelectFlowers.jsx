@@ -14,6 +14,7 @@ export default class SelectFlowers extends Component {
       )
   }
   renderFlower(key) {
+    console.log('render flowers triggered');
     const flower = this.props.flowers[key];
     const styles = {
       backgroundImage: 'url(/images/flowers/' + key + '.png)',
