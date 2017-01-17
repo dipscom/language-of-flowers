@@ -1,18 +1,18 @@
 html {
-    box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
     height: 100%;
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
-    min-height: 0;
-    outline:0;
 
     -ms-overflow-style: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: inherit;
+    min-height: 0;
+    outline:0;
     &::-webkit-scrollbar { width: 0 !important }
 
 }
@@ -55,6 +55,7 @@ main {
         }
         > * {
             height: 100%;
+            overflow: hidden;
             position: relative;
             width: 100%;
         }
@@ -72,10 +73,10 @@ svg {
       left: 0;
       position: absolute;
       stroke: rgba(0,0,0,0.3);
-      top: 0;
 
       stroke-linejoin: miter;
       stroke-width: 1;
+      top: 0;
     }
 
 .stage {
@@ -128,7 +129,7 @@ svg {
             @media (orientation: landscape) {
              max-width: 870px;
             }
-            
+
         }
     }
     .logo {

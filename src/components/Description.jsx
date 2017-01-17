@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { IndexLink, Link } from 'react-router';
+import { Link } from 'react-router';
 
 export default class Description extends Component {
 
@@ -25,7 +25,7 @@ export default class Description extends Component {
                 <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
               </svg>
 
-              Bouquets full of hidden&nbsp;meaning.
+              Bouquets full of hidden meaning.
 
               <svg className="doubleline-decoration reflected" viewBox="0 0 1400 40">
                 <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
