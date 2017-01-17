@@ -437,6 +437,10 @@
     position: absolute;
     top: 20%;
     width: 1px;
+
+    @media (orientation: portrait) {
+        display: none;
+    }
 }
 
 #create-bouquet {

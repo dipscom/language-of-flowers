@@ -69,13 +69,11 @@
         transform: rotate(90deg);
     }
     .logo {
-        display: none;
-
         @media (orientation: landscape) {
-            height: 8vh;
+            height: 10vh;
             left: 50%;
             position: absolute;
-            top: 2%;
+            top: 10.5%;
             transform: translateX(-50%);
         }
     }
@@ -93,22 +91,30 @@
         }
     }
     #line-top {
-        display: none;
-        top: 15px;
+        margin: 1.5% 6% 0;
+    
     }
     #line-left {
-        display: none;
+        bottom: 0;
         height: 100%;
-        left: 15px;
+        margin: 0 1.5%;
+        padding: 6% 0;
+        right: auto;
+        width: 2px;
     }
     #line-right {
-        display: none;
+        bottom: 0;
         height: 100%;
-        right: 15px;
+        left: auto;
+        margin: 0 1.5%;
+        padding: 6% 0;
+        right: 0;
+        width: 2px;
     }
     #line-bottom {
-        bottom: 15px;
-        display: none;
+        bottom: 0;
+        margin: 0 6% 1.5%;
+        top: auto;
     }
     .cloud {
         height: 20%;
