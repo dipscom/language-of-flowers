@@ -17,10 +17,18 @@ export default class Overlay extends Component {
       case "/view-bouquet":
       case "/recipient":
       case "/sender":
-        if(this.tl) this.tl.reverse();
+        if(this.tl) {
+          this.tl.timeScale(3.5)
+          this.tl.reverse();
+        }
         break;
+
       default:
-        if(this.tl) this.tl.play();
+      if(this.tl) {
+        this.tl.timeScale(1)
+        this.tl.play();
+      }
+
     }
 
     return (
@@ -60,7 +68,7 @@ export default class Overlay extends Component {
 
   /* Animation */
   fadeIn(el, opts = {xP:0, yP:0} ) {
-    return TweenMax.from(el, 3, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:Elastic.easeOut.config(0.5)}); // eslint-disable-line
+    return TweenMax.from(el, 2, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:"Power2.easeOut"}); // eslint-disable-line
   }
 
 
@@ -76,7 +84,7 @@ export default class Overlay extends Component {
   componentWillAppear(callback) {
     // console.log("Overlay Will appear");
 
-    this.tl = new TimelineLite({onComplete:callback,delay:2.5}); // eslint-disable-line
+    this.tl = new TimelineMax({onComplete:callback,delay:2.5}); // eslint-disable-line
 
     // We're using normal CSS selectors because we know for a fact that this component will not be unmounted and/or changed at any time during the existence of this webapp
     this.tl
@@ -89,6 +97,12 @@ export default class Overlay extends Component {
       .add(this.fadeIn('#stag', {xP:5, yP:10}), 0.3)
       .add("People", 1.5)
       .from(["#man","#lady"], 1, {autoAlpha:0}, "People")
+
+      // .add("EndIntro")
+
+      // .addPause()
+      // .add("MoveOut", "+=0.1")
+      // .to(['#flowersBottom','#flowersBottomRight','#flowersMidLeft','#flowersTopLeft','#flowersTopRight','#peacock','#stag',"#man","#lady"], 0.3, {autoAlpha:0})
 
   }
 
