@@ -77,6 +77,7 @@ export default class Description extends Component {
 
   componentWillAppear(callback) {
     console.log("Description Will appear");
+    this.animateIn(callback, 3);
   }
 
   componentDidAppear() {

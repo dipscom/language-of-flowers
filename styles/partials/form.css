@@ -22,6 +22,10 @@
             @media (orientation: landscape) {
                 width: 50%;
             }
+
+            /*position: static;*/
+
+
         }
     }
     h1 {
@@ -278,7 +282,7 @@
         }
     }
     img {
-        height: auto;  
+        height: auto;
         width: 60%;
     }
     svg {
@@ -422,7 +426,7 @@
             }
         }
         &:invalid {
-           border-bottom: 1px solid red; 
+           border-bottom: 1px solid red;
         }
     }
 }
