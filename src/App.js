@@ -37,9 +37,16 @@ export default class App extends Component {
     let bouquet, recipient, sender, flowers, products;
     const accessTime = Number((localStorage.getItem('accessTime'))) + 20000, timeStamp = Date.now();
     if(Object.keys(this.props.location.query).length !== 0) {
-      bouquet = this.props.location.query.bouquet.split(',');
-      recipient.name = this.props.location.query.recipient;
-      sender.name = this.props.location.query.sender;
+
+      if (this.props.location.query.bouquet && this.props.location.query.recipient && this.props.location.query.sender) {
+        bouquet = this.props.location.query.bouquet.split(',');
+        recipient = { name: this.props.location.query.recipient };
+        sender = { name: this.props.location.query.sender };
+      } else {
+        if(window.location.pathname !== '/') {
+        window.location = '/';
+      }
+      }
     } else if (accessTime > timeStamp) {
         bouquet = localStorage.getItem('bouquet').split(',');
         recipient = {...JSON.parse(localStorage.getItem('recipient')) };

@@ -35,6 +35,7 @@ render(
       <Route path="success" component={Success} />
       <Route path="my-bouquet" component={MyBouquet} />
       <Route path="share-bouquet" component={ShareBouquet} />
+      <Route path="*" component={App}/>
     </Route>
 
   </Router>,
