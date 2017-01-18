@@ -31,7 +31,7 @@ export default class App extends Component {
   }
   componentWillMount(){
     let bouquet, recipient, sender, flowers, products;
-    const accessTime = Number((localStorage.getItem('accessTime'))) + 600000, timeStamp = Date.now();
+    const accessTime = Number((localStorage.getItem('accessTime'))) + 20000, timeStamp = Date.now();
     if(Object.keys(this.props.location.query).length !== 0) {
 
       if (this.props.location.query.bouquet && this.props.location.query.recipient && this.props.location.query.sender) {

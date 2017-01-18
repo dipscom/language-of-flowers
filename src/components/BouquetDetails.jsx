@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
+import Anchor from './Anchor';
 import Button from './Button';
 import Flower from './Flower';
 
 export default class BouquetDetails extends Component {
+	// componentWillMount() {
+	// 	let prevButton, nextButton;
+ //  	if (this.props.step === 2) {
+ //  		prevButton = <Button cta={this.props.prevCta} step={this.props.prevStep} />;
+ //  		nextButton = <Button cta={this.props.nextCta} step={this.props.nextStep} />;
+ //  	} else {
+ //  		nextButton = <Anchor name={this.props.nextCta} step="forward" target={this.props.nextStep} />;
+ //  	}
+	// }
   render() {
     return (
       <div id="bouquet-details">
@@ -20,6 +30,8 @@ export default class BouquetDetails extends Component {
 	      </ol>
 	      <Button cta={this.props.prevCta} step={this.props.prevStep} />
 	      <Button cta={this.props.nextCta} step={this.props.nextStep} />
+	      {/*prevButton}
+	      {nextButton*/}
 	    </div>
     )
   }

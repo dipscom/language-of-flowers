@@ -22,7 +22,6 @@ export default class Success extends Component{
       </li>
     )
   }
-
   render() {
     return (
       <div
@@ -56,7 +55,6 @@ export default class Success extends Component{
                 Object.keys(this.props.products)
                       .map(this.renderProduct)
               }
-
             </ul>
             <svg className="doubleline-decoration reflected" viewBox="0 0 1400 40">
               <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
