@@ -3,11 +3,13 @@
     left: 0;
     padding: inherit;
     position: absolute;
+    text-align: center;
     top: 0;
     width: 100%;
 
     @media (orientation: landscape) {
         padding: 3.125%;
+        
     }
     @media (orientation: portrait) {
         @media (--desktop-small-below) {
@@ -23,11 +25,12 @@
         @media (orientation: portrait) {
             height: 100%;
 
-            @media (--tablet-small-below) {
-                padding: 3.571428571428571%;
+           @media (--tablet-small-below) {
+                padding: calc(3.571428571428571% + 66px) 3.571428571428571% 3.571428571428571%;
             }
             @media (--tablet-small-above) {
-                padding: 7.8125%;
+                padding: calc(7.8125% + 66px) 7.8125% 7.8125%
+                ;
             }
         }
         @media (orientation: landscape) {
@@ -37,13 +40,61 @@
             width: 100%;
         }
         > * {
+            margin: 0 auto;
+            min-height: 100%;
+            width: 90%;
+
+            @media (orientation: landscape) {
             align-content: center;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 0 auto;
-            min-height: 100%;
-            width: 90%;
+            max-width: 870px;
+            }
+            > * {
+                width: 100%;
+            }
+        }
+    }
+    .bouquet-list {
+        border-bottom: 1px solid $main-color;
+        border-top: 1px solid $main-color;
+        color: $green;
+        font-family: 'Lovato';
+        font-weight: bold;
+        list-style-type: none;
+        padding: 20px 0;
+
+        * {
+            display: inline;
+        }
+        figure,
+        h1,
+        strong,
+        p:last-child {
+            display: none;
+        }
+        p {
+            margin-right: 4px;
+
+            &:after {
+                content: '.';
+            }
+        }
+    }
+}
+
+#confirmation {
+    > * {
+        >* {
+            > p {
+                &:first-of-type {
+                    text-transform: uppercase;
+                }
+            }
+            span {
+                color: $green;
+            }
         }
     }
 }

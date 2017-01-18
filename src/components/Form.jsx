@@ -9,7 +9,7 @@ import PersonDetails from './PersonDetails';
 
 const initialState = {
 	activeFlower: null,
-  step: 4,
+  step: 1,
   totalSteps: 4
 };
 

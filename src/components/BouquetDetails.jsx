@@ -24,14 +24,14 @@ export default class BouquetDetails extends Component {
 	      	<h1>Your Bouquet</h1>
 	      </header>
 	      <ol className="bouquet-list">
-	      		{this.props.bouquet
-	      			.map(key => 
-	      				<Flower
-	      					key={key}
-	      					index={key}
-	      					details={this.props.flowers[key]} />)
-	      		}
-	      	</ol>
+	      	{this.props.bouquet
+	      		.map(key => 
+	      			<Flower
+	      				key={key}
+	      				index={key}
+	      				details={this.props.flowers[key]} />)
+	      	}
+	      </ol>
 	      <Button cta={this.props.prevCta} step={this.props.prevStep} />
 	      <Button cta={this.props.nextCta} step={this.props.nextStep} />
 	    </div> 

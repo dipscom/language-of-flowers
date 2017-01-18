@@ -106,11 +106,6 @@ svg {
     white-space: nowrap;
     width: auto;
 
-    @media (orientation: portrait) {
-        left: 50%;
-        position: relative;
-        transform: translateX(-50%);
-    }
     @media (--phablet-medium-above) {
         font-size: 18px;
     }

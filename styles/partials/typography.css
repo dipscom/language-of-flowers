@@ -18,6 +18,10 @@
 
 h1 {
     font-family: 'Lovato';
+    font-weight: bolder;
+    letter-spacing: -0.075em;
+    text-align: center;
+    text-indent: -0.075em;
     text-transform: uppercase;
 
     @media (orientation: portrait) {
@@ -48,4 +52,8 @@ h1 {
     @media (--desktop-small-above) {
         font-size: 23px;
     }
+}
+
+strong {
+    font-family: 'Lovato';
 }
