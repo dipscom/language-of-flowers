@@ -1,21 +1,7 @@
 import React, { Component } from 'react';
 
 export default class HeroImage extends Component {
-	componentWillAppear(callback) {
-		console.log("HeroImage will appear")
-		callback();
-	}
-	componentWillEnter(callback) {
-		console.log("HeroImage will enter")
-		callback();
-	}
-	componentDidEnter() {
-		console.log("HeroImage did enter")
-	}
-	componentDidAppear() {
-		console.log("HeroImage did appear")
-	}
-  render() { 
+  render() {
   	let classes = '';
   	if (this.props.step >= 3) {
   		classes += 'hide-portrait';
@@ -33,4 +19,23 @@ export default class HeroImage extends Component {
       </div>
     )
   }
+
+
+
+
+	/* Animation */
+	componentWillAppear(callback) {
+		console.log("HeroImage will appear")
+		callback();
+	}
+	componentWillEnter(callback) {
+		console.log("HeroImage will enter")
+		callback();
+	}
+	componentDidEnter() {
+		console.log("HeroImage did enter")
+	}
+	componentDidAppear() {
+		console.log("HeroImage did appear")
+	}
 }

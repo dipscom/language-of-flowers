@@ -3,21 +3,7 @@ import Button from './Button';
 import Flower from './Flower';
 
 export default class BouquetDetails extends Component {
-  componentWillAppear(callback) {
-		console.log("BouquetDetails will appear")
-		callback();
-	}
-	componentWillEnter(callback) {
-		console.log("BouquetDetails will enter")
-		callback();
-	}
-	componentDidEnter() {
-		console.log("BouquetDetails did enter")
-	}
-	componentDidAppear() {
-		console.log("BouquetDetails did appear")
-	}
-  render() { 
+  render() {
     return (
       <div id="bouquet-details">
       	<header>
@@ -25,7 +11,7 @@ export default class BouquetDetails extends Component {
 	      </header>
 	      <ol className="bouquet-list">
 	      	{this.props.bouquet
-	      		.map(key => 
+	      		.map(key =>
 	      			<Flower
 	      				key={key}
 	      				index={key}
@@ -34,7 +20,27 @@ export default class BouquetDetails extends Component {
 	      </ol>
 	      <Button cta={this.props.prevCta} step={this.props.prevStep} />
 	      <Button cta={this.props.nextCta} step={this.props.nextStep} />
-	    </div> 
+	    </div>
     )
   }
+
+
+
+
+  /* Animation */
+  componentWillAppear(callback) {
+    console.log("BouquetDetails will appear")
+    callback();
+  }
+  componentWillEnter(callback) {
+    console.log("BouquetDetails will enter")
+    callback();
+  }
+  componentDidEnter() {
+    console.log("BouquetDetails did enter")
+  }
+  componentDidAppear() {
+    console.log("BouquetDetails did appear")
+  }
+
 }

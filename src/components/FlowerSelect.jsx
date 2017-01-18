@@ -2,21 +2,7 @@ import React, { Component } from 'react';
 import Flower from './Flower';
 
 export default class FlowerSelect extends Component {
-  componentWillAppear(callback) {
-		console.log("FlowerSelect will appear")
-		callback();
-	}
-	componentWillEnter(callback) {
-		console.log("FlowerSelect will enter")
-		callback();
-	}
-	componentDidEnter() {
-		console.log("FlowerSelect did enter")
-	}
-	componentDidAppear() {
-		console.log("FlowerSelect did appear")
-	}
-  render() { 
+  render() {
 
     return (
       <div id="flower-select">
@@ -31,7 +17,7 @@ export default class FlowerSelect extends Component {
       	<ul id="flower-list">
       		{Object
       			.keys(this.props.flowers)
-      			.map(key => 
+      			.map(key =>
       				<Flower
       					key={key}
       					index={key}
@@ -43,14 +29,44 @@ export default class FlowerSelect extends Component {
       	</ul>
       	<ol className="bouquet-list">
       		{this.props.bouquet
-      			.map(key => 
+      			.map(key =>
       				<Flower
       					key={key}
       					index={key}
       					details={this.props.flowers[key]} />)
       		}
       	</ol>
-      </div> 
+      </div>
     )
+  }
+
+
+
+
+  /* Animation */
+  componentWillAppear(callback) {
+    console.log("FlowerSelect will appear")
+
+    TweenMax.staggerFrom("#flower-list > li", 1.5, { // eslint-disable-line
+      autoAlpha:0
+    }, 0.05)
+    callback();
+  }
+  componentWillEnter(callback) {
+    console.log("FlowerSelect will enter")
+    callback();
+  }
+  componentDidEnter() {
+    console.log("FlowerSelect did enter")
+  }
+  componentDidAppear() {
+    console.log("FlowerSelect did appear")
+  }
+  componentWillLeave(callback) {
+    console.log("FlowerSelect will leave");
+    TweenMax.to("#flower-select", 3.5, { // eslint-disable-line
+      autoAlpha:0,
+      onComplete:callback
+    })
   }
 }
