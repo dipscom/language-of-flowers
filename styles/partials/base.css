@@ -55,6 +55,32 @@ main {
     width: 100%;
 }
 
+.hide-portrait {
+    @media (orientation: portrait) {
+        display: none;
+    }
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: $main-color;
+    font-family: 'Lovato';
+    font-weight: bold;
+    opacity: 0.5;
+    padding: 0;
+    transition: 0.3s opacity;
+
+    appearance: none;
+    @media (orientation: portrait) {
+        display: block;
+        margin: 0 auto;
+    }
+    &:hover {
+        opacity: 1;
+    }
+}
+
 .button {
     background-color: hsl(141, 21%, 73%);
     border: 1px solid black;
@@ -73,6 +99,10 @@ main {
     white-space: nowrap;
     width: auto;
 
+    @media (orientation: portrait) {
+        display: block;
+        margin: 0 auto;
+    }
     @media (--phablet-medium-above) {
         font-size: 18px;
     }

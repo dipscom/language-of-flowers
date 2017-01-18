@@ -8,7 +8,7 @@ import PersonDetails from './PersonDetails';
 
 const initialState = {
 	activeFlower: null,
-  step: 1
+  step: 3
 };
 
 export default class Form extends Component {
@@ -55,7 +55,8 @@ export default class Form extends Component {
       default:
       	return <HeroImage 
       					key="hero-image"
-      					bouquet={this.props.bouquet} />
+      					bouquet={this.props.bouquet}
+      					step={this.state.step} />
   	}
 	}
 	formStepRight() {

@@ -3,7 +3,12 @@ import Button from './Button';
 import Anchor from './Anchor';
 
 export default class PersonDetails extends Component {
-	componentWillAppear(callback) {
+	constructor(){
+    super();
+    this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
+
+  }
+  componentWillAppear(callback) {
 		console.log("PersonInput will appear")
 		callback();
 	}
@@ -17,12 +22,17 @@ export default class PersonDetails extends Component {
 	componentDidAppear() {
 		console.log("PersonInput did appear")
 	}
+	capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   render() {
     return (
     	<form className="person-input">
 	    	<h1>{this.props.heading}</h1>
-	    	<input type="text" className={this.props.index} name="name" value={this.props[this.props.index].name} placeholder="Name" required onChange={(e) => this.props.updateField(e)} />
-	    	<input type="email" className={this.props.index} name="email" value={this.props[this.props.index].email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
+	    	<label htmlFor="name">{this.capitalizeFirstLetter(this.props.index)} first name</label>
+	    	<input type="text" id="name" className={this.props.index} name="name" value={this.props[this.props.index].name} placeholder="Name" required onChange={(e) => this.props.updateField(e)} />
+	    	<label htmlFor="email">{this.capitalizeFirstLetter(this.props.index)} email</label>
+	    	<input type="email" id="email" className={this.props.index} name="email" value={this.props[this.props.index].email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
 	    	<Button cta={this.props.prevCta} step={this.props.prevStep} />
 	    	{ typeof this.props.nextStep === 'string' ? 
 	    		<Anchor name={this.props.nextCta} target={this.props.nextStep} /> : 

@@ -16,9 +16,17 @@ export default class HeroImage extends Component {
 		console.log("HeroImage did appear")
 	}
   render() { 
+  	let classes = '';
+  	if (this.props.step >= 3) {
+  		classes += 'hide-portrait';
+  	}
     return (
-      <figure style={ {backgroundImage: 'url(/images/bouquets/' + [...this.props.bouquet].sort().toString().replace(/,/g, '_') + '.png)',
-      width: '100px', height: '100px', backgroundSize: 'contain'} }></figure>
+    	<div id="hero-image" className={classes}>
+    	  <header>
+	      	<h1>Your Bouquet</h1>
+	      </header>
+      	<figure style={ {backgroundImage: 'url(/images/bouquets/' + [...this.props.bouquet].sort().toString().replace(/,/g, '_') + '.png)'} }></figure>
+      </div>
     )
   }
 }

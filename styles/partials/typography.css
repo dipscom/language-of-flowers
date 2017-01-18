@@ -3,11 +3,13 @@
     font-weight: bolder;
     src: url('/fonts/lovato/black.woff') format('woff');
 }
+
 @font-face {
     font-family: 'Lovato';
     font-weight: bold;
     src: url('/fonts/lovato/bold.woff') format('woff');
 }
+
 @font-face {
     font-family: 'Lovato';
     font-weight: normal;
@@ -30,7 +32,7 @@ h1 {
     }
     @media (orientation: landscape) {
         @media (--widescreen-small-below) {
-            font-size:3.252710592160134vw;
+            font-size: 3.252710592160134vw;
         }
         @media (--widescreen-small-above) {
             font-size: 39px;
@@ -38,6 +40,12 @@ h1 {
     }
 }
 
-.sub-heading, .flower h1, .bouquet-list {
-    font-size: 23px;
+.sub-heading,
+.flower h1,
+.bouquet-list {
+    font-size: 20px;
+
+    @media (--desktop-small-above) {
+        font-size: 23px;
+    }
 }

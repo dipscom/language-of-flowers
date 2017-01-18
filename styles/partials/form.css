@@ -47,12 +47,27 @@
             }
         }
     }
+    input {
+        background: none;
+        border: none;
+        border-bottom: 1px solid #373332;
+        color: $main-color;
+        font-family: 'Lovato';
+        font-size: 34px;
+        font-weight: bold;
+        margin: 0;
+        width: 100%;
+
+        &:valid {
+            color: $green;
+        }
+    }
     .button {
-         @media (orientation: landscape) {
+        @media (orientation: landscape) {
             bottom: 0;
             position: absolute;
             right: 0;
-         }
+        }
     }
 }
 
@@ -61,7 +76,15 @@
         width: 100%;
     }
     @media (orientation: landscape) {
+        align-items: center;
+        display: flex;
+        height: 100%;
         width: 45%;
+    }
+    > * {
+        @media (orientation: landscape) {
+            width: 100%;
+        }
     }
 }
 
@@ -103,21 +126,25 @@
             * {
                 display: inline;
             }
-            h1 {
-                margin-right: 5px;
-            }
+            h1 {}
             strong {
                 display: none;
             }
             p {
                 color: $main-color;
                 font-family: 'brandon-grotesque', sans-serif;
-                font-size: 20px;
                 font-weight: normal;
+                margin-left: 4px;
 
+                @media (orientation: landscape) {
+                    font-size: 20px;
+                }
                 &:first-of-type {
                     &:before {
                         content: '(';
+                    }
+                    &:after {
+                        content: '.';
                     }
                 }
                 &:last-of-type {
@@ -162,8 +189,8 @@
         &:not(:first-child) {
             @media (orientation: portrait) {
                 @media (--tablet-small-below) {
-                margin-top: 5px;
-            }
+                    margin-top: 5px;
+                }
             }
         }
         > div {
@@ -227,17 +254,14 @@
     list-style-type: none;
     padding: 0;
 
-    @media (orientation: portrait) {
-        text-align: center;
-    }
     .flower {
         @media (orientation: portrait) {
             display: none;
         }
-         > div {
+        > div {
             align-items: center;
-        display: flex;
-    }
+            display: flex;
+        }
     }
     figure {
         background-position: center;
@@ -261,12 +285,92 @@
         div {
             left: 0;
             position: absolute;
-            top: 100%;  
+            top: 100%;
         }
         p {
             &:first-of-type {
-            font-size: 22px;
+                font-size: 22px;
+            }
         }
+    }
+}
+
+#hero-image {
+    height: 100%;
+    width: 100%;
+
+    header {
+        @media (orientation: landscape) {
+            display: none;
         }
+    }
+    figure {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100%;
+        width: 100%;
+
+        @media (orientation: portrait) {
+            margin: 0 auto;
+            padding-top: 110%;
+            width: 80%;
+        }
+    }
+}
+
+#bouquet-details {
+    margin: 0 auto;
+    max-width: 500px;
+
+    header {
+        @media (orientation: portrait) {
+            display: none;
+        }
+    }
+    .bouquet-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    .flower {
+        > div {
+            align-items: center;
+            display: flex;
+        }
+        figure {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 25%;
+
+            > div {
+                padding-top: 100%;
+            }
+        }
+        h1 {
+            text-align: left;
+        }
+        strong {
+            display: none;
+        }
+    }
+    .flower-details {
+        width: 75%;
+    }
+}
+
+.person-input {
+    > * {
+        &:not(:first-child) {
+            margin-top: 30px;
+        }
+    }
+    label {
+        color: $main-color;
+        display: inline-block;
+        font-family: 'Lovato';
+        font-size: 14px;
+        font-weight: bold;
+
     }
 }
