@@ -3,7 +3,7 @@ import Anchor from './Anchor';
 import Flower from './Flower';
 
 export default class Confirmation extends Component {
-  render() { 
+  render() {
     let disabled;
     if(!this.props.terms) {
       disabled = 'disabled';
@@ -11,7 +11,6 @@ export default class Confirmation extends Component {
     return (
       <div
         id="confirmation"
-        key="confirmation"
         className="page"
         ref={
           (el) => {
@@ -30,7 +29,7 @@ export default class Confirmation extends Component {
           	<p><strong>On this fine day we shalt send your message of:</strong></p>
           	<ol className="bouquet-list">
 	          	{this.props.bouquet
-	          		.map(key => 
+	          		.map(key =>
 	          			<Flower
 		      					key={key}
 		      					index={key}
@@ -48,4 +47,27 @@ export default class Confirmation extends Component {
       </div>
     )
   }
+
+  /* Animation */
+  componentWillEnter(callback) {
+    // console.log("Confirmation Will enter");
+    let currentTarget = "#" + this.el.id;
+    TweenMax.from(currentTarget, 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      onComplete:callback
+    });
+  }
+
+
+  componentWillLeave(callback) {
+    // console.log("Confirmation Will leave");
+    let currentTarget = "#" + this.el.id;
+    TweenMax.to(currentTarget, 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      onComplete:callback
+    });
+  }
+
+
+
 }

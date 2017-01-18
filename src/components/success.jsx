@@ -27,7 +27,6 @@ export default class Success extends Component{
     return (
       <div
         id="success"
-        key="confirmation"
         className="page"
         ref={
           (el) => {
@@ -69,4 +68,29 @@ export default class Success extends Component{
       </div>
     )
   }
+
+  /* Animation */
+  componentWillEnter(callback) {
+    console.log("Success Will enter");
+
+    let currentTarget = "#" + this.el.id;
+    let dly = 2;
+
+    TweenMax.set("#products", {autoAlpha:0}); // eslint-disable-line
+
+    TweenMax.from(currentTarget, 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      onComplete:function () {
+        TweenMax.to("#thank-you", 0.6, {autoAlpha:0, delay:dly}); // eslint-disable-line
+        TweenMax.to("#products", 0.6, {autoAlpha:1, delay:dly}); // eslint-disable-line
+        callback();
+      }
+    });
+  }
+
+  componentWillAppear(callback) {
+    console.log("Success Will appear");
+  }
+
+
 }

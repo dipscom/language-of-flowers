@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TransitionGroup from 'react-addons-transition-group'
 import flowers from '../data/flowers';
 import products from '../data/products';
 import Background from './Background';
@@ -45,15 +46,15 @@ export default class App extends Component {
     } else if (accessTime > timeStamp) {
         if(localStorage.getItem('bouquet')) {
           bouquet = localStorage.getItem('bouquet').split(',');
-        } 
+        }
         if(localStorage.getItem('recipient')) {
           recipient = {...JSON.parse(localStorage.getItem('recipient')) };
         }
         if(localStorage.getItem('sender')) {
-          sender = {...JSON.parse(localStorage.getItem('sender'))}; 
+          sender = {...JSON.parse(localStorage.getItem('sender'))};
         }
         if(localStorage.getItem('flowers')) {
-          flowers = {...JSON.parse(localStorage.getItem('flowers'))};  
+          flowers = {...JSON.parse(localStorage.getItem('flowers'))};
         }
         if(localStorage.getItem('products')) {
           products = {...JSON.parse(localStorage.getItem('products'))};
@@ -106,7 +107,7 @@ export default class App extends Component {
     let bouquet = this.state.bouquet;
     const index = this.state.bouquet.indexOf(key);
     const flowers = {...this.state.flowers};
-    
+
     if ( index === -1 ) {
       if (bouquet.length < 3) {
         bouquet = bouquet.concat([key])
@@ -134,16 +135,23 @@ export default class App extends Component {
     }
   }
   render() {
+    const { pathname } = this.props.location;
+    const key = pathname || 'root';
+    // NOTE
+    // We need to look into how we are building this key, whether we need to split the forward slash or not. Currently, it works without splitting it. MUST double check the live version!
+    // const key = pathname.split('/')[1] || 'root';
     return (
-      <div id="container">
+      <TransitionGroup component="div" id="container">
         <Background reset={this.reset} />
-        {this.props.children && React.cloneElement(this.props.children, {
-            ...this.state, 
+        {this.props.children && React.cloneElement(
+          this.props.children, {
+            ...this.state,
             selectFlower: this.selectFlower,
-            updateField: this.updateField
+            updateField: this.updateField,
+            key: key
           }
         )}
-      </div>
+      </TransitionGroup>
     )
   }
 }

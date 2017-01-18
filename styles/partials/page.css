@@ -9,7 +9,7 @@
 
     @media (orientation: landscape) {
         padding: 3.125%;
-        
+
     }
     @media (orientation: portrait) {
         @media (--desktop-small-below) {
@@ -97,7 +97,7 @@
 
 #confirmation {
     > * {
-        >* {
+        > * {
             > p {
                 &:first-of-type {
                     margin: 0;
@@ -114,6 +114,12 @@
         font-size: 28px;
         font-weight: bold;}
     }
+}
+
+#success {
+  #thank-you {
+    position: absolute;
+  }
 }
 
 .terms {
