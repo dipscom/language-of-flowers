@@ -8,7 +8,7 @@ import Form from './components/Form';
 import Introduction from './components/Introduction';
 import Description from './components/Description';
 import Confirmation from './components/Confirmation';
-
+import Success from './components/Success';
 
 import '../styles/bundle.css';
 
@@ -19,6 +19,7 @@ render(
     	<Route component={Description} path="description" />
     	<Route path="/build-bouquet" component={Form} />
     	<Route component={Confirmation} path="confirmation" />
+      <Route component={Success} path="success" />
     </Route>
   </Router>,
   document.getElementById('app')

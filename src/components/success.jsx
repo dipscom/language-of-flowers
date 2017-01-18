@@ -28,7 +28,7 @@ export default class Success extends Component{
       <div
         id="success"
         key="confirmation"
-        className="stage"
+        className="page"
         ref={
           (el) => {
             this.el = el;
