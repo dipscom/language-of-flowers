@@ -5,10 +5,11 @@ import BouquetDetails from './BouquetDetails';
 import FlowerSelect from './FlowerSelect';
 import FlowerDetails from './FlowerDetails';
 import PersonDetails from './PersonDetails';
+import FormNavigation from './FormNavigation';
 
 const initialState = {
 	activeFlower: null,
-  step: 3
+  step: 4
 };
 
 export default class Form extends Component {
@@ -123,6 +124,7 @@ export default class Form extends Component {
 		      	<TransitionGroup component="div" className="column">
 		      		{this.formStepRight()}
 		      	</TransitionGroup>
+		      	<FormNavigation />
 		      </div>
 	      </div>
       </div> 

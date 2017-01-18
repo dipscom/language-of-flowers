@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 export default class Anchor extends Component {
-  render() { 
+  render() {
+  	let classes = this.props.className;
+  		if (this.props.step === 'forward') {
+  			classes += ' button';
+  		} else if (this.props.step === 'backward') {
+  			classes += ' back-button';
+  		}
     return (
-      <Link className="button" to={this.props.target}>{this.props.name}</Link> 
+      <Link className={classes} to={this.props.target}>{this.props.name}</Link> 
     )
   }
 }

@@ -26,6 +26,19 @@ export default class PersonDetails extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   render() {
+
+  	let disabled;
+
+  	if (typeof this.props.nextStep === 'string') {
+  		(this.props[this.props.index].name !== '' && this.props[this.props.index].valid 
+  			? '' 
+  			: disabled = 'disabled')
+  		 
+  	} else {
+  		(this.props[this.props.index].name !== '' && this.props[this.props.index].valid 
+  			? '' 
+  			: disabled = true)
+  	}
     return (
     	<form className="person-input">
 	    	<h1>{this.props.heading}</h1>
@@ -35,8 +48,8 @@ export default class PersonDetails extends Component {
 	    	<input type="email" id="email" className={this.props.index} name="email" value={this.props[this.props.index].email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
 	    	<Button cta={this.props.prevCta} step={this.props.prevStep} />
 	    	{ typeof this.props.nextStep === 'string' ? 
-	    		<Anchor name={this.props.nextCta} target={this.props.nextStep} /> : 
-	    		<Button cta={this.props.nextCta} step={this.props.nextStep} />
+	    		<Anchor name={this.props.nextCta} className={disabled} step="forward" target={this.props.nextStep} /> : 
+	    		<Button cta={this.props.nextCta} disabled={disabled} step={this.props.nextStep} />
 	    	}
     	</form>
     )

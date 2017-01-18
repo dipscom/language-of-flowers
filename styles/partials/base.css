@@ -39,6 +39,13 @@ main {
         position: fixed;
     }
 }
+svg {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.3);
+
+    stroke-linejoin: miter;
+    stroke-width: 1;
+}
 
 #app {
     height: 100%;
@@ -74,7 +81,7 @@ main {
     appearance: none;
     @media (orientation: portrait) {
         display: block;
-        margin: 0 auto;
+        margin: 30px auto;
     }
     &:hover {
         opacity: 1;
@@ -100,8 +107,9 @@ main {
     width: auto;
 
     @media (orientation: portrait) {
-        display: block;
-        margin: 0 auto;
+        left: 50%;
+        position: relative;
+        transform: translateX(-50%);
     }
     @media (--phablet-medium-above) {
         font-size: 18px;
@@ -131,6 +139,39 @@ main {
         }
         polygon {
             fill: #ffffff;
+        }
+    }
+}
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#reset-button {
+    bottom: 0;
+    color: inherit;
+    font-family: 'Lovato';
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: auto;
+
+    @media (orientation: landscape) {
+        transform: translateY(130%);
+    }
+    svg {
+        display: inline-block;
+        height: 11px;
+        margin-left: 4px;
+        position: static;
+        width: 9px;
+
+        path {
+            fill: $main-color;
         }
     }
 }

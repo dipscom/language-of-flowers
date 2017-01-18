@@ -24,8 +24,12 @@ export default class App extends Component {
   constructor(){
     super();
     this.state = initialState;
+    this.reset = this.reset.bind(this);
     this.selectFlower = this.selectFlower.bind(this);
     this.updateField = this.updateField.bind(this);
+  }
+  reset() {
+    this.setState(initialState);
   }
   selectFlower(key) {
     console.log('selectFlower triggered');
@@ -62,7 +66,7 @@ export default class App extends Component {
   render() {
     return (
       <div id="container">
-        <Background />
+        <Background reset={this.reset} />
         {this.props.children && React.cloneElement(this.props.children, {
             ...this.state, 
             selectFlower: this.selectFlower,

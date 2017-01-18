@@ -17,7 +17,7 @@ export default class FlowerDetails extends Component {
 		console.log("FlowerDetails did appear")
 	}
   render() { 
-  	const disabled = (this.props.bouquetLength >= 3 ? false : true )
+  	const disabled = (this.props.bouquetLength >= 3 ? false : true );
     return (
       <ul id="flower-details">
 	      {<Flower

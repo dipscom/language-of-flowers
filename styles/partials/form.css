@@ -24,10 +24,11 @@
             height: 100%;
 
             @media (--tablet-small-below) {
-                padding: 3.571428571428571%;
+                padding: calc(3.571428571428571% + 66px) 3.571428571428571% 3.571428571428571%;
             }
             @media (--tablet-small-above) {
-                padding: 7.8125%;
+                padding: calc(7.8125% + 66px) 7.8125% 7.8125%
+                ;
             }
         }
         @media (orientation: landscape) {
@@ -126,18 +127,27 @@
             * {
                 display: inline;
             }
-            h1 {}
+            h1 {
+               @media (--tablet-small-below) {
+                display: block;
+                text-align: left;
+               } 
+            }
             strong {
                 display: none;
             }
             p {
                 color: $main-color;
                 font-family: 'brandon-grotesque', sans-serif;
+                font-size: 16px;
                 font-weight: normal;
                 margin-left: 4px;
 
-                @media (orientation: landscape) {
-                    font-size: 20px;
+                @media (--tablet-small-above) {
+                    font-size: 18px;
+                }
+                @media (--desktop-small-above) {
+                  font-size: 20px;  
                 }
                 &:first-of-type {
                     &:before {
@@ -360,17 +370,18 @@
 }
 
 .person-input {
-    > * {
-        &:not(:first-child) {
-            margin-top: 30px;
-        }
-    }
     label {
         color: $main-color;
         display: inline-block;
         font-family: 'Lovato';
         font-size: 14px;
         font-weight: bold;
+        margin-top: 30px;
 
+    }
+    .back-button {
+        @media (orientation: landscape) {
+            margin-top: 30px;
+        }
     }
 }
