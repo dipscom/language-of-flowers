@@ -81,6 +81,8 @@
 }
 
 .column {
+    position: relative;
+
     @media (orientation: portrait) {
         width: 100%;
     }
@@ -90,7 +92,8 @@
         height: 100%;
         width: 45%;
     }
-    > * {
+    > * {position: absolute;
+
         @media (orientation: landscape) {
             width: 100%;
         }

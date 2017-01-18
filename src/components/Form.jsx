@@ -27,15 +27,21 @@ export default class Form extends Component {
         activeFlower: Object.keys(this.props.flowers)[0]
       });
     }
-    if (localStorage.getItem('step')) {
+    // if (localStorage.getItem('step')) {
+    //   this.setState({
+    //     step : Number(localStorage.getItem('step'))
+    //   });
+    // }
+    
+    if (this.props.route.path === 'viewbouquet') {
       this.setState({
-        step : Number(localStorage.getItem('step'))
+        step : 0
       });
-    } 
+    }
   }
-  componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem('step', nextState.step);
-  }
+  // componentWillUpdate(nextProps, nextState) {
+  //   localStorage.setItem('step', nextState.step);
+  // }
   updateActiveFlower(key) {
     if (this.state.activeFlower !== key) {
       this.setState({
@@ -121,7 +127,7 @@ export default class Form extends Component {
         				key="bouquet-details"
         				bouquet={this.props.bouquet}
         				flowers={this.props.flowers}
-        				nextCta="Their details"
+        				nextCta="Win Penhaligon's Portraits"
         				nextStep="share"
         				/>
   	}

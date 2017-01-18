@@ -9,6 +9,8 @@ import Introduction from './components/Introduction';
 import Description from './components/Description';
 import Confirmation from './components/Confirmation';
 import Success from './components/Success';
+import MyBouquet from './components/MyBouquet';
+import Share from './components/Share';
 
 import '../styles/bundle.css';
 
@@ -17,9 +19,12 @@ render(
     <Route path="/" component={App}>
     	<IndexRoute component={Introduction} />
     	<Route component={Description} path="description" />
-    	<Route path="/build-bouquet" component={Form} />
+    	<Route component={Form} path="build-bouquet" />
     	<Route component={Confirmation} path="confirmation" />
       <Route component={Success} path="success" />
+      <Route component={MyBouquet} path="mybouquet" />
+      <Route component={Form} path="viewbouquet" />
+      <Route component={Share} path="share" />
     </Route>
   </Router>,
   document.getElementById('app')
