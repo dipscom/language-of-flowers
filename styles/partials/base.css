@@ -17,6 +17,7 @@ html {
 body {
     color: $main-color;
     height: 100%;
+    line-height: 1.4;
 
     @media (orientation: landscape) {
         align-items: center;
@@ -68,20 +69,26 @@ svg {
     }
 }
 
+.reflected {
+    transform: scaleY(-1);
+}
+
 .back-button {
     background: none;
     border: none;
     color: $main-color;
+    display: block;
     font-family: 'Lovato';
     font-weight: bold;
+    margin: 20px auto 0;
     opacity: 0.5;
     padding: 0;
     transition: 0.3s opacity;
 
     appearance: none;
     @media (orientation: portrait) {
-        display: block;
-        margin: 30px auto;
+        
+        
     }
     &:hover {
         opacity: 1;
@@ -168,5 +175,14 @@ svg {
         path {
             fill: $main-color;
         }
+    }
+}
+
+.navigation {
+    @media (orientation: portrait) {
+        margin-top: 20px;
+    }
+     @media (orientation: landscape) {
+        margin-top: 30px;
     }
 }

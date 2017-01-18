@@ -24,7 +24,7 @@
             height: 100%;
 
             @media (--tablet-small-below) {
-                padding: calc(3.571428571428571% + 66px) 3.571428571428571% 3.571428571428571%;
+                padding: calc(3.571428571428571% + 66px + 20px) 3.571428571428571% 3.571428571428571%;
             }
             @media (--tablet-small-above) {
                 padding: calc(7.8125% + 66px) 7.8125% 7.8125%
@@ -48,6 +48,11 @@
             }
         }
     }
+    h1 {
+        @media (orientation: landscape) {
+            text-align: left;
+        } 
+    }
     input {
         background: none;
         border: none;
@@ -69,6 +74,9 @@
             position: absolute;
             right: 0;
         }
+    }
+    .back-button {@media (orientation: landscape) {
+        margin-left: 0;}
     }
 }
 
@@ -255,6 +263,8 @@
 }
 
 .flower-details {
+    text-align: left;
+
     * {
         margin: 0;
     }
@@ -264,6 +274,9 @@
     list-style-type: none;
     padding: 0;
 
+    @media (orientation: portrait) {
+        text-align: center;
+    }
     .flower {
         @media (orientation: portrait) {
             display: none;
@@ -323,16 +336,19 @@
 
         @media (orientation: portrait) {
             margin: 0 auto;
-            padding-top: 110%;
-            width: 80%;
+            padding-top: 95%;
+            width: 70%;
         }
     }
 }
 
 #bouquet-details {
     margin: 0 auto;
-    max-width: 500px;
+    max-width: 450px;
 
+    @media (orientation: portrait) {
+        text-align: center;
+    }
     header {
         @media (orientation: portrait) {
             display: none;
@@ -370,6 +386,9 @@
 }
 
 .person-input {
+    @media (orientation: portrait) {
+        text-align: center;
+    }
     label {
         color: $main-color;
         display: inline-block;
@@ -377,6 +396,11 @@
         font-size: 14px;
         font-weight: bold;
         margin-top: 30px;
+        text-align: left;
+
+        @media (orientation: portrait) {
+            width: 100%;
+        }
 
     }
     .back-button {
@@ -391,5 +415,5 @@
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
-    
+
 }

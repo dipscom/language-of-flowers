@@ -20,6 +20,8 @@ h1 {
     font-family: 'Lovato';
     font-weight: bolder;
     letter-spacing: -0.075em;
+    line-height: 1.1;
+    margin: 0;
     text-align: center;
     text-indent: -0.075em;
     text-transform: uppercase;
@@ -56,4 +58,23 @@ h1 {
 
 strong {
     font-family: 'Lovato';
+    text-transform: uppercase;
+
+    @media (--tablet-small-above) {
+        font-size: 23px;
+    }
+}
+p {
+    margin-bottom: 0 !important;
+
+    @media (--tablet-small-below) {
+        margin: 10px 0;
+    }
+    @media (--tablet-small-above) {
+        font-size: 20px;
+    }
+    @media (orientation: landscape) {
+        margin: 30px 0;
+    }
+
 }
