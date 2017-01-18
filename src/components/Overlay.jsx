@@ -4,32 +4,18 @@ export default class Overlay extends Component {
 
   constructor(props) {
     super(props);
+    console.log("------------------");
+    console.log("Overlay constructor:");
 
-    this.tl = null;
+    // this.tl = null;
+    this.tl = new TimelineMax({delay:2.5}); // eslint-disable-line
+
 
   }
 
-
   render() {
 
-    switch (this.props.location.pathname) {
-      case "/create-bouquet":
-      case "/view-bouquet":
-      case "/recipient":
-      case "/sender":
-        if(this.tl) {
-          this.tl.timeScale(3.5)
-          this.tl.reverse();
-        }
-        break;
-
-      default:
-      if(this.tl) {
-        this.tl.timeScale(1)
-        this.tl.play();
-      }
-
-    }
+    console.log("----> Overlay render:");
 
     return (
       <div
@@ -64,27 +50,43 @@ export default class Overlay extends Component {
   }
 
 
+  handleAnimation() {
 
+    console.log("Overlay handleAnimation:", this.props.location.pathname);
+    switch (this.props.location.pathname) {
+      case "/create-bouquet":
+      case "/view-bouquet":
+      case "/recipient":
+      case "/sender":
+        if(this.tl) {
+          // this.tl.timeScale(3.5)
+          // this.tl.reverse();
+          this.tl.play("AnimateOut")
+        }
+        break;
 
-  /* Animation */
-  fadeIn(el, opts = {xP:0, yP:0} ) {
-    return TweenMax.from(el, 2, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:Elastic.easeOut.config(0.4)}); // eslint-disable-line
+      case "/description":
+        this.tl.pause("Hold");
+      break;
+
+      case "/":
+        this.tl.play(0);
+      break;
+
+      default:
+
+    }
   }
 
 
-  /* React Animation Callbacks */
-  componentWillEnter(callback) {
-    // console.log("Overlay Will enter", this.el);
+  componentWillMount() {
+    // No DOM manipulation should happen here.
+    console.log("Overlay will mount:");
   }
 
-  componentDidEnter() {
-    // console.log("Overlay Did enter", this.el);
-  }
-
-  componentWillAppear(callback) {
-    // console.log("Overlay Will appear");
-
-    this.tl = new TimelineMax({onComplete:callback,delay:2.5}); // eslint-disable-line
+  componentDidMount() {
+    // DOM manipulation should happen here.
+    console.log("Overlay did mount:");
 
     // We're using normal CSS selectors because we know for a fact that this component will not be unmounted and/or changed at any time during the existence of this webapp
     this.tl
@@ -100,24 +102,55 @@ export default class Overlay extends Component {
       .from("#man", 1, {xPercent:10}, "People")
       .from("#lady", 1, {xPercent:-10}, "People")
 
-      // .add("EndIntro")
+      .add("Hold")
+      .addPause()
 
-      // .addPause()
-      // .add("MoveOut", "+=0.1")
-      // .to(['#flowersBottom','#flowersBottomRight','#flowersMidLeft','#flowersTopLeft','#flowersTopRight','#peacock','#stag',"#man","#lady"], 0.3, {autoAlpha:0})
+      .add("AnimateOut")
+      .to(['#flowersBottom','#flowersBottomRight','#flowersMidLeft','#flowersTopLeft','#flowersTopRight','#peacock','#stag',"#man","#lady"], 0.5, {autoAlpha:0})
+
+
+  }
+  componentWillUnmount() {
+    console.log("Overlay will unmount:");
+  }
+
+
+  /* Animation */
+  fadeIn(el, opts = {xP:0, yP:0} ) {
+    return TweenMax.from(el, 2, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:Elastic.easeOut.config(0.4)}); // eslint-disable-line
+  }
+
+
+  /* React Animation Callbacks */
+  componentWillEnter(callback) {
+    console.log("Overlay Will enter:");
+  }
+
+  componentDidEnter() {
+    console.log("Overlay Did enter:");
+    console.log("------------------");
+  }
+
+  componentWillAppear(callback) {
+    console.log("Overlay Will appear:");
+
+    this.handleAnimation();
 
   }
 
-  componentDidAppear(callback) {
-    // console.log("Overlay Did appear");
+  componentDidAppear() {
+    console.log("Overlay Did appear:");
+    console.log("------------------");
   }
 
   componentWillLeave(callback) {
-    // console.log("Overlay Will leave", this.el);
+    console.log("Overlay Will leave:");
+    callback();
   }
 
   componentDidLeave() {
-    // console.log("Overlay Did leave", this.el);
+    console.log("Overlay Did leave:");
+    console.log("------------------");
   }
 
 }

@@ -4,6 +4,9 @@ import { Link } from 'react-router';
 export default class Description extends Component {
 
   render() {
+
+    // console.log("-> Description render");
+
     return (
       <div
         id="description"
@@ -67,30 +70,30 @@ export default class Description extends Component {
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    console.log("Description Will enter");
+    // console.log("Description Will enter");
     this.animateIn(callback, 0.5);
   }
 
   componentDidEnter() {
-    console.log("Description Did enter");
+    // console.log("Description Did enter");
   }
 
   componentWillAppear(callback) {
-    console.log("Description Will appear");
+    // console.log("Description Will appear");
     this.animateIn(callback, 3);
   }
 
   componentDidAppear() {
-    console.log("Description Did appear");
+    // console.log("Description Did appear");
   }
 
   componentWillLeave(callback) {
-    console.log("Description Will leave");
+    // console.log("Description Will leave");
     this.animateOut(callback);
   }
 
   componentDidLeave() {
-    console.log("Description Did leave");
+    // console.log("Description Did leave");
   }
 
 

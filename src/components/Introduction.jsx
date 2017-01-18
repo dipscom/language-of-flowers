@@ -5,6 +5,9 @@ export default class Introduction extends Component {
 
 
   render() {
+
+    // console.log("--> Introduction render");
+
     return (
       <div
         id="introduction"
@@ -106,7 +109,7 @@ export default class Introduction extends Component {
   }
 
   componentWillLeave(callback) {
-    console.log("Introduction Will leave");
+    // console.log("Introduction Will leave");
     this.animateOut(callback);
   }
 
