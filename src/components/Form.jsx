@@ -5,11 +5,12 @@ import BouquetDetails from './BouquetDetails';
 import FlowerSelect from './FlowerSelect';
 import FlowerDetails from './FlowerDetails';
 import PersonDetails from './PersonDetails';
-import FormNavigation from './FormNavigation';
+// import NavLink from './NavLink';
 
 const initialState = {
 	activeFlower: null,
-  step: 4
+  step: 4,
+  totalSteps: 4
 };
 
 export default class Form extends Component {
@@ -41,6 +42,11 @@ export default class Form extends Component {
   }
   prevStep() {
     this.setState({
+      step : this.state.step - 1
+    });
+  }
+  updateStep() {
+  	this.setState({
       step : this.state.step - 1
     });
   }
@@ -109,10 +115,12 @@ export default class Form extends Component {
         				flowers={this.props.flowers}
         				nextCta="Their details"
         				nextStep="share"
-        				 />
+        				/>
   	}
 	}
   render() { 
+  	// let i = 1;
+
     return (
       <div id="form">
       	<div>
@@ -124,7 +132,9 @@ export default class Form extends Component {
 		      	<TransitionGroup component="div" className="column">
 		      		{this.formStepRight()}
 		      	</TransitionGroup>
-		      	<FormNavigation />
+		      	{/*<nav id="form-navigation">
+		      		<NavLink key={i} step={this.state.step} />
+		      	</nav>*/}
 		      </div>
 	      </div>
       </div> 

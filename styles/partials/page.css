@@ -1,0 +1,49 @@
+.page {
+    height: 100%;
+    left: 0;
+    padding: inherit;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    @media (orientation: landscape) {
+        padding: 3.125%;
+    }
+    @media (orientation: portrait) {
+        @media (--desktop-small-below) {
+            padding: 6.25%;
+        }
+        @media (--desktop-small-above) {
+            padding: 50px;
+        }
+    }
+    > * {
+        overflow: scroll;
+
+        @media (orientation: portrait) {
+            height: 100%;
+
+            @media (--tablet-small-below) {
+                padding: 3.571428571428571%;
+            }
+            @media (--tablet-small-above) {
+                padding: 7.8125%;
+            }
+        }
+        @media (orientation: landscape) {
+            height: 100%;
+            padding: 4%;
+            position: relative;
+            width: 100%;
+        }
+        > * {
+            align-content: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            min-height: 100%;
+            width: 90%;
+        }
+    }
+}

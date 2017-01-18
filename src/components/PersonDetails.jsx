@@ -30,14 +30,15 @@ export default class PersonDetails extends Component {
   	let disabled;
 
   	if (typeof this.props.nextStep === 'string') {
-  		(this.props[this.props.index].name !== '' && this.props[this.props.index].valid 
-  			? '' 
-  			: disabled = 'disabled')
-  		 
+  		if(this.props[this.props.index].name !== '' && this.props[this.props.index].valid) {
+  		} else {
+  			disabled = 'disabled';
+  		}	 
   	} else {
-  		(this.props[this.props.index].name !== '' && this.props[this.props.index].valid 
-  			? '' 
-  			: disabled = true)
+  		if (this.props[this.props.index].name !== '' && this.props[this.props.index].valid) {
+  		} else { 
+  			disabled = true
+  		}
   	}
     return (
     	<form className="person-input">
