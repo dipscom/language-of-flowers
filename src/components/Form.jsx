@@ -27,6 +27,14 @@ export default class Form extends Component {
         activeFlower: Object.keys(this.props.flowers)[0]
       });
     }
+    if (localStorage.getItem('step')) {
+      this.setState({
+        step : Number(localStorage.getItem('step'))
+      });
+    } 
+  }
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('step', nextState.step);
   }
   updateActiveFlower(key) {
     if (this.state.activeFlower !== key) {

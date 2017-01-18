@@ -28,6 +28,76 @@ export default class App extends Component {
     this.selectFlower = this.selectFlower.bind(this);
     this.updateField = this.updateField.bind(this);
   }
+  componentWillMount(){
+    let bouquet, recipient, sender, flowers, products;
+    const accessTime = Number((localStorage.getItem('accessTime'))) + 600000, timeStamp = Date.now();
+    if(Object.keys(this.props.location.query).length !== 0) {
+
+      if (this.props.location.query.bouquet && this.props.location.query.recipient && this.props.location.query.sender) {
+        bouquet = this.props.location.query.bouquet.split(',');
+        recipient = { name: this.props.location.query.recipient };
+        sender = { name: this.props.location.query.sender };
+      } else {
+        if(window.location.pathname !== '/') {
+        window.location = '/';
+      }
+      }
+    } else if (accessTime > timeStamp) {
+        if(localStorage.getItem('bouquet')) {
+          bouquet = localStorage.getItem('bouquet').split(',');
+        } 
+        if(localStorage.getItem('recipient')) {
+          recipient = {...JSON.parse(localStorage.getItem('recipient')) };
+        }
+        if(localStorage.getItem('sender')) {
+          sender = {...JSON.parse(localStorage.getItem('sender'))}; 
+        }
+        if(localStorage.getItem('flowers')) {
+          flowers = {...JSON.parse(localStorage.getItem('flowers'))};  
+        }
+        if(localStorage.getItem('products')) {
+          products = {...JSON.parse(localStorage.getItem('products'))};
+        }
+      } else {
+      if(window.location.pathname !== '/') {
+        window.location = '/';
+      }
+    }
+    if(bouquet) {
+      this.setState({
+        bouquet : bouquet
+      });
+    }
+    if(flowers) {
+      this.setState({
+        flowers : flowers
+      });
+    }
+    if(products) {
+      this.setState({
+        products : products
+      });
+    }
+    if(recipient) {
+      this.setState({
+        recipient : recipient
+      });
+    }
+    if(sender) {
+      this.setState({
+        sender : sender
+      });
+    }
+  }
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('bouquet', nextState.bouquet);
+    localStorage.setItem('flowers', JSON.stringify(nextState.flowers));
+    localStorage.setItem('products', JSON.stringify(nextState.products));
+    localStorage.setItem('recipient', JSON.stringify(nextState.recipient));
+    localStorage.setItem('sender', JSON.stringify(nextState.sender));
+    localStorage.setItem('terms', nextState.terms);
+    localStorage.setItem('accessTime', Date.now());
+  }
   reset() {
     this.setState(initialState);
   }

@@ -214,8 +214,16 @@
         > div {
             height: 100%;
 
+            @media (orientation: landscape) {
+                transition: outline 0.3s;
+
+                &:hover {
+                    outline: 8px solid rgba(55,51,50,0.3);
+                }
+
+            }
             @media (orientation: portrait) {
-                border-bottom: 1px solid #000000;
+                border-bottom: 1px solid $main-color;
                 display: flex;
                 padding: 10px;
             }
@@ -250,10 +258,10 @@
         background: #ffffff;
 
         @media (orientation: landscape) {
-            outline: 8px solid #000000;
+            outline: 8px solid $main-color;
         }
         @media (orientation: portrait) {
-            outline: 8px solid #000000;
+            outline: 8px solid $main-color;
         }
     }
     .disabled {

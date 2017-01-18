@@ -83,6 +83,7 @@ svg {
     margin: 20px auto 0;
     opacity: 0.5;
     padding: 0;
+    text-decoration: none;
     transition: 0.3s opacity;
 
     appearance: none;
@@ -125,10 +126,26 @@ svg {
     @media (--tablet-medium-above) {
         padding: 15px 30px 12px;
     }
+    &:after {
+        background-image: url('/images/icons/arrow-right.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: '';
+        display: inline-block;
+        height: 9px;
+        margin-left: 8px;
+        width: 15px;
+
+        @media (--phablet-medium-above) {
+            height: 11px;
+            width: 19px;
+        }
+    }
     &:disabled {
         opacity: 0.5;
     }
-    svg {
+    /* svg {
         display: inline-block;
         height: 9px;
         margin-left: 4px;
@@ -142,7 +159,7 @@ svg {
         polygon {
             fill: #ffffff;
         }
-    }
+    } */
 }
 .disabled {
     opacity: 0.5;
@@ -184,5 +201,18 @@ svg {
     }
      @media (orientation: landscape) {
         margin-top: 30px;
+    }
+}
+
+input[type=checkbox] {
+    border: 3px solid $main-color;
+    height: 15px;
+    vertical-align: top;
+    width: 15px;
+
+    appearance: none;
+    &:checked {
+        background-image: url('/images/icons/tick.svg');
+        background-size: contain;
     }
 }
