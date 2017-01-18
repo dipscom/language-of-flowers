@@ -8,7 +8,7 @@ import PersonDetails from './PersonDetails';
 
 const initialState = {
 	activeFlower: null,
-  step: 3
+  step: 1
 };
 
 export default class Form extends Component {
@@ -63,6 +63,7 @@ export default class Form extends Component {
       case 1:
         return <FlowerDetails 
         				key="flower-details"
+        				bouquetLength={this.props.bouquet.length}
         				flowers={this.props.flowers}
         				activeFlower={this.state.activeFlower}
         				nextCta="View your bouquet"
@@ -111,14 +112,18 @@ export default class Form extends Component {
 	}
   render() { 
     return (
-      <div className="form">
-      	<TransitionGroup component="div" className="column">
-      		{this.formStepLeft()}
-      	</TransitionGroup>
-      	<span id="divider"></span>
-      	<TransitionGroup component="div" className="column">
-      		{this.formStepRight()}
-      	</TransitionGroup>
+      <div id="form">
+      	<div>
+      		<div>
+		      	<TransitionGroup component="div" className="column">
+		      		{this.formStepLeft()}
+		      	</TransitionGroup>
+		      	<span id="divider"></span>
+		      	<TransitionGroup component="div" className="column">
+		      		{this.formStepRight()}
+		      	</TransitionGroup>
+		      </div>
+	      </div>
       </div> 
     )
   }

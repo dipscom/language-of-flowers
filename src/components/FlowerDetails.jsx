@@ -17,13 +17,16 @@ export default class FlowerDetails extends Component {
 		console.log("FlowerDetails did appear")
 	}
   render() { 
+  	const disabled = (this.props.bouquetLength >= 3 ? false : true )
     return (
       <ul id="flower-details">
 	      {<Flower
 	      	index={this.props.activeFlower}
 	      	details={this.props.flowers[this.props.activeFlower]}/>
 	      }
-	      <Button cta={this.props.nextCta} step={this.props.nextStep} />
+	      <li>
+	      	<Button disabled={disabled} cta={this.props.nextCta} step={this.props.nextStep} />
+	      </li>
       </ul>
     )
   }

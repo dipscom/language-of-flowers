@@ -5,7 +5,8 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/App';
 import Form from './components/Form';
 import Page from './components/Page';
-// import '../styles/bundle.css';
+
+import '../styles/bundle.css';
 
 render(
   <Router history={browserHistory}>

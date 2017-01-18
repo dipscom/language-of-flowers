@@ -16,13 +16,11 @@
 
 h1 {
     font-family: 'Lovato';
-    font-weight: bolder;
-    line-height: 1;
-    margin: 0;
-    text-align: center;
     text-transform: uppercase;
 
     @media (orientation: portrait) {
+        text-align: center;
+
         @media (--phablet-large-below) {
             font-size: 6.875000000000001vw;
         }
@@ -40,46 +38,6 @@ h1 {
     }
 }
 
-h2,
-h3 {
-    margin: 0;
-}
-
-h2 {
-    font-family: 'Lovato';
-    font-weight: normal;
-    text-transform: uppercase;
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.2;
-    margin: 0;
-    max-width: 700px;
-
-    @media (--tablet-small-above) {
-        font-size: 20px;
-    }
-    @media (--desktop-small-above) {
-        font-size: 22px;
-    }
-}
-
-strong {
-    display: block;
-    font-family: 'Lovato';
-    font-size: 5vw;
-    max-width: 700px;
-    text-transform: uppercase;
-
-    @media (orientation: portrait) {
-        margin-top: 10px;
-    }
-    @media (--phablet-large-above) {
-        font-size: 28px;
-    }
-}
-
-.stage {
-    text-align: center;
+.sub-heading, .flower h1, .bouquet-list {
+    font-size: 23px;
 }

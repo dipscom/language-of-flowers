@@ -17,10 +17,13 @@ export default class FlowerSelect extends Component {
 		console.log("FlowerSelect did appear")
 	}
   render() { 
+
     return (
       <div id="flower-select">
-      	<h1>Choose your bouquet</h1>
-      	<strong>Select 3 flowers:</strong>
+        <header>
+          <h1>Create your bouquet</h1>
+          <strong className="sub-heading">Select 3 flowers:</strong>
+        </header>
       	<ul id="flower-list">
       		{Object
       			.keys(this.props.flowers)
@@ -28,12 +31,13 @@ export default class FlowerSelect extends Component {
       				<Flower
       					key={key}
       					index={key}
+                bouquetLength={this.props.bouquet.length}
       					details={this.props.flowers[key]}
       					selectFlower={this.props.selectFlower}
       					updateActiveFlower={this.props.updateActiveFlower} />)
       		}
       	</ul>
-      	<ol id="bouquet-list">
+      	<ol className="bouquet-list">
       		{this.props.bouquet
       			.map(key => 
       				<Flower

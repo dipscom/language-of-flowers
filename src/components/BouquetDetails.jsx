@@ -21,7 +21,7 @@ export default class BouquetDetails extends Component {
     return (
       <div id="bouquet-info">
 	      <h1>Your Bouquet</h1>
-	      <ol id="bouquet-list">
+	      <ol className="bouquet-list">
 	      		{this.props.bouquet
 	      			.map(key => 
 	      				<Flower

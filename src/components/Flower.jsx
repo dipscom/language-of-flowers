@@ -3,19 +3,27 @@ import React, { Component } from 'react';
 export default class Flower extends Component {
   
   render() {
-  	const { details, index, selectFlower, updateActiveFlower } = this.props;
+  	const { bouquetLength, details, index, selectFlower, updateActiveFlower } = this.props;
+  	let classes = '';
+  	if (details.selected) {
+  		classes += 'checked';
+  	} else if (bouquetLength >= 3 && !details.selected){
+  		classes += 'disabled';
+  	}
     return (
       <li className="flower">
-      	<div 
+      	<div className={classes} 
       		onClick={(selectFlower ? () => {selectFlower(index)} : '')}
       		onMouseOver={
       			(updateActiveFlower ? () => {this.props.updateActiveFlower(index)} : '')}>
 	      	<figure style={{backgroundImage: 'url(/images/flowers/' + this.props.index + '.png)'}}><div></div></figure>
-	      	<div>
+	      	<div className="flower-details">
 	      		<h1>{details.name}</h1>
-	      		<strong>Meaning</strong>
-	      		<p>{details.meaning}</p>
-	      		<p>{details.description}</p>
+	      		<strong className="sub-heading">Meaning</strong>
+	      		<div>
+	      			<p>{details.meaning}</p>
+	      			<p>{details.description}</p>
+	      		</div>
 	      	</div>
 	      </div>
       </li>
