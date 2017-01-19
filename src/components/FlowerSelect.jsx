@@ -24,7 +24,8 @@ export default class FlowerSelect extends Component {
                 bouquetLength={this.props.bouquet.length}
       					details={this.props.flowers[key]}
       					selectFlower={this.props.selectFlower}
-      					updateActiveFlower={this.props.updateActiveFlower} />)
+      					updateActiveFlower={this.props.updateActiveFlower}
+                />)
       		}
       	</ul>
       	<ol className="bouquet-list">

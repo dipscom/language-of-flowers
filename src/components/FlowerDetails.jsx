@@ -27,11 +27,11 @@ export default class FlowerDetails extends Component {
 
   /* Animation */
   componentWillAppear(callback) {
-    console.log("FlowerDetails will appear")
+    // console.log("FlowerDetails will appear")
     callback();
   }
   componentWillEnter(callback) {
-    console.log("FlowerDetails will enter")
+    // console.log("FlowerDetails will enter")
     TweenMax.from("#flower-details", 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: 0.5,
@@ -39,13 +39,13 @@ export default class FlowerDetails extends Component {
     callback();
   }
   componentDidEnter() {
-    console.log("FlowerDetails did enter")
+    // console.log("FlowerDetails did enter")
   }
   componentDidAppear() {
-    console.log("FlowerDetails did appear")
+    // console.log("FlowerDetails did appear")
   }
   componentWillLeave(callback) {
-    console.log("FlowerDetails will leave");
+    // console.log("FlowerDetails will leave");
     TweenMax.set("#flower-details", { // eslint-disable-line
       position:"absolute"
     });
