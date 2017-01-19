@@ -114,8 +114,12 @@
     }
     .bouquet-list {
         p {
-            font-size: 28px;
+            font-size: 6.25vw;
             font-weight: bold;
+
+            @media (--phablet-medium-above) {
+                font-size: 28px;
+            }
         }
     }
 }
