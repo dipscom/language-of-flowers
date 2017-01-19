@@ -7,10 +7,10 @@ export default class BouquetDetails extends Component {
 	// componentWillMount() {
 	// 	let prevButton, nextButton;
  //  	if (this.props.step === 2) {
- //  		prevButton = <Button cta={this.props.prevCta} step={this.props.prevStep} />;
- //  		nextButton = <Button cta={this.props.nextCta} step={this.props.nextStep} />;
+ //  		prevButton = <Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} />;
+ //  		nextButton = <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} />;
  //  	} else {
- //  		nextButton = <Anchor name={this.props.nextCta} step="forward" target={this.props.nextStep} />;
+ //  		nextButton = <Anchor className="button" cta={this.props.nextCta} step="forward" target={this.props.nextStep} />;
  //  	}
 	// }
   render() {
@@ -28,8 +28,8 @@ export default class BouquetDetails extends Component {
 	      				details={this.props.flowers[key]} />)
 	      	}
 	      </ol>
-	      <Button cta={this.props.prevCta} step={this.props.prevStep} />
-	      <Button cta={this.props.nextCta} step={this.props.nextStep} />
+        <Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} />
+        <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} />
 	      {/*prevButton}
 	      {nextButton*/}
 	    </div>

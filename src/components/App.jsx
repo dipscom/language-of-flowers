@@ -111,7 +111,7 @@ export default class App extends Component {
     $.ajax({ // eslint-disable-line
       url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=c0307ad06b',
       data: data,
-      dataType: 'json',
+      dataType: 'jsonp',
       error: function (resp, text) {
         console.log('mailchimp ajax submit error: ' + text);
       },

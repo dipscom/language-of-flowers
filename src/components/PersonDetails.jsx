@@ -54,11 +54,11 @@ export default class PersonDetails extends Component {
 	    	<input type="text" id="name" className={this.props.index} name="name" value={this.props[this.props.index].name} placeholder="Name" required onChange={(e) => this.props.updateField(e)} />
 	    	<label htmlFor="email">{this.capitalizeFirstLetter(this.props.index)} email</label>
 	    	<input type="email" id="email" className={this.props.index} name="email" value={this.props[this.props.index].email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
-	    	<Button cta={this.props.prevCta} step={this.props.prevStep} />
+	    	<Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} />
     	</form>
       { typeof this.props.nextStep === 'string' ? 
-          <Anchor name={this.props.nextCta} className={disabled} step="forward" target={this.props.nextStep} /> : 
-          <Button cta={this.props.nextCta} disabled={disabled} step={this.props.nextStep} />
+          <Anchor className={disabled} cta={this.props.nextCta}  step="forward" target="confirmation" /> : 
+          <Button className="button" cta={this.props.nextCta} disabled={disabled} step={this.props.nextStep} />
         }
       </div>
     )

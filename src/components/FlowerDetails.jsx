@@ -17,7 +17,7 @@ export default class FlowerDetails extends Component {
             </TransitionGroup>
   	      }
         </ul>
-        <Button disabled={disabled} cta={this.props.nextCta} step={this.props.nextStep} />
+        <Button className="button" cta={this.props.nextCta} disabled={disabled} step={this.props.nextStep} />
       </div>
     )
   }
