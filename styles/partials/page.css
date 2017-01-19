@@ -75,6 +75,7 @@
         figure,
         h1,
         strong,
+        svg,
         p:last-child {
             display: none;
         }
@@ -130,16 +131,21 @@
 
 #products {
     p {
-        a {
+        margin: 0;
+
+        a, span {
             color: #80a78d;
-            text-decoration: none;
         }
     }
     svg {
         margin: 2vh 0;
         width: 100%;
     }
+    strong{
+        text-transform: none;
+    }
     ul {
+        font-family: 'Lovato';
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -157,6 +163,7 @@
 
             &:last-child {
                 font-size: 18px;
+                font-weight: bold;
                 margin-top: 10px;
                 opacity: 0.55;
             }
@@ -176,6 +183,7 @@
         padding-top: 22vh;
     }
     h2 {
+        margin: 0;
         text-transform: none;
     }
 }
