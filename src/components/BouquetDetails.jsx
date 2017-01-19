@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Anchor from './Anchor';
+// import Anchor from './Anchor';
 import Button from './Button';
 import Flower from './Flower';
 

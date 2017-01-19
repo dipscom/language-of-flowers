@@ -3,10 +3,6 @@ import Anchor from './Anchor';
 import Flower from './Flower';
 
 export default class Confirmation extends Component {
-  constructor(){
-    super();
-  }
-
   render() {
     let disabled;
     if(!this.props.terms) {
