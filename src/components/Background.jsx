@@ -80,7 +80,6 @@ export default class Background extends Component {
     //   drawSVG: 0,
     //   ease: "Power1.easeInOut"
     // })
-
   }
 
   componentDidAppear() {
