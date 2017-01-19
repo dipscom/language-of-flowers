@@ -4,8 +4,8 @@ export default class Overlay extends Component {
 
   constructor(props) {
     super(props);
-    console.log("------------------");
-    console.log("Overlay constructor:");
+    // console.log("------------------");
+    // console.log("Overlay constructor:");
 
     // this.tl = null;
     this.tl = new TimelineMax(); // eslint-disable-line
@@ -15,7 +15,7 @@ export default class Overlay extends Component {
 
   render() {
 
-    console.log("----> Overlay render:");
+    // console.log("----> Overlay render:");
 
     return (
       <div
@@ -52,7 +52,7 @@ export default class Overlay extends Component {
 
   handleAnimation() {
 
-    console.log("Overlay handleAnimation:", this.props.location.pathname, this.tl.isActive());
+    // console.log("Overlay handleAnimation:", this.props.location.pathname, this.tl.isActive());
     switch (this.props.location.pathname) {
       case "build-bouquet":
       case "recipient":
@@ -78,12 +78,12 @@ export default class Overlay extends Component {
 
   componentWillMount() {
     // No DOM manipulation should happen here.
-    console.log("Overlay will mount:");
+    // console.log("Overlay will mount:");
   }
 
   componentDidMount() {
     // DOM manipulation should happen here.
-    console.log("Overlay did mount:");
+    // console.log("Overlay did mount:");
 
 
     // We're using normal CSS selectors because we know for a fact that this component will not be unmounted and/or changed at any time during the existence of this webapp
@@ -109,7 +109,7 @@ export default class Overlay extends Component {
 
   }
   componentWillUnmount() {
-    console.log("Overlay will unmount:");
+    // console.log("Overlay will unmount:");
   }
 
 
@@ -121,34 +121,34 @@ export default class Overlay extends Component {
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
-    console.log("Overlay Will enter:");
+    // console.log("Overlay Will enter:");
   }
 
   componentDidEnter() {
-    console.log("Overlay Did enter:");
-    console.log("------------------");
+    // console.log("Overlay Did enter:");
+    // console.log("------------------");
   }
 
   componentWillAppear(callback) {
-    console.log("Overlay Will appear:");
+    // console.log("Overlay Will appear:");
 
     this.handleAnimation();
 
   }
 
   componentDidAppear() {
-    console.log("Overlay Did appear:");
-    console.log("------------------");
+    // console.log("Overlay Did appear:");
+    // console.log("------------------");
   }
 
   componentWillLeave(callback) {
-    console.log("Overlay Will leave:");
+    // console.log("Overlay Will leave:");
     callback();
   }
 
   componentDidLeave() {
-    console.log("Overlay Did leave:");
-    console.log("------------------");
+    // console.log("Overlay Did leave:");
+    // console.log("------------------");
   }
 
 }
