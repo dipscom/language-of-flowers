@@ -3,6 +3,7 @@ import TransitionGroup from 'react-addons-transition-group'
 import flowers from '../data/flowers';
 import products from '../data/products';
 import Background from './Background';
+import Overlay from './Overlay';
 // import TransitionGroup from 'react-addons-transition-group';
 const initialState = {
   bouquet: [],
@@ -37,84 +38,84 @@ export default class App extends Component {
     this.prevStep = this.prevStep.bind(this);
     this.updateStep = this.updateStep.bind(this);
   }
-  // componentWillMount(){
-  //   let bouquet, recipient, sender, flowers, products, steps;
-  //   const accessTime = Number((localStorage.getItem('accessTime'))) + 20000, timeStamp = Date.now();
-    
-  //   if(Object.keys(this.props.location.query).length !== 0) {
-  //     if (this.props.location.query.bouquet && this.props.location.query.recipient && this.props.location.query.sender) {
-  //       bouquet = this.props.location.query.bouquet.split(',');
-  //       recipient = { name: this.props.location.query.recipient };
-  //       sender = { name: this.props.location.query.sender };
-  //       this.setState({
-  //         steps: {
-  //           current: 0
-  //         }
-  //       });
-  //     } else {
-  //       if(window.location.pathname !== '/') {
-  //         window.location = '/';
-  //       }
-  //     }
-  //   } else if (window.location.pathname === '/share') {
+  componentWillMount(){
+    let bouquet, recipient, sender, flowers, products, steps;
+    const accessTime = Number((localStorage.getItem('accessTime'))) + 20000, timeStamp = Date.now();
 
-  //   } else if (accessTime > timeStamp) {
-  //       if(localStorage.getItem('bouquet')) {
-  //         bouquet = localStorage.getItem('bouquet').split(',');
-  //       }
-  //       if(localStorage.getItem('recipient')) {
-  //         recipient = {...JSON.parse(localStorage.getItem('recipient')) };
-  //       }
-  //       if(localStorage.getItem('sender')) {
-  //         sender = {...JSON.parse(localStorage.getItem('sender'))};
-  //       }
-  //       if(localStorage.getItem('flowers')) {
-  //         flowers = {...JSON.parse(localStorage.getItem('flowers'))};
-  //       }
-  //       if(localStorage.getItem('products')) {
-  //         products = {...JSON.parse(localStorage.getItem('products'))};
-  //       }
-  //       if(localStorage.getItem('steps')) {
-  //         steps = {...JSON.parse(localStorage.getItem('steps'))};
-  //       }
-  //     } 
+    if(Object.keys(this.props.location.query).length !== 0) {
+      if (this.props.location.query.bouquet && this.props.location.query.recipient && this.props.location.query.sender) {
+        bouquet = this.props.location.query.bouquet.split(',');
+        recipient = { name: this.props.location.query.recipient };
+        sender = { name: this.props.location.query.sender };
+        this.setState({
+          steps: {
+            current: 0
+          }
+        });
+      } else {
+        if(window.location.pathname !== '/') {
+          window.location = '/';
+        }
+      }
+    } else if (window.location.pathname === '/share') {
 
-  //     else {
-  //     if(window.location.pathname !== '/') {
-  //       window.location = '/';
-  //     }
-  //   }  
-  //   if(bouquet) {
-  //     this.setState({
-  //       bouquet : bouquet
-  //     });
-  //   }
-  //   if(flowers) {
-  //     this.setState({
-  //       flowers : flowers
-  //     });
-  //   }
-  //   if(products) {
-  //     this.setState({
-  //       products : products
-  //     });
-  //   }
-  //   if(recipient) {
-  //     this.setState({
-  //       recipient : recipient
-  //     });
-  //   }
-  //   if(sender) {
-  //     this.setState({
-  //       sender : sender
-  //     });
-  //   }
-  //   if(steps) {
-  //     this.setState({
-  //       steps : steps
-  //     });
-  //   }
-  // }
+    } else if (accessTime > timeStamp) {
+        if(localStorage.getItem('bouquet')) {
+          bouquet = localStorage.getItem('bouquet').split(',');
+        }
+        if(localStorage.getItem('recipient')) {
+          recipient = {...JSON.parse(localStorage.getItem('recipient')) };
+        }
+        if(localStorage.getItem('sender')) {
+          sender = {...JSON.parse(localStorage.getItem('sender'))};
+        }
+        if(localStorage.getItem('flowers')) {
+          flowers = {...JSON.parse(localStorage.getItem('flowers'))};
+        }
+        if(localStorage.getItem('products')) {
+          products = {...JSON.parse(localStorage.getItem('products'))};
+        }
+        if(localStorage.getItem('steps')) {
+          steps = {...JSON.parse(localStorage.getItem('steps'))};
+        }
+      }
+
+      else {
+      if(window.location.pathname !== '/') {
+        window.location = '/';
+      }
+    }
+    if(bouquet) {
+      this.setState({
+        bouquet : bouquet
+      });
+    }
+    if(flowers) {
+      this.setState({
+        flowers : flowers
+      });
+    }
+    if(products) {
+      this.setState({
+        products : products
+      });
+    }
+    if(recipient) {
+      this.setState({
+        recipient : recipient
+      });
+    }
+    if(sender) {
+      this.setState({
+        sender : sender
+      });
+    }
+    if(steps) {
+      this.setState({
+        steps : steps
+      });
+    }
+  }
   componentWillUpdate(nextProps, nextState) {
     localStorage.setItem('bouquet', nextState.bouquet);
     localStorage.setItem('flowers', JSON.stringify(nextState.flowers));
@@ -125,9 +126,9 @@ export default class App extends Component {
     localStorage.setItem('terms', nextState.terms);
     localStorage.setItem('accessTime', Date.now());
   }
-  mailChimp(){  
+  mailChimp(){
     const data = {
-        EMAIL: this.state.recipient.email,  
+        EMAIL: this.state.recipient.email,
         NAME: this.state.recipient.name,
         SNAME: this.state.sender.name,
         SEMAIL: this.state.sender.email,
@@ -211,6 +212,7 @@ export default class App extends Component {
             key: key
           }
         )}
+        <Overlay location={this.props.location}/>
       </TransitionGroup>
     )
   }

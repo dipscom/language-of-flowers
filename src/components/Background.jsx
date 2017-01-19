@@ -37,16 +37,16 @@ export default class Background extends Component {
   componentWillAppear(callback) {
     const paperWidth = document.getElementById("paper").getBoundingClientRect().width * 1.5;
 
-    // console.log("Background Will appear");
+    console.log("Background Will appear");
 
     // Use GSAP to center the image for better layout resize handling
     TweenMax.set("#forest", {xPercent:-50, yPercent:-50});// eslint-disable-line
 
     TweenMax.set(".cloud", {// eslint-disable-line
-    xPercent:-50,
-    x:function(i) {
-      return (i+1) * paperWidth/3;
-    }
+      xPercent:-50,
+      x:function(i) {
+        return (i+1) * paperWidth/3;
+      }
     });
 
 
@@ -83,7 +83,7 @@ export default class Background extends Component {
   }
 
   componentDidAppear() {
-    // console.log("Background Did appear");
+    console.log("Background Did appear");
   }
 
 }
