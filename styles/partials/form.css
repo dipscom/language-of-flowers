@@ -132,8 +132,8 @@
             position: absolute;
             top: 100%;
         }
-        figure {
-            display: none;
+        figure, svg {
+            display: none !important;
         }
         .flower-details {
             * {
@@ -245,6 +245,9 @@
     }
     h1 {
         text-align: left;
+    }
+    svg {
+        display: none;
     }
     .flower-details {
         @media (orientation: landscape) {
@@ -384,6 +387,10 @@
     .bouquet-list {
         list-style-type: none;
         padding: 0;
+
+        svg {
+            display: none;
+        }
     }
     .flower {
         > div {

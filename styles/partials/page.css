@@ -179,3 +179,38 @@
         text-transform: none;
     }
 }
+
+#share {
+    p {
+        margin: 0;
+    }
+    strong {
+        text-transform: none;
+    }
+    a {
+        color: inherit;
+       font-family: 'Lovato';
+        font-weight: bold; 
+        text-decoration: none;
+    }
+    .share-link {
+        align-items: center;
+        display: flex;
+        margin: 30px;
+        width: auto;
+    }
+    #twitter, #facebook {
+        height: 50px;
+        opacity: 1;
+        width: 50px;
+    }
+    span {
+        margin: 0 4px 0 10px;
+        opacity: 0.5;
+    }
+    .share {
+        height: 15px;
+        opacity: 0.5;
+        width: 20px;
+    }
+}

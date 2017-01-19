@@ -27,6 +27,10 @@ export default class Flower extends Component {
 	      	<figure style={{backgroundImage: 'url(/images/flowers/' + this.props.index + '.png)'}}><div></div></figure>
 	      	<div className="flower-details">
 	      		<h1 className="word">{details.name}</h1>
+            <svg className="doubleline-decoration" viewBox="0 0 1400 40" preserveAspectRatio="xMidYMid">
+              <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
+              <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
+            </svg>
 	      		<strong className="sub-heading word">Meaning</strong>
 	      		<div>
 	      			<p className="word">{details.meaning}</p>

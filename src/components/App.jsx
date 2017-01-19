@@ -56,6 +56,8 @@ export default class App extends Component {
           window.location = '/';
         }
       }
+    } else if (window.location.pathname === '/share') {
+
     } else if (accessTime > timeStamp) {
         if(localStorage.getItem('bouquet')) {
           bouquet = localStorage.getItem('bouquet').split(',');
@@ -75,7 +77,9 @@ export default class App extends Component {
         if(localStorage.getItem('steps')) {
           steps = {...JSON.parse(localStorage.getItem('steps'))};
         }
-      } else {
+      } 
+
+      else {
       if(window.location.pathname !== '/') {
         window.location = '/';
       }

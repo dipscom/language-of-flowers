@@ -102,7 +102,7 @@ export default class Form extends Component {
 	}
   render() { 
   	// let i = 1;
-
+    
     return (
       <div id="form">
       	<div>

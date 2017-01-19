@@ -23,7 +23,7 @@ export default class BouquetDetails extends Component {
           <Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} />
           { this.props.step === 2 ? 
           <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} /> : 
-          <Anchor className="button" cta={this.props.nextCta} step="forward" target="viewbouquet" />
+          <Anchor className="button" cta={this.props.nextCta} step="forward" target="share" />
         }
         </div>
 	    </div>
