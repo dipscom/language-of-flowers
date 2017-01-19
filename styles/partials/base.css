@@ -48,7 +48,9 @@ svg {
     stroke-linejoin: miter;
     stroke-width: 1;
 }
-
+input[type=text] {   
+    appearance: none;
+}
 #app {
     height: 100%;
     width: 100%;
