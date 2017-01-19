@@ -78,10 +78,7 @@ export default class Success extends Component{
 
     TweenMax.from(currentTarget, 0.5, { // eslint-disable-line
       autoAlpha:0,
-<<<<<<< HEAD
       delay:0.5,
-=======
->>>>>>> bfe0cdefde088fc4d956f095caebc1a25c7e5549
       onComplete:function () {
         TweenMax.to("#thank-you", 0.6, {autoAlpha:0, delay:dly}); // eslint-disable-line
         TweenMax.to("#products", 0.6, {autoAlpha:1, delay:dly}); // eslint-disable-line
