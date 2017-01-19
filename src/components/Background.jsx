@@ -35,6 +35,7 @@ export default class Background extends Component {
   }
 
   componentWillAppear(callback) {
+<<<<<<< HEAD
     const paperWidth = document.getElementById("paper").getBoundingClientRect().width * 1.5;
 
     // console.log("Background Will appear");
@@ -81,6 +82,9 @@ export default class Background extends Component {
     //   ease: "Power1.easeInOut"
     // })
 
+=======
+    // console.log("Background Will appear");
+>>>>>>> undochanges
   }
 
   componentDidAppear() {
