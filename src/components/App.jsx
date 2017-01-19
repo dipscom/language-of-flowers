@@ -153,12 +153,10 @@ export default class App extends Component {
     steps['current'] = this.state.steps.current - 1;
     this.setState({ steps });
   }
-  updateStep() {
-    this.setState({
-      steps: {
-        current: this.state.steps.current + 1
-      }
-    });
+  updateStep(i) {
+    const steps = {...this.state.steps};
+    steps['current'] = i;
+    this.setState({ steps });
   }
   selectFlower(key) {
     console.log('selectFlower triggered');
@@ -209,6 +207,7 @@ export default class App extends Component {
             updateField: this.updateField,
             nextStep: this.nextStep,
             prevStep: this.prevStep,
+            updateStep: this.updateStep,
             key: key
           }
         )}

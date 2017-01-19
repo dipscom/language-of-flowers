@@ -71,14 +71,14 @@ export default class Introduction extends Component {
   componentWillAppear(callback) {
     this.tl = new TimelineMax({delay:3}) // eslint-disable-line
     // console.log("Introduction Will appear");
-    this.tl.from(".logo", 1, {
-      autoAlpha:0,
-      ease:"Power1.easeOut"
-    }, 0)
-      .from(".logo", 1.3, {
-      scale:1.2,
-      ease:"Power4.easeOut"
-    }, 0)
+    // this.tl.from(".logo", 1, {
+    //   autoAlpha:0,
+    //   ease:"Power1.easeOut"
+    // }, 0)
+    //   .from(".logo", 1.3, {
+    //   scale:1.2,
+    //   ease:"Power4.easeOut"
+    // }, 0)
 
       .add("StaggerContent", "-=0.5")
       .staggerFrom(["h1", "p", "strong"], 1.5, {

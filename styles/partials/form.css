@@ -486,8 +486,34 @@
 }
 
 #form-navigation {
-    bottom: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 4px 0;
+
+     @media (orientation: landscape) {
+        bottom: 0;
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
+     }
+    span {
+        background-color: $main-color;
+        cursor: pointer;
+        display: block;
+        height: 20px;
+        transform: rotate(45deg);
+        transition: background-color 0.3s, opacity 0.3s;
+        width: 20px;
+
+        &:not(:first-child) {
+            margin-left: 15px;
+        }
+        &.current {
+            background-color: $green;
+        }
+        &.disabled {
+            opacity: 0.5;
+        }
+    }
 }
