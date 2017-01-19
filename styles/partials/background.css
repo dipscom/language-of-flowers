@@ -24,6 +24,7 @@
         overflow: hidden;
         position: absolute;
         top: 50%;
+        transform: translate(-50%,-50%);
         width: 100%;
 
         figure {
@@ -44,6 +45,10 @@
         height: auto;
         position: absolute;
         width: 3.75%;
+
+        @media (orientation: portrait) {
+            display: none;
+        }
     }
     #top-left {
         left: 0;
@@ -69,13 +74,20 @@
         transform: rotate(90deg);
     }
     .logo {
+        display: block;
+
         @media (orientation: landscape) {
-            height: 10vh;
+            height: 8vh;
             left: 50%;
             position: absolute;
-            top: 10.5%;
+            top: 2.5%;
             transform: translateX(-50%);
         }
+         @media (orientation: portrait) {
+            margin: 3.571428571428571% auto 0;
+            max-width: 150px;
+         }
+
     }
 }
 
@@ -85,7 +97,7 @@
     overflow: hidden;
     position: relative;
 
-    * {
+    .line-decoration {
         @media (orientation: portrait) {
             display: none;
         }

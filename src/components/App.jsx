@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import TransitionGroup from 'react-addons-transition-group'
-import flowers from './data/flowers';
-import products from './data/products';
-import Overlay from './components/Overlay'
-import Background from './components/Background'
-
+import flowers from '../data/flowers';
+import products from '../data/products';
+import Background from './Background';
+// import TransitionGroup from 'react-addons-transition-group';
 const initialState = {
   bouquet: [],
   flowers: flowers,
@@ -19,55 +18,72 @@ const initialState = {
     email: '',
     valid: false
   },
+  steps: {
+    current: 1,
+    total: 4
+  },
   terms: false
 };
+
 export default class App extends Component {
   constructor(){
     super();
-    this.bouquetMeaning = this.bouquetMeaning.bind(this);
-    this.reset = this.reset.bind(this);
-    this.selectBouquet = this.selectBouquet.bind(this);
-    this.updateField = this.updateField.bind(this);
     this.state = initialState;
-  }
-  reset() {
-    this.setState(initialState);
+    this.reset = this.reset.bind(this);
+    this.selectFlower = this.selectFlower.bind(this);
+    this.updateField = this.updateField.bind(this);
+    this.mailChimp = this.mailChimp.bind(this);
+    this.nextStep = this.nextStep.bind(this);
+    this.prevStep = this.prevStep.bind(this);
+    this.updateStep = this.updateStep.bind(this);
   }
   componentWillMount(){
-    let bouquet, recipient, sender, flowers, products;
-    const accessTime = Number((localStorage.getItem('accessTime'))) + 600000, timeStamp = Date.now();
+    let bouquet, recipient, sender, flowers, products, steps;
+    const accessTime = Number((localStorage.getItem('accessTime'))) + 20000, timeStamp = Date.now();
+    
     if(Object.keys(this.props.location.query).length !== 0) {
-
       if (this.props.location.query.bouquet && this.props.location.query.recipient && this.props.location.query.sender) {
         bouquet = this.props.location.query.bouquet.split(',');
         recipient = { name: this.props.location.query.recipient };
         sender = { name: this.props.location.query.sender };
+        this.setState({
+          steps: {
+            current: 0
+          }
+        });
       } else {
         if(window.location.pathname !== '/') {
-        window.location = '/';
+          window.location = '/';
+        }
       }
-      }
+    } else if (window.location.pathname === '/share') {
+
     } else if (accessTime > timeStamp) {
         if(localStorage.getItem('bouquet')) {
           bouquet = localStorage.getItem('bouquet').split(',');
-        } 
+        }
         if(localStorage.getItem('recipient')) {
           recipient = {...JSON.parse(localStorage.getItem('recipient')) };
         }
         if(localStorage.getItem('sender')) {
-          sender = {...JSON.parse(localStorage.getItem('sender'))}; 
+          sender = {...JSON.parse(localStorage.getItem('sender'))};
         }
         if(localStorage.getItem('flowers')) {
-          flowers = {...JSON.parse(localStorage.getItem('flowers'))};  
+          flowers = {...JSON.parse(localStorage.getItem('flowers'))};
         }
         if(localStorage.getItem('products')) {
           products = {...JSON.parse(localStorage.getItem('products'))};
         }
-      } else {
+        if(localStorage.getItem('steps')) {
+          steps = {...JSON.parse(localStorage.getItem('steps'))};
+        }
+      } 
+
+      else {
       if(window.location.pathname !== '/') {
         window.location = '/';
       }
-    }
+    }  
     if(bouquet) {
       this.setState({
         bouquet : bouquet
@@ -93,6 +109,11 @@ export default class App extends Component {
         sender : sender
       });
     }
+    if(steps) {
+      this.setState({
+        steps : steps
+      });
+    }
   }
   componentWillUpdate(nextProps, nextState) {
     localStorage.setItem('bouquet', nextState.bouquet);
@@ -100,15 +121,50 @@ export default class App extends Component {
     localStorage.setItem('products', JSON.stringify(nextState.products));
     localStorage.setItem('recipient', JSON.stringify(nextState.recipient));
     localStorage.setItem('sender', JSON.stringify(nextState.sender));
+    localStorage.setItem('steps', JSON.stringify(nextState.steps));
     localStorage.setItem('terms', nextState.terms);
     localStorage.setItem('accessTime', Date.now());
   }
-  selectBouquet(key) {
-    console.log('selectBouquet triggered');
+  mailChimp(){  
+    const data = {
+        EMAIL: this.state.recipient.email,  
+        NAME: this.state.recipient.name,
+        SNAME: this.state.sender.name,
+        SEMAIL: this.state.sender.email,
+        BOUQUET: this.state.bouquet.toString()
+    };
+    $.ajax({ // eslint-disable-line
+      url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=c0307ad06b',
+      data: data,
+      dataType: 'jsonp',
+    });
+  }
+  reset() {
+    this.setState(initialState);
+  }
+  nextStep() {
+    const steps = {...this.state.steps};
+    steps['current'] = this.state.steps.current + 1;
+    this.setState({ steps });
+  }
+  prevStep() {
+    const steps = {...this.state.steps};
+    steps['current'] = this.state.steps.current - 1;
+    this.setState({ steps });
+  }
+  updateStep() {
+    this.setState({
+      steps: {
+        current: this.state.steps.current + 1
+      }
+    });
+  }
+  selectFlower(key) {
+    console.log('selectFlower triggered');
     let bouquet = this.state.bouquet;
     const index = this.state.bouquet.indexOf(key);
     const flowers = {...this.state.flowers};
-    
+
     if ( index === -1 ) {
       if (bouquet.length < 3) {
         bouquet = bouquet.concat([key])
@@ -121,27 +177,11 @@ export default class App extends Component {
       this.setState({ bouquet, flowers });
     }
   }
-  bouquetMeaning(key) {
-    const flower = this.state.flowers[key];
-    return (
-      <li key={key}>
-        <div>
-          <img src={'/images/flowers/' + key + '.png'} alt={flower.name} title={flower.name}
-          />
-        </div>
-        <div>
-          <h2>{flower.name}</h2>
-          <strong>{flower.meaning}</strong>
-          <p>{flower.description}</p>
-        </div>
-      </li>)
-  }
   updateField(e) {
     if(e.target.name === 'terms') {
       this.setState({ 'terms': e.target.checked });
     } else {
       const person = {...this.state[e.target.className]};
-
       person[e.target.name] = e.target.value;
       if (e.target.type === 'email') {
         person['valid'] = e.target.checkValidity();
@@ -153,23 +193,25 @@ export default class App extends Component {
   }
   render() {
     const { pathname } = this.props.location;
-    const key = pathname.split('/')[1] || 'root';
+    const key = pathname || 'root';
+    // NOTE
+    // We need to look into how we are building this key, whether we need to split the forward slash or not. Currently, it works without splitting it. MUST double check the live version!
+    // const key = pathname.split('/')[1] || 'root';
     return (
-        <TransitionGroup component="div">
-          <Background location={this.props.location} />
-          {this.props.children && React.cloneElement(this.props.children,
-          {bouquet: [...this.state.bouquet],
-           flowers: {...this.state.flowers},
-           products: {...this.state.products},
-           recipient: {...this.state.recipient},
-           sender: {...this.state.sender},
-           terms: this.state.terms,
-           selectBouquet: this.selectBouquet,
-           bouquetMeaning: this.bouquetMeaning,
-           updateField: this.updateField,
-           key: key})}
-          <Overlay location={this.props.location} />
-        </TransitionGroup>
+      <TransitionGroup component="div" id="container">
+        <Background reset={this.reset} />
+        {this.props.children && React.cloneElement(
+          this.props.children, {
+            ...this.state,
+            mailChimp: this.mailChimp,
+            selectFlower: this.selectFlower,
+            updateField: this.updateField,
+            nextStep: this.nextStep,
+            prevStep: this.prevStep,
+            key: key
+          }
+        )}
+      </TransitionGroup>
     )
   }
 }

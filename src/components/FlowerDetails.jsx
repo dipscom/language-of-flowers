@@ -1,37 +1,23 @@
 import React, { Component } from 'react';
-
-export default class FlowerDetails extends Component{
-
+import TransitionGroup from 'react-addons-transition-group';
+import Button from './Button';
+import Flower from './Flower';
+export default class FlowerDetails extends Component {
   render() {
+  	const disabled = (this.props.bouquetLength >= 3 ? false : true );
     return (
-      <div
-        id={this.props.activeFlower}
-        key={this.props.activeFlower}
-        className="flower-details"
-        ref={
-          (el) => {
-            this.el = el;
-          }
-        }
-      >
-        <img
-          src={'/images/flowers/' + this.props.activeFlower + '.png'}
-          alt={this.props.flowers[this.props.activeFlower].name}
-          title={this.props.flowers[this.props.activeFlower].name}
-          />
-        <div>
-          <h1 className="word">{this.props.flowers[this.props.activeFlower].name}
-          </h1>
-          <svg className="doubleline-decoration" viewBox="0 0 1400 40">
-            <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
-            <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
-          </svg>
-          <div>
-            <h2 className="word">Meaning</h2>
-            <strong className="word">{this.props.flowers[this.props.activeFlower].meaning}</strong>
-            <p className="word">{this.props.flowers[this.props.activeFlower].description}</p>
-          </div>
-        </div>
+      <div  id="flower-details">
+        <ul>
+  	      {
+            <TransitionGroup>
+              <Flower
+                index={this.props.activeFlower}
+                key={this.props.activeFlower}
+                details={this.props.flowers[this.props.activeFlower]}/>
+            </TransitionGroup>
+  	      }
+        </ul>
+        <Button className="button" cta={this.props.nextCta} disabled={disabled} step={this.props.nextStep} />
       </div>
     )
   }
@@ -40,70 +26,23 @@ export default class FlowerDetails extends Component{
 
 
   /* Animation */
-  animateIn(callback) {
+  componentWillAppear(callback) {
+    console.log("FlowerDetails will appear")
 
-    let currentTarget = "#" + this.el.id;
-
-    TweenMax.from(currentTarget + " img", 0.8, { // eslint-disable-line
+    TweenMax.from("#flower-details", 0.5, { // eslint-disable-line
       autoAlpha:0,
-      ease: "Power4.easeInOut",
-    });
-
-    TweenMax.staggerFrom(currentTarget + " .word", 0.3, { // eslint-disable-line
-      x: 30,
-      autoAlpha: 0,
-      ease: "Power2.easeOut",
-      delay:0.3
-    }, 0.05);
-
+      onComplete:callback
+    })
+  }
+  componentWillEnter(callback) {
+    console.log("FlowerDetails will enter")
     callback();
   }
-
-  animateOut(callback) {
-
-    let currentTarget = "#" + this.el.id;
-
-    TweenMax.to(currentTarget + " img", 0.3, { // eslint-disable-line
-      autoAlpha:0,
-      ease: "Power4.easeInOut",
-      onComplete:callback
-    });
-
-    TweenMax.staggerTo(currentTarget + " .word", 0.3, { // eslint-disable-line
-      x: 30,
-      autoAlpha: 0,
-      ease: "Power2.easeIn",
-    }, 0.05);
-
-  }
-
-
-  /* React Animation Callbacks */
-  componentWillEnter(callback) {
-    // console.log("FlowerDetails Will enter");
-    this.animateIn(callback);
-  }
-
   componentDidEnter() {
-    // console.log("FlowerDetails Did enter");
+    console.log("FlowerDetails did enter")
   }
-
-  componentWillAppear(callback) {
-    // console.log("FlowerDetails Will appear");
-    this.animateIn(callback);
-  }
-
   componentDidAppear() {
-    // console.log("FlowerDetails Did appear");
-  }
-
-  componentWillLeave(callback) {
-    // console.log("FlowerDetails Will leave");
-    this.animateOut(callback);
-  }
-
-  componentDidLeave() {
-    // console.log("FlowerDetails Did leave");
+    console.log("FlowerDetails did appear")
   }
 
 }

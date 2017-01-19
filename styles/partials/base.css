@@ -11,16 +11,13 @@ html {
     min-height: 0;
     outline: 0;
 
-    -ms-overflow-style: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    &::-webkit-scrollbar {
-        width: 0 !important
-    }
 }
 
 body {
     color: $main-color;
     height: 100%;
+    line-height: 1.4;
 
     @media (orientation: landscape) {
         align-items: center;
@@ -43,26 +40,6 @@ main {
         position: fixed;
     }
 }
-
-#app {
-    height: 100%;
-    width: 100%;
-
-    @media (orientation: landscape) {
-        padding: 1.8072289156626504%;
-    }
-    > * {
-        height: 100%;
-        position: relative;
-        width: 100%;
-    }
-}
-
-img {
-    display: block;
-    max-width: 100%;
-}
-
 svg {
     fill: none;
     stroke: rgba(0, 0, 0, 0.3);
@@ -71,132 +48,51 @@ svg {
     stroke-width: 1;
 }
 
-.stage,
-.form {
+#app {
     height: 100%;
-    left: 0;
-    padding: inherit;
-    position: absolute;
-    top: 0;
     width: 100%;
 
     @media (orientation: landscape) {
-        padding: 3.125%;
-    }
-    @media (orientation: portrait) {
-        @media (--desktop-small-below) {
-            padding: 6.25%;
-        }
-        @media (--desktop-small-above) {
-            padding: 50px;
-        }
-    }
-    > * {
-        overflow: scroll;
-
-        @media (orientation: portrait) {
-            height: 100%;
-
-            @media (--tablet-small-below) {
-                padding: 3.571428571428571%;
-            }
-            @media (--tablet-small-above) {
-                padding: 7.8125%;
-            }
-        }
-        @media (orientation: landscape) {
-            height: 100%;
-            padding: 4%;
-            position: relative;
-            width: 100%;
-        }
-        > * {
-            align-content: space-around;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 0 auto;
-            min-height: 100%;
-            width: 90%;
-
-            
-        }
-    }
-    .logo {
-        margin: 0 auto;
-        max-width: 100%;
-
-        @media (orientation: landscape) {
-            height: 10vh;
-            width: auto;
-        }
-        @media (orientation: portrait) {
-            align-self: flex-start;
-            height: auto;
-            max-width: 330px;
-            width: 60%;
-        }
+        padding: 1.8072289156626504%;
     }
 }
 
-.stage {
-    > * {
-        > * {
-            @media (orientation: landscape) {
-                max-width: 870px;
-            }
-            > * {
-                @media (orientation: landscape) {
-                    position: relative;
-                }
-            }
-        }
-    }
-}
-
-
-#description {
-    h1 {
-        width: 100%;
-    }
-    p {
-        max-width: 825px;
-    }
-}
-
-.doubleline-decoration {
+#container {
+    height: 100%;
     position: relative;
+    width: 100%;
+}
+
+.hide-portrait {
+    @media (orientation: portrait) {
+        display: none;
+    }
 }
 
 .reflected {
     transform: scaleY(-1);
 }
 
-#reset-button {
-    bottom: 0;
-    color: inherit;
+.back-button {
+    background: none;
+    border: none;
+    color: $main-color;
+    display: block;
     font-family: 'Lovato';
-    font-size: 12px;
-    line-height: 1;
-    position: absolute;
-    right: 0;
+    font-weight: bold;
+    margin: 20px auto 0;
+    opacity: 0.5;
+    padding: 0;
     text-decoration: none;
-    text-transform: uppercase;
-    width: auto;
+    transition: 0.3s opacity;
 
-    @media (orientation: landscape) {
-        transform: translateY(150%);
+    appearance: none;
+    @media (orientation: portrait) {
+        
+        
     }
-    svg {
-        display: inline-block;
-        height: 11px;
-        margin-left: 4px;
-        position: static;
-        width: 9px;
-
-        path {
-            fill: $main-color;
-        }
+    &:hover {
+        opacity: 1;
     }
 }
 
@@ -212,10 +108,10 @@ svg {
     font-size: 4.0625vw;
     font-weight: bold;
     line-height: 1;
-    margin-top: 10px;
     padding: 15px 15px 12px;
     text-decoration: none;
     text-transform: uppercase;
+    transition: opacity 0.3s;
     white-space: nowrap;
     width: auto;
 
@@ -231,11 +127,26 @@ svg {
     @media (--tablet-medium-above) {
         padding: 15px 30px 12px;
     }
-    &:not(.active) {
-        opacity: 0.5;
-        pointer-events: none;
+    &:after {
+        background-image: url('/images/icons/arrow-right.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: '';
+        display: inline-block;
+        height: 9px;
+        margin-left: 8px;
+        width: 15px;
+
+        @media (--phablet-medium-above) {
+            height: 11px;
+            width: 19px;
+        }
     }
-    svg {
+    &:disabled {
+        opacity: 0.5;
+    }
+    /* svg {
         display: inline-block;
         height: 9px;
         margin-left: 4px;
@@ -249,5 +160,60 @@ svg {
         polygon {
             fill: #ffffff;
         }
+    } */
+}
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#reset-button {
+    bottom: 0;
+    color: inherit;
+    font-family: 'Lovato';
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: auto;
+
+    @media (orientation: landscape) {
+        transform: translateY(130%);
+    }
+    svg {
+        display: inline-block;
+        height: 11px;
+        margin-left: 4px;
+        position: static;
+        width: 9px;
+
+        path {
+            fill: $main-color;
+        }
+    }
+}
+
+.navigation {
+    @media (orientation: portrait) {
+        margin-top: 20px;
+    }
+     @media (orientation: landscape) {
+        margin-top: 30px;
+    }
+}
+
+input[type=checkbox] {
+    border: 3px solid $main-color;
+    height: 15px;
+    vertical-align: top;
+    width: 15px;
+
+    appearance: none;
+    &:checked {
+        background-image: url('/images/icons/tick.svg');
+        background-size: contain;
     }
 }

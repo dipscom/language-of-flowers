@@ -3,11 +3,13 @@
     font-weight: bolder;
     src: url('/fonts/lovato/black.woff') format('woff');
 }
+
 @font-face {
     font-family: 'Lovato';
     font-weight: bold;
     src: url('/fonts/lovato/bold.woff') format('woff');
 }
+
 @font-face {
     font-family: 'Lovato';
     font-weight: normal;
@@ -17,12 +19,16 @@
 h1 {
     font-family: 'Lovato';
     font-weight: bolder;
-    line-height: 1;
+    letter-spacing: -0.075em;
+    line-height: 1.1;
     margin: 0;
     text-align: center;
+    text-indent: -0.075em;
     text-transform: uppercase;
 
     @media (orientation: portrait) {
+        text-align: center;
+
         @media (--phablet-large-below) {
             font-size: 6.875000000000001vw;
         }
@@ -32,7 +38,7 @@ h1 {
     }
     @media (orientation: landscape) {
         @media (--widescreen-small-below) {
-            font-size:3.252710592160134vw;
+            font-size: 3.252710592160134vw;
         }
         @media (--widescreen-small-above) {
             font-size: 39px;
@@ -40,46 +46,36 @@ h1 {
     }
 }
 
-h2,
-h3 {
-    margin: 0;
-}
+.sub-heading,
+.flower h1,
+.bouquet-list,
+#penhaligons-link {
+    font-size: 20px;
 
-h2 {
-    font-family: 'Lovato';
-    font-weight: normal;
-    text-transform: uppercase;
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.2;
-    margin: 0;
-    max-width: 700px;
-
-    @media (--tablet-small-above) {
-        font-size: 20px;
-    }
     @media (--desktop-small-above) {
-        font-size: 22px;
+        font-size: 23px;
     }
 }
 
 strong {
-    display: block;
     font-family: 'Lovato';
-    font-size: 5vw;
-    max-width: 700px;
     text-transform: uppercase;
 
-    @media (orientation: portrait) {
-        margin-top: 10px;
-    }
-    @media (--phablet-large-above) {
-        font-size: 28px;
+    @media (--tablet-small-above) {
+        font-size: 23px;
     }
 }
+p {
+    margin-bottom: 0 !important;
 
-.stage {
-    text-align: center;
+    @media (--tablet-small-below) {
+        margin: 10px 0;
+    }
+    @media (--tablet-small-above) {
+        font-size: 20px;
+    }
+    @media (orientation: landscape) {
+        margin: 30px 0;
+    }
+
 }

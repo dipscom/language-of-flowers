@@ -1,74 +1,79 @@
 import React, { Component } from 'react';
-import TransitionGroup from 'react-addons-transition-group';
-import FlowerDetails from './FlowerDetails'
 
+export default class Flower extends Component {
 
-export default class Flower extends Component{
   render() {
-
-    // console.log("Render Flower");
-
+  	const { bouquetLength, details, index, selectFlower, updateActiveFlower } = this.props;
+  	let classes = '';
+  	if (details.selected) {
+  		classes += 'checked';
+  	} else if (bouquetLength >= 3 && !details.selected){
+  		classes += 'disabled';
+  	}
     return (
-      <TransitionGroup
-        id="flowersDetails"
-        component="div"
-      >
-        <FlowerDetails
-          activeFlower={this.props.activeFlower}
-          flowers={this.props.flowers}
-          key={this.props.activeFlower}
-        />
-      </TransitionGroup>
+      <li
+        id={this.props.index}
+        className="flower"
+        ref={
+          (el) => {
+            this.el = el;
+          }
+        }
+        >
+      	<div className={classes}
+      		onClick={(selectFlower ? () => {selectFlower(index)} : '')}
+      		onMouseOver={
+      			(updateActiveFlower ? () => {this.props.updateActiveFlower(index)} : '')}>
+	      	<figure style={{backgroundImage: 'url(/images/flowers/' + this.props.index + '.png)'}}><div></div></figure>
+	      	<div className="flower-details">
+	      		<h1 className="word">{details.name}</h1>
+            <svg className="doubleline-decoration" viewBox="0 0 1400 40" preserveAspectRatio="xMidYMid">
+              <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
+              <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
+            </svg>
+	      		<strong className="sub-heading word">Meaning</strong>
+	      		<div>
+	      			<p className="word">{details.meaning}</p>
+	      			<p className="word">{details.description}</p>
+	      		</div>
+	      	</div>
+	      </div>
+      </li>
     )
   }
 
 
 
 
-  // /* Animation */
-  // animateIn(callback, delay) {
-  //   TweenMax.from("#flowersDetails", 1, { // eslint-disable-line
-  //     autoAlpha:0,
-  //     delay: delay || 0,
-  //     onComplete:callback
-  //   });
-  // }
-  //
-  // animateOut(callback) {
-  //   TweenMax.to("#flowersDetails", 1, { // eslint-disable-line
-  //     autoAlpha:0,
-  //     ease: "Power4.easeIn",
-  //     onComplete:callback
-  //   });
-  // }
-  //
-  //
-  // /* React Animation Callbacks */
-  // componentWillEnter(callback) {
-  //   console.log("Flower Will enter");
-  //   // this.animateIn(callback, 1);
-  // }
-  //
-  // componentDidEnter() {
-  //   console.log("Flower Did enter");
-  // }
-  //
-  // componentWillAppear(callback) {
-  //   console.log("Flower Will appear");
-  //   this.animateIn(callback, 1);
-  // }
-  //
-  // componentDidAppear() {
-  //   console.log("Flower Did appear");
-  // }
-  //
-  // componentWillLeave(callback) {
-  //   console.log("Flower Will leave");
-  //   this.animateOut(callback);
-  // }
-  //
-  // componentDidLeave() {
-  //   console.log("Flower Did leave");
-  // }
+  componentWillAppear(callback) {
+    console.log("Flower will appear")
+
+    callback();
+  }
+  componentWillEnter(callback) {
+    console.log("Flower will enter")
+
+    let currentTarget = "#" + this.el.id;
+
+    TweenMax.from(currentTarget + " figure", 0.8, { // eslint-disable-line
+      autoAlpha:0,
+      ease: "Power4.easeInOut",
+    });
+
+    TweenMax.staggerFrom(currentTarget + " .word", 0.3, { // eslint-disable-line
+      x: 30,
+      autoAlpha: 0,
+      ease: "Power2.easeOut",
+    }, 0.05);
+
+    callback();
+
+  }
+  componentDidEnter() {
+    console.log("Flower did enter")
+  }
+  componentDidAppear() {
+    console.log("Flower did appear")
+  }
 
 }

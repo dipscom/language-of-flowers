@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import Anchor from './Anchor';
 
 export default class Description extends Component {
-
   render() {
 
     // console.log("-> Description render");
@@ -11,7 +10,7 @@ export default class Description extends Component {
       <div
         id="description"
         key="description"
-        className="stage"
+        className="page"
         ref={
           (el) => {
             this.el = el;
@@ -20,27 +19,23 @@ export default class Description extends Component {
       >
         <div>
         <div>
-          <img className="logo" src="./images/lof-logo.svg" alt="The Language of Flowers" title="The Language of Flowers" />
-            <h1>
-
-              <svg className="doubleline-decoration" viewBox="0 0 1400 40">
-                <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
-                <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
-              </svg>
-
-              Bouquets full of hidden meaning.
-
-              <svg className="doubleline-decoration reflected" viewBox="0 0 1400 40">
-                <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
-                <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
-              </svg>
-
-            </h1>
-            <p>Whilst we don't like to gossip it would appear that there was a 'mistake' and the flowers from Lord George, meant for Lady Blanche, well they seem to have been sent to the divine Clara...With Penhaligon’s Floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas - but what could be more (ah-em) improbable!</p>
-            <strong>Choose the flowers and the recipient wisely</strong>
-            <div>
-              <Link className="button active" to="/create-bouquet">Create your own bouquet <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.1 127.4"><polygon points="0 0.3 221.1 64 0.1 127.4 35.4 66.9 "/></svg></Link>
-            </div>
+          {/*<img className="logo" src="./images/lof-logo.svg" alt="The Language of Flowers" title="The Language of Flowers" />*/}
+          <header>
+            <svg className="doubleline-decoration" viewBox="0 0 1400 40">
+              <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
+              <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
+            </svg>
+            <h1>Bouquets full of hidden meaning.</h1>
+            <svg className="doubleline-decoration reflected" viewBox="0 0 1400 40">
+              <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
+              <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
+            </svg>
+          </header>
+          <p>Whilst we don't like to gossip it would appear that there was a 'mistake' and the flowers from Lord George, meant for Lady Blanche, well they seem to have been sent to the divine Clara...With Penhaligon’s Floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas - but what could be more (ah-em) improbable!</p>
+          <p><strong>Choose the flowers and the recipient wisely</strong></p>
+          <nav className="navigation">
+            <Anchor cta="Create your own bouquet" step="forward" target="build-bouquet" />
+          </nav>
         </div>
         </div>
         </div>
@@ -95,7 +90,5 @@ export default class Description extends Component {
   componentDidLeave() {
     // console.log("Description Did leave");
   }
-
-
 
 }
