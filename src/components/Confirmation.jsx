@@ -54,6 +54,7 @@ export default class Confirmation extends Component {
     let currentTarget = "#" + this.el.id;
     TweenMax.from(currentTarget, 0.5, { // eslint-disable-line
       autoAlpha:0,
+      delay:0.5,
       onComplete:callback
     });
   }

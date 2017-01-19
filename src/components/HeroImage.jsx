@@ -29,8 +29,13 @@ export default class HeroImage extends Component {
 		callback();
 	}
 	componentWillEnter(callback) {
-		console.log("HeroImage will enter")
-		callback();
+		console.log("HeroImage will enter");
+    TweenMax.from("#hero-image", 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      delay: 0.5,
+      onComplete:callback
+    })
+
 	}
 	componentDidEnter() {
 		console.log("HeroImage did enter")
@@ -38,4 +43,14 @@ export default class HeroImage extends Component {
 	componentDidAppear() {
 		console.log("HeroImage did appear")
 	}
+  componentWillLeave(callback) {
+    console.log("HeroImage will leave");
+    TweenMax.set("#hero-image", { // eslint-disable-line
+      position:"absolute"
+    });
+    TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      onComplete:callback
+    });
+  }
 }

@@ -83,7 +83,7 @@ export default class Description extends Component {
   }
 
   componentWillLeave(callback) {
-    // console.log("Description Will leave");
+    console.log("Description Will leave");
     this.animateOut(callback);
   }
 

@@ -8,20 +8,6 @@ export default class PersonDetails extends Component {
     this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
 
   }
-  componentWillAppear(callback) {
-		console.log("PersonInput will appear")
-		callback();
-	}
-	componentWillEnter(callback) {
-		console.log("PersonInput will enter")
-		callback();
-	}
-	componentDidEnter() {
-		console.log("PersonInput did enter")
-	}
-	componentDidAppear() {
-		console.log("PersonInput did appear")
-	}
 	capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -33,15 +19,15 @@ export default class PersonDetails extends Component {
   		if(this.props[this.props.index].name !== '' && this.props[this.props.index].valid) {
   		} else {
   			disabled = 'disabled';
-  		}	 
+  		}
   	} else {
   		if (this.props[this.props.index].name !== '' && this.props[this.props.index].valid) {
-  		} else { 
+  		} else {
   			disabled = true
   		}
   	}
     return (
-    	<div className="person-details">
+    	<div id={this.props.index} className="person-details">
       <form>
     		<header>
 	    		<h1>{this.props.heading}</h1>
@@ -56,11 +42,48 @@ export default class PersonDetails extends Component {
 	    	<input type="email" id="email" className={this.props.index} name="email" value={this.props[this.props.index].email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
 	    	<Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} />
     	</form>
-      { typeof this.props.nextStep === 'string' ? 
-          <Anchor className={disabled} cta={this.props.nextCta}  step="forward" target="confirmation" /> : 
+      { typeof this.props.nextStep === 'string' ?
+          <Anchor className={disabled} cta={this.props.nextCta}  step="forward" target="confirmation" /> :
           <Button className="button" cta={this.props.nextCta} disabled={disabled} step={this.props.nextStep} />
         }
       </div>
     )
   }
+
+
+
+
+	/* Animation */
+	componentWillAppear(callback) {
+		console.log("PersonInput will appear")
+		callback();
+	}
+	componentWillEnter(callback) {
+		console.log("PersonInput will enter");
+		const trg = "#" + this.props.index;
+		TweenMax.from(trg, 0.5, { // eslint-disable-line
+			autoAlpha: 0,
+			delay: 0.5
+		});
+
+
+		callback();
+	}
+	componentDidEnter() {
+		console.log("PersonInput did enter")
+	}
+	componentDidAppear() {
+		console.log("PersonInput did appear")
+	}
+	componentWillLeave(callback) {
+		const trg = "#" + this.props.index;
+		console.log("HeroImage will leave");
+		TweenMax.set(trg, { // eslint-disable-line
+			position:"absolute"
+		});
+		TweenMax.to(trg, 0.5, { // eslint-disable-line
+			autoAlpha:0,
+			onComplete:callback
+		});
+	}
 }

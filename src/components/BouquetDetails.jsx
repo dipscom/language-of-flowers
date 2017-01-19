@@ -21,8 +21,8 @@ export default class BouquetDetails extends Component {
   	      	}
   	      </ol>
           <Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} />
-          { this.props.step === 2 ? 
-          <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} /> : 
+          { this.props.step === 2 ?
+          <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} /> :
           <Anchor className="button" cta={this.props.nextCta} step="forward" target="share" />
         }
         </div>
@@ -39,8 +39,13 @@ export default class BouquetDetails extends Component {
     callback();
   }
   componentWillEnter(callback) {
-    console.log("BouquetDetails will enter")
-    callback();
+    console.log("BouquetDetails will enter");
+    TweenMax.from("#bouquet-details", 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      delay: 0.5,
+      onComplete:callback
+    })
+
   }
   componentDidEnter() {
     console.log("BouquetDetails did enter")
@@ -48,5 +53,16 @@ export default class BouquetDetails extends Component {
   componentDidAppear() {
     console.log("BouquetDetails did appear")
   }
+  componentWillLeave(callback) {
+    console.log("BouquetDetails will leave");
+    TweenMax.set("#bouquet-details", { // eslint-disable-line
+      position:"absolute"
+    });
+    TweenMax.to("#bouquet-details", 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      onComplete:callback
+    });
+  }
+
 
 }

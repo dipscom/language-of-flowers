@@ -45,28 +45,35 @@ export default class FlowerSelect extends Component {
 
   /* Animation */
   componentWillAppear(callback) {
-    console.log("FlowerSelect will appear")
+    // console.log("FlowerSelect will appear")
 
-    TweenMax.staggerFrom("#flower-list > li", 1.5, { // eslint-disable-line
-      autoAlpha:0
-    }, 0.05)
+    // TweenMax.staggerFrom("#flower-list > li", 1.5, { // eslint-disable-line
+    //   autoAlpha:0
+    // }, 0.1);
     callback();
   }
   componentWillEnter(callback) {
-    console.log("FlowerSelect will enter")
+    // console.log("FlowerSelect will enter")
+    TweenMax.staggerFrom("#flower-list > li", 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      delay:0.5
+    }, 0.1);
     callback();
   }
   componentDidEnter() {
-    console.log("FlowerSelect did enter")
+    // console.log("FlowerSelect did enter")
   }
   componentDidAppear() {
-    console.log("FlowerSelect did appear")
+    // console.log("FlowerSelect did appear")
   }
   componentWillLeave(callback) {
-    console.log("FlowerSelect will leave");
-    TweenMax.to("#flower-select", 3.5, { // eslint-disable-line
+    // console.log("FlowerSelect will leave");
+    TweenMax.set("#flower-select", { // eslint-disable-line
+      position:"absolute"
+    });
+    TweenMax.to("#flower-select", 0.5, { // eslint-disable-line
       autoAlpha:0,
       onComplete:callback
-    })
+    });
   }
 }

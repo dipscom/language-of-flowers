@@ -22,7 +22,7 @@ export default class Form extends Component {
       this.setState({
         activeFlower: Object.keys(this.props.flowers)[0]
       });
-    }  
+    }
   }
   updateActiveFlower(key) {
     if (this.state.activeFlower !== key) {
@@ -34,14 +34,14 @@ export default class Form extends Component {
   formStepLeft() {
   	switch (this.props.steps.current) {
       case 1:
-      	return <FlowerSelect 
+      	return <FlowerSelect
       					key="flower-select"
       					bouquet={this.props.bouquet}
       					flowers={this.props.flowers}
       					selectFlower={this.props.selectFlower}
       					updateActiveFlower={this.updateActiveFlower} />
       default:
-      	return <HeroImage 
+      	return <HeroImage
       					key="hero-image"
       					bouquet={this.props.bouquet}
       					step={this.props.steps.current} />
@@ -50,7 +50,7 @@ export default class Form extends Component {
 	formStepRight() {
   	switch (this.props.steps.current) {
       case 1:
-        return <FlowerDetails 
+        return <FlowerDetails
         				key="flower-details"
         				bouquetLength={this.props.bouquet.length}
         				flowers={this.props.flowers}
@@ -90,7 +90,7 @@ export default class Form extends Component {
         				nextCta="Confirm & send"
         				prevStep={this.props.prevStep}
         				nextStep="confirmation" />
-      default: 
+      default:
       	return <BouquetDetails
         				key="bouquet-details"
         				bouquet={this.props.bouquet}
@@ -100,9 +100,9 @@ export default class Form extends Component {
         				/>
   	}
 	}
-  render() { 
+  render() {
   	// let i = 1;
-    
+
     return (
       <div id="form">
       	<div>
@@ -119,7 +119,33 @@ export default class Form extends Component {
 		      	</nav>*/}
 		      </div>
 	      </div>
-      </div> 
+      </div>
     )
   }
+
+
+
+
+	/* Animation */
+	componentWillEnter(callback) {
+		// console.log("Form will enter")
+		TweenMax.from("#form", 0.5, { // eslint-disable-line
+		  autoAlpha:0,
+		  delay: 0.5,
+		  onComplete:callback
+		});
+	}
+	componentDidEnter() {
+		// console.log("Form did enter")
+	}
+
+	componentWillLeave(callback) {
+		// console.log("Form Will leave");
+		TweenMax.to("#form", 0.5, { // eslint-disable-line
+		  autoAlpha:0,
+		  onComplete:callback
+		});
+	}
+
+
 }

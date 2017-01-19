@@ -28,14 +28,14 @@ export default class FlowerDetails extends Component {
   /* Animation */
   componentWillAppear(callback) {
     console.log("FlowerDetails will appear")
-
-    TweenMax.from("#flower-details", 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      onComplete:callback
-    })
+    callback();
   }
   componentWillEnter(callback) {
     console.log("FlowerDetails will enter")
+    TweenMax.from("#flower-details", 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      delay: 0.5,
+    })
     callback();
   }
   componentDidEnter() {
@@ -44,5 +44,16 @@ export default class FlowerDetails extends Component {
   componentDidAppear() {
     console.log("FlowerDetails did appear")
   }
+  componentWillLeave(callback) {
+    console.log("FlowerDetails will leave");
+    TweenMax.set("#flower-details", { // eslint-disable-line
+      position:"absolute"
+    });
+    TweenMax.to("#flower-details", 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      onComplete:callback
+    });
+  }
+
 
 }

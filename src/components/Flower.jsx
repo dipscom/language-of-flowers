@@ -46,12 +46,12 @@ export default class Flower extends Component {
 
 
   componentWillAppear(callback) {
-    console.log("Flower will appear")
+    // console.log("Flower will appear")
 
     callback();
   }
   componentWillEnter(callback) {
-    console.log("Flower will enter")
+    // console.log("Flower will enter")
 
     let currentTarget = "#" + this.el.id;
 
@@ -70,10 +70,10 @@ export default class Flower extends Component {
 
   }
   componentDidEnter() {
-    console.log("Flower did enter")
+    // console.log("Flower did enter")
   }
   componentDidAppear() {
-    console.log("Flower did appear")
+    // console.log("Flower did appear")
   }
 
 }

@@ -74,16 +74,17 @@ export default class Success extends Component{
     let currentTarget = "#" + this.el.id;
     let dly = 2;
 
-    // TweenMax.set("#products", {autoAlpha:0}); // eslint-disable-line
+    TweenMax.set("#products", {autoAlpha:0}); // eslint-disable-line
 
-    // TweenMax.from(currentTarget, 0.5, { // eslint-disable-line
-    //   autoAlpha:0,
-    //   onComplete:function () {
-    //     TweenMax.to("#thank-you", 0.6, {autoAlpha:0, delay:dly}); // eslint-disable-line
-    //     TweenMax.to("#products", 0.6, {autoAlpha:1, delay:dly}); // eslint-disable-line
-    //     callback();
-    //   }
-    // });
+    TweenMax.from(currentTarget, 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      delay:0.5,
+      onComplete:function () {
+        TweenMax.to("#thank-you", 0.6, {autoAlpha:0, delay:dly}); // eslint-disable-line
+        TweenMax.to("#products", 0.6, {autoAlpha:1, delay:dly}); // eslint-disable-line
+        callback();
+      }
+    });
   }
 
   componentWillAppear(callback) {
