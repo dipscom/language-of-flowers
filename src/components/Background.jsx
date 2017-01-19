@@ -35,6 +35,6 @@ export default class Background extends Component {
   }
 
   componentWillAppear(callback) {
-    console.log("Background Will appear");
+    // console.log("Background Will appear");
   }
 }
