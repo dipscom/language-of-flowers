@@ -40,6 +40,7 @@ main {
         position: fixed;
     }
 }
+
 svg {
     fill: none;
     stroke: rgba(0, 0, 0, 0.3);
@@ -78,7 +79,6 @@ svg {
     border: none;
     color: $main-color;
     display: block;
-    font-family: 'Lovato';
     font-weight: bold;
     margin: 20px auto 0;
     opacity: 0.5;
@@ -86,11 +86,9 @@ svg {
     text-decoration: none;
     transition: 0.3s opacity;
 
+    @extend lovato;
     appearance: none;
-    @media (orientation: portrait) {
-        
-        
-    }
+    @media (orientation: portrait) {}
     &:hover {
         opacity: 1;
     }
@@ -104,7 +102,6 @@ svg {
     box-shadow: 1px 1px 0 black;
     color: #ffffff;
     display: inline-block;
-    font-family: 'Lovato';
     font-size: 4.0625vw;
     font-weight: bold;
     line-height: 1;
@@ -115,6 +112,7 @@ svg {
     white-space: nowrap;
     width: auto;
 
+    @extend lovato;
     @media (--phablet-medium-above) {
         font-size: 18px;
     }
@@ -162,6 +160,7 @@ svg {
         }
     } */
 }
+
 .disabled {
     opacity: 0.5;
     pointer-events: none;
@@ -170,7 +169,6 @@ svg {
 #reset-button {
     bottom: 0;
     color: inherit;
-    font-family: 'Lovato';
     font-size: 12px;
     font-weight: bold;
     line-height: 1;
@@ -180,6 +178,7 @@ svg {
     text-transform: uppercase;
     width: auto;
 
+    @extend lovato;
     @media (orientation: landscape) {
         transform: translateY(130%);
     }
@@ -200,7 +199,7 @@ svg {
     @media (orientation: portrait) {
         margin-top: 20px;
     }
-     @media (orientation: landscape) {
+    @media (orientation: landscape) {
         margin-top: 30px;
     }
 }

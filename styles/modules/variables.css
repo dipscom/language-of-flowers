@@ -1,2 +1,8 @@
 $main-color: #373332;
 $green: #689778;
+
+@define-extend lovato {
+    font-family: 'Lovato';
+    letter-spacing: -0.0515em;
+    text-indent: -0.0515em;
+}
