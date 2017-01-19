@@ -8,7 +8,7 @@ export default class Overlay extends Component {
     console.log("Overlay constructor:");
 
     // this.tl = null;
-    this.tl = new TimelineMax({delay:2.5}); // eslint-disable-line
+    this.tl = new TimelineMax(); // eslint-disable-line
 
 
   }
@@ -52,20 +52,17 @@ export default class Overlay extends Component {
 
   handleAnimation() {
 
-    console.log("Overlay handleAnimation:", this.props.location.pathname);
+    console.log("Overlay handleAnimation:", this.props.location.pathname, this.tl.isActive());
     switch (this.props.location.pathname) {
-      case "/create-bouquet":
-      case "/view-bouquet":
-      case "/recipient":
-      case "/sender":
-        if(this.tl) {
-          // this.tl.timeScale(3.5)
-          // this.tl.reverse();
+      case "build-bouquet":
+      case "recipient":
+      case "sender":
+        if(this.tl && !this.tl.isActive()) {
           this.tl.play("AnimateOut")
         }
         break;
 
-      case "/description":
+      case "description":
         this.tl.pause("Hold");
       break;
 
@@ -87,6 +84,7 @@ export default class Overlay extends Component {
   componentDidMount() {
     // DOM manipulation should happen here.
     console.log("Overlay did mount:");
+
 
     // We're using normal CSS selectors because we know for a fact that this component will not be unmounted and/or changed at any time during the existence of this webapp
     this.tl

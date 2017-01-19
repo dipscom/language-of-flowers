@@ -18,7 +18,8 @@
         }
     }
     > * {
-        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
 
         @media (orientation: portrait) {
             height: 100%;
@@ -113,7 +114,7 @@
 }
 
 #flower-select {
-    position: absolute;
+    position: relative;
 
     header {
         @media (orientation: landscape) {
@@ -282,9 +283,15 @@
 }
 
 #flower-details {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    position: relative;
+
     ul {
         list-style-type: none;
         padding: 0;
+        width: 100%;
 
         @media (orientation: portrait) {
             text-align: center;
@@ -337,7 +344,7 @@
 #hero-image {
     height: 100%;
     left: 0;
-    position: absolute;
+    position: relative;
     top: 0;
     width: 100%;
 
@@ -369,7 +376,7 @@
     height: 100%;
     left: 0;
     margin: 0 auto;
-    position: absolute;
+    position: relative;
     top: 0;
     width: 100%;
 
@@ -420,13 +427,14 @@
 }
 
 .person-details {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    position: relative;
+
     @media (orientation: portrait) {
         text-align: center;
-    }
-    form {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
     }
     label {
         color: $main-color;

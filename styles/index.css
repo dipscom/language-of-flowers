@@ -7,6 +7,7 @@
 
 /* Partials */
 @import "./partials/background.css";
+@import "./partials/overlay.css";
 @import "./partials/typography.css";
 @import "./partials/base.css";
 @import "./partials/page.css";
@@ -14,5 +15,4 @@
 
 /* @import "./partials/confirmation.css"; */
 /* @import "./partials/success.css"; */
-/* @import "./partials/overlay.css"; */
 /* @import "./partials/my-bouquet.css"; */

@@ -3,6 +3,7 @@ import TransitionGroup from 'react-addons-transition-group'
 import flowers from '../data/flowers';
 import products from '../data/products';
 import Background from './Background';
+import Overlay from './Overlay';
 // import TransitionGroup from 'react-addons-transition-group';
 const initialState = {
   bouquet: [],
@@ -40,7 +41,7 @@ export default class App extends Component {
   componentWillMount(){
     let bouquet, recipient, sender, flowers, products, steps;
     const accessTime = Number((localStorage.getItem('accessTime'))) + 20000, timeStamp = Date.now();
-    
+
     if(Object.keys(this.props.location.query).length !== 0) {
       if (this.props.location.query.bouquet && this.props.location.query.recipient && this.props.location.query.sender) {
         bouquet = this.props.location.query.bouquet.split(',');
@@ -77,13 +78,13 @@ export default class App extends Component {
         if(localStorage.getItem('steps')) {
           steps = {...JSON.parse(localStorage.getItem('steps'))};
         }
-      } 
+      }
 
       else {
       if(window.location.pathname !== '/') {
         window.location = '/';
       }
-    }  
+    }
     if(bouquet) {
       this.setState({
         bouquet : bouquet
@@ -125,9 +126,9 @@ export default class App extends Component {
     localStorage.setItem('terms', nextState.terms);
     localStorage.setItem('accessTime', Date.now());
   }
-  mailChimp(){  
+  mailChimp(){
     const data = {
-        EMAIL: this.state.recipient.email,  
+        EMAIL: this.state.recipient.email,
         NAME: this.state.recipient.name,
         SNAME: this.state.sender.name,
         SEMAIL: this.state.sender.email,
@@ -211,6 +212,7 @@ export default class App extends Component {
             key: key
           }
         )}
+        <Overlay location={this.props.location}/>
       </TransitionGroup>
     )
   }

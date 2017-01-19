@@ -80,7 +80,8 @@
             left: 50%;
             position: absolute;
             top: 2.5%;
-            transform: translateX(-50%);
+
+            /* transform: translateX(-50%); */
         }
          @media (orientation: portrait) {
             margin: 3.571428571428571% auto 0;
