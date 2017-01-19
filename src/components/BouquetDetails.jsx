@@ -16,22 +16,24 @@ export default class BouquetDetails extends Component {
   render() {
     return (
       <div id="bouquet-details">
-      	<header>
-	      	<h1>Your Bouquet</h1>
-	      </header>
-	      <ol className="bouquet-list">
-	      	{this.props.bouquet
-	      		.map(key =>
-	      			<Flower
-	      				key={key}
-	      				index={key}
-	      				details={this.props.flowers[key]} />)
-	      	}
-	      </ol>
-        <Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} />
-        <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} />
-	      {/*prevButton}
-	      {nextButton*/}
+      	<div>
+          <header>
+  	      	<h1>Your Bouquet</h1>
+  	      </header>
+  	      <ol className="bouquet-list">
+  	      	{this.props.bouquet
+  	      		.map(key =>
+  	      			<Flower
+  	      				key={key}
+  	      				index={key}
+  	      				details={this.props.flowers[key]} />)
+  	      	}
+  	      </ol>
+          <Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} />
+          <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} />
+  	      {/*prevButton}
+  	      {nextButton*/}
+        </div>
 	    </div>
     )
   }
