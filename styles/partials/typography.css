@@ -17,15 +17,13 @@
 }
 
 h1 {
-    font-family: 'Lovato';
     font-weight: bolder;
-    letter-spacing: -0.075em;
     line-height: 1.1;
     margin: 0;
     text-align: center;
-    text-indent: -0.075em;
     text-transform: uppercase;
 
+    @extend lovato;
     @media (orientation: portrait) {
         text-align: center;
 
@@ -58,9 +56,9 @@ h1 {
 }
 
 strong {
-    font-family: 'Lovato';
     text-transform: uppercase;
 
+     @extend lovato;
     @media (--tablet-small-above) {
         font-size: 23px;
     }

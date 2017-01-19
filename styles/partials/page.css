@@ -65,16 +65,17 @@
         border-bottom: 1px solid $main-color;
         border-top: 1px solid $main-color;
         color: $green;
-        font-family: 'Lovato';
         font-weight: bold;
         list-style-type: none;
         padding: 20px 0;
 
+         @extend lovato;
         * {
             display: inline;
         }
         figure,
         h1,
+        svg,
         strong,
         p:last-child {
             display: none;
@@ -121,7 +122,13 @@
 
 #success {
     #thank-you {
+        left: 50%;
+        min-height: auto;
         position: absolute;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: auto;
+
     }
 }
 
@@ -190,9 +197,10 @@
     }
     a {
         color: inherit;
-       font-family: 'Lovato';
         font-weight: bold; 
         text-decoration: none;
+
+        @extend lovato;
     }
     .share-link {
         align-items: center;
