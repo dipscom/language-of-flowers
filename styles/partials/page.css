@@ -19,7 +19,8 @@
         }
     }
     > * {
-        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
 
         @media (orientation: portrait) {
             height: 100%;
