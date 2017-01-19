@@ -92,6 +92,17 @@ svg {
     &:hover {
         opacity: 1;
     }
+    &:before {
+        background-image: url('/images/icons/arrow-left.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: '';
+        display: inline-block;
+        height: 12px;  
+        margin-right: 4px;
+        width: 12px;
+    }
 }
 
 .button {
@@ -144,21 +155,6 @@ svg {
     &:disabled {
         opacity: 0.5;
     }
-    /* svg {
-        display: inline-block;
-        height: 9px;
-        margin-left: 4px;
-        position: static;
-        width: 15px;
-
-        @media (--phablet-medium-above) {
-            height: 10px;
-            width: 17px;
-        }
-        polygon {
-            fill: #ffffff;
-        }
-    } */
 }
 
 .disabled {
