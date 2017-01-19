@@ -19,7 +19,7 @@
         }
     }
     > * {
-        overflow: scroll;
+        overflow: auto;
 
         @media (orientation: portrait) {
             height: 100%;

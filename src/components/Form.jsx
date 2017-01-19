@@ -9,16 +9,12 @@ import PersonDetails from './PersonDetails';
 
 const initialState = {
 	activeFlower: null,
-  step: 1,
-  totalSteps: 4
 };
 
 export default class Form extends Component {
   constructor(){
     super();
     this.state = initialState;
-    this.nextStep = this.nextStep.bind(this);
-    this.prevStep = this.prevStep.bind(this);
     this.updateActiveFlower = this.updateActiveFlower.bind(this);
   }
   componentWillMount(){
@@ -26,22 +22,8 @@ export default class Form extends Component {
       this.setState({
         activeFlower: Object.keys(this.props.flowers)[0]
       });
-    }
-    // if (localStorage.getItem('step')) {
-    //   this.setState({
-    //     step : Number(localStorage.getItem('step'))
-    //   });
-    // }
-    
-    if (this.props.route.path === 'viewbouquet') {
-      this.setState({
-        step : 0
-      });
-    }
+    }  
   }
-  // componentWillUpdate(nextProps, nextState) {
-  //   localStorage.setItem('step', nextState.step);
-  // }
   updateActiveFlower(key) {
     if (this.state.activeFlower !== key) {
       this.setState({
@@ -49,23 +31,8 @@ export default class Form extends Component {
       })
     }
   }
-  nextStep() {
-    this.setState({
-      step : this.state.step + 1
-    });
-  }
-  prevStep() {
-    this.setState({
-      step : this.state.step - 1
-    });
-  }
-  updateStep() {
-  	this.setState({
-      step : this.state.step - 1
-    });
-  }
   formStepLeft() {
-  	switch (this.state.step) {
+  	switch (this.props.steps.current) {
       case 1:
       	return <FlowerSelect 
       					key="flower-select"
@@ -77,11 +44,11 @@ export default class Form extends Component {
       	return <HeroImage 
       					key="hero-image"
       					bouquet={this.props.bouquet}
-      					step={this.state.step} />
+      					step={this.props.steps.current} />
   	}
 	}
 	formStepRight() {
-  	switch (this.state.step) {
+  	switch (this.props.steps.current) {
       case 1:
         return <FlowerDetails 
         				key="flower-details"
@@ -89,7 +56,7 @@ export default class Form extends Component {
         				flowers={this.props.flowers}
         				activeFlower={this.state.activeFlower}
         				nextCta="View your bouquet"
-        				nextStep={this.nextStep} />
+        				nextStep={this.props.nextStep} />
       case 2:
         return <BouquetDetails
         				key="bouquet-details"
@@ -97,8 +64,9 @@ export default class Form extends Component {
         				flowers={this.props.flowers}
         				prevCta="Change bouquet"
         				nextCta="Their details"
-        				nextStep={this.nextStep}
-        				prevStep={this.prevStep} />
+        				nextStep={this.props.nextStep}
+        				prevStep={this.props.prevStep}
+                step={this.props.steps.current} />
       case 3:
         return <PersonDetails
         				key="recipient"
@@ -108,8 +76,8 @@ export default class Form extends Component {
         				heading="Their Detials"
         				prevCta="View bouquet"
         				nextCta="Your details"
-        				nextStep={this.nextStep}
-        				prevStep={this.prevStep} />
+        				nextStep={this.props.nextStep}
+        				prevStep={this.props.prevStep} />
 
       case 4:
         return <PersonDetails
@@ -120,7 +88,7 @@ export default class Form extends Component {
         				heading="Your Detials"
         				prevCta="Their Details"
         				nextCta="Confirm & send"
-        				prevStep={this.prevStep}
+        				prevStep={this.props.prevStep}
         				nextStep="confirmation" />
       default: 
       	return <BouquetDetails
@@ -128,7 +96,7 @@ export default class Form extends Component {
         				bouquet={this.props.bouquet}
         				flowers={this.props.flowers}
         				nextCta="Win Penhaligon's Portraits"
-        				nextStep="share"
+                step={this.props.steps.current}
         				/>
   	}
 	}
@@ -147,7 +115,7 @@ export default class Form extends Component {
 		      		{this.formStepRight()}
 		      	</TransitionGroup>
 		      	{/*<nav id="form-navigation">
-		      		<NavLink key={i} step={this.state.step} />
+		      		<NavLink key={i} step={this.props.steps.current} />
 		      	</nav>*/}
 		      </div>
 	      </div>

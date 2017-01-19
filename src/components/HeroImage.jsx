@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class HeroImage extends Component {
   render() {
   	let classes = '';
-  	if (this.props.step >= 3) {
+  	if (this.props.step > 2) {
   		classes += 'hide-portrait';
   	}
     return (
