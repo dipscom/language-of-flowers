@@ -61,8 +61,12 @@
       To begin the development, run `npm start`.
       To create a production bundle, use `npm run build`.
     -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
-    <script>window.TweenMax || document.write('<script src="/scripts/TweenMax.min.js"><\x3C/script>')</script>
+    <script>
+    window.jQuery || document.write('<script src="/scripts/jquery-3.1.1.min"><\x3C/script>');
+    window.TweenMax || document.write('<script src="/scripts/TweenMax.min.js"><\x3C/script>');
+    </script>
     <script src="scripts/DrawSVGPlugin.min.js"></script>
     <script src="scripts/ModifiersPlugin.min.js"></script>
 </body>

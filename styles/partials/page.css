@@ -9,7 +9,6 @@
 
     @media (orientation: landscape) {
         padding: 3.125%;
-
     }
     @media (orientation: portrait) {
         @media (--desktop-small-below) {
@@ -25,12 +24,11 @@
         @media (orientation: portrait) {
             height: 100%;
 
-           @media (--tablet-small-below) {
+            @media (--tablet-small-below) {
                 padding: calc(3.571428571428571% + 66px + 20px) 3.571428571428571% 3.571428571428571%;
             }
             @media (--tablet-small-above) {
-                padding: calc(7.8125% + 66px) 7.8125% 7.8125%
-                ;
+                padding: calc(7.8125% + 66px) 7.8125% 7.8125%;
             }
         }
         @media (orientation: landscape) {
@@ -49,12 +47,17 @@
             width: 90%;
 
             @media (orientation: landscape) {
-            align-content: center;
-            max-width: 800px;
+                align-content: center;
+                max-width: 800px;
             }
             > * {
                 width: 100%;
             }
+        }
+    }
+    p {
+        span {
+            color: $green;
         }
     }
     .bouquet-list {
@@ -84,6 +87,7 @@
         }
     }
 }
+
 #introduction {
     p {
         &:first-of-type {
@@ -104,24 +108,74 @@
                     text-transform: uppercase;
                 }
             }
-            span {
-                color: $green;
-            }
         }
     }
     .bouquet-list {
-        p{
-        font-size: 28px;
-        font-weight: bold;}
+        p {
+            font-size: 28px;
+            font-weight: bold;
+        }
     }
 }
 
 #success {
-  #thank-you {
-    position: absolute;
-  }
+    #thank-you {
+        position: absolute;
+    }
 }
 
 .terms {
     font-size: 13px;
+}
+
+#products {
+    p {
+        a {
+            color: #80a78d;
+            text-decoration: none;
+        }
+    }
+    svg {
+        margin: 2vh 0;
+        width: 100%;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        @media (orientation: landscape) {
+            display: flex;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        p {
+            font-size: 20px;
+
+            &:last-child {
+                font-size: 18px;
+                margin-top: 10px;
+                opacity: 0.55;
+            }
+        }
+    }
+    li {
+        @media (orientation: landscape) {
+            flex-grow: 1;
+            width: 30%;
+        }
+    }
+    figure {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-bottom: 20px;
+        padding-top: 22vh;
+    }
+    h2 {
+        text-transform: none;
+    }
 }

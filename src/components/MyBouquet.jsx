@@ -24,9 +24,9 @@ export default class MyBouquet extends Component{
               <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke" />
               <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke" />
             </svg>
-            <p>What could be more elegant than a bouquet of flowers!</p>
+            <p><strong>What could be more elegant than a bouquet of flowers!</strong></p>
             <p>A message that speaks a 1000 as yet unknown words...</p>
-            <p>Find out <span>{this.props.sender.name}</span>’s innermost feelings for you.</p>
+            <p><strong>Find out <span>{this.props.sender.name}’s</span> innermost feelings for you.</strong></p>
             <nav className="navigation">
               <Anchor cta="Decode your bouquet" step="forward" target="viewbouquet" />
             </nav>

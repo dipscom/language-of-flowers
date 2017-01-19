@@ -41,7 +41,8 @@ export default class PersonDetails extends Component {
   		}
   	}
     return (
-    	<form className="person-input">
+    	<div className="person-details">
+      <form>
     		<header>
 	    		<h1>{this.props.heading}</h1>
 	    		<svg className="doubleline-decoration" viewBox="0 0 1400 40">
@@ -54,11 +55,12 @@ export default class PersonDetails extends Component {
 	    	<label htmlFor="email">{this.capitalizeFirstLetter(this.props.index)} email</label>
 	    	<input type="email" id="email" className={this.props.index} name="email" value={this.props[this.props.index].email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
 	    	<Button cta={this.props.prevCta} step={this.props.prevStep} />
-	    	{ typeof this.props.nextStep === 'string' ? 
-	    		<Anchor name={this.props.nextCta} className={disabled} step="forward" target={this.props.nextStep} /> : 
-	    		<Button cta={this.props.nextCta} disabled={disabled} step={this.props.nextStep} />
-	    	}
     	</form>
+      { typeof this.props.nextStep === 'string' ? 
+          <Anchor name={this.props.nextCta} className={disabled} step="forward" target={this.props.nextStep} /> : 
+          <Button cta={this.props.nextCta} disabled={disabled} step={this.props.nextStep} />
+        }
+      </div>
     )
   }
 }

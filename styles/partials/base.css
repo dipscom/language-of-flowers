@@ -111,6 +111,7 @@ svg {
     padding: 15px 15px 12px;
     text-decoration: none;
     text-transform: uppercase;
+    transition: opacity 0.3s;
     white-space: nowrap;
     width: auto;
 

@@ -6,19 +6,19 @@ export default class FlowerDetails extends Component {
   render() {
   	const disabled = (this.props.bouquetLength >= 3 ? false : true );
     return (
-      <ul id="flower-details">
-	      {
-          <TransitionGroup>
-            <Flower
-              index={this.props.activeFlower}
-              key={this.props.activeFlower}
-              details={this.props.flowers[this.props.activeFlower]}/>
-          </TransitionGroup>
-	      }
-	      <li>
-	      	<Button disabled={disabled} cta={this.props.nextCta} step={this.props.nextStep} />
-	      </li>
-      </ul>
+      <div  id="flower-details">
+        <ul>
+  	      {
+            <TransitionGroup>
+              <Flower
+                index={this.props.activeFlower}
+                key={this.props.activeFlower}
+                details={this.props.flowers[this.props.activeFlower]}/>
+            </TransitionGroup>
+  	      }
+        </ul>
+        <Button disabled={disabled} cta={this.props.nextCta} step={this.props.nextStep} />
+      </div>
     )
   }
 

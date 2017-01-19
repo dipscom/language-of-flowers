@@ -18,7 +18,7 @@
         }
     }
     > * {
-        overflow: scroll;
+        overflow: auto;
 
         @media (orientation: portrait) {
             height: 100%;
@@ -27,8 +27,7 @@
                 padding: calc(3.571428571428571% + 66px + 20px) 3.571428571428571% 3.571428571428571%;
             }
             @media (--tablet-small-above) {
-                padding: calc(7.8125% + 66px) 7.8125% 7.8125%
-                ;
+                padding: calc(7.8125% + 66px) 7.8125% 7.8125%;
             }
         }
         @media (orientation: landscape) {
@@ -51,7 +50,7 @@
     h1 {
         @media (orientation: landscape) {
             text-align: left;
-        } 
+        }
     }
     input {
         background: none;
@@ -62,6 +61,7 @@
         font-size: 34px;
         font-weight: bold;
         margin: 0;
+        transition: color 0.3s;
         width: 100%;
 
         &:valid {
@@ -75,8 +75,10 @@
             right: 0;
         }
     }
-    .back-button {@media (orientation: landscape) {
-        margin-left: 0;}
+    .back-button {
+        @media (orientation: landscape) {
+            margin-left: 0;
+        }
     }
 }
 
@@ -84,6 +86,7 @@
     position: relative;
 
     @media (orientation: portrait) {
+        min-height: 100%;
         width: 100%;
     }
     @media (orientation: landscape) {
@@ -92,8 +95,7 @@
         height: 100%;
         width: 45%;
     }
-    > * {position: absolute;
-
+    > * {
         @media (orientation: landscape) {
             width: 100%;
         }
@@ -111,9 +113,8 @@
 }
 
 #flower-select {
-    @media (orientation: landscape) {
-        position: relative;
-    }
+    position: absolute;
+
     header {
         @media (orientation: landscape) {
             bottom: 100%;
@@ -139,10 +140,10 @@
                 display: inline;
             }
             h1 {
-               @media (--tablet-small-below) {
-                display: block;
-                text-align: left;
-               } 
+                @media (--tablet-small-below) {
+                    display: block;
+                    text-align: left;
+                }
             }
             strong {
                 display: none;
@@ -156,9 +157,6 @@
 
                 @media (--tablet-small-above) {
                     font-size: 18px;
-                }
-                @media (--desktop-small-above) {
-                  font-size: 20px;  
                 }
                 &:first-of-type {
                     &:before {
@@ -221,9 +219,8 @@
                 transition: outline 0.3s;
 
                 &:hover {
-                    outline: 8px solid rgba(55,51,50,0.3);
+                    outline: 8px solid rgba(55, 51, 50, 0.3);
                 }
-
             }
             @media (orientation: portrait) {
                 border-bottom: 1px solid $main-color;
@@ -282,11 +279,13 @@
 }
 
 #flower-details {
-    list-style-type: none;
-    padding: 0;
+    ul {
+        list-style-type: none;
+        padding: 0;
 
-    @media (orientation: portrait) {
-        text-align: center;
+        @media (orientation: portrait) {
+            text-align: center;
+        }
     }
     .flower {
         @media (orientation: portrait) {
@@ -316,6 +315,9 @@
             left: 0;
             position: absolute;
         }
+        strong {
+            position: relative;
+        }
         div {
             left: 0;
             position: absolute;
@@ -331,6 +333,9 @@
 
 #hero-image {
     height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
     width: 100%;
 
     header {
@@ -354,8 +359,17 @@
 }
 
 #bouquet-details {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    left: 0;
     margin: 0 auto;
     max-width: 450px;
+    position: absolute;
+    top: 0;
+    width: 100%;
 
     @media (orientation: portrait) {
         text-align: center;
@@ -396,9 +410,14 @@
     }
 }
 
-.person-input {
+.person-details {
     @media (orientation: portrait) {
         text-align: center;
+    }
+    form {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
     }
     label {
         color: $main-color;
@@ -412,7 +431,6 @@
         @media (orientation: portrait) {
             width: 100%;
         }
-
     }
     .back-button {
         @media (orientation: landscape) {
@@ -426,5 +444,4 @@
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
-
 }
