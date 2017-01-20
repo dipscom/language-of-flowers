@@ -65,8 +65,11 @@ export default class Introduction extends Component {
 
   /* React Animation Callbacks */
   componentWillEnter(callback) {
+    // Hide the spare logo in the backgtround component
+    TweenMax.to("#lof-logo", 0.5, {autoAlpha:0, delay:0.5}); // eslint-disable-line
+
     // console.log("Introduction Will enter");
-    this.animateIn(callback, 1);
+    this.animateIn(callback, 0.5);
   }
 
   componentDidEnter() {
@@ -74,6 +77,9 @@ export default class Introduction extends Component {
   }
 
   componentWillAppear(callback) {
+    // Hide the spare logo in the backgtround component
+    TweenMax.set("#lof-logo", {autoAlpha:0}); // eslint-disable-line
+
     this.tl = new TimelineMax({delay:3}) // eslint-disable-line
     // console.log("Introduction Will appear");
     // this.tl.from(".logo", 1, {
@@ -111,6 +117,9 @@ export default class Introduction extends Component {
   }
 
   componentWillLeave(callback) {
+    // Show the spare logo in the backgtround component
+    TweenMax.to("#lof-logo", 0.5, {autoAlpha:1, delay:0.5}); // eslint-disable-line
+
     // console.log("Introduction Will leave");
     this.animateOut(callback);
   }
