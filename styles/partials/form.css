@@ -59,12 +59,15 @@
         border: none;
         border-bottom: 1px solid #373332;
         color: $main-color;
-        font-size: 34px;
+        font-size: 26px;
         font-weight: bold;
         margin: 0;
         transition: color 0.3s;
         width: 100%;
 
+         @media (--tablet-small-above) {
+           font-size: 34px;
+        } 
          @extend lovato;
         &:valid {
             color: $green;
@@ -79,14 +82,16 @@
             position: absolute;
             right: 0;
         }
+
+        
     }
     .back-button {
         @media (orientation: landscape) {
             margin-left: 0;
         }
     }
-}
 
+}
 .column {
     position: relative;
 
@@ -128,12 +133,19 @@
             left: 0;
             position: absolute;
         }
+        strong {
+            @media (orientation: portrait) {
+                @media (--tablet-small-above) {
+                display: block;
+                text-align: left;}
+            }
+        }
     }
     .bouquet-list {
         color: $green;
         font-weight: bold;
 
-         @extend lovato;
+        @extend lovato;
         @media (orientation: landscape) {
             left: 0;
             position: absolute;
@@ -465,6 +477,13 @@
     justify-content: center;
     position: relative;
 
+    form {
+        @media (orientation: portrait) {
+           @media (--tablet-small-above) {
+            width: 80%;
+        } 
+        }
+    }
     label {
         color: $main-color;
         display: inline-block;
@@ -493,9 +512,9 @@
 
      @media (orientation: landscape) {
         bottom: 0;
-    left: 50%;
-    position: absolute;
-    transform: translateX(-50%);
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
      }
     span {
         background-color: $main-color;
