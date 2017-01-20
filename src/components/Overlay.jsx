@@ -58,7 +58,7 @@ export default class Overlay extends Component {
     console.log("handleRender");
     const thisHandler = this.handleAnimation;
     TweenMax.killDelayedCallsTo(thisHandler) // eslint-disable-line
-    TweenMax.delayedCall(0.6, // eslint-disable-line
+    TweenMax.delayedCall(0.3, // eslint-disable-line
       thisHandler,
       [],
       this
@@ -67,24 +67,24 @@ export default class Overlay extends Component {
 
   handleAnimation() {
 
-    console.log("Overlay handleAnimation:", this.props.location.pathname);
+    console.log("Overlay handleAnimation:", this.props.location.pathname, this.tl.isActive());
     switch (this.props.location.pathname) {
       case "build-bouquet":
-        if(this.tl && this.props.steps.current === 1) {
-          this.tl.play("AnimateOut")
-        }
+      case "/build-bouquet":
+      case "confirmation":
+      case "/confirmation":
+          this.tl.tweenTo("AnimateOut")
         break;
 
-      case "description":
-      console.log("hold");
-        this.tl.tweenTo("Hold");
-      break;
-
-      case "/":
-        this.tl.play(0);
-      break;
+      // case "description":
+      // case "/description":
+      // case "success":
+      // case "/success":
+      // console.log("hold");
+      // break;
 
       default:
+      this.tl.tweenTo("Hold");
 
     }
     // if(this.props.location.pathname === "build-bouquet" && this.props.steps.current === 1) {
@@ -123,8 +123,8 @@ export default class Overlay extends Component {
       .add("Hold")
       .addPause()
 
-      .add("AnimateOut")
       .to(['#flowersBottom','#flowersBottomRight','#flowersMidLeft','#flowersTopLeft','#flowersTopRight','#peacock','#stag',"#man","#lady"], 0.5, {autoAlpha:0})
+      .add("AnimateOut")
 
 
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Anchor from './Anchor';
 
+
 export default class Introduction extends Component {
   render() {
 
