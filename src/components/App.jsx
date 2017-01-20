@@ -132,25 +132,23 @@ export default class App extends Component {
         SEMAIL: this.state.sender.email,
         BOUQUET: this.state.bouquet.toString()
     };
-    const senderData = {
-        EMAIL: this.state.sender.email,
-        NAME: this.state.sender.name,
-        RNAME: this.state.recipient.name,
-        REMAIL: this.state.recipient.email,
-        BOUQUET: this.state.bouquet.toString()
-    };
+    // const senderData = {
+    //     EMAIL: this.state.sender.email,
+    //     NAME: this.state.sender.name,
+    //     RNAME: this.state.recipient.name,
+    //     REMAIL: this.state.recipient.email,
+    //     BOUQUET: this.state.bouquet.toString()
+    // };
     $.ajax({ // eslint-disable-line
       url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=c0307ad06b',
       data: decodeData,
       dataType: 'jsonp',
     });
-    $.ajax({ // eslint-disable-line
-      url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=9ba6c73073',
-      data: senderData,
-      dataType: 'jsonp',
-    });
-
-
+    // $.ajax({ // eslint-disable-line
+    //   url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=9ba6c73073',
+    //   data: senderData,
+    //   dataType: 'jsonp',
+    // });
   }
   reset() {
     this.setState(initialState);

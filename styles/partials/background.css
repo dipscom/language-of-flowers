@@ -133,7 +133,7 @@
         position: absolute;
         width: auto;
 
-        mix-blend-mode: multiply;
+        /* mix-blend-mode: multiply; */
     }
     #cloud1 {
         top: 5%;
