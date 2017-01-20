@@ -7,18 +7,13 @@ export default class Overlay extends Component {
     // console.log("------------------");
     // console.log("Overlay constructor:");
 
-    // this.tl = null;
     this.tl = new TimelineMax({paused:true}); // eslint-disable-line
-
     this.handleRender = this.handleRender.bind(this);
 
   }
 
 
-
   render() {
-
-    console.log("----> Overlay render:");
 
     this.handleRender();
 
@@ -67,7 +62,6 @@ export default class Overlay extends Component {
 
   handleAnimation() {
 
-    console.log("Overlay handleAnimation:", this.props.location.pathname, this.tl.isActive());
     switch (this.props.location.pathname) {
       case "build-bouquet":
       case "/build-bouquet":
@@ -76,23 +70,10 @@ export default class Overlay extends Component {
           this.tl.tweenTo("AnimateOut")
         break;
 
-      // case "description":
-      // case "/description":
-      // case "success":
-      // case "/success":
-      // console.log("hold");
-      // break;
-
       default:
       this.tl.tweenTo("Hold");
 
     }
-    // if(this.props.location.pathname === "build-bouquet" && this.props.steps.current === 1) {
-    //   console.log("AnimateOut");
-    //   this.tl.play("AnimateOut");
-    // } else if() {
-    //   this.tl.play(0);
-    // }
   }
 
 
