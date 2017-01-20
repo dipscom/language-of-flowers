@@ -27,10 +27,10 @@
             height: 100%;
 
             @media (--tablet-small-below) {
-                padding: calc(3.571428571428571% + 66px + 20px) 3.571428571428571% 17.857142857142858%;
+                padding: calc(3.571428571428571% + 54px + 10px) 3.571428571428571% 17.857142857142858%;
             }
             @media (--tablet-small-above) {
-                padding: calc(7.8125% + 66px) 7.8125% 7.8125%;
+                padding: calc(7.8125% + 30px) 7.8125% 7.8125%;
             }
         }
         @media (orientation: landscape) {
@@ -102,13 +102,13 @@
         margin-bottom: 30px;
 
         @media (orientation: portrait) {
+            width: 40%;
+
             @media (--tablet-small-below) {
-                margin-bottom: 10px;
-                width: 70%;
+                margin-bottom: 10px; 
             }
             @media (--tablet-small-above) {
                 margin-bottom: 20px;
-                width: 60%;
             }
         }
         img {
