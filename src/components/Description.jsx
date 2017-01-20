@@ -69,6 +69,9 @@ export default class Description extends Component {
   componentWillEnter(callback) {
     // console.log("Description Will enter");
     this.animateIn(callback, 0.5);
+
+    TweenMax.to(".page > div", 0.5, {scrollTo:0, ease:"Power2.easeInOut"}); // eslint-disable-line
+
   }
 
   componentDidEnter() {
@@ -78,6 +81,9 @@ export default class Description extends Component {
   componentWillAppear(callback) {
     // console.log("Description Will appear");
     this.animateIn(callback, 3);
+
+    TweenMax.to(".page > div", 0.5, {scrollTo:0, ease:"Power2.easeInOut"}); // eslint-disable-line
+
   }
 
   componentDidAppear() {

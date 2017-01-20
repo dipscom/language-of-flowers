@@ -52,7 +52,10 @@ export default class BouquetDetails extends Component {
       autoAlpha:0,
       delay: 0.5,
       onComplete:callback
-    })
+    });
+
+    TweenMax.to("#form > div", 0.5, {scrollTo:0, ease:"Power2.easeInOut"}); // eslint-disable-line
+
 
   }
   componentDidEnter() {
