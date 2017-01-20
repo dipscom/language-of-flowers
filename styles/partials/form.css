@@ -26,7 +26,7 @@
             height: 100%;
 
             @media (--tablet-small-below) {
-                padding: calc(3.571428571428571% + 66px + 20px) 3.571428571428571% 3.571428571428571%;
+                padding: calc(3.571428571428571% + 66px + 20px) 3.571428571428571% 6.25%;
             }
             @media (--tablet-small-above) {
                 padding: calc(7.8125% + 66px) 7.8125% 7.8125%;
@@ -75,7 +75,7 @@
     }
     .button {
         @media (orientation: portrait) {
-            margin-top: 20px;
+            margin-top: 30px;
         }
         @media (orientation: landscape) {
             bottom: 0;
@@ -141,11 +141,19 @@
             }
         }
     }
+    #flower-list {
+        strong {
+            font-size: 16px;
+        }
+    }
     .bouquet-list {
         color: $green;
         font-weight: bold;
 
         @extend lovato;
+        @media (--tablet-small-below) {
+            margin: 30px 0 0;
+        }
         @media (orientation: landscape) {
             left: 0;
             position: absolute;
@@ -155,13 +163,20 @@
         svg {
             display: none !important;
         }
+        li {
+            &:not(:first-child) {
+                @media (--tablet-small-below) {
+                    margin-top: 10px;
+                }
+            }
+        }
         .flower-details {
-            * {
+            * {@media (--tablet-small-above) {
                 display: inline;
+            }
             }
             h1 {
                 @media (--tablet-small-below) {
-                    display: block;
                     text-align: left;
                 }
             }
@@ -178,19 +193,16 @@
                 @media (--tablet-small-above) {
                     font-size: 18px;
                 }
-                &:first-of-type {
+                /* &:first-of-type {
                     &:before {
                         content: '(';
-                    }
-                    &:after {
-                        content: '.';
                     }
                 }
                 &:last-of-type {
                     &:after {
-                        content: ').';
+                        content: ')';
                     }
-                }
+                } */
             }
         }
     }
@@ -507,7 +519,7 @@
 #form-navigation {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 30px;
     padding: 4px 0;
 
      @media (orientation: landscape) {

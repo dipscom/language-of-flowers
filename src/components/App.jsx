@@ -57,8 +57,6 @@ export default class App extends Component {
           window.location = '/';
         }
       }
-    } else if (window.location.pathname === '/share') {
-
     } else if (accessTime > timeStamp) {
         if(localStorage.getItem('bouquet')) {
           bouquet = localStorage.getItem('bouquet').split(',');

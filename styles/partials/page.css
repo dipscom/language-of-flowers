@@ -83,10 +83,6 @@
         }
         p {
             margin-right: 4px;
-
-            &:after {
-                content: '.';
-            }
         }
     }
 }

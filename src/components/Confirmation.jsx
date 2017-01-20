@@ -36,7 +36,7 @@ export default class Confirmation extends Component {
 		      					details={this.props.flowers[key]} />)
 	          	}
 	          </ol>
-	          <p><strong>...to your dearest <span>{this.props.recipient.name}</span> at the royal postal address of <span>{this.props.recipient.email}</span> from <span>{this.props.sender.name}</span><span>({this.props.sender.email})</span>.</strong></p>
+	          <p><strong>...to your dearest <span>{this.props.recipient.name}</span> at the royal postal address of <span>{this.props.recipient.email}</span> from <span>{this.props.sender.name}</span> <span>({this.props.sender.email})</span>.</strong></p>
 	          <p className="terms">Be in with a chance to win the full Penhaligon's portraits collection.<br/>Plus join the very Penhaligon's club and discover our online secrets <label htmlFor="terms">(I agree with the Terms and Conditions/Privacy Policy). </label><input type="checkbox" name="terms" onChange={(e) => this.props.updateField(e)} /></p>
 	          <nav className="navigation">
 	          	<Anchor className={disabled} cta="Send now" step="forward" target="success" click={this.props.mailChimp} />

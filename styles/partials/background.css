@@ -79,7 +79,7 @@
             height: 8vh;
             left: 50%;
             position: absolute;
-            top: 2.5%;
+            top: 1.7%;
             transform: translateX(-50%);
         }
          @media (orientation: portrait) {
