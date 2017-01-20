@@ -36,7 +36,7 @@ export default class Background extends Component {
 
   componentWillAppear(callback) {
     // console.log("Background Will appear");
-    const paperWidth = document.getElementById("paper").getBoundingClientRect().width * 1.5;
+    // const paperWidth = document.getElementById("paper").getBoundingClientRect().width * 1.5;
 
 
     // Use GSAP to center the image for better layout resize handling
