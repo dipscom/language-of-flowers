@@ -337,6 +337,8 @@
         }
     }
     .flower {
+        position: relative;
+
         @media (orientation: portrait) {
             display: none;
         }
@@ -344,7 +346,6 @@
             align-items: center;
             display: flex;
         }
-        position: relative;
     }
     figure {
         background-position: center;
@@ -458,6 +459,7 @@
     }
     .bouquet-list {
         list-style-type: none;
+        margin: 0;
         padding: 0;
 
         svg,
