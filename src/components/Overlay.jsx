@@ -50,7 +50,6 @@ export default class Overlay extends Component {
   }
 
   handleRender() {
-    console.log("handleRender");
     const thisHandler = this.handleAnimation;
     TweenMax.killDelayedCallsTo(thisHandler) // eslint-disable-line
     TweenMax.delayedCall(0.3, // eslint-disable-line
