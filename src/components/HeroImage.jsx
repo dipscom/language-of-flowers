@@ -25,18 +25,43 @@ export default class HeroImage extends Component {
 
 
 	/* Animation */
+  animateIn(callback, delay) {
+    var tl = new TimelineMax(); // eslint-disable-line
+
+    tl.from("#hero-image", 1.5, {
+      autoAlpha: 0,
+      delay: delay || 0,
+      scale: 1.05,
+      ease: "Power4.easeOut",
+      onComplete:callback
+    });
+    tl.add("Details", "-=1.5")
+    tl.from("#bouquet-details header", 1.5, {
+      autoAlpha: 0,
+      ease: "Power4.easeInOut"
+    }, "Details+=0.25")
+    tl.staggerFrom("#bouquet-details li", 1.5, {
+      autoAlpha: 0,
+      ease: "Power4.easeInOut"
+    }, 0.25, "Details+=0.5")
+    tl.staggerFrom(["#bouquet-details button"], 1.5, {
+      autoAlpha: 0,
+      ease: "Power4.easeInOut"
+    }, 0.25, "Details+=0.75")
+
+
+
+
+    return tl;
+  }
+
 	componentWillAppear(callback) {
 		// console.log("HeroImage will appear")
-		callback();
+    this.animateIn(callback, 0.5)
 	}
 	componentWillEnter(callback) {
 		// console.log("HeroImage will enter");
-    TweenMax.from("#hero-image", 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      delay: 0.5,
-      onComplete:callback
-    })
-
+    this.animateIn(callback, 0.5)
 	}
 	componentDidEnter() {
 		// console.log("HeroImage did enter")

@@ -48,28 +48,24 @@ export default class Flower extends Component {
 
   componentWillAppear(callback) {
     // console.log("Flower will appear")
-
     callback();
   }
   componentWillEnter(callback) {
     // console.log("Flower will enter");
 
-      let currentTarget = "#" + this.el.id;
+    let currentTarget = "#" + this.el.id;
 
-      TweenMax.from("#flower-details " + currentTarget + " figure", 0.8, { // eslint-disable-line
-        autoAlpha:0,
-        ease: "Power4.easeInOut",
-      });
+    TweenMax.from("#flower-details " + currentTarget + " figure", 0.8, { // eslint-disable-line
+      autoAlpha:0,
+      ease: "Power4.easeInOut",
+    });
 
-      TweenMax.staggerFrom("#flower-details " + currentTarget + " .word", 0.3, { // eslint-disable-line
-        x: 30,
-        autoAlpha: 0,
-        ease: "Power2.easeOut",
-      }, 0.05);
-
+    TweenMax.staggerFrom("#flower-details " + currentTarget + " .word", 0.3, { // eslint-disable-line
+      autoAlpha: 0,
+      ease: "Power2.easeOut",
+    }, 0.05);
 
     callback();
-
   }
   componentDidEnter() {
     // console.log("Flower did enter")
@@ -77,5 +73,4 @@ export default class Flower extends Component {
   componentDidAppear() {
     // console.log("Flower did appear")
   }
-
 }

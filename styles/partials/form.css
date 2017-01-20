@@ -67,7 +67,7 @@
 
          @media (--tablet-small-above) {
            font-size: 34px;
-        } 
+        }
          @extend lovato;
         &:valid {
             color: $green;
@@ -83,7 +83,7 @@
             right: 0;
         }
 
-        
+
     }
     .back-button {
         @media (orientation: landscape) {
@@ -133,7 +133,7 @@
             left: 0;
             position: absolute;
         }
-        
+
     }
     strong {
         display: block;
@@ -173,12 +173,13 @@
             }
         }
         .flower-details {
-            * {@media (--tablet-small-above) {
-                display: inline;
-            }
+            * {
+                @media (--tablet-small-above) {
+                  display: inline;
+              }
             }
             h1 {
-                @media (--tablet-small-below) {
+                  @media (--tablet-small-below) {
                     text-align: left;
                 }
             }
@@ -282,7 +283,7 @@
     h1 {
         text-align: left;
     }
-    svg, 
+    svg,
     hr {
         display: none;
     }
@@ -343,6 +344,7 @@
             align-items: center;
             display: flex;
         }
+        position: relative;
     }
     figure {
         background-position: center;
@@ -504,7 +506,7 @@
         @media (orientation: portrait) {
            @media (--tablet-small-above) {
             width: 80%;
-        } 
+        }
         }
     }
     label {

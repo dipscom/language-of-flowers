@@ -77,7 +77,7 @@ export var AnimationIntro = WrappedComponent => class extends Component {
   }
 
   fadeIn(el, opts = {xP:0, yP:0} ) {
-    return TweenMax.from(el, 2, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:Elastic.easeOut.config(0.4)}); // eslint-disable-line
+    return TweenMax.from(el, 2, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:Elastic.easeOut.config(0.6)}); // eslint-disable-line
   }
 
 
