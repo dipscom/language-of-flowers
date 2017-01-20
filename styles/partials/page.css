@@ -89,12 +89,14 @@
 
 #introduction {
     > div {
-         @media (--tablet-small-below) {
+        @media (orientation: portrait) {
+            @media (--tablet-small-below) {
                 padding-top: 10.714285714285714%;
             }
             @media (--tablet-small-above) {
                 padding-top: 7.8125%;
             }
+        }
     }
     #penhaligons-logo {
         margin-bottom: 30px;
