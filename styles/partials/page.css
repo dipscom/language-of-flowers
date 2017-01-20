@@ -27,7 +27,7 @@
             height: 100%;
 
             @media (--tablet-small-below) {
-                padding: calc(3.571428571428571% + 66px + 20px) 3.571428571428571% 3.571428571428571%;
+                padding: calc(3.571428571428571% + 66px + 20px) 3.571428571428571% 17.857142857142858%;
             }
             @media (--tablet-small-above) {
                 padding: calc(7.8125% + 66px) 7.8125% 7.8125%;
@@ -218,8 +218,6 @@
                     color: $green;
                 }
             }
-
-
         }
         p {
             font-size: 20px;
