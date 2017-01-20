@@ -25,11 +25,11 @@ export default class HeroImage extends Component {
 
 	/* Animation */
 	componentWillAppear(callback) {
-		console.log("HeroImage will appear")
+		// console.log("HeroImage will appear")
 		callback();
 	}
 	componentWillEnter(callback) {
-		console.log("HeroImage will enter");
+		// console.log("HeroImage will enter");
     TweenMax.from("#hero-image", 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: 0.5,
@@ -38,13 +38,13 @@ export default class HeroImage extends Component {
 
 	}
 	componentDidEnter() {
-		console.log("HeroImage did enter")
+		// console.log("HeroImage did enter")
 	}
 	componentDidAppear() {
-		console.log("HeroImage did appear")
+		// console.log("HeroImage did appear")
 	}
   componentWillLeave(callback) {
-    console.log("HeroImage will leave");
+    // console.log("HeroImage will leave");
     TweenMax.set("#hero-image", { // eslint-disable-line
       position:"absolute"
     });

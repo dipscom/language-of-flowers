@@ -51,7 +51,7 @@ export default class Flower extends Component {
     callback();
   }
   componentWillEnter(callback) {
-    console.log("Flower will enter");
+    // console.log("Flower will enter");
 
       let currentTarget = "#" + this.el.id;
 

@@ -212,7 +212,7 @@ export default class App extends Component {
             key: key
           }
         )}
-        <Overlay location={this.props.location}/>
+        <Overlay steps={this.state.steps} location={this.props.location}/>
       </TransitionGroup>
     )
   }

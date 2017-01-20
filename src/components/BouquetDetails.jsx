@@ -35,11 +35,11 @@ export default class BouquetDetails extends Component {
 
   /* Animation */
   componentWillAppear(callback) {
-    console.log("BouquetDetails will appear")
+    // console.log("BouquetDetails will appear")
     callback();
   }
   componentWillEnter(callback) {
-    console.log("BouquetDetails will enter");
+    // console.log("BouquetDetails will enter");
     TweenMax.from("#bouquet-details", 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: 0.5,
@@ -48,13 +48,13 @@ export default class BouquetDetails extends Component {
 
   }
   componentDidEnter() {
-    console.log("BouquetDetails did enter")
+    // console.log("BouquetDetails did enter")
   }
   componentDidAppear() {
-    console.log("BouquetDetails did appear")
+    // console.log("BouquetDetails did appear")
   }
   componentWillLeave(callback) {
-    console.log("BouquetDetails will leave");
+    // console.log("BouquetDetails will leave");
     TweenMax.set("#bouquet-details", { // eslint-disable-line
       position:"absolute"
     });

@@ -8,14 +8,19 @@ export default class Overlay extends Component {
     // console.log("Overlay constructor:");
 
     // this.tl = null;
-    this.tl = new TimelineMax(); // eslint-disable-line
+    this.tl = new TimelineMax({paused:true}); // eslint-disable-line
 
+    this.handleRender = this.handleRender.bind(this);
 
   }
 
+
+
   render() {
 
-    // console.log("----> Overlay render:");
+    console.log("----> Overlay render:");
+
+    this.handleRender();
 
     return (
       <div
@@ -49,21 +54,30 @@ export default class Overlay extends Component {
     )
   }
 
+  handleRender() {
+    console.log("handleRender");
+    const thisHandler = this.handleAnimation;
+    TweenMax.killDelayedCallsTo(thisHandler) // eslint-disable-line
+    TweenMax.delayedCall(0.6, // eslint-disable-line
+      thisHandler,
+      [],
+      this
+    )
+  }
 
   handleAnimation() {
 
-    // console.log("Overlay handleAnimation:", this.props.location.pathname, this.tl.isActive());
+    console.log("Overlay handleAnimation:", this.props.location.pathname);
     switch (this.props.location.pathname) {
       case "build-bouquet":
-      case "recipient":
-      case "sender":
-        if(this.tl && !this.tl.isActive()) {
+        if(this.tl && this.props.steps.current === 1) {
           this.tl.play("AnimateOut")
         }
         break;
 
       case "description":
-        this.tl.pause("Hold");
+      console.log("hold");
+        this.tl.tweenTo("Hold");
       break;
 
       case "/":
@@ -73,6 +87,12 @@ export default class Overlay extends Component {
       default:
 
     }
+    // if(this.props.location.pathname === "build-bouquet" && this.props.steps.current === 1) {
+    //   console.log("AnimateOut");
+    //   this.tl.play("AnimateOut");
+    // } else if() {
+    //   this.tl.play(0);
+    // }
   }
 
 
@@ -132,7 +152,7 @@ export default class Overlay extends Component {
   componentWillAppear(callback) {
     // console.log("Overlay Will appear:");
 
-    this.handleAnimation();
+    // this.handleAnimation();
 
   }
 
