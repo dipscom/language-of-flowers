@@ -49,6 +49,24 @@ svg {
     stroke-width: 1;
 }
 
+header {
+    display: inline-block;
+    width: auto !important;
+}
+
+hr {
+    background-image: url('/images/double-line.png');
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    border: none;
+    height: 10px;
+    margin: 0;
+    margin: 10px 0 20px;
+    width: 100%;
+
+}
+
 input[type=text] {
     appearance: none;
 }
@@ -75,6 +93,7 @@ input[type=text] {
 }
 
 .reflected {
+    margin: 20px 0 10px;
     transform: scaleY(-1);
 }
 

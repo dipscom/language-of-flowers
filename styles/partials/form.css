@@ -160,7 +160,8 @@
             top: 100%;
         }
         figure,
-        svg {
+        svg,
+        hr {
             display: none !important;
         }
         li {
@@ -278,7 +279,8 @@
     h1 {
         text-align: left;
     }
-    svg {
+    svg, 
+    hr {
         display: none;
     }
     .flower-details {
@@ -450,7 +452,8 @@
         list-style-type: none;
         padding: 0;
 
-        svg {
+        svg,
+        hr {
             display: none;
         }
     }
@@ -498,7 +501,7 @@
     }
     label {
         color: $main-color;
-        display: inline-block;
+        display: block;
         font-size: 14px;
         font-weight: bold;
         margin-top: 30px;
