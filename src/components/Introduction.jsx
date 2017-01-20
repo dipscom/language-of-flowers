@@ -85,11 +85,11 @@ export default class Introduction extends Component {
     // }, 0)
 
       .add("StaggerContent", "-=0.5")
-      .staggerFrom([".penhaligons-logo", "h1", "p", "strong"], 1.5, {
+      .staggerFrom(["#penhaligons-logo", "hr", "h1", "p", "strong"], 1.5, {
       autoAlpha:0,
       ease:"Power1.easeOut"
     }, 0.3, "StaggerContent")
-      .staggerFrom([".penhaligons-logo", "h1", "p", "strong"], 1.5, {
+      .staggerFrom(["#penhaligons-logo", "hr", "h1", "p", "strong"], 1.5, {
       y:10,
       ease:"Power4.easeOut"
     }, 0.3, "StaggerContent")
