@@ -112,7 +112,7 @@ export default class Form extends Component {
       diamonds.push(<span
           key={i}
           className={classes}
-          onClick={() => {this.props.updateStep(i)}} 
+          onClick={() => {this.props.updateStep(i)}}
         ></span>);
     }
     return (
