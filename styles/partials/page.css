@@ -88,13 +88,30 @@
 }
 
 #introduction {
-    .penhaligons-logo {
+    > div {
+         @media (--tablet-small-below) {
+                padding-top: 10.714285714285714%;
+            }
+            @media (--tablet-small-above) {
+                padding-top: 7.8125%;
+            }
+    }
+    #penhaligons-logo {
         margin-bottom: 30px;
 
         @media (orientation: portrait) {
-            width: 70%;
+            @media (--tablet-small-below) {
+                margin-bottom: 10px;
+                width: 70%;
+            }
+            @media (--tablet-small-above) {
+                margin-bottom: 20px;
+                width: 60%;
+            }
         }
-
+        img {
+            max-width: 290px;
+        }
     }
     p {
         &:first-of-type {
@@ -103,6 +120,11 @@
         &:last-of-type {
             max-width: 450px;
         }
+    }
+}
+#description {
+    header {
+        width: 100% !important;
     }
 }
 
@@ -150,9 +172,12 @@
 
 #products {
     @extend lovato;
-    p {
+    > p {
         a {
             color: #80a78d;
+        }
+        &:first-child {
+            margin: 0 0 30px !important;
         }
         &:last-child {
             max-width: 720px;
@@ -279,7 +304,7 @@
     .share-link {
         align-items: center;
         display: flex;
-        margin: 30px;
+        margin: 30px 30px 0;
         width: auto;
     }
     #twitter, #facebook {
@@ -303,6 +328,9 @@
 
 #my-bouquet {
     @extend lovato;
+    hr {
+        margin: 10px 0 0;
+    }
     strong {
         text-transform: none;
     }
