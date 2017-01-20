@@ -12,16 +12,17 @@ export default class Background extends Component {
       		<img role="presentation" id="cloud1" className="cloud" src="/images/background/cloud-1.png" />
           <img role="presentation" id="cloud2" className="cloud" src="/images/background/cloud-2.png" />
           <svg id="line-top" className="line-decoration" viewBox="0 0 1400 50">
-            <path className="segment" d="M0 0.5 H660 Q690 0.5, 700 20 Q710 0.5, 740 0.5 H1400" vectorEffect="non-scaling-stroke"  />
+            <path className="segment" d="M700 20 Q690 0.5, 660 0.5 H0" vectorEffect="non-scaling-stroke"  />
+            <path className="segment" d="M700 20 Q710 0.5, 740 0.5 H1400" vectorEffect="non-scaling-stroke"  />
           </svg>
           <svg id="line-left" className="line-decoration" viewBox="0 0 2 860">
-            <path d="M0.5 0 V860" vectorEffect="non-scaling-stroke"  />
+            <path className="straight-segment" d="M0.5 0 V860" vectorEffect="non-scaling-stroke"  />
           </svg>
           <svg id="line-right" className="line-decoration" viewBox="0 0 2 860">
-            <path d="M0.5 0 V860" vectorEffect="non-scaling-stroke"  />
+            <path className="straight-segment" d="M0.5 0 V860" vectorEffect="non-scaling-stroke"  />
           </svg>
           <svg id="line-bottom" className="line-decoration" viewBox="0 0 1400 2">
-            <path d="M0 0.5 H1400" vectorEffect="non-scaling-stroke"  />
+            <path className="straight-segment" d="M0 0.5 H1400" vectorEffect="non-scaling-stroke"  />
           </svg>
           <img role="presentation" id="top-left" className="corner" src="/images/background/detail-corner.svg" />
           <img role="presentation" id="top-right" className="corner" src="/images/background/detail-corner.svg" />
@@ -34,57 +35,14 @@ export default class Background extends Component {
     )
   }
 
-  componentWillAppear(callback) {
-    // console.log("Background Will appear");
-    // const paperWidth = document.getElementById("paper").getBoundingClientRect().width * 1.5;
-
-
+  componentWillAppear() {
     // Use GSAP to center the image for better layout resize handling
     TweenMax.set("#forest", {xPercent:-50, yPercent:-50});// eslint-disable-line
-
-    // TweenMax.set(".cloud", {// eslint-disable-line
-    //   xPercent:-50,
-    //   x:function(i) {
-    //     return (i+1) * paperWidth/3;
-    //   }
-    // });
-
-
-    // TweenMax.to("#cloud1", paperWidth*0.4, {// eslint-disable-line
-    //   x:"+="+paperWidth,
-    //   modifiers: {
-    //     x:function(x) {
-    //       return x % paperWidth
-    //     }
-    //   },
-    //   repeat: -1,
-    //   ease: "Linear.easeNone"
-    // })
-    // TweenMax.to("#cloud2", paperWidth*0.09, {// eslint-disable-line
-    //   x:"+="+paperWidth,
-    //   modifiers: {
-    //     x:function(x) {
-    //       return x % paperWidth
-    //     }
-    //   },
-    //   repeat: -1,
-    //   ease: "Linear.easeNone"
-    // })
-
-
-    this.tl = new TimelineMax({onComplete:callback}); // eslint-disable-line
-
-    this.tl.staggerFrom(["#background","#paper",".cloud",".corner"], 1, {autoAlpha:0, ease:"Power2.easeInOut"}, 1)
-    this.tl.to("#forest figure", 1.5, {scale:1.025}, 0)
-    // this.tl.from(".border-top", 0.8, {
-    //   drawSVG: 0,
-    //   ease: "Power1.easeInOut"
-    // })
   }
 
-  componentDidAppear() {
-    console.log("Background Did appear");
+  componentWillEnter() {
+    // Use GSAP to center the image for better layout resize handling
+    TweenMax.set("#forest", {xPercent:-50, yPercent:-50});// eslint-disable-line
   }
-
 
 }
