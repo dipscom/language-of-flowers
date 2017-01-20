@@ -84,7 +84,7 @@
         }
          @media (orientation: portrait) {
             margin: 3.571428571428571% auto 0;
-            max-width: 150px;
+            max-width: 120px;
          }
 
     }
@@ -133,7 +133,7 @@
         position: absolute;
         width: auto;
 
-        mix-blend-mode: multiply;
+        /* mix-blend-mode: multiply; */
     }
     #cloud1 {
         top: 5%;

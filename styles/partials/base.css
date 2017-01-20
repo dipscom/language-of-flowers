@@ -17,7 +17,7 @@ html {
 body {
     color: $main-color;
     height: 100%;
-    line-height: 1.4;
+    line-height: 1.3;
 
     @media (orientation: landscape) {
         align-items: center;
@@ -62,8 +62,13 @@ hr {
     border: none;
     height: 10px;
     margin: 0;
-    margin: 10px 0 20px;
+    margin: 10px 0;
     width: 100%;
+
+    @media (--tablet-small-above) {
+       margin: 10px 0 20px; 
+    }
+
 
 }
 
@@ -93,8 +98,11 @@ input[type=text] {
 }
 
 .reflected {
-    margin: 20px 0 10px;
     transform: scaleY(-1);
+
+    @media (--tablet-small-above) {
+       margin: 20px 0 10px;
+    }
 }
 
 .back-button {

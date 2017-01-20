@@ -26,33 +26,64 @@
   > #flowersBottom {
     bottom: -7%;
     width: 100%;
+
+    @media (orientation: portrait) {
+      bottom: -2%;
+      left: -40%;
+      width: 200%;
+    }
   }
   > #flowersBottomRight {
     bottom: -10%;
     right: -2.5%;
     width: 18%;
+
+    @media (orientation: portrait) {
+      display: none;
+    }
   }
   > #flowersMidLeft {
     bottom: 10%;
     left: -2%;
     width: 18%;
+
+    @media (orientation: portrait) {
+      display: none;
+    }
   }
   > #flowersTopLeft {
     left: -2%;
     width: 25%;
+
+    @media (orientation: portrait) {
+      left: 0;
+      width: 30%;
+    }
   }
   > #flowersTopRight {
     width: 22%;
+
+    @media (orientation: portrait) {
+      width: 32%;
+    }
   }
   > #lady {
     bottom: 2%;
     left: 7%;
     width: 15%;
+
+    @media (orientation: portrait) {
+      display: none;
+    }
   }
   > #man {
     bottom: -14%;
     right: 6%;
     width: 13%;
+
+    @media (orientation: portrait) {
+      display: none;
+    }
   }
   > #peacock {
     bottom: -10%;

@@ -37,5 +37,91 @@ export default class MyBouquet extends Component{
       </div>
     )
   }
+
+
+    /* Animation */
+  animateIn(callback, delay) {
+    TweenMax.from("#introduction", 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      delay: delay || 0,
+      onComplete:callback
+    });
+  }
+
+  animateOut(callback) {
+    TweenMax.to("#introduction", 0.5, { // eslint-disable-line
+      autoAlpha:0,
+      ease: "Power4.easeIn",
+      onComplete:callback
+    });
+  }
+
+
+  /* React Animation Callbacks */
+  componentWillEnter(callback) {
+    // Hide the spare logo in the backgtround component
+    TweenMax.to("#lof-logo", 0.5, {autoAlpha:0, delay:0.5}); // eslint-disable-line
+
+    // console.log("Introduction Will enter");
+    this.animateIn(callback, 0.5);
+  }
+
+  componentDidEnter() {
+    // console.log("Introduction Did enter");
+  }
+
+  componentWillAppear(callback) {
+    // Hide the spare logo in the backgtround component
+    TweenMax.set("#lof-logo", {autoAlpha:0}); // eslint-disable-line
+
+    TweenMax.to(".page > div", 0.5, {scrollTo:0, ease:"Power2.easeInOut"}); // eslint-disable-line
+
+    this.tl = new TimelineMax({delay:3}) // eslint-disable-line
+    // console.log("Introduction Will appear");
+    // this.tl.from(".logo", 1, {
+    //   autoAlpha:0,
+    //   ease:"Power1.easeOut"
+    // }, 0)
+    //   .from(".logo", 1.3, {
+    //   scale:1.2,
+    //   ease:"Power4.easeOut"
+    // }, 0)
+
+      .add("StaggerContent", "-=0.5")
+      .staggerFrom(["#penhaligons-logo", "hr", "h1", "p", "strong"], 1.5, {
+      autoAlpha:0,
+      ease:"Power1.easeOut"
+    }, 0.3, "StaggerContent")
+      .staggerFrom(["#penhaligons-logo", "hr", "h1", "p", "strong"], 1.5, {
+      y:10,
+      ease:"Power4.easeOut"
+    }, 0.3, "StaggerContent")
+
+      .staggerFrom(".segment", 1, {
+        drawSVG:"50% 50%",
+        ease:"Power2.easeInOut"
+      }, 0.15, 1)
+      .from(".button", 0.5, {
+        autoAlpha:0,
+        ease:"Power4.easeInOut",
+        onStart:callback
+      })
+  }
+
+  componentDidAppear() {
+    // console.log("Introduction Did appear");
+  }
+
+  componentWillLeave(callback) {
+    // Show the spare logo in the backgtround component
+    TweenMax.to("#lof-logo", 0.5, {autoAlpha:1, delay:0.5}); // eslint-disable-line
+
+    // console.log("Introduction Will leave");
+    this.animateOut(callback);
+  }
+
+  componentDidLeave() {
+    // console.log("Introduction Did leave");
+  }
   
 }

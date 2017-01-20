@@ -125,18 +125,30 @@ export default class App extends Component {
     localStorage.setItem('accessTime', Date.now());
   }
   mailChimp(){
-    const data = {
+    const decodeData = {
         EMAIL: this.state.recipient.email,
         NAME: this.state.recipient.name,
         SNAME: this.state.sender.name,
         SEMAIL: this.state.sender.email,
         BOUQUET: this.state.bouquet.toString()
     };
+    // const senderData = {
+    //     EMAIL: this.state.sender.email,
+    //     NAME: this.state.sender.name,
+    //     RNAME: this.state.recipient.name,
+    //     REMAIL: this.state.recipient.email,
+    //     BOUQUET: this.state.bouquet.toString()
+    // };
     $.ajax({ // eslint-disable-line
       url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=c0307ad06b',
-      data: data,
+      data: decodeData,
       dataType: 'jsonp',
     });
+    // $.ajax({ // eslint-disable-line
+    //   url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=9ba6c73073',
+    //   data: senderData,
+    //   dataType: 'jsonp',
+    // });
   }
   reset() {
     this.setState(initialState);
