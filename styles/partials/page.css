@@ -92,6 +92,14 @@
 }
 
 #introduction {
+    .penhaligons-logo {
+        margin-bottom: 30px;
+
+        @media (orientation: portrait) {
+            width: 70%;
+        }
+
+    }
     p {
         &:first-of-type {
             max-width: 650px;

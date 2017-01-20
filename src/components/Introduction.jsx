@@ -14,7 +14,7 @@ export default class Introduction extends Component {
         >
         <div>
           <div>
-            {/*<img className="logo" src="./images/penhalions-logo.svg" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" />*/}
+            <img className="penhaligons-logo" src="./images/penhalions-logo.svg" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" />
             <header>
               <svg className="doubleline-decoration" viewBox="0 0 1400 40" preserveAspectRatio="xMidYMid">
                 <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
@@ -81,11 +81,11 @@ export default class Introduction extends Component {
     // }, 0)
 
       .add("StaggerContent", "-=0.5")
-      .staggerFrom(["h1", "p", "strong"], 1.5, {
+      .staggerFrom([".penhaligons-logo", "h1", "p", "strong"], 1.5, {
       autoAlpha:0,
       ease:"Power1.easeOut"
     }, 0.3, "StaggerContent")
-      .staggerFrom(["h1", "p", "strong"], 1.5, {
+      .staggerFrom([".penhaligons-logo", "h1", "p", "strong"], 1.5, {
       y:10,
       ease:"Power4.easeOut"
     }, 0.3, "StaggerContent")
