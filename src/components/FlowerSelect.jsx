@@ -12,9 +12,9 @@ export default class FlowerSelect extends Component {
             <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
             <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
           </svg>*/}
-          <hr />
-          <strong className="sub-heading">Select 3 flowers:</strong>
+          <hr /> 
         </header>
+        <strong className="sub-heading">Select 3 flowers:</strong>
       	<ul id="flower-list">
       		{Object
       			.keys(this.props.flowers)

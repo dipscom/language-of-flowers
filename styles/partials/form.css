@@ -133,12 +133,13 @@
             left: 0;
             position: absolute;
         }
-        strong {
-            @media (orientation: portrait) {
-                @media (--tablet-small-above) {
-                display: block;
-                text-align: left;}
-            }
+        
+    }
+    strong {
+        display: block;
+
+        @media (orientation: landscape) {
+            text-align: left;
         }
     }
     #flower-list {
@@ -235,6 +236,7 @@
                 padding: 8px;
             }
             @media (--tablet-small-above) {
+                display: flex;
                 width: 50%;
             }
         }
@@ -247,6 +249,7 @@
         }
         > div {
             height: 100%;
+            width: 100%;
 
             @media (orientation: landscape) {
                 transition: outline 0.3s;
