@@ -16,6 +16,14 @@ export default class Form extends Component {
     super();
     this.state = initialState;
     this.updateActiveFlower = this.updateActiveFlower.bind(this);
+
+		this.latestKnownScrollY = 0;
+		this.ticking = false;
+		this.onScroll = this.onScroll.bind(this);
+		this.update = this.update.bind(this);
+
+		this.logoTl = null;
+
   }
   componentWillMount(){
     if (!this.state.activeFlower) {
@@ -24,6 +32,9 @@ export default class Form extends Component {
       });
     }
   }
+	componentDidMount() {
+		this.logoTl = TweenMax.to("#lof-logo", 1, {autoAlpha:0, paused:true, ease:"Linear.easeNone"}); // eslint-disable-line
+	}
   updateActiveFlower(key) {
     if (this.state.activeFlower !== key) {
       this.setState({
@@ -117,7 +128,7 @@ export default class Form extends Component {
     }
     return (
       <div id="form">
-      	<div>
+      	<div id="scroller" onScroll={this.onScroll}>
       		<div>
 		      	<TransitionGroup component="div" className="column">
 		      		{this.formStepLeft()}
@@ -158,6 +169,26 @@ export default class Form extends Component {
 		  onComplete:callback
 		});
 	}
+
+	onScroll() {
+		let scrollY = document.getElementById('scroller').scrollTop;
+    this.latestKnownScrollY = scrollY;
+		this.requestTick();
+  }
+
+  requestTick() {
+    if(!this.ticking) {
+      requestAnimationFrame(this.update);
+    }
+  }
+
+  update() {
+    // console.log(this.latestKnownScrollY);
+
+		this.logoTl.progress(this.latestKnownScrollY/100)
+
+    this.ticking = false;
+  }
 
 
 }
