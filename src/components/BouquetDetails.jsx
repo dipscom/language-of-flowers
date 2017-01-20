@@ -20,11 +20,14 @@ export default class BouquetDetails extends Component {
   	      				details={this.props.flowers[key]} />)
   	      	}
   	      </ol>
-          <Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} />
           { this.props.step === 2 ?
-          <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} /> :
-          <Anchor className="button" cta={this.props.nextCta} step="forward" target="share" />
-        }
+            <Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} /> :
+            ''
+          }
+          { this.props.step === 2 ?
+            <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} /> :
+            <Anchor className="center" cta={this.props.nextCta} step="forward" target="share" />
+          }
         </div>
 	    </div>
     )

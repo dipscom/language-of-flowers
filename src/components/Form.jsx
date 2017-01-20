@@ -101,8 +101,20 @@ export default class Form extends Component {
   	}
 	}
   render() {
-  	// let i = 1;
-
+    let diamonds = [], classes = null;
+    for (let i = 1; i <= this.props.steps.total; i++) {
+      if (i === this.props.steps.current) {
+        console.log('current nav' + 1);
+        classes = 'current';
+      } else if (i > this.props.steps.current) {
+        classes = 'disabled';
+      }
+      diamonds.push(<span
+          key={i}
+          className={classes}
+          onClick={() => {this.props.updateStep(i)}} 
+        ></span>);
+    }
     return (
       <div id="form">
       	<div>
@@ -114,9 +126,9 @@ export default class Form extends Component {
 		      	<TransitionGroup component="div" className="column">
 		      		{this.formStepRight()}
 		      	</TransitionGroup>
-		      	{/*<nav id="form-navigation">
-		      		<NavLink key={i} step={this.props.steps.current} />
-		      	</nav>*/}
+		      	<nav id="form-navigation">
+		      		{diamonds}
+		      	</nav>
 		      </div>
 	      </div>
       </div>
