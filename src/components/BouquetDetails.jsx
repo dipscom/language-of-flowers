@@ -48,13 +48,14 @@ export default class BouquetDetails extends Component {
   }
   componentWillEnter(callback) {
     // console.log("BouquetDetails will enter");
+    TweenMax.set("#form > div", {scrollTo:0, ease:"Power2.easeInOut"}); // eslint-disable-line
+    
     TweenMax.from("#bouquet-details", 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: 0.5,
       onComplete:callback
     });
 
-    TweenMax.to("#form > div", 0.5, {scrollTo:0, ease:"Power2.easeInOut"}); // eslint-disable-line
 
 
   }

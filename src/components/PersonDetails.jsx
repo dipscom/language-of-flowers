@@ -38,10 +38,10 @@ export default class PersonDetails extends Component {
           <hr />
 	    	</header>
 	    	<label htmlFor="name">{this.capitalizeFirstLetter(this.props.index)} first name</label>
-	    	<input type="text" id="name" className={this.props.index} name="name" value={this.props[this.props.index].name} placeholder="Name" required onChange={(e) => this.props.updateField(e)} tabindex="1" />
+	    	<input type="text" id="name" className={this.props.index} name="name" value={this.props[this.props.index].name} placeholder="Name" required onChange={(e) => this.props.updateField(e)} tabIndex="1" />
 	    	<label htmlFor="email">{this.capitalizeFirstLetter(this.props.index)} email</label>
 	    	<input type="email" id="email" className={this.props.index} name="email" value={this.props[this.props.index].email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
-	    	<Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} tabindex="2" />
+	    	<Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} tabIndex="2" />
     	</form>
       { typeof this.props.nextStep === 'string' ?
           <Anchor className={disabled} cta={this.props.nextCta}  step="forward" target="confirmation" /> :

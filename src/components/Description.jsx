@@ -49,9 +49,23 @@ export default class Description extends Component {
 
   /* Animation */
   animateIn(callback, delay) {
+    // Show the spare logo in the backgtround component
+    TweenMax.to("#lof-logo", 0.5, {autoAlpha:1, delay:0.5}); // eslint-disable-line
+    // Open space for the logo
+    TweenMax.to("#line-top > .segment", 0.8, { // eslint-disable-line
+      drawSVG: "30% 100%",
+      ease: "Power4.easeInOut"
+    });
+
+    TweenMax.set(".page > div", {  // eslint-disable-line
+      scrollTo:0,
+      delay:delay || 0
+    });
+
     TweenMax.from(this.el, 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: delay || 0,
+      ease: "Power4.easeInOut",
       onComplete:callback
     });
   }
@@ -59,7 +73,7 @@ export default class Description extends Component {
   animateOut(callback) {
     TweenMax.to(this.el, 0.5, { // eslint-disable-line
       autoAlpha:0,
-      ease: "Power4.easeIn",
+      ease: "Power4.easeInOut",
       onComplete:callback
     });
   }
@@ -69,9 +83,6 @@ export default class Description extends Component {
   componentWillEnter(callback) {
     // console.log("Description Will enter");
     this.animateIn(callback, 0.5);
-
-    TweenMax.to(".page > div", 0.5, {scrollTo:0, ease:"Power2.easeInOut"}); // eslint-disable-line
-
   }
 
   componentDidEnter() {
@@ -80,10 +91,7 @@ export default class Description extends Component {
 
   componentWillAppear(callback) {
     // console.log("Description Will appear");
-    this.animateIn(callback, 3);
-
-    TweenMax.to(".page > div", 0.5, {scrollTo:0, ease:"Power2.easeInOut"}); // eslint-disable-line
-
+    this.animateIn(callback);
   }
 
   componentDidAppear() {
