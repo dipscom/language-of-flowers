@@ -35,6 +35,7 @@ export default class Background extends Component {
     )
   }
 
+
   componentWillAppear() {
     // Use GSAP to center the image for better layout resize handling
     TweenMax.set("#forest", {xPercent:-50, yPercent:-50});// eslint-disable-line
