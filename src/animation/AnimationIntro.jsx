@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import AnimateOut from './AnimateOut';
 import BackgroundIn from './BackgroundIn';
-import CloudsLoop from './CloudsLoop';
+// import CloudsLoop from './CloudsLoop';
+import ContentIn from './ContentIn';
 import OverlayIn from './OverlayIn';
+import ResetScroller from './ResetScroller';
 
 export var AnimationIntro = WrappedComponent => class extends Component {
   componentWillAppear(callback) {
 
-    console.log(this.el);
-
     // Hide the LOF logo initially
     TweenMax.set("#lof-logo", {autoAlpha:0}); // eslint-disable-line
-    // Makes sure the page is always on the top
-    TweenMax.set(".page > div", {scrollTo:0}); // eslint-disable-line
 
-    // Infinite Clouds loop
-    // let cloudsLoop = CloudsLoop(); // Either of these is fine
-    // CloudsLoop(); // Either of these is fine
+    // Reset the scroller position
+    ResetScroller(this.element.trg);
+
+    // Clouds infinite loop
+    // CloudsLoop();
 
     // Intro animation
     let tl = new TimelineMax(); // eslint-disable-line
@@ -27,61 +27,55 @@ export var AnimationIntro = WrappedComponent => class extends Component {
     // Overlay section
     tl.add(OverlayIn())
 
+    // Contents section
+    tl.add(ContentIn(this.element.trg, callback), "-=1.5")
 
-    // Introduction section
-    .add(this.contentAnimation(callback), "-=1.5")
-
-    .add("People", "-=1")
+    // Them people
+    tl.add("People", "-=1")
     .from(["#man","#lady"], 1, {autoAlpha:0}, "People")
     .from("#man", 1, {xPercent:10}, "People")
     .from("#lady", 1, {xPercent:-10}, "People")
 
   }
 
-  contentAnimation(callback) {
-    let tl = new TimelineMax(); // eslint-disable-line
-
-    tl.staggerFrom(["#penhaligons-logo", "hr", "h1", "p", "strong"], 1.5, {
-        autoAlpha:0,
-        ease:"Power1.easeOut"
-      }, 0.3, "StaggerContent")
-      .staggerFrom(["#penhaligons-logo", "hr", "h1", "p", "strong"], 1.5, {
-        y:10,
-        ease:"Power4.easeOut"
-      }, 0.3, "StaggerContent")
-      .from(".button", 0.5, {
-        autoAlpha:0,
-        ease:"Power4.easeInOut",
-        onStart:callback
-      })
-
-    return tl;
-  }
-
-
-
-
-
 
   componentWillEnter(callback) {
-    // Show the spare logo in the background component
-    TweenMax.to("#lof-logo", 0.5, {autoAlpha:0, ease: "Power4.easeInOut"}); // eslint-disable-line
-    // Open space for the logo
-    TweenMax.to("#line-top > .segment", 0.8, { // eslint-disable-line
-      drawSVG: "0% 100%",
-      ease: "Power4.easeInOut"
-    });
+    // Reset the scroller position
+    ResetScroller(this.element.trg);
 
     let tl = new TimelineMax(); // eslint-disable-line
 
-    tl.add(this.contentAnimation(callback))
+    // Use this label to offset the whole animation
+    tl.add("Start", 0.5)
+    // Introduction section
+    tl.add(ContentIn(this.element.trg, callback), "Start")
+    // Show/Hide LOF logo
+    // & add the content animation
+    // depending on target component
+    if(this.element.trg.id === "introduction") {
+      // Hide the spare logo in the background component
+      tl.to("#lof-logo", 0.5, {autoAlpha:0, ease: "Power4.easeInOut"}, "Start"); // eslint-disable-line
+      // Close the space for the logo
+      tl.to("#line-top > .segment", 0.8, { // eslint-disable-line
+        drawSVG: "0% 100%",
+        ease: "Power4.easeInOut"
+      }, "Start");
+    } else {
+      // Show the spare logo in the backgtround component
+      tl.to("#lof-logo", 0.5, {autoAlpha:1, delay:0.5}, "Start"); // eslint-disable-line
+      // Open the space for the logo
+      tl.to("#line-top > .segment", 0.8, { // eslint-disable-line
+        drawSVG: "30% 100%",
+        ease: "Power4.easeInOut"
+      }, "Start");
+    }
   }
 
   componentWillLeave(callback) {
-    AnimateOut("#introduction", callback);
+    AnimateOut(this.element.trg, callback);
   }
 
   render() {
-    return <WrappedComponent />
+    return <WrappedComponent ref={ el => this.element = el } />
   }
 }

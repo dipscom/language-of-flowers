@@ -3,13 +3,8 @@ import Anchor from './Anchor';
 import { AnimationIntro } from '../animation/AnimationIntro'
 
 
-// export default function AnimationIntro(Introduction) {
-// const Introduction = AnimationIntro(class extends Component {
 class Introduction extends Component {
   render() {
-
-    // console.log("--> Introduction render");
-
     return (
       <div
         id="introduction"
@@ -17,7 +12,7 @@ class Introduction extends Component {
         className="page"
         ref={
           (el) => {
-            this.el = el;
+            this.trg = el;
           }
         }
         >
