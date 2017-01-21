@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AnimateOut from '../animation/AnimateOut';
 import Anchor from './Anchor';
 
 export default class Description extends Component {
@@ -100,7 +101,7 @@ export default class Description extends Component {
 
   componentWillLeave(callback) {
     // console.log("Description Will leave");
-    this.animateOut(callback);
+    AnimateOut(this.el, callback);
   }
 
   componentDidLeave() {

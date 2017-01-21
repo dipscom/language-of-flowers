@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Anchor from './Anchor';
-import { AnimationIntro } from './AnimationIntro'
+import { AnimationIntro } from '../animation/AnimationIntro'
 
 
 // export default function AnimationIntro(Introduction) {
@@ -15,6 +15,11 @@ class Introduction extends Component {
         id="introduction"
         key="introduction"
         className="page"
+        ref={
+          (el) => {
+            this.el = el;
+          }
+        }
         >
         <div>
           <div>
