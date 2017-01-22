@@ -116,7 +116,6 @@ export default class Form extends Component {
     let diamonds = [], classes = null;
     for (let i = 1; i <= this.props.steps.total; i++) {
       if (i === this.props.steps.current) {
-        console.log('current nav' + 1);
         classes = 'current';
       } else if (i > this.props.steps.current) {
         classes = 'disabled';
@@ -222,7 +221,6 @@ export default class Form extends Component {
 
   update() {
     // console.log(this.latestKnownScrollY);
-
 		this.logoTl.progress(this.latestKnownScrollY/100)
 
     this.ticking = false;

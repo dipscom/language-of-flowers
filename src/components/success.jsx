@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import OverlayIn from '../animation/OverlayIn';
+import AnimateOut from '../animation/AnimateOut';
+
 
 export default class Success extends Component{
   constructor() {
@@ -73,37 +74,35 @@ export default class Success extends Component{
 
   /* Animation */
   animateIn(callback, delay) {
-    let tl = new TimelineMax({delay:delay || 0, onComplete:callback}); // eslint-disable-line
+    let tl = new TimelineMax({delay:delay || 0, onStart:callback}); // eslint-disable-line
     let currentTarget = "#" + this.el.id;
     let dur = 1.6;
 
-    tl.set("#products", {autoAlpha:0});
-
     // Make sure the logo is centered on its x-axis
     tl.set("#lof-logo", {xPercent:-50});
+    // And that the products are hidden
+    tl.set("#products", {autoAlpha:0});
 
-    tl.add(OverlayIn())
-      .from(currentTarget, dur, { // eslint-disable-line
-      autoAlpha:0
-    }, "-="+dur);
+    tl.from(currentTarget, dur, {autoAlpha:0});
 
     tl.add("Crossfade", "+=3")
       .to("#thank-you", dur, {autoAlpha:0, ease:"Power2.easeInOut"})
       .to("#products", dur, {autoAlpha:1, ease:"Power2.easeInOut"}, "-=0.6")
 
-
-
   }
 
   componentWillEnter(callback) {
     // console.log("Success Will enter");
-    this.animateIn();
+    this.animateIn(callback);
   }
 
   componentWillAppear(callback) {
     // console.log("Success Will appear");
-    this.animateIn();
+    this.animateIn(callback);
   }
 
+  componentWillLeave(callback) {
+    AnimateOut(this.el, callback);
+  }
 
 }
