@@ -11,7 +11,7 @@ export default class Background extends Component {
       	<div id="paper">
       		<img role="presentation" id="cloud1" className="cloud" src="/images/background/cloud-1.png" />
           <img role="presentation" id="cloud2" className="cloud" src="/images/background/cloud-2.png" />
-          <svg id="line-top" className="line-decoration" viewBox="0 0 1400 50">
+          <svg id="line-top" className="line-decoration" viewBox="0 0 1400 50" preserveAspectRatio="xMidYMin">
             <path className="segment" d="M700 20 Q690 0.5, 660 0.5 H0" vectorEffect="non-scaling-stroke"  />
             <path className="segment" d="M700 20 Q710 0.5, 740 0.5 H1400" vectorEffect="non-scaling-stroke"  />
           </svg>
