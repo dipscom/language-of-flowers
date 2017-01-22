@@ -22,7 +22,6 @@ export default class Form extends Component {
 		this.ticking = false;
 		this.onScroll = this.onScroll.bind(this);
 		this.update = this.update.bind(this);
-
 		this.logoTl = null;
 
   }
@@ -193,6 +192,7 @@ export default class Form extends Component {
 		// console.log("Form will enter")
 		this.AnimateIn(callback, 0.5)
 	}
+
 	componentDidEnter() {
 		// console.log("Form did enter")
 	}
@@ -220,9 +220,7 @@ export default class Form extends Component {
   }
 
   update() {
-    // console.log(this.latestKnownScrollY);
 		this.logoTl.progress(this.latestKnownScrollY/100)
-
     this.ticking = false;
   }
 

@@ -8,6 +8,20 @@ import ResetScroller from '../animation/ResetScroller';
 
 
 export default class Confirmation extends Component {
+  constructor() {
+    super();
+
+    this.latestKnownScrollY = 0;
+    this.ticking = false;
+    this.onScroll = this.onScroll.bind(this);
+    this.update = this.update.bind(this);
+    this.logoTl = null;
+
+  }
+  componentDidMount() {
+    this.logoTl = TweenMax.to("#lof-logo", 1, {autoAlpha:0, paused:true, ease:"Linear.easeNone"}); // eslint-disable-line
+  }
+
   render() {
     let disabled;
     if(!this.props.terms) {
@@ -22,7 +36,7 @@ export default class Confirmation extends Component {
             this.el = el;
           }
         }>
-        <div>
+        <div id="scroller" onScroll={this.onScroll}>
         	<div>
           	<header>
           		<h1>Confirm & Send</h1>
@@ -62,7 +76,6 @@ export default class Confirmation extends Component {
 
     ResetScroller('form');
 
-
     // Make sure the logo is centered on its x-axis
     tl.set("#lof-logo", {xPercent:-50});
 
@@ -85,5 +98,23 @@ export default class Confirmation extends Component {
     // console.log("Confirmation Will leave");
     AnimateOut(this.el, callback);
   }
+
+  onScroll() {
+    let scrollY = document.getElementById('scroller').scrollTop;
+    this.latestKnownScrollY = scrollY;
+    this.requestTick();
+  }
+
+  requestTick() {
+    if(!this.ticking) {
+      requestAnimationFrame(this.update);
+    }
+  }
+
+  update() {
+    this.logoTl.progress(this.latestKnownScrollY/100)
+    this.ticking = false;
+  }
+
 
 }

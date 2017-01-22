@@ -6,6 +6,16 @@ export default class Success extends Component{
   constructor() {
     super();
     this.renderProduct = this.renderProduct.bind(this);
+
+    this.latestKnownScrollY = 0;
+    this.ticking = false;
+    this.onScroll = this.onScroll.bind(this);
+    this.update = this.update.bind(this);
+    this.logoTl = null;
+
+  }
+  componentDidMount() {
+    this.logoTl = TweenMax.to("#lof-logo", 1, {autoAlpha:0, paused:true, ease:"Linear.easeNone"}); // eslint-disable-line
   }
   renderProduct(key) {
     const product = this.props.products[key];
@@ -35,7 +45,7 @@ export default class Success extends Component{
           }
         }
       >
-        <div>
+        <div id="scroller" onScroll={this.onScroll}>
           <div id="thank-you">
             <header>
               <h1>Thank You!</h1>
@@ -104,5 +114,23 @@ export default class Success extends Component{
   componentWillLeave(callback) {
     AnimateOut(this.el, callback);
   }
+
+  onScroll() {
+    let scrollY = document.getElementById('scroller').scrollTop;
+    this.latestKnownScrollY = scrollY;
+    this.requestTick();
+  }
+
+  requestTick() {
+    if(!this.ticking) {
+      requestAnimationFrame(this.update);
+    }
+  }
+
+  update() {
+    this.logoTl.progress(this.latestKnownScrollY/100)
+    this.ticking = false;
+  }
+
 
 }
