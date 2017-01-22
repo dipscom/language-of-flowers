@@ -2,7 +2,7 @@ export default function OverlayIn() {
   let tl = new TimelineMax(); // eslint-disable-line
 
   let fadeIn = function(el, opts = {xP:0, yP:0} ) {
-    return TweenMax.fromTo(el, 2, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0}, {xPercent:0, yPercent:0, autoAlpha:1, ease:Back.easeOut.config(3)}); // eslint-disable-line
+    return TweenMax.fromTo(el, 2, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0}, {xPercent:0, yPercent:0, autoAlpha:1, ease:Back.easeOut.config(2)}); // eslint-disable-line
   }
 
   tl.add(fadeIn('#flowersBottom', {xP:0, yP:10}), "Foliage")

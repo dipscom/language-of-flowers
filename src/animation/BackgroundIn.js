@@ -1,11 +1,13 @@
 export default function BackgroundIn() {
   let tl = new TimelineMax(); // eslint-disable-line
 
-  tl.from(["#background","#paper",".cloud"], 1, {
+  tl.from(["#background",".cloud"], 1, {
     autoAlpha:0,
     ease:"Power2.easeInOut"
   }, 0.3)
     .to("#forest figure", 1.5, {scale:1.025}, 0)
+
+    .from("#paper", 1, {autoAlpha:0})
 
     .add("PaperLines", "-=0.5")
     .from(".straight-segment", 0.8, {

@@ -6,7 +6,6 @@ import FlowerSelect from './FlowerSelect';
 import FlowerDetails from './FlowerDetails';
 import PersonDetails from './PersonDetails';
 // import NavLink from './NavLink';
-import OverlayIn from '../animation/OverlayIn';
 import OverlayOut from '../animation/OverlayOut';
 
 const initialState = {
@@ -152,39 +151,61 @@ export default class Form extends Component {
 
 
 	/* Animation */
+	resizeLOF(down) {
+		let tl = new TimelineMax(); // eslint-disable-line
+
+		// Make sure the logo is centered on its x-axis
+		tl.set("#lof-logo", {xPercent:-50});
+
+		if(down) {
+			tl.to("#lof-logo", 0.8, {
+				scale:0.7,
+				yPercent:-30,
+				ease: "Power2.easeInOut"
+			}, 0);
+			// Open the space for the logo
+			tl.to("#line-top > .segment", 0.8, {
+			  drawSVG: "30% 100%",
+			  ease: "Power2.easeInOut"
+			}, 0);
+
+		}
+
+		return tl;
+	}
+
+	AnimateIn(callback, delay) {
+		let tl = new TimelineMax({delay:delay || 0, onComplete:callback}); // eslint-disable-line
+
+		tl.add(OverlayOut())
+			.add(this.resizeLOF(true), 0)
+			.from("#form", 2, { // eslint-disable-line
+				autoAlpha:0
+		})
+
+	}
+
 	componentWillAppear(callback) {
 		// console.log("Form will enter")
-		TweenMax.from("#form", 0.5, { // eslint-disable-line
-		  autoAlpha:0,
-		  delay: 0.5,
-		  onComplete:callback
-		});
-
-		OverlayOut();
+		this.AnimateIn(callback)
 	}
 
 	componentWillEnter(callback) {
 		// console.log("Form will enter")
-		TweenMax.from("#form", 0.5, { // eslint-disable-line
-		  autoAlpha:0,
-		  delay: 0.5,
-		  onComplete:callback
-		});
-
-		OverlayOut();
+		this.AnimateIn(callback, 0.5)
 	}
 	componentDidEnter() {
 		// console.log("Form did enter")
 	}
 
 	componentWillLeave(callback) {
-		console.log("Form Will leave");
-		TweenMax.to("#form", 0.5, { // eslint-disable-line
+		// console.log("Form Will leave");
+		let tl = new TimelineMax({onComplete:callback}); // eslint-disable-line
+
+		tl.to("#form", 0.5, {
 		  autoAlpha:0,
-		  onComplete:callback
 		});
 
-		OverlayIn();
 	}
 
 	onScroll() {

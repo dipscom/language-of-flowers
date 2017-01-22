@@ -5,25 +5,26 @@ import products from '../data/products';
 import Background from './Background';
 import Overlay from './Overlay';
 // import TransitionGroup from 'react-addons-transition-group';
+
 const initialState = {
-  bouquet: [],
-  flowers: flowers,
-  products: products,
-  recipient: {
-    name: '',
-    email: '',
-    valid: false
-  },
-  sender: {
-    name: '',
-    email: '',
-    valid: false
-  },
-  steps: {
-    current: 1,
-    total: 4
-  },
-  terms: false
+bouquet: [],
+flowers: flowers,
+products: products,
+recipient: {
+  name: 'recipient',
+  email: 'recipient@recipient.com',
+  valid: true
+},
+sender: {
+  name: 'sender',
+  email: 'sender@sender.com',
+  valid: true
+},
+steps: {
+  current: 1,
+  total: 4
+},
+terms: false
 };
 
 export default class App extends Component {

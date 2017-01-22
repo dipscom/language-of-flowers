@@ -28,14 +28,14 @@ export default class HeroImage extends Component {
   animateIn(callback, delay) {
     var tl = new TimelineMax(); // eslint-disable-line
 
-    tl.from("#hero-image", 1.5, {
+    tl.from("#hero-image", 3, {
       autoAlpha: 0,
       delay: delay || 0,
-      scale: 1.05,
-      ease: "Power4.easeOut",
+      scale: 0.95,
+      ease: "Power1.easeOut",
       onComplete:callback
     });
-    tl.add("Details", "-=1.5")
+    tl.add("Details", 0)
     tl.from("#bouquet-details header", 1.5, {
       autoAlpha: 0,
       ease: "Power4.easeInOut"
