@@ -4,6 +4,8 @@ import Flower from './Flower';
 import AnimateOut from '../animation/AnimateOut';
 import OverlayIn from '../animation/OverlayIn';
 import ResetScroller from '../animation/ResetScroller';
+import CloudsLoop from '../animation/CloudsLoop';
+
 
 
 
@@ -87,6 +89,10 @@ export default class Confirmation extends Component {
   componentWillAppear(callback) {
     // console.log("Confirmation Will appear");
     this.animateIn(callback, 0.5);
+
+    // Clouds infinite loop
+    CloudsLoop();
+
   }
 
   componentWillEnter(callback) {

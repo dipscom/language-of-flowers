@@ -7,6 +7,8 @@ import FlowerDetails from './FlowerDetails';
 import PersonDetails from './PersonDetails';
 // import NavLink from './NavLink';
 import OverlayOut from '../animation/OverlayOut';
+import CloudsLoop from '../animation/CloudsLoop';
+
 
 const initialState = {
 	activeFlower: null,
@@ -185,12 +187,16 @@ export default class Form extends Component {
 
 	componentWillAppear(callback) {
 		// console.log("Form will enter")
-		this.AnimateIn(callback)
+		this.AnimateIn(callback);
+
+		// Clouds infinite loop
+		CloudsLoop();
+
 	}
 
 	componentWillEnter(callback) {
 		// console.log("Form will enter")
-		this.AnimateIn(callback, 0.5)
+		this.AnimateIn(callback, 0.5);
 	}
 
 	componentDidEnter() {

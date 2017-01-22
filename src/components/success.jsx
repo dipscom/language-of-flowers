@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AnimateOut from '../animation/AnimateOut';
+import CloudsLoop from '../animation/CloudsLoop';
+
 
 
 export default class Success extends Component{
@@ -101,15 +103,20 @@ export default class Success extends Component{
 
   }
 
+  componentWillAppear(callback) {
+    // console.log("Success Will appear");
+    this.animateIn(callback);
+
+    // Clouds infinite loop
+    CloudsLoop();
+
+  }
+
   componentWillEnter(callback) {
     // console.log("Success Will enter");
     this.animateIn(callback);
   }
 
-  componentWillAppear(callback) {
-    // console.log("Success Will appear");
-    this.animateIn(callback);
-  }
 
   componentWillLeave(callback) {
     AnimateOut(this.el, callback);

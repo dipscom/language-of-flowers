@@ -131,10 +131,14 @@
         width: 100%;
     }
     .cloud {
-        height: 20%;
-        left: -25%;
+        height: auto;
+        left: 0;
         position: absolute;
-        width: auto;
+        width: 30vw;
+
+        @media (orientation: portrait) {
+          width: 80vw;
+        }
 
         /* mix-blend-mode: multiply; */
     }
