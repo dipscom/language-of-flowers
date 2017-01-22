@@ -64,13 +64,21 @@
         margin: 0;
         transition: color 0.3s;
         width: 100%;
-
+        text-shadow: 0px 0px 0px $main-color;
+        -webkit-text-fill-color: transparent;
          @media (--tablet-small-above) {
            font-size: 34px;
         }
          @extend lovato;
         &:valid {
             color: $green;
+        }
+        &:invalid {
+            box-shadow: none;
+        }
+        &::-webkit-input-placeholder{
+            text-shadow: none;
+            -webkit-text-fill-color: initial;
         }
     }
     .button {

@@ -38,82 +38,82 @@ export default class App extends Component {
     this.prevStep = this.prevStep.bind(this);
     this.updateStep = this.updateStep.bind(this);
   }
-  componentWillMount(){
-    let bouquet, recipient, sender, flowers, products, steps;
-    const accessTime = Number((localStorage.getItem('accessTime'))) + 20000, timeStamp = Date.now();
+  // componentWillMount(){
+  //   let bouquet, recipient, sender, flowers, products, steps;
+  //   const accessTime = Number((localStorage.getItem('accessTime'))) + 20000, timeStamp = Date.now();
 
-    if(Object.keys(this.props.location.query).length !== 0) {
-      if (this.props.location.query.bouquet && this.props.location.query.recipient && this.props.location.query.sender) {
-        bouquet = this.props.location.query.bouquet.split(',');
-        recipient = { name: this.props.location.query.recipient };
-        sender = { name: this.props.location.query.sender };
-        this.setState({
-          steps: {
-            current: 0
-          }
-        });
-      } else {
-        if(window.location.pathname !== '/') {
-          window.location = '/';
-        }
-      }
-    } else if (accessTime > timeStamp) {
-        if(localStorage.getItem('bouquet')) {
-          bouquet = localStorage.getItem('bouquet').split(',');
-        }
-        if(localStorage.getItem('recipient')) {
-          recipient = {...JSON.parse(localStorage.getItem('recipient')) };
-        }
-        if(localStorage.getItem('sender')) {
-          sender = {...JSON.parse(localStorage.getItem('sender'))};
-        }
-        if(localStorage.getItem('flowers')) {
-          flowers = {...JSON.parse(localStorage.getItem('flowers'))};
-        }
-        if(localStorage.getItem('products')) {
-          products = {...JSON.parse(localStorage.getItem('products'))};
-        }
-        if(localStorage.getItem('steps')) {
-          steps = {...JSON.parse(localStorage.getItem('steps'))};
-        }
-      }
+  //   if(Object.keys(this.props.location.query).length !== 0) {
+  //     if (this.props.location.query.bouquet && this.props.location.query.recipient && this.props.location.query.sender) {
+  //       bouquet = this.props.location.query.bouquet.split(',');
+  //       recipient = { name: this.props.location.query.recipient };
+  //       sender = { name: this.props.location.query.sender };
+  //       this.setState({
+  //         steps: {
+  //           current: 0
+  //         }
+  //       });
+  //     } else {
+  //       if(window.location.pathname !== '/') {
+  //         window.location = '/';
+  //       }
+  //     }
+  //   } else if (accessTime > timeStamp) {
+  //       if(localStorage.getItem('bouquet')) {
+  //         bouquet = localStorage.getItem('bouquet').split(',');
+  //       }
+  //       if(localStorage.getItem('recipient')) {
+  //         recipient = {...JSON.parse(localStorage.getItem('recipient')) };
+  //       }
+  //       if(localStorage.getItem('sender')) {
+  //         sender = {...JSON.parse(localStorage.getItem('sender'))};
+  //       }
+  //       if(localStorage.getItem('flowers')) {
+  //         flowers = {...JSON.parse(localStorage.getItem('flowers'))};
+  //       }
+  //       if(localStorage.getItem('products')) {
+  //         products = {...JSON.parse(localStorage.getItem('products'))};
+  //       }
+  //       if(localStorage.getItem('steps')) {
+  //         steps = {...JSON.parse(localStorage.getItem('steps'))};
+  //       }
+  //     }
 
-      else {
-      if(window.location.pathname !== '/') {
-        window.location = '/';
-      }
-    }
-    if(bouquet) {
-      this.setState({
-        bouquet : bouquet
-      });
-    }
-    if(flowers) {
-      this.setState({
-        flowers : flowers
-      });
-    }
-    if(products) {
-      this.setState({
-        products : products
-      });
-    }
-    if(recipient) {
-      this.setState({
-        recipient : recipient
-      });
-    }
-    if(sender) {
-      this.setState({
-        sender : sender
-      });
-    }
-    if(steps) {
-      this.setState({
-        steps : steps
-      });
-    }
-  }
+  //     else {
+  //     if(window.location.pathname !== '/') {
+  //       window.location = '/';
+  //     }
+  //   }
+  //   if(bouquet) {
+  //     this.setState({
+  //       bouquet : bouquet
+  //     });
+  //   }
+  //   if(flowers) {
+  //     this.setState({
+  //       flowers : flowers
+  //     });
+  //   }
+  //   if(products) {
+  //     this.setState({
+  //       products : products
+  //     });
+  //   }
+  //   if(recipient) {
+  //     this.setState({
+  //       recipient : recipient
+  //     });
+  //   }
+  //   if(sender) {
+  //     this.setState({
+  //       sender : sender
+  //     });
+  //   }
+  //   if(steps) {
+  //     this.setState({
+  //       steps : steps
+  //     });
+  //   }
+  // }
   componentWillUpdate(nextProps, nextState) {
     localStorage.setItem('bouquet', nextState.bouquet);
     localStorage.setItem('flowers', JSON.stringify(nextState.flowers));
@@ -132,41 +132,45 @@ export default class App extends Component {
         SEMAIL: this.state.sender.email,
         BOUQUET: this.state.bouquet.toString()
     };
-    // const senderData = {
-    //     EMAIL: this.state.sender.email,
-    //     NAME: this.state.sender.name,
-    //     RNAME: this.state.recipient.name,
-    //     REMAIL: this.state.recipient.email,
-    //     BOUQUET: this.state.bouquet.toString()
-    // };
+    const senderData = {
+        EMAIL: this.state.sender.email,
+        NAME: this.state.sender.name,
+        RNAME: this.state.recipient.name,
+        REMAIL: this.state.recipient.email,
+        BOUQUET: this.state.bouquet.toString()
+    };
     $.ajax({ // eslint-disable-line
       url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=c0307ad06b',
       data: decodeData,
       dataType: 'jsonp',
     });
-    // $.ajax({ // eslint-disable-line
-    //   url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=9ba6c73073',
-    //   data: senderData,
-    //   dataType: 'jsonp',
-    // });
+    $.ajax({ // eslint-disable-line
+      url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=9ba6c73073',
+      data: senderData,
+      dataType: 'jsonp',
+    });
   }
   reset() {
     this.setState(initialState);
+    ga('send', 'event', 'Navigation', 'Reset'); // eslint-disable-line
   }
   nextStep() {
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current + 1;
     this.setState({ steps });
+    ga('send', 'event', 'Navigation', 'Next Step', 'Build Bouquet', this.state.steps.current + 1); // eslint-disable-line
   }
   prevStep() {
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current - 1;
     this.setState({ steps });
+    ga('send', 'event', 'Navigation', 'Previous Step', 'Build Bouquet', this.state.steps.current - 1); // eslint-disable-line
   }
   updateStep(i) {
     const steps = {...this.state.steps};
     steps['current'] = i;
     this.setState({ steps });
+    ga('send', 'event', 'Navigation', 'Form Navigation', 'Build Bouquet', i); // eslint-disable-line
   }
   selectFlower(key) {
     console.log('selectFlower triggered');
