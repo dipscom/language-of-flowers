@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Anchor from './Anchor';
 import Button from './Button';
 import Flower from './Flower';
+import ResetScroller from '../animation/ResetScroller';
+
 
 export default class BouquetDetails extends Component {
   render() {
@@ -47,9 +49,11 @@ export default class BouquetDetails extends Component {
     callback();
   }
   componentWillEnter(callback) {
-    // console.log("BouquetDetails will enter");
-    TweenMax.set("#form > div", {scrollTo:0, ease:"Power2.easeInOut"}); // eslint-disable-line
-    
+    console.log("BouquetDetails will enter");
+    // Reset the scroller position
+    ResetScroller('form');
+
+
     TweenMax.from("#bouquet-details", 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: 0.5,

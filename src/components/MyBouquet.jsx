@@ -74,7 +74,6 @@ export default class MyBouquet extends Component{
     // Hide the spare logo in the backgtround component
     TweenMax.set("#lof-logo", {autoAlpha:0}); // eslint-disable-line
 
-    TweenMax.to(".page > div", 0.5, {scrollTo:0, ease:"Power2.easeInOut"}); // eslint-disable-line
 
     this.tl = new TimelineMax({delay:3}) // eslint-disable-line
     // console.log("Introduction Will appear");
@@ -123,5 +122,5 @@ export default class MyBouquet extends Component{
   componentDidLeave() {
     // console.log("Introduction Did leave");
   }
-  
+
 }

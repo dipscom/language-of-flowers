@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Button from './Button';
 import Anchor from './Anchor';
+import ResetScroller from '../animation/ResetScroller';
+
 
 export default class PersonDetails extends Component {
 	constructor(){
@@ -59,6 +61,7 @@ export default class PersonDetails extends Component {
 		console.log("PersonInput will appear")
 		callback();
 	}
+
 	componentWillEnter(callback) {
 		console.log("PersonInput will enter");
 		const trg = "#" + this.props.index;
@@ -66,6 +69,8 @@ export default class PersonDetails extends Component {
 			autoAlpha: 0,
 			delay: 0.5
 		});
+
+		ResetScroller('form');
 
 
 		callback();
