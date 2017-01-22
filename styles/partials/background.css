@@ -74,15 +74,15 @@
     }
     .logo {
         display: block;
+        height: 15vh;
         left: 50%;
         position: absolute;
         top: 4.7%;
-        height: 15vh;
 
          @media (orientation: portrait) {
            height: auto;
-            top: 3.5%;
             max-width: 180px;
+            top: 3.5%;
          }
 
     }
@@ -100,10 +100,10 @@
         }
     }
     #line-top {
-        margin: 1.5% 0;
-        width: 100%;
-        padding: 0 6%;
         height: 50px;
+        margin: 1.5% 0;
+        padding: 0 6%;
+        width: 100%;
     }
     #line-left {
         bottom: 0;
@@ -124,10 +124,10 @@
     }
     #line-bottom {
         bottom: 0;
-        margin: 1.5% 0;
-        top: auto;
-        padding: 0 6%;
         height: 2px;
+        margin: 1.5% 0;
+        padding: 0 6%;
+        top: auto;
         width: 100%;
     }
     .cloud {
