@@ -49,6 +49,7 @@
             width: 90%;
 
             @media (orientation: landscape) {
+                align-items: center;
                 align-content: center;
                 max-width: 800px;
             }
