@@ -124,6 +124,9 @@ export default class App extends Component {
     localStorage.setItem('terms', nextState.terms);
     localStorage.setItem('accessTime', Date.now());
   }
+  // componentDidUpdate() {
+  //   console.log('This is where we need to add Google analytics if it doesnt update page views automatically with react router');
+  // }
   mailChimp(){
     const decodeData = {
         EMAIL: this.state.recipient.email,
