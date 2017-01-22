@@ -2,6 +2,8 @@ html {
     box-sizing: border-box;
     /* -webkit-font-smoothing: antialiased; */
     height: 100%;
+    position: fixed;
+  overflow: hidden;
 }
 
 *,
@@ -18,6 +20,9 @@ body {
     color: $main-color;
     height: 100%;
     line-height: 1.3;
+    position: fixed;
+  overflow: hidden;
+  width: 100%;
 
     @media (orientation: landscape) {
         align-items: center;
