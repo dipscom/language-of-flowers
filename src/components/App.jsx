@@ -13,12 +13,12 @@ products: products,
 recipient: {
   name: 'recipient',
   email: 'recipient@recipient.com',
-  valid: false
+  valid: true
 },
 sender: {
   name: 'sender',
   email: 'sender@sender.com',
-  valid: false
+  valid: true
 },
 steps: {
   current: 1,
