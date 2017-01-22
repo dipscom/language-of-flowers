@@ -9,8 +9,9 @@ import ResetScroller from './ResetScroller';
 export var AnimationIntro = WrappedComponent => class extends Component {
   componentWillAppear(callback) {
 
-    // Hide the LOF logo initially
+    // Hide the LOF logo and Start again button initially
     TweenMax.set("#lof-logo", {xPercent:-50, autoAlpha:0}); // eslint-disable-line
+    TweenMax.set("#reset-button", {autoAlpha:0}); // eslint-disable-line
 
     // Reset the scroller position
     ResetScroller(this.element.trg);
@@ -38,7 +39,15 @@ export var AnimationIntro = WrappedComponent => class extends Component {
       tl.add(this.hideLOF(), "Content")
     } else {
       tl.add(this.showLOF(), "Content")
+        .to("#reset-button", 0.5, {autoAlpha:1}, "Content")
     }
+
+    // Make sure the space for the logo is closed
+    tl.to("#line-top > .segment", 0.8, {
+      drawSVG: "0% 100%",
+      ease: "Power2.easeInOut"
+    }, "Content");
+
 
 
     // Them people
@@ -67,6 +76,8 @@ export var AnimationIntro = WrappedComponent => class extends Component {
       tl.add(this.hideLOF(), "Start")
     } else {
       tl.add(this.showLOF(), "Start")
+        .to("#reset-button", 0.5, {autoAlpha:1}, "Start")
+
     }
   }
 
@@ -83,11 +94,11 @@ export var AnimationIntro = WrappedComponent => class extends Component {
 
     // Show the spare logo in the background component
     tl.to("#lof-logo", 0.8, {autoAlpha:1, scale:1, yPercent:0, ease:"Power2.easeInOut"}, 0);
-    // Make sure the space for the logo is closed
-    tl.to("#line-top > .segment", 0.8, {
-      drawSVG: "0% 100%",
-      ease: "Power2.easeInOut"
-    }, 0);
+    // // Make sure the space for the logo is closed
+    // tl.to("#line-top > .segment", 0.8, {
+    //   drawSVG: "0% 100%",
+    //   ease: "Power2.easeInOut"
+    // }, 0);
 
     return tl;
   }
