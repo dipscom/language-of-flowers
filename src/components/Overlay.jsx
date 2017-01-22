@@ -8,14 +8,14 @@ export default class Overlay extends Component {
     // console.log("Overlay constructor:");
 
     this.tl = new TimelineMax({paused:true}); // eslint-disable-line
-    this.handleRender = this.handleRender.bind(this);
+    // this.handleRender = this.handleRender.bind(this);
 
   }
 
 
   render() {
 
-    this.handleRender();
+    // this.handleRender();
 
     return (
       <div
@@ -49,31 +49,31 @@ export default class Overlay extends Component {
     )
   }
 
-  handleRender() {
-    const thisHandler = this.handleAnimation;
-    TweenMax.killDelayedCallsTo(thisHandler) // eslint-disable-line
-    TweenMax.delayedCall(0.3, // eslint-disable-line
-      thisHandler,
-      [],
-      this
-    )
-  }
+  // handleRender() {
+  //   const thisHandler = this.handleAnimation;
+  //   TweenMax.killDelayedCallsTo(thisHandler) // eslint-disable-line
+  //   TweenMax.delayedCall(0.3, // eslint-disable-line
+  //     thisHandler,
+  //     [],
+  //     this
+  //   )
+  // }
 
-  handleAnimation() {
-
-    switch (this.props.location.pathname) {
-      case "build-bouquet":
-      case "/build-bouquet":
-      case "confirmation":
-      case "/confirmation":
-          this.tl.tweenTo("AnimateOut")
-        break;
-
-      default:
-      this.tl.tweenTo("Hold");
-
-    }
-  }
+  // handleAnimation() {
+  //
+  //   switch (this.props.location.pathname) {
+  //     case "build-bouquet":
+  //     case "/build-bouquet":
+  //     case "confirmation":
+  //     case "/confirmation":
+  //         this.tl.tweenTo("AnimateOut")
+  //       break;
+  //
+  //     default:
+  //     this.tl.tweenTo("Hold");
+  //
+  //   }
+  // }
 
 
   componentWillMount() {
@@ -87,14 +87,14 @@ export default class Overlay extends Component {
 
 
     // We're using normal CSS selectors because we know for a fact that this component will not be unmounted and/or changed at any time during the existence of this webapp
-    this.tl
-
-      .add("Hold")
-      .addPause()
-
-      .to(['#flowersBottom','#flowersBottomRight','#flowersMidLeft','#flowersTopLeft','#flowersTopRight','#peacock','#stag',"#man","#lady"], 0.5, {autoAlpha:0})
-      .add("AnimateOut")
-
+    // this.tl
+    //
+    //   .add("Hold")
+    //   .addPause()
+    //
+    //   .to(['#flowersBottom','#flowersBottomRight','#flowersMidLeft','#flowersTopLeft','#flowersTopRight','#peacock','#stag',"#man","#lady"], 0.5, {autoAlpha:0})
+    //   .add("AnimateOut")
+    //
 
   }
   componentWillUnmount() {

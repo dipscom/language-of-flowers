@@ -6,6 +6,8 @@ import FlowerSelect from './FlowerSelect';
 import FlowerDetails from './FlowerDetails';
 import PersonDetails from './PersonDetails';
 // import NavLink from './NavLink';
+import OverlayIn from '../animation/OverlayIn';
+import OverlayOut from '../animation/OverlayOut';
 
 const initialState = {
 	activeFlower: null,
@@ -150,6 +152,17 @@ export default class Form extends Component {
 
 
 	/* Animation */
+	componentWillAppear(callback) {
+		// console.log("Form will enter")
+		TweenMax.from("#form", 0.5, { // eslint-disable-line
+		  autoAlpha:0,
+		  delay: 0.5,
+		  onComplete:callback
+		});
+
+		OverlayOut();
+	}
+
 	componentWillEnter(callback) {
 		// console.log("Form will enter")
 		TweenMax.from("#form", 0.5, { // eslint-disable-line
@@ -157,17 +170,21 @@ export default class Form extends Component {
 		  delay: 0.5,
 		  onComplete:callback
 		});
+
+		OverlayOut();
 	}
 	componentDidEnter() {
 		// console.log("Form did enter")
 	}
 
 	componentWillLeave(callback) {
-		// console.log("Form Will leave");
+		console.log("Form Will leave");
 		TweenMax.to("#form", 0.5, { // eslint-disable-line
 		  autoAlpha:0,
 		  onComplete:callback
 		});
+
+		OverlayIn();
 	}
 
 	onScroll() {
