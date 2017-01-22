@@ -222,7 +222,6 @@ export default class Form extends Component {
 
   update() {
     // console.log(this.latestKnownScrollY);
-
 		this.logoTl.progress(this.latestKnownScrollY/100)
 
     this.ticking = false;

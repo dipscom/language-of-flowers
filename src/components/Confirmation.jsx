@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Anchor from './Anchor';
 import Flower from './Flower';
+import AnimateOut from '../animation/AnimateOut';
+import OverlayIn from '../animation/OverlayIn';
+
 
 export default class Confirmation extends Component {
   render() {
@@ -50,26 +53,32 @@ export default class Confirmation extends Component {
   }
 
   /* Animation */
-  componentWillEnter(callback) {
-    // console.log("Confirmation Will enter");
-    let currentTarget = "#" + this.el.id;
-    TweenMax.from(currentTarget, 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      delay:0.5,
-      onComplete:callback
-    });
+  animateIn(callback, delay) {
+    let tl = new TimelineMax({delay:delay || 0, onStart:callback}); // eslint-disable-line
+    let currentTarget = this.el;
+    let dur = 1.6;
+
+    // Make sure the logo is centered on its x-axis
+    tl.set("#lof-logo", {xPercent:-50});
+
+    tl.add(OverlayIn())
+
+    tl.from(currentTarget, dur, {autoAlpha:0}, "-="+dur);
   }
 
+  componentWillAppear(callback) {
+    // console.log("Confirmation Will appear");
+    this.animateIn(callback, 0.5);
+  }
+
+  componentWillEnter(callback) {
+    // console.log("Confirmation Will enter");
+    this.animateIn(callback, 0.5);
+  }
 
   componentWillLeave(callback) {
     // console.log("Confirmation Will leave");
-    let currentTarget = "#" + this.el.id;
-    TweenMax.to(currentTarget, 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      onComplete:callback
-    });
+    AnimateOut(this.el, callback);
   }
-
-
 
 }
