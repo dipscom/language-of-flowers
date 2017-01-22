@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AnimateOut from './AnimateOut';
 import BackgroundIn from './BackgroundIn';
-// import CloudsLoop from './CloudsLoop';
+import CloudsLoop from './CloudsLoop';
 import ContentIn from './ContentIn';
 import OverlayIn from './OverlayIn';
 import ResetScroller from './ResetScroller';
@@ -16,7 +16,7 @@ export var AnimationIntro = WrappedComponent => class extends Component {
     ResetScroller(this.element.trg);
 
     // Clouds infinite loop
-    // CloudsLoop();
+    CloudsLoop();
 
     // Intro animation
     let tl = new TimelineMax(); // eslint-disable-line
