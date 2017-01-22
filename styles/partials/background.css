@@ -76,11 +76,19 @@
         display: block;
 
         @media (orientation: landscape) {
-            height: 8vh;
+            height: 15vh;
+            left: 50%;
+            position: absolute;
+            top: 4.7%;
+            /*Don't transform here, we'll do it using GSAP*/
+            /*transform: translateX(-50%);*/
+
+            /*For reference only*/
+            /*height: 8vh;
             left: 50%;
             position: absolute;
             top: 1.7%;
-            transform: translateX(-50%);
+            transform: translateX(-50%);*/
         }
          @media (orientation: portrait) {
             margin: 3.571428571428571% auto 0;

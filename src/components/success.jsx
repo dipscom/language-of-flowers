@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import OverlayIn from '../animation/OverlayIn';
 
 export default class Success extends Component{
   constructor() {
@@ -71,27 +72,37 @@ export default class Success extends Component{
   }
 
   /* Animation */
-  componentWillEnter(callback) {
-    console.log("Success Will enter");
-
+  animateIn(callback, delay) {
+    let tl = new TimelineMax({delay:delay || 0, onComplete:callback}); // eslint-disable-line
     let currentTarget = "#" + this.el.id;
-    let dly = 2;
+    let dur = 1.6;
 
-    TweenMax.set("#products", {autoAlpha:0}); // eslint-disable-line
+    tl.set("#products", {autoAlpha:0});
 
-    TweenMax.from(currentTarget, 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      delay:0.5,
-      onComplete:function () {
-        TweenMax.to("#thank-you", 0.6, {autoAlpha:0, delay:dly}); // eslint-disable-line
-        TweenMax.to("#products", 0.6, {autoAlpha:1, delay:dly}); // eslint-disable-line
-        callback();
-      }
-    });
+    // Make sure the logo is centered on its x-axis
+    tl.set("#lof-logo", {xPercent:-50});
+
+    tl.add(OverlayIn())
+      .from(currentTarget, dur, { // eslint-disable-line
+      autoAlpha:0
+    }, "-="+dur);
+
+    tl.add("Crossfade", "+=3")
+      .to("#thank-you", dur, {autoAlpha:0, ease:"Power2.easeInOut"})
+      .to("#products", dur, {autoAlpha:1, ease:"Power2.easeInOut"}, "-=0.6")
+
+
+
+  }
+
+  componentWillEnter(callback) {
+    // console.log("Success Will enter");
+    this.animateIn();
   }
 
   componentWillAppear(callback) {
-    console.log("Success Will appear");
+    // console.log("Success Will appear");
+    this.animateIn();
   }
 
 

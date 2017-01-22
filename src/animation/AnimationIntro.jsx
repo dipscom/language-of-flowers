@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AnimateOut from './AnimateOut';
 import BackgroundIn from './BackgroundIn';
-import CloudsLoop from './CloudsLoop';
+// import CloudsLoop from './CloudsLoop';
 import ContentIn from './ContentIn';
 import OverlayIn from './OverlayIn';
 import ResetScroller from './ResetScroller';
@@ -10,13 +10,13 @@ export var AnimationIntro = WrappedComponent => class extends Component {
   componentWillAppear(callback) {
 
     // Hide the LOF logo initially
-    TweenMax.set("#lof-logo", {autoAlpha:0}); // eslint-disable-line
+    TweenMax.set("#lof-logo", {xPercent:-50, autoAlpha:0}); // eslint-disable-line
 
     // Reset the scroller position
     ResetScroller(this.element.trg);
 
     // Clouds infinite loop
-    CloudsLoop();
+    // CloudsLoop();
 
     // Intro animation
     let tl = new TimelineMax(); // eslint-disable-line
@@ -78,12 +78,15 @@ export var AnimationIntro = WrappedComponent => class extends Component {
   showLOF() {
     let tl = new TimelineMax(); // eslint-disable-line
 
-    // Show the spare logo in the backgtround component
-    tl.to("#lof-logo", 0.5, {autoAlpha:1, delay:0.5}, 0); // eslint-disable-line
-    // Open the space for the logo
-    tl.to("#line-top > .segment", 0.8, { // eslint-disable-line
-      drawSVG: "30% 100%",
-      ease: "Power4.easeInOut"
+    // Make sure the logo is centered on its x-axis
+    tl.set("#lof-logo", {xPercent:-50})
+
+    // Show the spare logo in the background component
+    tl.to("#lof-logo", 0.8, {autoAlpha:1, scale:1, yPercent:0, ease:"Power2.easeInOut"}, 0);
+    // Make sure the space for the logo is closed
+    tl.to("#line-top > .segment", 0.8, {
+      drawSVG: "0% 100%",
+      ease: "Power2.easeInOut"
     }, 0);
 
     return tl;
@@ -93,12 +96,7 @@ export var AnimationIntro = WrappedComponent => class extends Component {
     let tl = new TimelineMax(); // eslint-disable-line
 
     // Hide the spare logo in the background component
-    tl.to("#lof-logo", 0.5, {autoAlpha:0, ease: "Power4.easeInOut"}, 0); // eslint-disable-line
-    // Close the space for the logo
-    tl.to("#line-top > .segment", 0.8, { // eslint-disable-line
-      drawSVG: "0% 100%",
-      ease: "Power4.easeInOut"
-    }, 0);
+    tl.to("#lof-logo", 0.5, {autoAlpha:0, ease: "Power4.easeInOut"}, 0);
 
     return tl;
   }
