@@ -50,11 +50,11 @@ export default class FlowerSelect extends Component {
 
   /* Animation */
   componentWillAppear(callback) {
-    console.log("FlowerSelect will appear")
+    // console.log("FlowerSelect will appear")
     callback();
   }
   componentWillEnter(callback) {
-    console.log("FlowerSelect will enter")
+    // console.log("FlowerSelect will enter")
     TweenMax.staggerFrom("#flower-list > li", 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay:0.5

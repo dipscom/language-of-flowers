@@ -3,6 +3,8 @@ import Anchor from './Anchor';
 import Flower from './Flower';
 import AnimateOut from '../animation/AnimateOut';
 import OverlayIn from '../animation/OverlayIn';
+import ResetScroller from '../animation/ResetScroller';
+
 
 
 export default class Confirmation extends Component {
@@ -57,6 +59,9 @@ export default class Confirmation extends Component {
     let tl = new TimelineMax({delay:delay || 0, onStart:callback}); // eslint-disable-line
     let currentTarget = this.el;
     let dur = 1.6;
+
+    ResetScroller('form');
+
 
     // Make sure the logo is centered on its x-axis
     tl.set("#lof-logo", {xPercent:-50});
