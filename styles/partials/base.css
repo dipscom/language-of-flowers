@@ -89,7 +89,7 @@ hr {
 
 .hide-portrait {
     @media (orientation: portrait) {
-        /*display: none;*/
+        display: none;
     }
 }
 

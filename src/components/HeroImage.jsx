@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 export default class HeroImage extends Component {
   render() {
-  	let classes = '';
+/*  	let classes = '';
   	if (this.props.step > 2) {
   		classes += 'hide-portrait';
-  	}
+  	} */
     return (
-    	<div id="hero-image" className={classes}>
+    	<div id="hero-image">
     	  <header>
 	      	<h1>Your Bouquet</h1>
 	      	{/*<svg className="doubleline-decoration" viewBox="0 0 1400 40">
