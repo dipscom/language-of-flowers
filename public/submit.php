@@ -1,3 +1,3 @@
 <?php
 $data = $_POST['data'];
-file_put_contents("responses.txt", $data);
+file_put_contents("/responses.txt", $data);

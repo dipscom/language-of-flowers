@@ -176,14 +176,7 @@ export default class App extends Component {
     //     }
     //   }
     // });
-    $.ajax({ // eslint-disable-line
-      type: "POST",
-      url: '/submit.php',
-      data: JSON.stringify(senderData),
-      dataType: 'json'
-    });
-
-    // $.post("/submit.php", {data : }, function(){alert("File saved successfully")}); // eslint-disable-line
+    $.post("/submit.php", {data : JSON.stringify(senderData)}, function(){alert("File saved successfully")}); // eslint-disable-line
   }
   reset() {
     this.setState(initialState);
