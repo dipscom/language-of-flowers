@@ -91,11 +91,18 @@ export default class BouquetDetails extends Component {
     // console.log("BouquetDetails will leave");
     if(window.innerHeight > window.innerWidth){
       TweenMax.to("#form-navigation", 0.5, {autoAlpha:0}); // eslint-disable-line
+      TweenMax.set("#bouquet-details", { // eslint-disable-line
+        height:"inherit"
+      });
+      TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
+        autoAlpha:0
+      });
+
+    } else {
+      TweenMax.set("#bouquet-details", { // eslint-disable-line
+        position:"absolute",
+      });
     }
-    TweenMax.set("#bouquet-details", { // eslint-disable-line
-      // position:"absolute",
-      height:"inherit"
-    });
 
     TweenMax.to(["#bouquet-details"], 0.5, { // eslint-disable-line
       autoAlpha:0,

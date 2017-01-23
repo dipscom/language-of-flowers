@@ -96,9 +96,12 @@ export default class PersonDetails extends Component {
 	}
 	componentWillLeave(callback) {
 		const trg = "#" + this.props.index;
-		// TweenMax.set(trg, { // eslint-disable-line
-		// 	position:"absolute"
-		// });
+		if(window.innerHeight > window.innerWidth){
+		} else {
+			TweenMax.set(trg, { // eslint-disable-line
+				position:"absolute"
+			});
+		}
 		TweenMax.to(trg, 0.5, { // eslint-disable-line
 			autoAlpha:0,
 			onComplete:callback

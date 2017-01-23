@@ -114,7 +114,7 @@ export default class Success extends Component{
 
   componentWillEnter(callback) {
     // console.log("Success Will enter");
-    this.animateIn(callback);
+    this.animateIn(callback, 0.5);
   }
 
 
