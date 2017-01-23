@@ -11,13 +11,13 @@ bouquet: [],
 flowers: flowers,
 products: products,
 recipient: {
-  name: '',
-  email: '',
+  name: 'recipient',
+  email: 'recipient@recipient',
   valid: true
 },
 sender: {
-  name: '',
-  email: '',
+  name: 'sender',
+  email: 'sender@sender',
   valid: true
 },
 steps: {
@@ -136,13 +136,8 @@ export default class App extends Component {
         SEMAIL: this.state.sender.email,
         BOUQUET: this.state.bouquet.toString()
     };
-    const senderData = {
-        EMAIL: this.state.sender.email,
-        NAME: this.state.sender.name,
-        RNAME: this.state.recipient.name,
-        REMAIL: this.state.recipient.email,
-        BOUQUET: this.state.bouquet.toString()
-    };
+    const senderData = this.state.sender.name + ',' + this.state.sender.email + ',' + this.state.recipient.name + ',' + this.state.recipient.email + ',' + this.state.bouquet.toString();
+    console.log(senderData);
     $.ajax({ // eslint-disable-line
       url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=c0307ad06b',
       data: decodeData,
@@ -176,7 +171,7 @@ export default class App extends Component {
     //     }
     //   }
     // });
-    // $.post("/submit.php", {data : JSON.stringify(senderData)}, function(){alert("File saved successfully")}); // eslint-disable-line
+    $.post('submit.php', {data:senderData}); // eslint-disable-line
   }
   reset() {
     this.setState(initialState);
