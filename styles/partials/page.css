@@ -331,6 +331,9 @@
     path {
         transition: fill 0.3s;
     }
+    #penhaligons-link {
+        margin-top: 20px;
+    }
 }
 
 #my-bouquet {
