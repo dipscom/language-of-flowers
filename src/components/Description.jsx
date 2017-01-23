@@ -32,7 +32,7 @@ class Description extends Component {
                     <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
                   </svg>*/}
             </header>
-            <p>Whilst we don't like to gossip it would appear that there was a 'mistake' and the flowers from Lord George, meant for Lady Blanche, well they seem to have been sent to the divine Clara...With Penhaligon’s Floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas - but what could be more (ah-em) improbable!</p>
+            <p>With Penhaligon’s Floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas – but what could be more (ah-em) improbable!</p>
             <p><strong>Choose the flowers and the recipient wisely</strong></p>
             <nav className="navigation">
               <Anchor cta="Create your own bouquet" step="forward" target="build-bouquet" />
