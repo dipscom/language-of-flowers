@@ -47,11 +47,11 @@ export default class Flower extends Component {
 
 
   componentWillAppear(callback) {
-    console.log("Flower will appear")
+    // console.log("Flower will appear")
     callback();
   }
   componentWillEnter(callback) {
-    console.log("Flower will enter");
+    // console.log("Flower will enter");
 
     let currentTarget = "#" + this.el.id;
 
@@ -64,11 +64,6 @@ export default class Flower extends Component {
       autoAlpha: 0,
       ease: "Power2.easeOut",
     }, 0.05);
-
-    // TweenMax.staggerFrom("#bouquet-list > li", 2.5, { // eslint-disable-line
-    //   autoAlpha:0,
-    // }, 0.1);
-
 
     callback();
   }

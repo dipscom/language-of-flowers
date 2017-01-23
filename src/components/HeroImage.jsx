@@ -26,31 +26,18 @@ export default class HeroImage extends Component {
 
 	/* Animation */
   animateIn(callback, delay) {
-    var tl = new TimelineMax(); // eslint-disable-line
+    let tl = new TimelineMax({delay:delay || 0, onComplete:callback}); // eslint-disable-line
+
+    TweenMax.set("#hero-image", {position:"absolute"}); // eslint-disable-line
 
     tl.from("#hero-image", 3, {
       autoAlpha: 0,
-      delay: delay || 0,
       scale: 0.95,
-      ease: "Power1.easeOut",
-      onComplete:callback
+      ease: "power1.easeInOut",
+      onStart:function () {
+        TweenMax.set("#hero-image", {position:"relative"}); // eslint-disable-line
+      }
     });
-    tl.add("Details", 0)
-    tl.from("#bouquet-details header", 1.5, {
-      autoAlpha: 0,
-      ease: "Power4.easeInOut"
-    }, "Details+=0.25")
-    tl.staggerFrom("#bouquet-details li", 1.5, {
-      autoAlpha: 0,
-      ease: "Power4.easeInOut"
-    }, 0.25, "Details+=0.5")
-    tl.staggerFrom(["#bouquet-details button"], 1.5, {
-      autoAlpha: 0,
-      ease: "Power4.easeInOut"
-    }, 0.25, "Details+=0.75")
-
-
-
 
     return tl;
   }
@@ -71,9 +58,13 @@ export default class HeroImage extends Component {
 	}
   componentWillLeave(callback) {
     // console.log("HeroImage will leave");
-    TweenMax.set("#hero-image", { // eslint-disable-line
-      position:"absolute"
-    });
+    if(window.innerHeight > window.innerWidth){
+    } else {
+      TweenMax.set("#hero-image", { // eslint-disable-line
+        position:"absolute"
+      });
+    }
+
     TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
       autoAlpha:0,
       onComplete:callback

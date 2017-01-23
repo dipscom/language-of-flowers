@@ -71,7 +71,7 @@ export default class FlowerSelect extends Component {
   componentWillLeave(callback) {
     // console.log("FlowerSelect will leave");
     TweenMax.set("#flower-select", { // eslint-disable-line
-      position:"absolute"
+      // position:"absolute"
     });
     TweenMax.to("#flower-select", 0.5, { // eslint-disable-line
       autoAlpha:0,

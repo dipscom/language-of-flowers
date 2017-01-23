@@ -14,7 +14,7 @@ export var AnimationIntro = WrappedComponent => class extends Component {
     TweenMax.set("#reset-button", {autoAlpha:0}); // eslint-disable-line
 
     // Reset the scroller position
-    ResetScroller(this.element.trg);
+    ResetScroller(this.element.trg.id);
 
     // Clouds infinite loop
     CloudsLoop();
@@ -61,7 +61,7 @@ export var AnimationIntro = WrappedComponent => class extends Component {
 
   componentWillEnter(callback) {
     // Reset the scroller position
-    ResetScroller(this.element.trg);
+    ResetScroller(this.element.trg.id);
 
     let tl = new TimelineMax(); // eslint-disable-line
 

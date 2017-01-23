@@ -44,24 +44,42 @@ export default class BouquetDetails extends Component {
 
 
   /* Animation */
+  animateIn(callback, delay) {
+    let tl = new TimelineMax({delay:delay || 0, onComplete:callback}); // eslint-disable-line
+    let dur = 1.5;
+
+    // Reset the scroller position
+    ResetScroller('form', delay);
+
+
+
+    tl.add("Details")
+    if(window.innerHeight > window.innerWidth){
+      tl.from(["#bouquet-details header","#form-navigation"], dur, {
+        autoAlpha: 0,
+        ease: "Power4.easeInOut"
+      }, "Details")
+    }
+    tl.staggerFrom("#bouquet-details li", dur, {
+      autoAlpha: 0,
+      ease: "Power4.easeInOut"
+    }, 0.25, "Details")
+    tl.staggerFrom(["#bouquet-details button"], dur, {
+      autoAlpha: 0,
+      ease: "Power4.easeInOut"
+    }, 0.25, "-=0.5")
+
+
+    return tl;
+  }
+
   componentWillAppear(callback) {
     // console.log("BouquetDetails will appear")
-    callback();
+    this.animateIn(callback, 0.5);
   }
   componentWillEnter(callback) {
-    console.log("BouquetDetails will enter");
-    // Reset the scroller position
-    ResetScroller('form', 0.5);
-
-
-    TweenMax.from("#bouquet-details", 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      delay: 0.5,
-      onComplete:callback
-    });
-
-
-
+    // console.log("BouquetDetails will enter");
+    this.animateIn(callback, 0.5);
   }
   componentDidEnter() {
     // console.log("BouquetDetails did enter")
@@ -71,22 +89,25 @@ export default class BouquetDetails extends Component {
   }
   componentWillLeave(callback) {
     // console.log("BouquetDetails will leave");
-    TweenMax.set("#bouquet-details", { // eslint-disable-line
-      position:"absolute"
-    });
-    TweenMax.to("#bouquet-details", 0.5, { // eslint-disable-line
+    if(window.innerHeight > window.innerWidth){
+      TweenMax.to("#form-navigation", 0.5, {autoAlpha:0}); // eslint-disable-line
+      TweenMax.set("#bouquet-details", { // eslint-disable-line
+        height:"inherit"
+      });
+      TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
+        autoAlpha:0
+      });
+
+    } else {
+      TweenMax.set("#bouquet-details", { // eslint-disable-line
+        position:"absolute",
+      });
+    }
+
+    TweenMax.to(["#bouquet-details"], 0.5, { // eslint-disable-line
       autoAlpha:0,
       onComplete:callback
     });
-
-    if(window.innerHeight > window.innerWidth){
-      TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
-        autoAlpha:0,
-        onComplete:function () {
-          TweenMax.set("#hero-image", {className:"hide-portrait"}); // eslint-disable-line
-        }
-      });
-    }
   }
 
 

@@ -58,35 +58,50 @@ export default class PersonDetails extends Component {
 
 	/* Animation */
 	componentWillAppear(callback) {
-		console.log("PersonInput will appear")
+		// console.log("PersonInput will appear")
+		if(window.innerHeight > window.innerWidth){
+			TweenMax.set("#hero-image", {className:"hide-portrait"}); // eslint-disable-line
+		}
+
 		callback();
 	}
 
 	componentWillEnter(callback) {
-		console.log("PersonInput will enter");
 		const trg = "#" + this.props.index;
+		let dly = 0.5;
+		// console.log("PersonInput will enter");
+		if(window.innerHeight > window.innerWidth){
+			TweenMax.set("#hero-image", {className:"hide-portrait", delay:dly}); // eslint-disable-line
+			TweenMax.to("#form-navigation", 0.5, {autoAlpha:1, delay:dly}); // eslint-disable-line
+			TweenMax.set(trg, {position:"absolute"}); // eslint-disable-line
+			TweenMax.set(trg, {position:"relative", delay:dly}); // eslint-disable-line
+		}
+
+
 		TweenMax.from(trg, 0.5, { // eslint-disable-line
 			autoAlpha: 0,
-			delay: 0.5
+			delay: dly,
 		});
 
-		ResetScroller('form', 0.5);
+		ResetScroller('form', dly);
 
 
 		callback();
 	}
 	componentDidEnter() {
-		console.log("PersonInput did enter")
+		// console.log("PersonInput did enter");
 	}
 	componentDidAppear() {
-		console.log("PersonInput did appear")
+		// console.log("PersonInput did appear");
 	}
 	componentWillLeave(callback) {
 		const trg = "#" + this.props.index;
-		console.log("HeroImage will leave");
-		TweenMax.set(trg, { // eslint-disable-line
-			position:"absolute"
-		});
+		if(window.innerHeight > window.innerWidth){
+		} else {
+			TweenMax.set(trg, { // eslint-disable-line
+				position:"absolute"
+			});
+		}
 		TweenMax.to(trg, 0.5, { // eslint-disable-line
 			autoAlpha:0,
 			onComplete:callback
