@@ -11,13 +11,13 @@ bouquet: [],
 flowers: flowers,
 products: products,
 recipient: {
-  name: 'recipient',
-  email: 'recipient@recipient',
+  name: '',
+  email: '',
   valid: true
 },
 sender: {
-  name: 'sender',
-  email: 'sender@sender',
+  name: '',
+  email: '',
   valid: true
 },
 steps: {
