@@ -136,23 +136,46 @@ export default class App extends Component {
         SEMAIL: this.state.sender.email,
         BOUQUET: this.state.bouquet.toString()
     };
-    const senderData = {
-        EMAIL: this.state.sender.email,
-        NAME: this.state.sender.name,
-        RNAME: this.state.recipient.name,
-        REMAIL: this.state.recipient.email,
-        BOUQUET: this.state.bouquet.toString(),
-        STATUS: 'subscribed'
-    };
+    // const senderData = {
+    //     EMAIL: this.state.sender.email,
+    //     NAME: this.state.sender.name,
+    //     RNAME: this.state.recipient.name,
+    //     REMAIL: this.state.recipient.email,
+    //     BOUQUET: this.state.bouquet.toString(),
+    //     action: 'mailchimpsubscribe'
+    // };
     $.ajax({ // eslint-disable-line
       url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=c0307ad06b',
       data: decodeData,
       dataType: 'jsonp',
     });
+    // $.ajax({ // eslint-disable-line
+    //   url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=9ba6c73073',
+    //   data: senderData,
+    //   dataType: 'jsonp',
+    //   success:function(data){
+    //     console.log(data);
+    //   }
+    // });
     $.ajax({ // eslint-disable-line
-      url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=9ba6c73073',
-      data: senderData,
-      dataType: 'jsonp',
+      url: "https://docs.google.com/a/kotacreative.co.uk/forms/d/1_JANgXrIfqPR8NCaNo1wDaVOCt2275S5S11KTXaIsgs/formResponse",
+      data: {
+        'Sender Email': this.state.sender.email, 
+        "Sender Name": this.state.sender.name, 
+        "Recipient Email": this.state.recipient.email, 
+        "Recipient Name": this.state.recipient.name, 
+        "Bouquet": this.state.bouquet.toString()
+      },
+      type: "POST",
+      dataType: "xml",
+      statusCode: {
+        0: function() {
+          //Success message
+      },
+        200: function() {
+          //Success Message
+        }
+      }
     });
   }
   reset() {
