@@ -1,5 +1,5 @@
 <?php
 $data = $_POST['data'];
-$file = file_get_contents('responses.csv');
-$file += $data . "\n";
-file_put_contents('responses.csv', $data);
+$fh = fopen('responses.csv', 'a') or die("can't open file");
+fwrite($fh, $data . ',' . date('r') . "\n");
+fclose($fh);
