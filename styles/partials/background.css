@@ -134,12 +134,23 @@
         height: auto;
         left: 0;
         position: absolute;
-        width: 30vw;
-
         @media (orientation: portrait) {
-          width: 80vw;
+          @media (--tablet-small-below) {
+                width: 80vw;
+            }
+            @media (--tablet-small-above) {
+                width: 480px;  
+            }
         }
 
+        @media (orientation: landscape) {
+            @media (--largescreen-below) {
+                width: 30vw;
+            }
+            @media (--largescreen-above) {
+                width: 480px;  
+            }
+        }
         /* mix-blend-mode: multiply; */
     }
     #cloud1 {
