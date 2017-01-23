@@ -9,13 +9,12 @@ import ResetScroller from './ResetScroller';
 export var AnimationIntro = WrappedComponent => class extends Component {
   componentWillAppear(callback) {
 
-    // Hide the LOF logo button initially
+    // Hide the LOF logo and Start again button initially
     TweenMax.set("#lof-logo", {xPercent:-50, autoAlpha:0}); // eslint-disable-line
-    // Hide the Start Again button
     TweenMax.set("#reset-button", {autoAlpha:0}); // eslint-disable-line
 
     // Reset the scroller position
-    ResetScroller(this.element.trg.id);
+    ResetScroller(this.element.trg);
 
     // Clouds infinite loop
     CloudsLoop();
@@ -49,6 +48,8 @@ export var AnimationIntro = WrappedComponent => class extends Component {
       ease: "Power2.easeInOut"
     }, "Content");
 
+
+
     // Them people
     tl.add("People", "-=1")
     .from(["#man","#lady"], 1, {autoAlpha:0}, "People")
@@ -60,10 +61,7 @@ export var AnimationIntro = WrappedComponent => class extends Component {
 
   componentWillEnter(callback) {
     // Reset the scroller position
-    ResetScroller(this.element.trg.id);
-    // Hide the Start Again button
-    TweenMax.set("#reset-button", {autoAlpha:0}); // eslint-disable-line
-
+    ResetScroller(this.element.trg);
 
     let tl = new TimelineMax(); // eslint-disable-line
 
@@ -79,13 +77,8 @@ export var AnimationIntro = WrappedComponent => class extends Component {
     } else {
       tl.add(this.showLOF(), "Start")
         .to("#reset-button", 0.5, {autoAlpha:1}, "Start")
-    }
-    // Make sure the space for the logo is closed
-    tl.to("#line-top > .segment", 0.8, {
-      drawSVG: "0% 100%",
-      ease: "Power2.easeInOut"
-    }, "Start");
 
+    }
   }
 
   componentWillLeave(callback) {
@@ -101,6 +94,11 @@ export var AnimationIntro = WrappedComponent => class extends Component {
 
     // Show the spare logo in the background component
     tl.to("#lof-logo", 0.8, {autoAlpha:1, scale:1, yPercent:0, ease:"Power2.easeInOut"}, 0);
+    // // Make sure the space for the logo is closed
+    // tl.to("#line-top > .segment", 0.8, {
+    //   drawSVG: "0% 100%",
+    //   ease: "Power2.easeInOut"
+    // }, 0);
 
     return tl;
   }
