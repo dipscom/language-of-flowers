@@ -40,7 +40,8 @@
             width: 100%;
         }
         > * {
-            align-content: space-around;
+            align-items: center;
+            align-content: center;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
