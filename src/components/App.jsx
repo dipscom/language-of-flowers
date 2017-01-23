@@ -48,6 +48,7 @@ export default class App extends Component {
         bouquet = this.props.location.query.bouquet.split(',');
         recipient = { name: this.props.location.query.recipient };
         sender = { name: this.props.location.query.sender };
+        flowers = flowers;
         this.setState({
           steps: {
             current: 0
@@ -58,27 +59,27 @@ export default class App extends Component {
           window.location = '/';
         }
       }
-    } else if (accessTime > timeStamp) {
-        if(localStorage.getItem('bouquet')) {
-          bouquet = localStorage.getItem('bouquet').split(',');
-        }
-        if(localStorage.getItem('recipient')) {
-          recipient = {...JSON.parse(localStorage.getItem('recipient')) };
-        }
-        if(localStorage.getItem('sender')) {
-          sender = {...JSON.parse(localStorage.getItem('sender'))};
-        }
-        if(localStorage.getItem('flowers')) {
-          flowers = {...JSON.parse(localStorage.getItem('flowers'))};
-        }
-        if(localStorage.getItem('products')) {
-          products = {...JSON.parse(localStorage.getItem('products'))};
-        }
-        if(localStorage.getItem('steps')) {
-          steps = {...JSON.parse(localStorage.getItem('steps'))};
-        }
-      }
-
+    } 
+    // else if (accessTime > timeStamp) {
+    //     if(localStorage.getItem('bouquet')) {
+    //       bouquet = localStorage.getItem('bouquet').split(',');
+    //     }
+    //     if(localStorage.getItem('recipient')) {
+    //       recipient = {...JSON.parse(localStorage.getItem('recipient')) };
+    //     }
+    //     if(localStorage.getItem('sender')) {
+    //       sender = {...JSON.parse(localStorage.getItem('sender'))};
+    //     }
+    //     if(localStorage.getItem('flowers')) {
+    //       flowers = {...JSON.parse(localStorage.getItem('flowers'))};
+    //     }
+    //     if(localStorage.getItem('products')) {
+    //       products = {...JSON.parse(localStorage.getItem('products'))};
+    //     }
+    //     if(localStorage.getItem('steps')) {
+    //       steps = {...JSON.parse(localStorage.getItem('steps'))};
+    //     }
+    //   }
       else {
       if(window.location.pathname !== '/') {
         window.location = '/';
@@ -115,16 +116,16 @@ export default class App extends Component {
       });
     }
   }
-  componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem('bouquet', nextState.bouquet);
-    localStorage.setItem('flowers', JSON.stringify(nextState.flowers));
-    localStorage.setItem('products', JSON.stringify(nextState.products));
-    localStorage.setItem('recipient', JSON.stringify(nextState.recipient));
-    localStorage.setItem('sender', JSON.stringify(nextState.sender));
-    localStorage.setItem('steps', JSON.stringify(nextState.steps));
-    localStorage.setItem('terms', nextState.terms);
-    localStorage.setItem('accessTime', Date.now());
-  }
+  // componentWillUpdate(nextProps, nextState) {
+  //   localStorage.setItem('bouquet', nextState.bouquet);
+  //   localStorage.setItem('flowers', JSON.stringify(nextState.flowers));
+  //   localStorage.setItem('products', JSON.stringify(nextState.products));
+  //   localStorage.setItem('recipient', JSON.stringify(nextState.recipient));
+  //   localStorage.setItem('sender', JSON.stringify(nextState.sender));
+  //   localStorage.setItem('steps', JSON.stringify(nextState.steps));
+  //   localStorage.setItem('terms', nextState.terms);
+  //   localStorage.setItem('accessTime', Date.now());
+  // }
   // componentDidUpdate() {
   //   console.log('This is where we need to add Google analytics if it doesnt update page views automatically with react router');
   // }
@@ -174,7 +175,15 @@ export default class App extends Component {
     $.post('submit.php', {data:senderData}); // eslint-disable-line
   }
   reset() {
-    this.setState(initialState);
+    // this.setState(initialState);
+    localStorage.removeItem('bouquet');
+    localStorage.removeItem('flowers');
+    localStorage.removeItem('products');
+    localStorage.removeItem('recipient');
+    localStorage.removeItem('sender');
+    localStorage.removeItem('steps');
+    localStorage.removeItem('terms');
+    localStorage.removeItem('accessTime');
     ga('send', 'event', 'Navigation', 'Reset'); // eslint-disable-line
   }
   nextStep() {
