@@ -76,15 +76,6 @@ export default class MyBouquet extends Component{
 
 
     this.tl = new TimelineMax({delay:3}) // eslint-disable-line
-    // console.log("Introduction Will appear");
-    // this.tl.from(".logo", 1, {
-    //   autoAlpha:0,
-    //   ease:"Power1.easeOut"
-    // }, 0)
-    //   .from(".logo", 1.3, {
-    //   scale:1.2,
-    //   ease:"Power4.easeOut"
-    // }, 0)
 
       .add("StaggerContent", "-=0.5")
       .staggerFrom(["#penhaligons-logo", "hr", "h1", "p"], 1.5, {

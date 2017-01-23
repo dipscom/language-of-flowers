@@ -74,10 +74,10 @@
     }
     .logo {
         display: block;
-        height: 15vh;
+        height: 12vh;
         left: 50%;
         position: absolute;
-        top: 4.7%;
+        top: 7.5%;
 
          @media (orientation: portrait) {
            height: auto;
@@ -139,7 +139,7 @@
                 width: 80vw;
             }
             @media (--tablet-small-above) {
-                width: 480px;  
+                width: 480px;
             }
         }
 
@@ -148,7 +148,7 @@
                 width: 30vw;
             }
             @media (--largescreen-above) {
-                width: 480px;  
+                width: 480px;
             }
         }
         /* mix-blend-mode: multiply; */

@@ -157,7 +157,7 @@ export default class Form extends Component {
 		// Make sure the logo is centered on its x-axis
 		tl.set("#lof-logo", {xPercent:-50});
 
-		if(down) {
+		if(window.innerHeight > window.innerWidth){
 			tl.to("#lof-logo", 0.8, {
 				scale:0.7,
 				yPercent:-30,
@@ -165,11 +165,23 @@ export default class Form extends Component {
 			}, 0);
 			// Open the space for the logo
 			tl.to("#line-top > .segment", 0.8, {
-			  drawSVG: "30% 100%",
-			  ease: "Power2.easeInOut"
+				drawSVG: "30% 100%",
+				ease: "Power2.easeInOut"
 			}, 0);
-
+		} else {
+			tl.to("#lof-logo", 0.8, {
+				scale:0.95,
+				yPercent:-45,
+				ease: "Power2.easeInOut"
+			}, 0);
+			// Open the space for the logo
+			tl.to("#line-top > .segment", 0.8, {
+				drawSVG: "30% 100%",
+				ease: "Power2.easeInOut"
+			}, 0);
 		}
+
+
 
 		return tl;
 	}
@@ -178,7 +190,7 @@ export default class Form extends Component {
 		let tl = new TimelineMax({delay:delay || 0, onComplete:callback}); // eslint-disable-line
 
 		tl.add(OverlayOut())
-			.add(this.resizeLOF(true), 0)
+			.add(this.resizeLOF(), 0)
 			.from("#form", 2, { // eslint-disable-line
 				autoAlpha:0
 		})
