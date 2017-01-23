@@ -51,7 +51,7 @@ export default class BouquetDetails extends Component {
   componentWillEnter(callback) {
     console.log("BouquetDetails will enter");
     // Reset the scroller position
-    ResetScroller('form');
+    ResetScroller('form', 0.5);
 
 
     TweenMax.from("#bouquet-details", 0.5, { // eslint-disable-line
@@ -78,6 +78,15 @@ export default class BouquetDetails extends Component {
       autoAlpha:0,
       onComplete:callback
     });
+
+    if(window.innerHeight > window.innerWidth){
+      TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
+        autoAlpha:0,
+        onComplete:function () {
+          TweenMax.set("#hero-image", {className:"hide-portrait"}); // eslint-disable-line
+        }
+      });
+    }
   }
 
 

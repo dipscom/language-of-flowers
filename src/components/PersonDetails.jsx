@@ -70,7 +70,7 @@ export default class PersonDetails extends Component {
 			delay: 0.5
 		});
 
-		ResetScroller('form');
+		ResetScroller('form', 0.5);
 
 
 		callback();
