@@ -100,7 +100,7 @@
         }
     }
     #penhaligons-logo {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
 
         @media (orientation: portrait) {
             width: 40%;
@@ -186,7 +186,7 @@
             color: #80a78d;
         }
         &:first-child {
-            margin: 0 0 30px !important;
+            margin: 0 0 20px !important;
         }
         &:last-child {
             max-width: 720px;

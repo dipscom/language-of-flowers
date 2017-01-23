@@ -221,12 +221,13 @@ hr {
 }
 
 .navigation {
-    @media (orientation: portrait) {
+    margin-top: 20px;
+    /* @media (orientation: portrait) {
         margin-top: 20px;
     }
     @media (orientation: landscape) {
         margin-top: 30px;
-    }
+    } */
 }
 
 input[type=checkbox] {

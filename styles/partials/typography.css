@@ -77,7 +77,7 @@ p {
     }
     }
     @media (orientation: landscape) {
-        margin: 30px 0;
+        margin: 20px 0;
 
         @media (--tablet-small-above) {
             font-size: 16px;

@@ -443,6 +443,7 @@
     position: relative;
     top: 0;
     width: 100%;
+    justify-content: center;
 
     @media (orientation: portrait) {
         text-align: center;
@@ -474,7 +475,7 @@
         }
         li {
             &:not(:first-child) {
-                margin-top: 10px;
+                /* margin-top: 5px; */
             }
         }
     }
@@ -487,7 +488,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
-            width: 25%;
+            width: 22%;
 
             > div {
                 padding-top: 100%;
@@ -525,8 +526,11 @@
         display: block;
         font-size: 14px;
         font-weight: bold;
-        margin-top: 30px;
+        
         text-align: left;
+        &:nth-of-type(2){
+           margin-top: 20px; 
+        }
 
     @extend lovato;
         @media (orientation: portrait) {
