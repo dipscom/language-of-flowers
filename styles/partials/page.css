@@ -155,6 +155,11 @@
             }
         }
     }
+    .terms {
+        a {
+            color: inherit;
+        }
+    }
 }
 
 #thank-you {
