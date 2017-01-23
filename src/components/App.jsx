@@ -176,7 +176,7 @@ export default class App extends Component {
     //     }
     //   }
     // });
-    $.post("/submit.php", {data : JSON.stringify(senderData)}, function(){alert("File saved successfully")}); // eslint-disable-line
+    // $.post("/submit.php", {data : JSON.stringify(senderData)}, function(){alert("File saved successfully")}); // eslint-disable-line
   }
   reset() {
     this.setState(initialState);
