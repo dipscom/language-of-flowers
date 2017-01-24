@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TransitionGroup from 'react-addons-transition-group';
 import Flower from './Flower';
+import ResetScroller from '../animation/ResetScroller';
+
 
 export default class FlowerSelect extends Component {
   render() {
@@ -52,6 +54,9 @@ export default class FlowerSelect extends Component {
   componentWillAppear(callback) {
     // console.log("FlowerSelect will appear")
     callback();
+    // Reset the scroller position
+    ResetScroller('form', 0.5);
+
   }
   componentWillEnter(callback) {
     // console.log("FlowerSelect will enter")
@@ -61,6 +66,9 @@ export default class FlowerSelect extends Component {
     }, 0.1);
 
     callback();
+    // Reset the scroller position
+    ResetScroller('form', 0.5);
+
   }
   componentDidEnter() {
     // console.log("FlowerSelect did enter")

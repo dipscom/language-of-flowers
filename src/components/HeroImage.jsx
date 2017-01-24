@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HeroImageIn from '../animation/HeroImageIn'
 
 export default class HeroImage extends Component {
   render() {
@@ -25,30 +26,15 @@ export default class HeroImage extends Component {
 
 
 	/* Animation */
-  animateIn(callback, delay) {
-    let tl = new TimelineMax({delay:delay || 0, onComplete:callback}); // eslint-disable-line
-
-    TweenMax.set("#hero-image", {position:"absolute"}); // eslint-disable-line
-
-    tl.from("#hero-image", 3, {
-      autoAlpha: 0,
-      scale: 0.95,
-      ease: "power1.easeInOut",
-      onStart:function () {
-        TweenMax.set("#hero-image", {position:"relative"}); // eslint-disable-line
-      }
-    });
-
-    return tl;
-  }
-
 	componentWillAppear(callback) {
 		// console.log("HeroImage will appear")
-    this.animateIn(callback, 0.5)
+    // HeroImageIn(callback, 0.5)
+    callback();
 	}
 	componentWillEnter(callback) {
 		// console.log("HeroImage will enter");
-    this.animateIn(callback, 0.5)
+    // HeroImageIn(callback, 0.5)
+    callback();
 	}
 	componentDidEnter() {
 		// console.log("HeroImage did enter")
@@ -64,10 +50,11 @@ export default class HeroImage extends Component {
         position:"absolute"
       });
     }
-
+    // for some reason this tween is not happening...
     TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      onComplete:callback
+      autoAlpha:0
     });
+    // ...but this callback is
+    callback();
   }
 }

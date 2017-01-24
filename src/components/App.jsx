@@ -59,7 +59,7 @@ export default class App extends Component {
           window.location = '/';
         }
       }
-    } 
+    }
     // else if (accessTime > timeStamp) {
     //     if(localStorage.getItem('bouquet')) {
     //       bouquet = localStorage.getItem('bouquet').split(',');
@@ -155,10 +155,10 @@ export default class App extends Component {
     // $.ajax({ // eslint-disable-line
     //   url: "https://docs.google.com/a/kotacreative.co.uk/forms/d/1_JANgXrIfqPR8NCaNo1wDaVOCt2275S5S11KTXaIsgs/formResponse",
     //   data: {
-    //     'Sender Email': this.state.sender.email, 
-    //     "Sender Name": this.state.sender.name, 
-    //     "Recipient Email": this.state.recipient.email, 
-    //     "Recipient Name": this.state.recipient.name, 
+    //     'Sender Email': this.state.sender.email,
+    //     "Sender Name": this.state.sender.name,
+    //     "Recipient Email": this.state.recipient.email,
+    //     "Recipient Name": this.state.recipient.name,
     //     "Bouquet": this.state.bouquet.toString()
     //   },
     //   type: "POST",
@@ -205,7 +205,7 @@ export default class App extends Component {
     ga('send', 'event', 'Navigation', 'Form Navigation', 'Build Bouquet', i); // eslint-disable-line
   }
   selectFlower(key) {
-    console.log('selectFlower triggered');
+    // console.log('selectFlower triggered');
     let bouquet = this.state.bouquet;
     const index = this.state.bouquet.indexOf(key);
     const flowers = {...this.state.flowers};

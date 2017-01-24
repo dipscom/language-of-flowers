@@ -3,6 +3,8 @@ import Anchor from './Anchor';
 import Button from './Button';
 import Flower from './Flower';
 import ResetScroller from '../animation/ResetScroller';
+import HeroImageIn from '../animation/HeroImageIn'
+
 
 
 export default class BouquetDetails extends Component {
@@ -51,6 +53,7 @@ export default class BouquetDetails extends Component {
     // Reset the scroller position
     ResetScroller('form', delay);
 
+    HeroImageIn(callback, 0.5)
 
 
     tl.add("Details")
@@ -58,7 +61,7 @@ export default class BouquetDetails extends Component {
       tl.from(["#bouquet-details header","#form-navigation"], dur, {
         autoAlpha: 0,
         ease: "Power4.easeInOut"
-      }, "Details")
+      }, "Details");
     }
     tl.staggerFrom("#bouquet-details li", dur, {
       autoAlpha: 0,

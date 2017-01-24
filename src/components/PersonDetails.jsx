@@ -58,7 +58,7 @@ export default class PersonDetails extends Component {
 
 	/* Animation */
 	componentWillAppear(callback) {
-		// console.log("PersonInput will appear")
+		console.log("PersonInput will appear")
 		if(window.innerHeight > window.innerWidth){
 			TweenMax.set("#hero-image", {className:"hide-portrait"}); // eslint-disable-line
 		}
@@ -67,9 +67,9 @@ export default class PersonDetails extends Component {
 	}
 
 	componentWillEnter(callback) {
+		console.log("PersonInput will enter");
 		const trg = "#" + this.props.index;
 		let dly = 0.5;
-		// console.log("PersonInput will enter");
 		if(window.innerHeight > window.innerWidth){
 			TweenMax.set("#hero-image", {className:"hide-portrait", delay:dly}); // eslint-disable-line
 			TweenMax.to("#form-navigation", 0.5, {autoAlpha:1, delay:dly}); // eslint-disable-line
@@ -95,6 +95,8 @@ export default class PersonDetails extends Component {
 		// console.log("PersonInput did appear");
 	}
 	componentWillLeave(callback) {
+		// console.log("PersonInput will leave");
+
 		const trg = "#" + this.props.index;
 		if(window.innerHeight > window.innerWidth){
 		} else {
