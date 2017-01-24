@@ -184,11 +184,9 @@
 #products {
     @extend lovato;
     > p {
+        margin: 0 !important;
         a {
             color: #80a78d;
-        }
-        &:first-child {
-            margin: 0 0 20px !important;
         }
         &:last-child {
             max-width: 720px;
@@ -236,7 +234,7 @@
             &:last-child {
                 font-size: 18px;
                 font-weight: bold;
-                margin-top: 10px;
+                /* margin-top: 10px; */
                 opacity: 0.55;
 
                 &:after {
@@ -281,7 +279,7 @@
         background-repeat: no-repeat;
         background-size: contain;
         margin-bottom: 20px;
-        padding-top: 22vh;
+        padding-top: 20vh;
     }
     h2 {
         text-transform: none;
