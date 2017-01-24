@@ -25,10 +25,10 @@ export default class Confirmation extends Component {
   }
 
   render() {
-    let disabled;
-    if(!this.props.terms) {
-      disabled = 'disabled';
-    }
+    // let disabled;
+    // if(!this.props.terms) {
+    //   disabled = 'disabled';
+    // }
     return (
       <div
         id="confirmation"
