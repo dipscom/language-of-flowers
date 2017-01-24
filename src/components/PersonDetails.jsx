@@ -98,12 +98,11 @@ export default class PersonDetails extends Component {
 		// console.log("PersonInput will leave");
 
 		const trg = "#" + this.props.index;
-		if(window.innerHeight > window.innerWidth){
-		} else {
-			TweenMax.set(trg, { // eslint-disable-line
-				position:"absolute"
-			});
-		}
+		TweenMax.set(trg, { // eslint-disable-line
+			position:"absolute",
+			top:0,
+			left:0
+		});
 		TweenMax.to(trg, 0.5, { // eslint-disable-line
 			autoAlpha:0,
 			onComplete:callback
