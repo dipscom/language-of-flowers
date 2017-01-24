@@ -15,7 +15,7 @@ class Introduction extends Component {
             this.trg = el;
           }
         }
-        >
+      >
         <div>
           <div>
             <figure id="penhaligons-logo">

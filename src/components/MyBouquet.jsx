@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import Anchor from './Anchor';
+import AnimateOut from '../animation/AnimateOut';
+import BackgroundIn from '../animation/BackgroundIn';
+import CloudsLoop from '../animation/CloudsLoop';
+import ContentIn from '../animation/ContentIn';
+import PeopleIn from '../animation/PeopleIn';
+import OverlayIn from '../animation/OverlayIn';
+import ResetScroller from '../animation/ResetScroller';
+
 
 export default class MyBouquet extends Component{
   render() {
@@ -39,63 +47,70 @@ export default class MyBouquet extends Component{
   }
 
 
-    /* Animation */
-  animateIn(callback, delay) {
-    TweenMax.from("#introduction", 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      delay: delay || 0,
-      onComplete:callback
-    });
-  }
-
-  animateOut(callback) {
-    TweenMax.to("#introduction", 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      ease: "Power4.easeIn",
-      onComplete:callback
-    });
-  }
-
-
-  /* React Animation Callbacks */
-  componentWillEnter(callback) {
-    // Hide the spare logo in the backgtround component
-    TweenMax.to("#lof-logo", 0.5, {autoAlpha:0, delay:0.5}); // eslint-disable-line
-
-    // console.log("Introduction Will enter");
-    this.animateIn(callback, 0.5);
-  }
-
-  componentDidEnter() {
-    // console.log("Introduction Did enter");
-  }
-
   componentWillAppear(callback) {
-    // Hide the spare logo in the backgtround component
-    TweenMax.set("#lof-logo", {autoAlpha:0}); // eslint-disable-line
+    // Hide the LOF logo and Start again button initially
+    TweenMax.set("#lof-logo", {xPercent:-50, autoAlpha:0}); // eslint-disable-line
 
+    // Reset the scroller position
+    ResetScroller(this.el.id);
 
-    this.tl = new TimelineMax({delay:3}) // eslint-disable-line
+    // Clouds infinite loop
+    CloudsLoop();
 
-      .add("StaggerContent", "-=0.5")
-      .staggerFrom(["#penhaligons-logo", "hr", "h1", "p"], 1.5, {
-      autoAlpha:0,
-      ease:"Power1.easeOut"
-    }, 0.3, "StaggerContent")
-      .staggerFrom(["#penhaligons-logo", "hr", "h1", "p"], 1.5, {
-      y:10,
-      ease:"Power4.easeOut"
-    }, 0.3, "StaggerContent")
+    // Intro animation
+    let tl = new TimelineMax(); // eslint-disable-line
 
-      .staggerFrom(".segment", 1, {
-        drawSVG:"50% 50%",
-        ease:"Power2.easeInOut"
-      }, 0.15, 1)
-      .from(".button", 0.5, {
-        autoAlpha:0,
-        ease:"Power4.easeInOut",
-        onStart:callback
-      })
+    // Background section
+    tl.add(BackgroundIn())
+
+    // Overlay section
+    tl.add(OverlayIn())
+
+    // Create a label to align all the content together and be able to overlap it all with other animation
+    tl.add("Content", "-=1.5")
+    // Contents section
+    tl.add(ContentIn(this.el, callback), "Content")
+    // Show/Hide LOF logo
+    // & add the content animation
+    // depending on target component
+    if(this.el.id === "introduction") {
+      tl.add(this.hideLOF(), "Content")
+    } else {
+      tl.add(this.showLOF(), "Content")
+        .to("#reset-button", 0.5, {autoAlpha:1}, "Content")
+    }
+
+    // Them people
+    tl.add("People", "-=1")
+      .add(PeopleIn(), "People")
+
+  }
+
+  componentWillEnter(callback) {
+    // Reset the scroller position
+    ResetScroller(this.element.trg.id);
+
+    let tl = new TimelineMax(); // eslint-disable-line
+
+    // Use this label to offset the whole animation
+    tl.add("Start", 0.5)
+    // Introduction section
+    tl.add(ContentIn(this.el, callback), "Start")
+    // Show/Hide LOF logo
+    // & add the content animation
+    // depending on target component
+    if(this.el.id === "introduction") {
+      tl.add(this.hideLOF(), "Start")
+    } else {
+      tl.add(this.showLOF(), "Start")
+        .to("#reset-button", 0.5, {autoAlpha:1}, "Start")
+    }
+    // Make sure the space for the logo is closed
+    tl.to("#line-top > .segment", 0.8, {
+      drawSVG: "0% 100%",
+      ease: "Power2.easeInOut"
+    }, "Start");
+
   }
 
   componentDidAppear() {
@@ -103,15 +118,34 @@ export default class MyBouquet extends Component{
   }
 
   componentWillLeave(callback) {
-    // Show the spare logo in the backgtround component
-    TweenMax.to("#lof-logo", 0.5, {autoAlpha:1, delay:0.5}); // eslint-disable-line
-
-    // console.log("Introduction Will leave");
-    this.animateOut(callback);
+    AnimateOut(this.el, callback);
   }
 
   componentDidLeave() {
     // console.log("Introduction Did leave");
   }
+
+
+  showLOF() {
+    let tl = new TimelineMax(); // eslint-disable-line
+
+    // Make sure the logo is centered on its x-axis
+    tl.set("#lof-logo", {xPercent:-50})
+
+    // Show the spare logo in the background component
+    tl.to("#lof-logo", 0.8, {autoAlpha:1, scale:1, yPercent:0, ease:"Power2.easeInOut"}, 0);
+
+    return tl;
+  }
+
+  hideLOF() {
+    let tl = new TimelineMax(); // eslint-disable-line
+
+    // Hide the spare logo in the background component
+    tl.to("#lof-logo", 0.5, {autoAlpha:0, ease: "Power4.easeInOut"}, 0);
+
+    return tl;
+  }
+
 
 }

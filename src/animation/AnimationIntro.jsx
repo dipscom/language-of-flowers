@@ -4,6 +4,7 @@ import BackgroundIn from './BackgroundIn';
 import CloudsLoop from './CloudsLoop';
 import ContentIn from './ContentIn';
 import OverlayIn from './OverlayIn';
+import PeopleIn from './PeopleIn';
 import ResetScroller from './ResetScroller';
 
 export var AnimationIntro = WrappedComponent => class extends Component {
@@ -48,13 +49,9 @@ export var AnimationIntro = WrappedComponent => class extends Component {
       ease: "Power2.easeInOut"
     }, "Content");
 
-
-
     // Them people
     tl.add("People", "-=1")
-    .from(["#man","#lady"], 1, {autoAlpha:0}, "People")
-    .from("#man", 2, {xPercent:10}, "People")// eslint-disable-line
-    .from("#lady", 2, {xPercent:-10}, "People")// eslint-disable-line
+      .add(PeopleIn(), "People")
 
   }
 
