@@ -1,6 +1,6 @@
 const flowers = {
-    "blue-bell": {
-        name: 'Blue Bell',
+    "bluebell": {
+        name: 'Bluebell',
         description: 'Your humble servant.',
         meaning: 'Undying devotion.',
         selected: false
@@ -23,8 +23,8 @@ const flowers = {
         meaning: 'Devotion, mystery.',
         selected: false
     },
-    "lilley-valley": {
-        name: 'Lilley of the Valley',
+    "liley-valley": {
+        name: 'Liley of the Valley',
         description: 'Paradise regained. Happiness returned.',
         meaning: 'Lovers reunited.',
         selected: false
@@ -44,7 +44,7 @@ const flowers = {
     "white-iris": {
         name: 'White Iris',
         description: 'As powerfully pure as innocence.',
-        meaning: 'As white as driven.',
+        meaning: 'As white as driven snow.',
         selected: false
     }
 };

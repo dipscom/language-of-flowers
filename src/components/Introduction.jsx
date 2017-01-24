@@ -19,7 +19,7 @@ class Introduction extends Component {
         <div>
           <div>
             <figure id="penhaligons-logo">
-              <img src="./images/penhalions-logo.svg" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" />
+              <a href="https://www.penhaligons.com/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" title="Penhaligon's" target="_blank"><img src="./images/penhalions-logo.svg" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" /></a>
             </figure>
             <header>
               {/*<svg className="doubleline-decoration" viewBox="0 0 1400 40" preserveAspectRatio="xMidYMid">
@@ -36,8 +36,9 @@ class Introduction extends Component {
             </header>
             <p>Thank Heavens for floriography. A mysterious language of love. Cryptic communications, hidden revelations and coded declarations!</p>
             <p><strong>Penhaligon&#39;s invites you to send your very own coded bouquet.</strong></p>
+            <p>(And be in with a chance to win the Penhaligon’s Portraits Collection)</p>
             <nav className="navigation">
-              <Anchor cta="Lets begin" step="forward" target="description" />
+              <Anchor cta="Let's begin" step="forward" target="description" />
             </nav>
           </div>
         </div>

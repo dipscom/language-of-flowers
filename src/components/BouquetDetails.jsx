@@ -19,8 +19,14 @@ export default class BouquetDetails extends Component {
                 <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
               </svg>*/}
               <hr />
+              
   	      </header>
   	      <ol className="bouquet-list">
+            { this.props.step !== 2 ?
+              <li><p>Your beloved has sent you a beautiful floral bouquet. The meanings of their chosen flowers are listed below.</p></li> :
+                ''
+              }
+          
   	      	{this.props.bouquet
   	      		.map(key =>
   	      			<Flower

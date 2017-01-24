@@ -86,7 +86,7 @@ export default class Form extends Component {
         				index="recipient"
         				recipient={this.props.recipient}
         				updateField={this.props.updateField}
-        				heading="Their Detials"
+        				heading="Their Details"
         				prevCta="View bouquet"
         				nextCta="Your details"
         				nextStep={this.props.nextStep}
@@ -98,9 +98,9 @@ export default class Form extends Component {
         				index="sender"
         				sender={this.props.sender}
         				updateField={this.props.updateField}
-        				heading="Your Detials"
+        				heading="Your Details"
         				prevCta="Their Details"
-        				nextCta="Confirm & send"
+        				nextCta="Confirm"
         				prevStep={this.props.prevStep}
         				nextStep="confirmation" />
       default:

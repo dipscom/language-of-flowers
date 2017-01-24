@@ -137,8 +137,7 @@ export default class App extends Component {
         SEMAIL: this.state.sender.email,
         BOUQUET: this.state.bouquet.toString()
     };
-    const senderData = this.state.sender.name + ',' + this.state.sender.email + ',' + this.state.recipient.name + ',' + this.state.recipient.email + ',' + this.state.bouquet.toString();
-    console.log(senderData);
+    const senderData = this.state.sender.name + ',' + this.state.sender.email + ',' + this.state.recipient.name + ',' + this.state.recipient.email + ',' + this.state.bouquet.toString() + ',' + this.state.terms;
     $.ajax({ // eslint-disable-line
       url: '//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=c0307ad06b',
       data: decodeData,

@@ -20,7 +20,8 @@ export default class Share extends Component {
               <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
             </svg>*/}
             <hr />
-            <p><strong>Share your bouquet on social media for a chance to win loads of Penhaligon’s gifts and prizes!</strong></p>
+            <p><strong>Tell the world how loved you are and share your bouquet.</strong></p>
+            <p><span>Be in with a chance to win a Penhaligon’s Portraits Collection. Plus join the Very Penhaligon’s Club and discover our online secrets.</span></p>
             <a href="https://twitter.com/home?status=My%20Valentine%20has%20sent%20me%20a%20delightful%20Floriography%20bouquet.%20Perhaps%20you%20should%20send%20one%20to%20your%20sweetheart!%20https://flowers.penhaligons.com" className="share-link" target="_blank" title="Share on Twitter">
             	<svg id="twitter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 166 165.8"><path fill="#414042" d="M153.8 0H12C5.4 0 0 5.4 0 12v141.8c0 6.6 5.4 12 12 12h141.8c6.6 0 12-5.4 12-12V12C165.8 5.4 160.4 0 153.8 0zM119.1 65.9c0 0.7 0 1.5 0 2.2 0 22.6-17.2 48.7-48.7 48.7 -9.7 0-18.7-2.8-26.2-7.7 1.3 0.2 2.7 0.2 4.1 0.2 8 0 15.4-2.7 21.3-7.3 -7.5-0.1-13.8-5.1-16-11.9 1 0.2 2.1 0.3 3.2 0.3 1.6 0 3.1-0.2 4.5-0.6 -7.8-1.6-13.7-8.5-13.7-16.8v-0.2c2.3 1.3 5 2.1 7.8 2.1 -4.6-3.1-7.6-8.3-7.6-14.3 0-3.1 0.8-6.1 2.3-8.6C58.4 62.5 71.1 69.3 85.3 70c-0.3-1.3-0.4-2.6-0.4-3.9 0-9.5 7.7-17.1 17.1-17.1 4.9 0 9.4 2.1 12.5 5.4 3.9-0.8 7.6-2.2 10.9-4.1 -1.3 4-4 7.3-7.5 9.5 3.5-0.4 6.8-1.3 9.8-2.7C125.4 60.5 122.4 63.5 119.1 65.9z"/></svg>
             	<span>Share</span>
@@ -36,7 +37,7 @@ export default class Share extends Component {
                 <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
                 <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
               </svg>*/}
-              <a id="penhaligons-link" href="https:///www.penhaligons.com" title="Penhaligons">www.penhaligons.com</a>
+              <a id="penhaligons-link" href="https://www.penhaligons.com/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" title="Penhaligons">www.penhaligons.com</a>
 
           </div>
         </div>

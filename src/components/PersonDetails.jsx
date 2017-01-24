@@ -39,11 +39,15 @@ export default class PersonDetails extends Component {
           </svg>*/}
           <hr />
 	    	</header>
-	    	<label htmlFor="name">{this.capitalizeFirstLetter(this.props.index)} first name</label>
-	    	<input type="text" id="name" className={this.props.index} name="name" value={this.props[this.props.index].name} placeholder="Name" required onChange={(e) => this.props.updateField(e)} autoComplete="off" tabIndex="1" />
-	    	<label htmlFor="email">{this.capitalizeFirstLetter(this.props.index)} email</label>
+	    	<label htmlFor="name">{this.capitalizeFirstLetter(this.props.index)}'s full name</label>
+	    	<input type="text" id="name" className={this.props.index} name="name" value={this.props[this.props.index].name} placeholder="Full Name" required onChange={(e) => this.props.updateField(e)} autoComplete="off" tabIndex="1" />
+	    	<label htmlFor="email">{this.capitalizeFirstLetter(this.props.index)}'s email</label>
 	    	<input type="email" id="email" className={this.props.index} name="email" value={this.props[this.props.index].email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
 	    	<Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} autocomplete="off" tabIndex="2" />
+	    	{ this.props.index === 'recipient' ?
+	    		<p className="terms">Contact details for the recipient should only  be provided with that person’s consent, and that person may be told who provided their details.</p> :
+          ''
+        }    	
     	</form>
       { typeof this.props.nextStep === 'string' ?
           <Anchor className={disabled} cta={this.props.nextCta}  step="forward" target="confirmation" /> :

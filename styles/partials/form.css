@@ -452,6 +452,7 @@
         @media (orientation: portrait) {
             display: none;
         }
+
     }
     > div {
         @media (orientation: portrait) {
@@ -474,10 +475,20 @@
             display: none;
         }
         li {
-            &:not(:first-child) {
-                /* margin-top: 5px; */
+            &:first-child {
+                p {
+                    @media (orientation: landscape) {
+                        margin: 0 0 20px !important;
+                    }
+                    @media (orientation: portrait) {
+                        margin: 20px 0 !important;
+                    }
+                }
             }
-        }
+            &:not(:first-child) {
+                margin-top: 10px;
+            }
+        }     
     }
     .flower {
         > div {
