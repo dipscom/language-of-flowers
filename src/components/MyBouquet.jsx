@@ -88,7 +88,7 @@ export default class MyBouquet extends Component{
 
   componentWillEnter(callback) {
     // Reset the scroller position
-    ResetScroller(this.element.trg.id);
+    ResetScroller(this.el.id);
 
     let tl = new TimelineMax(); // eslint-disable-line
 

@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 
 export default class Share extends Component {
-  render() { 
+  render() {
     return (
       <div
         id="share"
         key="share"
         className="page"
-        >
+        ref={
+          (el) => {
+            this.el = el;
+          }
+        }
+      >
         <div>
           <div>
           	{/*<svg className="doubleline-decoration" viewBox="0 0 1400 40" preserveAspectRatio="xMidYMid">
