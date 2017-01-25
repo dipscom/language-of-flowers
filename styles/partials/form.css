@@ -76,7 +76,7 @@
             color: $green;
         }
         &:invalid {
-            box-shadow: none;
+            color: #aa1414;
         }
     }
     .button {

@@ -40,7 +40,7 @@ export default class PersonDetails extends Component {
           <hr />
 	    	</header>
 	    	<label htmlFor="name">{this.capitalizeFirstLetter(this.props.index)}'s full name</label>
-	    	<input type="text" id="name" className={this.props.index} name="name" value={this.props[this.props.index].name} placeholder="Full Name" required onChange={(e) => this.props.updateField(e)} autoComplete="off" tabIndex="1" />
+	    	<input type="text" id="name" className={this.props.index} name="name" maxLength="20" value={this.props[this.props.index].name} placeholder="Full Name" required onChange={(e) => this.props.updateField(e)} autoComplete="off" tabIndex="1" />
 	    	<label htmlFor="email">{this.capitalizeFirstLetter(this.props.index)}'s email</label>
 	    	<input type="email" id="email" className={this.props.index} name="email" value={this.props[this.props.index].email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
 	    	<Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} autocomplete="off" tabIndex="2" />
