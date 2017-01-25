@@ -39,6 +39,10 @@ export default class FlowerDetails extends Component {
     TweenMax.from("#flower-details", 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: 0.5,
+      onStart:function () {
+        TweenMax.set("#flower-details", {position:"relative"}); // eslint-disable-line
+
+      }
     })
     callback();
   }
