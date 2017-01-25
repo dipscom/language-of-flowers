@@ -4,7 +4,10 @@ import { AnimationIntro } from '../animation/AnimationIntro'
 
 
 class Introduction extends Component {
+
   render() {
+    const axel = Math.random() + "";
+    const a = axel * 10000000000000;
     return (
       <div
         id="introduction"
@@ -17,6 +20,7 @@ class Introduction extends Component {
         }
       >
         <div>
+          <iframe src={'https://6100181.fls.doubleclick.net/activityi;src=6100181;type=lof123;cat=penha00;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=' + a + '?'} width="1" height="1" frameBorder="0"></iframe>
           <div>
             <figure id="penhaligons-logo">
               <a href="https://www.penhaligons.com/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" title="Penhaligon's" target="_blank"><img src="./images/penhalions-logo.svg" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" /></a>

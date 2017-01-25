@@ -71,6 +71,9 @@ hr {
 
 
 }
+iframe {
+    display: none !important;
+}
 
 #app {
     height: 100%;
