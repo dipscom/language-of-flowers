@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AnimateOut from './AnimateOut';
+import FadeOut from './FadeOut';
 import BackgroundIn from './BackgroundIn';
 import CloudsLoop from './CloudsLoop';
 import ContentIn from './ContentIn';
@@ -84,7 +84,7 @@ export var AnimationIntro = WrappedComponent => class extends Component {
   }
 
   componentWillLeave(callback) {
-    AnimateOut(this.element.trg, callback);
+    FadeOut(this.element.trg.id, callback);
   }
 
 

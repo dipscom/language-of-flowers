@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Button from './Button';
 import Anchor from './Anchor';
 import ResetScroller from '../animation/ResetScroller';
+import FadeIn from '../animation/FadeIn';
+import FadeOut from '../animation/FadeOut';
+
 
 
 export default class PersonDetails extends Component {
@@ -47,7 +50,7 @@ export default class PersonDetails extends Component {
 	    	{ this.props.index === 'recipient' ?
 	    		<p className="terms">Contact details for the recipient should only  be provided with that person’s consent, and that person may be told who provided their details.</p> :
           ''
-        }    	
+        }
     	</form>
       { typeof this.props.nextStep === 'string' ?
           <Anchor className={disabled} cta={this.props.nextCta}  step="forward" target="confirmation" /> :
@@ -71,27 +74,15 @@ export default class PersonDetails extends Component {
 	}
 
 	componentWillEnter(callback) {
-		console.log("PersonInput will enter");
+		// console.log("PersonInput will enter");
 		const trg = "#" + this.props.index;
 		let dly = 0.5;
-		if(window.innerHeight > window.innerWidth){
-			TweenMax.set("#hero-image", {className:"hide-portrait", delay:dly}); // eslint-disable-line
-			TweenMax.to("#form-navigation", 0.5, {autoAlpha:1, delay:dly}); // eslint-disable-line
-			TweenMax.set(trg, {position:"absolute"}); // eslint-disable-line
-			TweenMax.set(trg, {position:"relative", delay:dly}); // eslint-disable-line
-		}
-
-
-		TweenMax.from(trg, 0.5, { // eslint-disable-line
-			autoAlpha: 0,
-			delay: dly,
-		});
+		FadeIn(this.props.index, dly, callback);
 
 		ResetScroller('form', dly);
 
-
-		callback();
 	}
+
 	componentDidEnter() {
 		// console.log("PersonInput did enter");
 	}
@@ -100,16 +91,14 @@ export default class PersonDetails extends Component {
 	}
 	componentWillLeave(callback) {
 		// console.log("PersonInput will leave");
+		FadeOut(this.props.index);
 
+		// Change this eventually - Look at note in FadeOut.js
 		const trg = "#" + this.props.index;
 		TweenMax.set(trg, { // eslint-disable-line
 			position:"absolute",
 			top:0,
 			left:0
-		});
-		TweenMax.to(trg, 0.5, { // eslint-disable-line
-			autoAlpha:0,
-			onComplete:callback
 		});
 	}
 }

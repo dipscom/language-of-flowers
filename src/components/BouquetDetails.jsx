@@ -4,6 +4,7 @@ import Button from './Button';
 import Flower from './Flower';
 import ResetScroller from '../animation/ResetScroller';
 import HeroImageIn from '../animation/HeroImageIn'
+import FadeOut from '../animation/FadeOut';
 
 
 
@@ -19,14 +20,14 @@ export default class BouquetDetails extends Component {
                 <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
               </svg>*/}
               <hr />
-              
+
   	      </header>
   	      <ol className="bouquet-list">
             { this.props.step !== 2 ?
               <li><p>Your beloved has sent you a beautiful floral bouquet. The meanings of their chosen flowers are listed below.</p></li> :
                 ''
               }
-          
+
   	      	{this.props.bouquet
   	      		.map(key =>
   	      			<Flower
@@ -98,25 +99,14 @@ export default class BouquetDetails extends Component {
   }
   componentWillLeave(callback) {
     // console.log("BouquetDetails will leave");
-    if(window.innerHeight > window.innerWidth){
-      TweenMax.to("#form-navigation", 0.5, {autoAlpha:0}); // eslint-disable-line
-      TweenMax.set("#bouquet-details", { // eslint-disable-line
-        height:"inherit"
-      });
-      TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
-        autoAlpha:0
-      });
-
-    } else {
-      TweenMax.set("#bouquet-details", { // eslint-disable-line
-        position:"absolute",
-      });
+    // If in portrait mode
+    if(window.innerHeight > window.innerWidth) {
+        TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
+          autoAlpha:0
+        });
     }
 
-    TweenMax.to(["#bouquet-details"], 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      onComplete:callback
-    });
+    FadeOut('bouquet-details', callback)
   }
 
 

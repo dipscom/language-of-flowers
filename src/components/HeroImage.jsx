@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import HeroImageIn from '../animation/HeroImageIn'
+import FadeOut from '../animation/FadeOut';
+
 
 export default class HeroImage extends Component {
   render() {
-/*  	let classes = '';
-  	if (this.props.step > 2) {
-  		classes += 'hide-portrait';
-  	} */
     return (
     	<div id="hero-image">
     	  <header>
@@ -28,12 +25,12 @@ export default class HeroImage extends Component {
 	/* Animation */
 	componentWillAppear(callback) {
 		// console.log("HeroImage will appear")
-    // HeroImageIn(callback, 0.5)
+    // Intro animation is in BouquetDetails.jsx
     callback();
 	}
 	componentWillEnter(callback) {
 		// console.log("HeroImage will enter");
-    // HeroImageIn(callback, 0.5)
+    // Intro animation is in BouquetDetails.jsx
     callback();
 	}
 	componentDidEnter() {
@@ -44,17 +41,6 @@ export default class HeroImage extends Component {
 	}
   componentWillLeave(callback) {
     // console.log("HeroImage will leave");
-    if(window.innerHeight > window.innerWidth){
-    } else {
-      TweenMax.set("#hero-image", { // eslint-disable-line
-        position:"absolute"
-      });
-    }
-    // for some reason this tween is not happening...
-    TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
-      autoAlpha:0
-    });
-    // ...but this callback is
-    callback();
+    FadeOut('hero-image', callback);
   }
 }

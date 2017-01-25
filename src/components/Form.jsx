@@ -8,6 +8,8 @@ import PersonDetails from './PersonDetails';
 // import NavLink from './NavLink';
 import OverlayOut from '../animation/OverlayOut';
 import CloudsLoop from '../animation/CloudsLoop';
+import FadeIn from '../animation/FadeIn';
+import FadeOut from '../animation/FadeOut';
 
 
 const initialState = {
@@ -35,6 +37,7 @@ export default class Form extends Component {
     }
   }
 	componentDidMount() {
+		// Tween to control the opacity of LOF logo when scrolling the viewport
 		this.logoTl = TweenMax.to("#lof-logo", 1, {autoAlpha:0, paused:true, ease:"Linear.easeNone"}); // eslint-disable-line
 	}
   updateActiveFlower(key) {
@@ -180,9 +183,6 @@ export default class Form extends Component {
 				ease: "Power2.easeInOut"
 			}, 0);
 		}
-
-
-
 		return tl;
 	}
 
@@ -191,9 +191,7 @@ export default class Form extends Component {
 
 		tl.add(OverlayOut())
 			.add(this.resizeLOF(), 0)
-			.from("#form", 2, { // eslint-disable-line
-				autoAlpha:0
-		})
+			.add(FadeIn('form'))
 
 	}
 
@@ -217,12 +215,7 @@ export default class Form extends Component {
 
 	componentWillLeave(callback) {
 		// console.log("Form Will leave");
-		let tl = new TimelineMax({onComplete:callback}); // eslint-disable-line
-
-		tl.to("#form", 0.5, {
-		  autoAlpha:0,
-		});
-
+		FadeOut('form', callback);
 	}
 
 	onScroll() {

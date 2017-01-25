@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TransitionGroup from 'react-addons-transition-group';
 import Flower from './Flower';
 import ResetScroller from '../animation/ResetScroller';
+import FadeOut from '../animation/FadeOut';
+
 
 
 export default class FlowerSelect extends Component {
@@ -78,12 +80,6 @@ export default class FlowerSelect extends Component {
   }
   componentWillLeave(callback) {
     // console.log("FlowerSelect will leave");
-    TweenMax.set("#flower-select", { // eslint-disable-line
-      // position:"absolute"
-    });
-    TweenMax.to("#flower-select", 0.5, { // eslint-disable-line
-      autoAlpha:0,
-      onComplete:callback
-    });
+    FadeOut('flower-select', callback);
   }
 }

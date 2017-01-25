@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Anchor from './Anchor';
 import Flower from './Flower';
-import AnimateOut from '../animation/AnimateOut';
+import FadeOut from '../animation/FadeOut';
 import OverlayIn from '../animation/OverlayIn';
 import ResetScroller from '../animation/ResetScroller';
 import CloudsLoop from '../animation/CloudsLoop';
@@ -102,7 +102,7 @@ export default class Confirmation extends Component {
 
   componentWillLeave(callback) {
     // console.log("Confirmation Will leave");
-    AnimateOut(this.el, callback);
+    FadeOut(this.el.id, callback);
   }
 
   onScroll() {

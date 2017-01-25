@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AnimateOut from '../animation/AnimateOut';
+import FadeOut from '../animation/FadeOut';
 import CloudsLoop from '../animation/CloudsLoop';
 
 
@@ -119,7 +119,7 @@ export default class Success extends Component{
 
 
   componentWillLeave(callback) {
-    AnimateOut(this.el, callback);
+    FadeOut(this.el.id, callback);
   }
 
   onScroll() {

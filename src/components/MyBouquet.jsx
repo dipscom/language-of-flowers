@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Anchor from './Anchor';
-import AnimateOut from '../animation/AnimateOut';
+import FadeOut from '../animation/FadeOut';
 import BackgroundIn from '../animation/BackgroundIn';
 import CloudsLoop from '../animation/CloudsLoop';
 import ContentIn from '../animation/ContentIn';
@@ -118,7 +118,7 @@ export default class MyBouquet extends Component{
   }
 
   componentWillLeave(callback) {
-    AnimateOut(this.el, callback);
+    FadeOut(this.el.id, callback);
   }
 
   componentDidLeave() {
