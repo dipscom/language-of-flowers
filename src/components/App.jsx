@@ -200,6 +200,11 @@ export default class App extends Component {
   }
   updateStep(i) {
     const steps = {...this.state.steps};
+    // const diamonds = document.getElementById('form-navigation').children;
+    // let d;
+    // for (d = 0; d < diamonds.length; d++) { 
+    //   diamonds[d].className += ' disabled';
+    // }
     steps['current'] = i;
     this.setState({ steps });
     ga('send', 'event', 'Navigation', 'Form Navigation', 'Build Bouquet', i); // eslint-disable-line
