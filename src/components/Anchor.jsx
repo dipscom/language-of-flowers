@@ -10,7 +10,12 @@ export default class Anchor extends Component {
   			classes += ' back-button';
   		}
     return (
-      <Link className={classes} to={this.props.target} onClick={this.props.click}>{this.props.cta}</Link> 
+      <Link
+        className={classes}
+        to={this.props.target}
+        onClick={this.props.click}>
+          {this.props.cta}
+      </Link> 
     )
   }
 }
