@@ -146,6 +146,7 @@ hr {
     transition: opacity 0.3s, box-shadow 0.2s, transform 0.2s;
     white-space: nowrap;
     width: auto;
+    letter-spacing: 0;
 
     @extend lovato;
     @media (--phablet-medium-above) {
@@ -177,12 +178,16 @@ hr {
         }
     }
     &:disabled {
-        opacity: 0.5;
+        opacity: 0.3;
     }
-    &:hover {
-        box-shadow: none;
-        transform: translate(2px, 2px);
+    &:not(:disabled) {
+        &:hover {
+            box-shadow: none;
+            transform: translate(2px, 2px);
+        } 
     }
+
+
 }
 
 .disabled {

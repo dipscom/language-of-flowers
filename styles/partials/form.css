@@ -76,6 +76,7 @@
             color: $green;
         }
         &:invalid {
+            color: #aa1414;
             box-shadow: none;
         }
     }
@@ -474,7 +475,7 @@
         hr {
             display: none;
         }
-        li {
+        .message {
             &:first-child {
                 p {
                     @media (orientation: landscape) {
