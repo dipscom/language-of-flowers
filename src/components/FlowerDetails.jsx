@@ -32,6 +32,10 @@ export default class FlowerDetails extends Component {
   }
   componentWillEnter(callback) {
     // console.log("FlowerDetails will enter")
+    TweenMax.set("#flower-details", { // eslint-disable-line
+      position:"absolute"
+    });
+
     TweenMax.from("#flower-details", 0.5, { // eslint-disable-line
       autoAlpha:0,
       delay: 0.5,
@@ -46,9 +50,6 @@ export default class FlowerDetails extends Component {
   }
   componentWillLeave(callback) {
     // console.log("FlowerDetails will leave");
-    TweenMax.set("#flower-details", { // eslint-disable-line
-      position:"absolute"
-    });
     TweenMax.to("#flower-details", 0.5, { // eslint-disable-line
       autoAlpha:0,
       onComplete:callback
