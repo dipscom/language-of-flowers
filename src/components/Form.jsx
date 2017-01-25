@@ -173,7 +173,7 @@ export default class Form extends Component {
 			}, 0);
 		} else {
 			tl.to("#lof-logo", 0.8, {
-				scale:0.95,
+				scale:0.8,
 				yPercent:-45,
 				ease: "Power2.easeInOut"
 			}, 0);

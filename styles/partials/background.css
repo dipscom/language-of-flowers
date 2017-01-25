@@ -74,10 +74,10 @@
     }
     .logo {
         display: block;
-        height: 12vh;
+        height: 15%;
         left: 50%;
         position: absolute;
-        top: 7.5%;
+        top: 7%;
 
          @media (orientation: portrait) {
            height: auto;
