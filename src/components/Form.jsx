@@ -142,7 +142,9 @@ export default class Form extends Component {
 		      		{this.formStepRight()}
 		      	</TransitionGroup>
 		      	<nav id="form-navigation">
-		      		{diamonds}
+              <div>
+		      		  {diamonds}
+              </div>
 		      	</nav>
 		      </div>
 	      </div>

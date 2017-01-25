@@ -21,12 +21,12 @@
         -webkit-overflow-scrolling: touch;
         overflow-x: hidden;
         overflow-y: auto;
-
+        position: relative;
         @media (orientation: portrait) {
             height: 100%;
 
             @media (--tablet-small-below) {
-                padding: calc(3.571428571428571% + 54px + 10px) 3.571428571428571% 6.25%;
+                padding: calc(3.571428571428571% + 54px + 10px) 3.571428571428571% calc(3.571428571428571% * 3 + 20px);
             }
             @media (--tablet-small-above) {
                 padding: calc(7.8125% + 30px) 7.8125% 7.8125%;
@@ -35,7 +35,7 @@
         @media (orientation: landscape) {
             height: 100%;
             padding: 4%;
-            position: relative;
+           
             width: 100%;
         }
         > * {
@@ -553,18 +553,30 @@
     }
 }
 
-#form-navigation {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+#form-navigation {   
     padding: 4px 0;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
 
-     @media (orientation: landscape) {
-        bottom: 0;
-        left: 50%;
+    @media (orientation: portrait) {
+        position: fixed;
+        margin-bottom: 6.25%;
+        padding: 0 6.25%;
+        width: 100%;
+    }
+    @media (orientation: landscape) {
         position: absolute;
-        transform: translateX(-50%);
-     }
+    }
+    div {
+        
+        display: flex;
+        justify-content: center;
+        @media (orientation: portrait) {
+            padding: 3.821428571428571% 0;
+            background-color: #ffffff;
+        }
+    }
     span {
         background-color: $main-color;
         cursor: pointer;
