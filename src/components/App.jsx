@@ -185,13 +185,14 @@ export default class App extends Component {
     localStorage.removeItem('accessTime');
     ga('send', 'event', 'Navigation', 'Reset'); // eslint-disable-line
   }
-  nextStep() {
+  nextStep(e) {
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current + 1;
     this.setState({ steps });
     ga('send', 'event', 'Navigation', 'Next Step', 'Build Bouquet', this.state.steps.current + 1); // eslint-disable-line
   }
-  prevStep() {
+  prevStep(e) {
+    e.currentTarget.setAttribute('disabled', true);
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current - 1;
     this.setState({ steps });
@@ -199,6 +200,11 @@ export default class App extends Component {
   }
   updateStep(i) {
     const steps = {...this.state.steps};
+    // const diamonds = document.getElementById('form-navigation').children;
+    // let d;
+    // for (d = 0; d < diamonds.length; d++) { 
+    //   diamonds[d].className += ' disabled';
+    // }
     steps['current'] = i;
     this.setState({ steps });
     ga('send', 'event', 'Navigation', 'Form Navigation', 'Build Bouquet', i); // eslint-disable-line
