@@ -62,8 +62,8 @@ export default class Overlay extends Component {
   // handleAnimation() {
   //
   //   switch (this.props.location.pathname) {
-  //     case "build-bouquet":
-  //     case "/build-bouquet":
+  //     case "buildbouquet":
+  //     case "/buildbouquet":
   //     case "confirmation":
   //     case "/confirmation":
   //         this.tl.tweenTo("AnimateOut")

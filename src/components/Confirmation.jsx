@@ -62,7 +62,7 @@ export default class Confirmation extends Component {
 	          <p className="terms"><label htmlFor="terms">Be in with a chance to win the full Penhaligon's Portraits collection.<br/>Plus join the very Penhaligon's club and discover our online secrets (I agree with the <a href="https://www.penhaligons.com/competition-terms--conditions/" title="Terms and Conditions" target="_blank">Terms and Conditions</a>/<a href="https://www.penhaligons.com/privacy-policy/" title="Privacy Policy" target="_blank">Privacy Policy</a>). </label><input type="checkbox" id="terms" name="terms" onChange={(e) => this.props.updateField(e)} /></p>
 	          <nav className="navigation">
 	          	<Anchor cta="Send now" step="forward" target="success" click={this.props.mailChimp} />
-	          	<Anchor cta="Change details" step="backward" target="build-bouquet" />
+	          	<Anchor cta="Change details" step="backward" target="buildbouquet" />
 	          </nav>
           </div>
         </div>

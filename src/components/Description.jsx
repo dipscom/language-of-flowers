@@ -35,7 +35,7 @@ class Description extends Component {
             <p>With Penhaligon’s Floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas - but what could be more (ah-em) improbable!</p>
             <p><strong>Choose the flowers and the recipient wisely</strong></p>
             <nav className="navigation">
-              <Anchor cta="Let's create your bouquet" step="forward" target="build-bouquet" />
+              <Anchor cta="Let's create your bouquet" step="forward" target="buildbouquet" />
             </nav>
           </div>
         </div>
