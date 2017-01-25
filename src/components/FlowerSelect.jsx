@@ -62,9 +62,14 @@ export default class FlowerSelect extends Component {
   }
   componentWillEnter(callback) {
     // console.log("FlowerSelect will enter")
+    TweenMax.set("#flower-select", {position:"absolute"}); // eslint-disable-line
     TweenMax.staggerFrom("#flower-list > li", 0.5, { // eslint-disable-line
       autoAlpha:0,
-      delay:0.5
+      delay:0.5,
+      onStart:function () {
+        TweenMax.set("#flower-select", {position:"relative"}); // eslint-disable-line
+
+      }
     }, 0.1);
 
     callback();
