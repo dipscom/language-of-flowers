@@ -474,7 +474,7 @@
         hr {
             display: none;
         }
-        li {
+        .message {
             &:first-child {
                 p {
                     @media (orientation: landscape) {

@@ -1,72 +1,72 @@
 const bouquets = {
     b01: {
-        name: 'blue-bell_gardenia_jasmine',
+        name: 'bluebell_gardenia_jasmine',
     },
     b02: {
-        name: 'blue-bell_gardenia_lavender',
+        name: 'bluebell_gardenia_lavender',
     },
     b03: {
-        name: 'blue-bell_gardenia_lilley-valley',
+        name: 'bluebell_gardenia_lily-valley',
     },
     b04: {
-        name: 'blue-bell_gardenia_orange-blossom',
+        name: 'bluebell_gardenia_orange-blossom',
     },
     b05: {
-        name: 'blue-bell_gardenia_rose',
+        name: 'bluebell_gardenia_rose',
     },
     b06: {
-        name: 'blue-bell_gardenia_white-iris',
+        name: 'bluebell_gardenia_white-iris',
     },
     b07: {
-        name: 'blue-bell_jasmine_lavender',
+        name: 'bluebell_jasmine_lavender',
     },
     b08: {
-        name: 'blue-bell_jasmine_lilley-valley',
+        name: 'bluebell_jasmine_lily-valley',
     },
     b09: {
-        name: 'blue-bell_jasmine_orange-blossom',
+        name: 'bluebell_jasmine_orange-blossom',
     },
     b10: {
-        name: 'blue-bell_jasmine_rose',
+        name: 'bluebell_jasmine_rose',
     },
     b11: {
-        name: 'blue-bell_jasmine_white-iris',
+        name: 'bluebell_jasmine_white-iris',
     },
     b12: {
-        name: 'blue-bell_lavender_lilley-valley',
+        name: 'bluebell_lavender_lily-valley',
     },
     b13: {
-        name: 'blue-bell_lavender_orange-blossom',
+        name: 'bluebell_lavender_orange-blossom',
     },
     b14: {
-        name: 'blue-bell_lavender_rose',
+        name: 'bluebell_lavender_rose',
     },
     b15: {
-        name: 'blue-bell_lavender_white-iris',
+        name: 'bluebell_lavender_white-iris',
     },
     b16: {
-        name: 'blue-bell_lilley-valley_orange-blossom',
+        name: 'bluebell_lily-valley_orange-blossom',
     },
     b17: {
-        name: 'blue-bell_lilley-valley_rose',
+        name: 'bluebell_lily-valley_rose',
     },
     b18: {
-        name: 'blue-bell_lilley-valley_white-iris',
+        name: 'bluebell_lily-valley_white-iris',
     },
     b19: {
-        name: 'blue-bell_orange-blossom_rose',
+        name: 'bluebell_orange-blossom_rose',
     },
     b20: {
-        name: 'blue-bell_orange-blossom_white-iris',
+        name: 'bluebell_orange-blossom_white-iris',
     },
     b21: {
-        name: 'blue-bell_rose_white-iris',
+        name: 'bluebell_rose_white-iris',
     },
     b22: {
         name: 'gardenia_jasmine_lavender',
     },
     b23: {
-        name: 'gardenia_jasmine_lilley-valley',
+        name: 'gardenia_jasmine_lily-valley',
     },
     b24: {
         name: 'gardenia_jasmine_orange-blossom',
@@ -78,7 +78,7 @@ const bouquets = {
         name: 'gardenia_jasmine_white-iris',
     },
     b27: {
-        name: 'gardenia_lavender_lilley-valley',
+        name: 'gardenia_lavender_lily-valley',
     },
     b28: {
         name: 'gardenia_lavender_orange-blossom',
@@ -90,13 +90,13 @@ const bouquets = {
         name: 'gardenia_lavender_white-iris',
     },
     b31: {
-        name: 'gardenia_lilley-valley_orange-blossom',
+        name: 'gardenia_lily-valley_orange-blossom',
     },
     b32: {
-        name: 'gardenia_lilley-valley_rose',
+        name: 'gardenia_lily-valley_rose',
     },
     b33: {
-        name: 'gardenia_lilley-valley_white-iris',
+        name: 'gardenia_lily-valley_white-iris',
     },
     b34: {
         name: 'gardenia_orange-blossom_rose',
@@ -108,7 +108,7 @@ const bouquets = {
         name: 'gardenia_rose_white-iris',
     },
     b37: {
-        name: 'jasmine_lavender_lilley-valley',
+        name: 'jasmine_lavender_lily-valley',
     },
     b38: {
         name: 'jasmine_lavender_orange-blossom',
@@ -120,13 +120,13 @@ const bouquets = {
         name: 'jasmine_lavender_white-iris',
     },
     b41: {
-        name: 'jasmine_lilley-valley_orange-blossom',
+        name: 'jasmine_lily-valley_orange-blossom',
     },
     b42: {
-        name: 'jasmine_lilley-valley_rose',
+        name: 'jasmine_lily-valley_rose',
     },
     b43: {
-        name: 'jasmine_lilley-valley_white-iris',
+        name: 'jasmine_lily-valley_white-iris',
     },
     b44: {
         name: 'jasmine_orange-blossom_rose',
@@ -138,13 +138,13 @@ const bouquets = {
         name: 'jasmine_rose_white-iris',
     },
     b47: {
-        name: 'lavender_lilley-valley_orange-blossom',
+        name: 'lavender_lily-valley_orange-blossom',
     },
     b48: {
-        name: 'lavender_lilley-valley_rose',
+        name: 'lavender_lily-valley_rose',
     },
     b49: {
-        name: 'lavender_lilley-valley_white-iris',
+        name: 'lavender_lily-valley_white-iris',
     },
     b50: {
         name: 'lavender_orange-blossom_rose',
@@ -156,13 +156,13 @@ const bouquets = {
         name: 'lavender_rose_white-iris',
     },
     b53: {
-        name: 'lilley-valley_orange-blossom_rose',
+        name: 'lily-valley_orange-blossom_rose',
     },
     b54: {
-        name: 'lilley-valley_orange-blossom_white-iris',
+        name: 'lily-valley_orange-blossom_white-iris',
     },
     b55: {
-        name: 'lilley-valley_rose_white-iris',
+        name: 'lily-valley_rose_white-iris',
     },
     b56: {
         name: 'orange-blossom_rose_white-iris',
