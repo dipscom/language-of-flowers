@@ -76,6 +76,11 @@ export default class PersonDetails extends Component {
 	componentWillEnter(callback) {
 		// console.log("PersonInput will enter");
 		let dly = 0.5;
+
+		if(window.innerHeight > window.innerWidth){
+			TweenMax.set("#hero-image", {className:"hide-portrait", delay:dly}); // eslint-disable-line
+		}
+
 		FadeIn(this.props.index, dly, callback);
 
 		ResetScroller('form', dly);
