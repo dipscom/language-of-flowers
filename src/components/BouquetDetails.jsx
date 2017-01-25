@@ -62,8 +62,9 @@ export default class BouquetDetails extends Component {
 
     HeroImageIn(callback, 0.5)
 
+    TweenMax.set("#bouquet-details", {position:"absolute"})// eslint-disable-line
 
-    tl.add("Details")
+    tl.add("Details", 0.1)
     if(window.innerHeight > window.innerWidth){
       tl.from(["#bouquet-details header","#form-navigation"], dur, {
         autoAlpha: 0,
@@ -72,12 +73,16 @@ export default class BouquetDetails extends Component {
     }
     tl.staggerFrom("#bouquet-details li", dur, {
       autoAlpha: 0,
-      ease: "Power4.easeInOut"
+      ease: "Power4.easeInOut",
+      onStart:function () {
+        TweenMax.set("#bouquet-details", {position:"relative"}); // eslint-disable-line
+      }
     }, 0.25, "Details")
     tl.staggerFrom(["#bouquet-details button"], dur, {
       autoAlpha: 0,
       ease: "Power4.easeInOut"
     }, 0.25, "-=0.5")
+    tl.set("#bouquet-details", {clearProps:"all"})
 
 
     return tl;
