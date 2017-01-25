@@ -19,7 +19,7 @@ render(
     <Route path="/" component={App}>
     	<IndexRoute component={Introduction} />
     	<Route component={Description} path="description" />
-    	<Route component={Form} path="build-bouquet" />
+    	<Route component={Form} path="buildbouquet" />
     	<Route component={Confirmation} path="confirmation" />
       <Route component={Success} path="success" />
       <Route component={MyBouquet} path="mybouquet" />
