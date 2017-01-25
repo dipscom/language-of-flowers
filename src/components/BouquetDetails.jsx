@@ -66,7 +66,7 @@ export default class BouquetDetails extends Component {
 
     tl.add("Details", 0.1)
     if(window.innerHeight > window.innerWidth){
-      tl.from(["#bouquet-details header","#form-navigation"], dur, {
+      tl.from("#bouquet-details header", dur, {
         autoAlpha: 0,
         ease: "Power4.easeInOut"
       }, "Details");

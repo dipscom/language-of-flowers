@@ -128,16 +128,6 @@ export default class PersonDetails extends Component {
 
 		if(window.innerHeight > window.innerWidth){
 			TweenMax.set("#hero-image", {className:"hide-portrait", delay:dly}); // eslint-disable-line
-
-			// Hack to make it work
-			// Always fade in the diamonds if in portrait mode
-			TweenMax.fromTo("#form-navigation", dly, { // eslint-disable-line
-				autoAlpha:0
-			},{
-				autoAlpha:1,
-				delay:dly
-			});
-
 		}
 
 		// PersonDetails always loads on top of something else
