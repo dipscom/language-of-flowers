@@ -42,9 +42,9 @@ export default class PersonDetails extends Component {
           </svg>*/}
           <hr />
 	    	</header>
-	    	<label htmlFor="name">{this.capitalizeFirstLetter(this.props.index)}'s full name</label>
+	    	<label htmlFor="name">{this.capitalizeFirstLetter(this.props.index)}&rsquo;s full name</label>
 	    	<input type="text" id="name" className={this.props.index} name="name" maxLength="20" value={this.props[this.props.index].name} placeholder="Full Name" required onChange={(e) => this.props.updateField(e)} autoComplete="off" tabIndex="1" />
-	    	<label htmlFor="email">{this.capitalizeFirstLetter(this.props.index)}'s email</label>
+	    	<label htmlFor="email">{this.capitalizeFirstLetter(this.props.index)}&rsquo;s email</label>
 	    	<input type="email" id="email" className={this.props.index} name="email" value={this.props[this.props.index].email} placeholder="Email" required onChange={(e) => this.props.updateField(e)} />
 	    	<Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} autocomplete="off" tabIndex="2" />
 	    	{ this.props.index === 'recipient' ?
@@ -75,7 +75,6 @@ export default class PersonDetails extends Component {
 
 	componentWillEnter(callback) {
 		// console.log("PersonInput will enter");
-		const trg = "#" + this.props.index;
 		let dly = 0.5;
 		FadeIn(this.props.index, dly, callback);
 
