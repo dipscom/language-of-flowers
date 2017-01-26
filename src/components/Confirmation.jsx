@@ -58,8 +58,8 @@ export default class Confirmation extends Component {
 		      					details={this.props.flowers[key]} />)
 	          	}
 	          </ol>
-	          <p><strong>...to your dearest <span>{this.props.recipient.name}</span> at the postal address of <span>{this.props.recipient.email}</span> from <span>{this.props.sender.name}</span> <span>({this.props.sender.email})</span>.</strong></p>
-	          <p className="terms"><label htmlFor="terms">Be in with a chance to win the full Penhaligon's Portraits collection.<br/>Plus join the very Penhaligon's club and discover our online secrets (I agree with the <a href="https://www.penhaligons.com/competition-terms--conditions/" title="Terms and Conditions" target="_blank">Terms and Conditions</a>/<a href="https://www.penhaligons.com/privacy-policy/" title="Privacy Policy" target="_blank">Privacy Policy</a>). </label><input type="checkbox" id="terms" name="terms" onChange={(e) => this.props.updateField(e)} /></p>
+	          <p><strong>...to your dearest <span>{this.props.recipient.name}</span> at the email address of <span>{this.props.recipient.email}</span> from <span>{this.props.sender.name}</span> <span>({this.props.sender.email})</span>.</strong></p>
+	          <p className="terms"><label htmlFor="terms">Be in with a chance to win the full Penhaligon's Portraits Collection.<br/>Plus join the very Penhaligon's club and discover our online secrets (I agree with the <a href="https://www.penhaligons.com/competition-terms--conditions/" title="Terms and Conditions" target="_blank">Terms and Conditions</a>/<a href="https://www.penhaligons.com/privacy-policy/" title="Privacy Policy" target="_blank">Privacy Policy</a>). </label><input type="checkbox" id="terms" name="terms" onChange={(e) => this.props.updateField(e)} /></p>
 	          <nav className="navigation">
 	          	<Anchor cta="Send now" step="forward" target="success" click={this.props.mailChimp} />
 	          	<Anchor cta="Change details" step="backward" target="buildbouquet" />

@@ -35,10 +35,10 @@ h1 {
         }
     }
     @media (orientation: landscape) {
-        @media (--widescreen-small-below) {
-            font-size: 3.252710592160134vw;
+        @media (--largescreen-below) {
+            font-size: 2.4375vw;
         }
-        @media (--widescreen-small-above) {
+        @media (--largescreen-above) {
             font-size: 39px;
         }
     }
