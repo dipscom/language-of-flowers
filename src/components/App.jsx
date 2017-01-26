@@ -41,12 +41,15 @@ export default class App extends Component {
   }
   componentWillMount(){
     let bouquet, recipient, sender, flowers, products, steps;
-    const accessTime = Number((localStorage.getItem('accessTime'))) + 20000, timeStamp = Date.now();
+    const accessTime = Number((localStorage.getItem('accessTime'))) + 20000, timeStamp = Date.now(); // eslint-disable-line
 
     if(Object.keys(this.props.location.query).length !== 0) {
-      if (this.props.location.query.bouquet && this.props.location.query.recipient && this.props.location.query.sender) {
+      if (this.props.location.query.bouquet && this.props.location.query.name && this.props.location.query.email && this.props.location.query.sender) {
         bouquet = this.props.location.query.bouquet.split(',');
-        recipient = { name: this.props.location.query.recipient };
+        recipient = { 
+          name: this.props.location.query.name,
+          email: this.props.location.query.email
+         };
         sender = { name: this.props.location.query.sender };
         flowers = flowers;
         this.setState({
@@ -231,6 +234,8 @@ export default class App extends Component {
   updateField(e) {
     if(e.target.name === 'terms') {
       this.setState({ 'terms': e.target.checked });
+    } else if (e.target.name === 'opt-in') {
+      $.post('opt-in.php', {data: this.state.sender.email + ',' + e.target.checked}); // eslint-disable-line
     } else {
       const person = {...this.state[e.target.className]};
       person[e.target.name] = e.target.value;
