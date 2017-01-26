@@ -24,7 +24,7 @@ export default class BouquetDetails extends Component {
   	      </header>
   	      <ol className="bouquet-list">
             { this.props.step !== 2 ?
-              <li><p>Your beloved has sent you a beautiful floral bouquet. The meanings of their chosen flowers are listed below.</p></li> :
+              <li><p className="message">Your beloved has sent you a beautiful floral bouquet. The meanings of their chosen flowers are listed below.</p></li> :
                 ''
               }
 

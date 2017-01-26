@@ -77,7 +77,7 @@
 
         @media (--height-650-below) {
             margin: 5px 0;
-           padding: 5px 0;
+            padding: 5px 0;
         }
         @media (--height-650-above) and (--height-700-below) {
            margin: 10px 0;
@@ -192,6 +192,9 @@
                 font-size: 28px;
             }
         }
+        .message {
+            margin: 0 0 10px;
+        }
     }
     .terms {
         a {
@@ -212,6 +215,11 @@
     }
 }
 
+.bouquet-list {
+    .message {
+        margin: 0 0 10px !important;
+    }
+}
 
 .terms {
     font-size: 13px;
@@ -325,7 +333,7 @@
 #share {
     p {
         margin: 0 auto;
-      span {
+     > span {
          max-width: 550px;
          opacity: 1;
          color: inherit;
@@ -335,6 +343,10 @@
     }
     strong {
         text-transform: none;
+        span {
+            margin: 0;
+            opacity: 1;
+        }
     }
     a {
         color: inherit;
@@ -375,6 +387,7 @@
         transition: fill 0.3s;
     }
     #penhaligons-link {
+        display: inline-block;
         margin-top: 20px;
     }
 }

@@ -32,7 +32,7 @@ class Description extends Component {
                     <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
                   </svg>*/}
             </header>
-            <p>With Penhaligon’s floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas – but what could be more (ah-em) improbable!</p>
+            <p>With Penhaligon’s floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas — but what could be more (ah-em) improbable!</p>
             <p><strong>Choose the flowers and the recipient wisely</strong></p>
             <nav className="navigation">
               <Anchor cta="Let's create your bouquet" step="forward" target="buildbouquet" />
