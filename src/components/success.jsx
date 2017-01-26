@@ -100,7 +100,7 @@ export default class Success extends Component{
 
     tl.from(currentTarget, dur, {autoAlpha:0});
 
-    tl.add("Crossfade", "+=3")
+    tl.add("Crossfade", "+=2")
       .to("#thank-you", dur, {autoAlpha:0, ease:"Power2.easeInOut"})
       .to("#products", dur, {autoAlpha:1, ease:"Power2.easeInOut"}, "-=0.6")
 
