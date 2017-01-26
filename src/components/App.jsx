@@ -235,7 +235,7 @@ export default class App extends Component {
     if(e.target.name === 'terms') {
       this.setState({ 'terms': e.target.checked });
     } else if (e.target.name === 'opt-in') {
-      $.post('opt-in.php', {data: this.state.sender.email + ',' + e.target.checked}); // eslint-disable-line
+      $.post('opt-in.php', {email: this.state.recipient.email, optin: e.target.checked}); // eslint-disable-line
     } else {
       const person = {...this.state[e.target.className]};
       person[e.target.name] = e.target.value;
