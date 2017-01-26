@@ -23,8 +23,8 @@ const flowers = {
         meaning: 'Devotion, mystery.',
         selected: false
     },
-    "liley-valley": {
-        name: 'Liley of the Valley',
+    "lily-valley": {
+        name: 'Lily of the Valley',
         description: 'Paradise regained. Happiness returned.',
         meaning: 'Lovers reunited.',
         selected: false
