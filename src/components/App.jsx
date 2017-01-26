@@ -186,6 +186,7 @@ export default class App extends Component {
     ga('send', 'event', 'Navigation', 'Reset'); // eslint-disable-line
   }
   nextStep(e) {
+    e.currentTarget.setAttribute('disabled', true);
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current + 1;
     this.setState({ steps });
