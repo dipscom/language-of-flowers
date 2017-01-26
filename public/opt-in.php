@@ -1,13 +1,4 @@
 <?php
-$data = $_POST['data'];
-$fh = fopen('opt-in.csv', 'a') or die("can't open file");
-fwrite($fh, $data . ',' . date('r') . "\n");
-fclose($fh);
-
-
-
-
-
 $input = fopen('opt-in.csv', 'r');  //open for reading
 $output = fopen('temporary.csv', 'w'); //open for writing
 while( false !== ( $data = fgetcsv($input) ) ){  //read each line as an array
