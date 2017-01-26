@@ -5,10 +5,10 @@ $new_row = true;
 while( false !== ( $data = fgetcsv($input) ) ){  //read each line as an array
 
    //modify data here
-   if ($data[1] == $_POST['email']) {
+   if ($data[0] == $_POST['email']) {
       //Replace line here
    		$new_row = false;
-      $data[2] = $_POST['optin'];
+      $data[1] = $_POST['optin'];
    }
    //write modified data to new file
    fputcsv( $output, $data);
