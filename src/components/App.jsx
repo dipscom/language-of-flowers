@@ -24,7 +24,10 @@ steps: {
   current: 1,
   total: 4
 },
-terms: false
+terms: false,
+navigation: {
+  disabled: false
+}
 };
 
 export default class App extends Component {
@@ -192,25 +195,20 @@ export default class App extends Component {
     e.currentTarget.setAttribute('disabled', true);
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current + 1;
-    this.setState({ steps });
+    this.setState({ steps, navigation:{disabled:true} });
     ga('send', 'event', 'Navigation', 'Next Step', 'Build Bouquet', this.state.steps.current + 1); // eslint-disable-line
   }
   prevStep(e) {
     e.currentTarget.setAttribute('disabled', true);
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current - 1;
-    this.setState({ steps });
+    this.setState({ steps, navigation:{disabled:true} });
     ga('send', 'event', 'Navigation', 'Previous Step', 'Build Bouquet', this.state.steps.current - 1); // eslint-disable-line
   }
   updateStep(i) {
     const steps = {...this.state.steps};
-    // const diamonds = document.getElementById('form-navigation').children;
-    // let d;
-    // for (d = 0; d < diamonds.length; d++) { 
-    //   diamonds[d].className += ' disabled';
-    // }
     steps['current'] = i;
-    this.setState({ steps });
+    this.setState({ steps, navigation:{disabled:true} });
     ga('send', 'event', 'Navigation', 'Form Navigation', 'Build Bouquet', i); // eslint-disable-line
   }
   selectFlower(key) {

@@ -608,8 +608,9 @@
             }
         }
     }
-    span {
+    button {
         background-color: $main-color;
+        border: none;
         cursor: pointer;
         display: block;
         height: 20px;
@@ -623,7 +624,7 @@
         &.current {
             background-color: $green;
         }
-        &.disabled {
+        &:disabled {
             opacity: 0.5;
         }
     }

@@ -117,18 +117,24 @@ export default class Form extends Component {
   	}
 	}
   render() {
-    let diamonds = [], classes = null;
+    console.log(this.props.navigation.disabled);
+    let diamonds = [], classes = null, disabled = false;
     for (let i = 1; i <= this.props.steps.total; i++) {
       if (i === this.props.steps.current) {
         classes = 'current';
       } else if (i > this.props.steps.current) {
-        classes = 'disabled';
+        disabled = true;
+        classes = null;
       }
-      diamonds.push(<span
+      if (this.props.navigation.disabled) {
+        disabled = true;
+      }
+      diamonds.push(<button
           key={i}
           className={classes}
+          disabled={disabled}
           onClick={() => {this.props.updateStep(i)}}
-        ></span>);
+        ></button>);
     }
     return (
       <div id="form">
