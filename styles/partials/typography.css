@@ -77,8 +77,18 @@ p {
     }
     }
     @media (orientation: landscape) {
-        margin: 20px 0;
-
+        @media (--height-650-below) {
+            margin: 5px 0;
+        }
+        @media (--height-650-above) {
+            margin: 10px 0;
+        }      
+        @media (--height-700-above) {
+            margin: 15px 0;
+        }
+        @media (--height-750-above) {
+            margin: 20px 0;
+        }
         @media (--tablet-small-above) {
             font-size: 16px;
         }

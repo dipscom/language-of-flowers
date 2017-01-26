@@ -68,6 +68,17 @@ hr {
     @media (--tablet-small-above) {
        margin: 10px 0 20px;
     }
+    @media (orientation: landscape) {
+    @media (--height-650-below) {
+            margin: 0;
+        }
+        @media (--height-650-above) {
+          margin: 5px 0 10px;
+        }      
+        @media (--height-700-above) {
+            margin: 10px 0 20px;
+        }
+    }
 
 
 }
@@ -235,6 +246,17 @@ iframe {
     @media (orientation: landscape) {
         margin-top: 30px;
     } */
+        @media (orientation: landscape) {
+    @media (--height-650-below) {
+            margin-top: 0;
+        }
+        @media (--height-650-above) and (--height-700-below) {
+         margin-top: 10px;
+        }      
+        @media (--height-700-above) {
+            margin-top: 20px;
+        }
+    }
 }
 
 input[type=checkbox] {

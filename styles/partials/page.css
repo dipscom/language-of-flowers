@@ -73,7 +73,23 @@
         list-style-type: none;
         padding: 20px 0;
 
-         @extend lovato;
+        @extend lovato;
+
+        @media (--height-650-below) {
+            margin: 5px 0;
+           padding: 5px 0;
+        }
+        @media (--height-650-above) and (--height-700-below) {
+           margin: 10px 0;
+           padding: 10px 0;
+        }      
+        @media (--height-700-above) {
+            margin: 15px 0;
+            padding: 15px 0;
+        }
+
+
+
         * {
             display: inline;
         }
@@ -102,7 +118,7 @@
         }
     }
     #penhaligons-logo {
-        margin-bottom: 20px;
+       
 
         @media (orientation: portrait) {
             width: 40%;
@@ -114,8 +130,28 @@
                 margin-bottom: 20px;
             }
         }
+        @media (orientation: landscape) {
+            @media (--height-650-below) {
+                 margin-bottom: 5px;
+            }
+            @media (--height-650-above) and (--height-700-below) {
+                 margin-bottom: 10px;
+            }      
+            @media (--height-700-above) {
+                 margin-bottom: 20px;
+            }
+        }
         img {
-            max-width: 180px;
+            
+            @media (--height-650-below) {
+                max-width: 100px;
+            }
+            @media (--height-650-above) and (--height-700-below) {
+                max-width: 140px;
+            }      
+            @media (--height-700-above) {
+                max-width: 180px;
+            }
         }
     }
     p {
