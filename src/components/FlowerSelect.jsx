@@ -68,7 +68,10 @@ export default class FlowerSelect extends Component {
       delay:0.5,
       onStart:function () {
         TweenMax.set("#flower-select", {position:"relative"}); // eslint-disable-line
-
+      },
+      onComplete:function () { //eslint-diable-line
+        console.log('this is working');
+        this.setState({navigation:{disabled:false} });
       }
     }, 0.1);
 
@@ -79,9 +82,10 @@ export default class FlowerSelect extends Component {
   }
   componentDidEnter() {
     // console.log("FlowerSelect did enter")
+
   }
   componentDidAppear() {
-    // console.log("FlowerSelect did appear")
+    console.log("FlowerSelect did appear")
   }
   componentWillLeave(callback) {
     // console.log("FlowerSelect will leave");
