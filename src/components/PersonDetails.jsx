@@ -137,6 +137,11 @@ export default class PersonDetails extends Component {
 			left:0
 		});
 
+		// HAAAAAAACK!
+		TweenMax.to({}, 1, { // eslint-disable-line
+			onComplete:this.props.enableButton, onCompleteScope:this});
+
+
 
 		FadeIn(this.props.index, dly, callback);
 

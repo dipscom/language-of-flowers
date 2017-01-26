@@ -68,12 +68,8 @@ export default class FlowerSelect extends Component {
       delay:0.5,
       onStart:function () {
         TweenMax.set("#flower-select", {position:"relative"}); // eslint-disable-line
-      },
-      onComplete:function () { //eslint-diable-line
-        console.log('this is working');
-        this.setState({navigation:{disabled:false} });
       }
-    }, 0.1);
+    }, 0.1, this.props.enableButton, [], this);
 
     callback();
     // Reset the scroller position
@@ -85,7 +81,7 @@ export default class FlowerSelect extends Component {
 
   }
   componentDidAppear() {
-    console.log("FlowerSelect did appear")
+    // console.log("FlowerSelect did appear")
   }
   componentWillLeave(callback) {
     // console.log("FlowerSelect will leave");

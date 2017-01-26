@@ -55,7 +55,8 @@ export default class Form extends Component {
       					bouquet={this.props.bouquet}
       					flowers={this.props.flowers}
       					selectFlower={this.props.selectFlower}
-      					updateActiveFlower={this.updateActiveFlower} />
+      					updateActiveFlower={this.updateActiveFlower}
+								enableButton={this.props.enableButton} />
       default:
       	return <HeroImage
       					key="hero-image"
@@ -82,7 +83,8 @@ export default class Form extends Component {
         				nextCta="Their details"
         				nextStep={this.props.nextStep}
         				prevStep={this.props.prevStep}
-                step={this.props.steps.current} />
+                step={this.props.steps.current}
+								enableButton={this.props.enableButton} />
       case 3:
         return <PersonDetails
         				key="recipient"
@@ -93,7 +95,8 @@ export default class Form extends Component {
         				prevCta="View bouquet"
         				nextCta="Your details"
         				nextStep={this.props.nextStep}
-        				prevStep={this.props.prevStep} />
+        				prevStep={this.props.prevStep}
+								enableButton={this.props.enableButton} />
 
       case 4:
         return <PersonDetails
@@ -105,7 +108,8 @@ export default class Form extends Component {
         				prevCta="Their details"
         				nextCta="Confirm"
         				prevStep={this.props.prevStep}
-        				nextStep="confirmation" />
+        				nextStep="confirmation"
+								enableButton={this.props.enableButton} />
       default:
       	return <BouquetDetails
         				key="bouquet-details"
@@ -200,6 +204,7 @@ export default class Form extends Component {
 		tl.add(OverlayOut())
 			.add(this.resizeLOF(), 0)
 			.add(FadeIn('form'))
+			.addCallback(this.props.enableButton, "+=", [], this)
 
 	}
 

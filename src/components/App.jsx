@@ -41,6 +41,7 @@ export default class App extends Component {
     this.nextStep = this.nextStep.bind(this);
     this.prevStep = this.prevStep.bind(this);
     this.updateStep = this.updateStep.bind(this);
+    this.enableButton = this.enableButton.bind(this);
   }
   componentWillMount(){
     let bouquet, recipient, sender, flowers, products, steps;
@@ -49,7 +50,7 @@ export default class App extends Component {
     if(Object.keys(this.props.location.query).length !== 0) {
       if (this.props.location.query.bouquet && this.props.location.query.name && this.props.location.query.email && this.props.location.query.sender) {
         bouquet = this.props.location.query.bouquet.split(',');
-        recipient = { 
+        recipient = {
           name: this.props.location.query.name,
           email: this.props.location.query.email
          };
@@ -211,6 +212,10 @@ export default class App extends Component {
     this.setState({ steps, navigation:{disabled:true} });
     ga('send', 'event', 'Navigation', 'Form Navigation', 'Build Bouquet', i); // eslint-disable-line
   }
+  enableButton() {
+    console.log("enableButton");
+    this.setState({navigation:{disabled:false}})
+  }
   selectFlower(key) {
     // console.log('selectFlower triggered');
     let bouquet = this.state.bouquet;
@@ -263,7 +268,8 @@ export default class App extends Component {
             nextStep: this.nextStep,
             prevStep: this.prevStep,
             updateStep: this.updateStep,
-            key: key
+            key: key,
+            enableButton: this.enableButton
           }
         )}
         <Overlay steps={this.state.steps} location={this.props.location}/>
