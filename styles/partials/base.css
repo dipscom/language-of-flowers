@@ -72,7 +72,7 @@ hr {
     @media (--height-650-below) {
             margin: 0;
         }
-        @media (--height-650-above) {
+        @media (--height-650-above) and (--height-700-below) {
           margin: 5px 0 10px;
         }      
         @media (--height-700-above) {

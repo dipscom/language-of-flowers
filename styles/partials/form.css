@@ -133,6 +133,10 @@
 
 #flower-select {
     position: relative;
+    
+    @media (orientation: portrait) {
+        width: 100%;
+    }
 
     header {
         @media (orientation: landscape) {

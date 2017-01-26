@@ -80,10 +80,10 @@ p {
         @media (--height-650-below) {
             margin: 5px 0;
         }
-        @media (--height-650-above) {
+        @media (--height-650-above) and (--height-700-below) {
             margin: 10px 0;
         }      
-        @media (--height-700-above) {
+        @media (--height-700-above) and (--height-750-below) {
             margin: 15px 0;
         }
         @media (--height-750-above) {
