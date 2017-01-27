@@ -175,6 +175,9 @@
     header {
         width: 100% !important;
     }
+    p {
+        max-width: 650px;
+    }
 }
 
 #confirmation {

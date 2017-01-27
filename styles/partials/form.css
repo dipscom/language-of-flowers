@@ -287,9 +287,12 @@
                 }
             }
             @media (orientation: portrait) {
-                border-bottom: 1px solid $main-color;
-                display: flex;
-                padding: 10px;
+                    display: flex;
+                    padding: 10px;
+                @media (--tablet-small-below) {
+                    border-bottom: 1px solid $main-color;
+                    
+                }
             }
         }
     }
@@ -342,7 +345,9 @@
     text-align: left;
 
     * {
-        margin: 0;
+        &:not(hr) {
+            margin: 0;
+        }
     }
 }
 
