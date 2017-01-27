@@ -39,7 +39,7 @@ class Introduction extends Component {
                 </svg>*/}
             </header>
             <p>Thank Heavens for floriography. A mysterious language of love. Cryptic communications, hidden revelations and coded declarations!</p>
-            <p><strong>Penhaligon&#39;s invites you to send your very own coded bouquet.</strong></p>
+            <p><strong>Penhaligon&#39;s invites you to send your very own coded&nbsp;bouquet.</strong></p>
             <p>(And be in with a chance to win the Penhaligon’s Portraits Collection)</p>
             <nav className="navigation">
               <Anchor cta="Let's begin" step="forward" target="description" />
