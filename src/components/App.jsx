@@ -194,7 +194,6 @@ export default class App extends Component {
   }
   nextStep(e) {
     // e.currentTarget.setAttribute('disabled', true);
-    console.log($('button.button, button.back-button')); // eslint-disable-line
     $('button.button, button.back-button').attr('disabled', true); // eslint-disable-line
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current + 1;
@@ -203,7 +202,6 @@ export default class App extends Component {
   }
   prevStep(e) {
     // e.currentTarget.setAttribute('disabled', true);
-    console.log($('button.button, button.back-button')); // eslint-disable-line
     $('button.button, button.back-button').attr('disabled', true); // eslint-disable-line
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current - 1;
@@ -217,7 +215,7 @@ export default class App extends Component {
     ga('send', 'event', 'Navigation', 'Form Navigation', 'Build Bouquet', i); // eslint-disable-line
   }
   enableButton() {
-    console.log("enableButton");
+    // console.log("enableButton");
     this.setState({navigation:{disabled:false}})
   }
   selectFlower(key) {

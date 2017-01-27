@@ -121,7 +121,6 @@ export default class Form extends Component {
   	}
 	}
   render() {
-    console.log(this.props.navigation.disabled);
     let diamonds = [], classes = null, disabled = false;
     for (let i = 1; i <= this.props.steps.total; i++) {
       if (i === this.props.steps.current) {
