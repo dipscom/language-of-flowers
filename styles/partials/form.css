@@ -183,6 +183,7 @@
                 }
             }
         }
+
         .flower-details {
             * {
                 @media (--tablet-small-above) {
@@ -192,6 +193,12 @@
             h1 {
                   @media (--tablet-small-below) {
                     text-align: left;
+                }
+                @media (--desktop-small-above) {
+                    font-size: 2vw;
+                }
+                @media (--desktop-large-above) {
+                    font-size: 20px;
                 }
             }
             strong {
@@ -617,6 +624,7 @@
         transform: rotate(45deg);
         transition: background-color 0.3s, opacity 0.3s;
         width: 20px;
+        padding: 0;
 
         &:not(:first-child) {
             margin-left: 15px;
