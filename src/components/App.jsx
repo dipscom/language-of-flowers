@@ -193,14 +193,18 @@ export default class App extends Component {
     ga('send', 'event', 'Navigation', 'Reset'); // eslint-disable-line
   }
   nextStep(e) {
-    e.currentTarget.setAttribute('disabled', true);
+    // e.currentTarget.setAttribute('disabled', true);
+    console.log($('button.button, button.back-button')); // eslint-disable-line
+    $('button.button, button.back-button').attr('disabled', true); // eslint-disable-line
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current + 1;
     this.setState({ steps, navigation:{disabled:true} });
     ga('send', 'event', 'Navigation', 'Next Step', 'Build Bouquet', this.state.steps.current + 1); // eslint-disable-line
   }
   prevStep(e) {
-    e.currentTarget.setAttribute('disabled', true);
+    // e.currentTarget.setAttribute('disabled', true);
+    console.log($('button.button, button.back-button')); // eslint-disable-line
+    $('button.button, button.back-button').attr('disabled', true); // eslint-disable-line
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current - 1;
     this.setState({ steps, navigation:{disabled:true} });
