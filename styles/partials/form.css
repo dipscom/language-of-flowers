@@ -494,6 +494,11 @@
         hr {
             display: none;
         }
+        li {
+            &:not(:first-child) {
+                margin-top: 5px;
+            }
+        }
         .message {
             &:first-child {
                 p {
