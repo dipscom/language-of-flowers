@@ -83,7 +83,10 @@ export default class BouquetDetails extends Component {
       ease: "Power4.easeInOut"
     }, 0.25, "-=0.5")
     tl.set("#bouquet-details", {clearProps:"all"})
-    tl.addCallback(this.props.enableButton, "+=0", [], this)
+
+    if(this.props.enableButton) {
+      tl.addCallback(this.props.enableButton, "+=0", [], this)
+    }
 
 
 
