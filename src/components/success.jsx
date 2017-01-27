@@ -63,7 +63,7 @@ export default class Success extends Component{
             <p><strong>Your encoded bouquet has been sent.</strong></p>
           </div>
           <div id="products">
-            <p><strong>Why not match one of our Penhaligon’s <a href="https://www.penhaligons.com/penhaligons-portraits/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" target="_blank" title="Portrait fragrances">Portraits Collection</a> to your bouquet...</strong></p>
+            <p><strong>Why not match one of our Penhaligon’s <a href="https://www.penhaligons.com/penhaligons-portraits/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" target="_blank" title="Portrait Fragrances">Portraits Collection</a> to your bouquet...</strong></p>
             {/*<svg className="doubleline-decoration" viewBox="0 0 1400 40">
               <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
               <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
