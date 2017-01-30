@@ -18,7 +18,7 @@ export var AnimationIntro = WrappedComponent => class extends Component {
     ResetScroller(this.element.trg.id);
 
     // Clouds infinite loop
-    CloudsLoop();
+    // CloudsLoop();
 
     // Intro animation
     let tl = new TimelineMax(); // eslint-disable-line
