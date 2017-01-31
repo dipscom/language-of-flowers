@@ -80,6 +80,16 @@ export default class Success extends Component{
             <p><strong>Alternatively you can find your perfect Penhaligon's scent with our online <a href="http://profiling.penhaligons.com/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" target="_blank" title="Fragrance Profiling Experience">Fragrance Profiling Experience</a></strong></p>
           </div>
         </div>
+        <script
+          dangerouslySetInnerHTML={{ __html: `
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1799154187025873');
+            fbq('track', 'Complete Registration');
+          `}} />
       </div>
     )
   }
