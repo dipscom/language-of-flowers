@@ -66,6 +66,22 @@ export default class Confirmation extends Component {
 	          </nav>
           </div>
         </div>
+        <script
+          dangerouslySetInnerHTML={{ __html: `
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1799154187025873');
+            fbq('track', 'PageView');
+          `}} />
+          <script
+          dangerouslySetInnerHTML={{ __html: `
+            var axel = Math.random() + "";
+            var a = axel * 10000000000000;
+            document.write('<iframe src="https://6100181.fls.doubleclick.net/activityi;src=6100181;type=lof123;cat=penha0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+          `}} />
       </div>
     )
   }
