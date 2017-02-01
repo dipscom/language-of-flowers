@@ -82,7 +82,8 @@ hr {
 
 
 }
-iframe {
+iframe,
+.tracking-pixel {
     display: none !important;
 }
 

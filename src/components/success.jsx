@@ -88,8 +88,9 @@ export default class Success extends Component{
             t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
             document,'script','https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '1799154187025873');
-            fbq('track', 'Complete Registration');
+            fbq('track', 'CompleteRegistration');
           `}} />
+          <img className="tracking-pixel" height="1" width="1" src="https://www.facebook.com/tr?id=1799154187025873&ev=CompleteRegistration&noscript=1"/>
       </div>
     )
   }
