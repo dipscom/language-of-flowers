@@ -37,6 +37,8 @@ export default class Success extends Component{
     )
   }
   render() {
+    var axel = Math.random() + "";
+    var a = axel * 10000000000000;
     return (
       <div
         id="success"
@@ -47,6 +49,7 @@ export default class Success extends Component{
           }
         }
       >
+        <iframe src={"https://6100181.fls.doubleclick.net/activityi;src=6100181;type=lof123;cat=penha00;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=" + a + "?"} width="1" height="1" frameBorder="0"></iframe>
         <div id="scroller" onScroll={this.onScroll}>
           <div id="thank-you">
             <header>
@@ -90,7 +93,7 @@ export default class Success extends Component{
             fbq('init', '1799154187025873');
             fbq('track', 'CompleteRegistration');
           `}} />
-          <img className="tracking-pixel" height="1" width="1" src="https://www.facebook.com/tr?id=1799154187025873&ev=CompleteRegistration&noscript=1"/>
+          <img className="tracking-pixel" height="1" width="1" role="presentation" src="https://www.facebook.com/tr?id=1799154187025873&ev=CompleteRegistration&noscript=1"/>
       </div>
     )
   }

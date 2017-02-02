@@ -55,7 +55,7 @@ export default class App extends Component {
           email: this.props.location.query.email
          };
         sender = { name: this.props.location.query.sender };
-        flowers = flowers;
+        flowers = flowers; // eslint-disable-line
         this.setState({
           steps: {
             current: 0
