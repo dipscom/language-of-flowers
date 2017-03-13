@@ -1,50 +1,66 @@
 const flowers = {
     "bluebell": {
         name: 'Bluebell',
-        description: 'Your humble servant.',
-        meaning: 'Undying devotion.',
+        // description: 'Your humble servant.',
+        // meaning: 'Undying devotion.',
+        description: 'Faithfull and dependable. The truest devotion.',
+        meaning: 'Constancy',
         selected: false
     },
     gardenia: {
         name: 'Gardenia',
-        description: 'A love that can not speak its name.',
-        meaning: 'Secrecy is sweet.',
+        // description: 'A love that can not speak its name.',
+        // meaning: 'Secrecy is sweet.',
+        description: 'Untainted and unconditional love.',
+        meaning: 'Purity',
         selected: false
     },
     jasmine: {
         name: 'Jasmine',
-        description: 'Contentment and joy.',
-        meaning: 'Amazing grace.',
+        // description: 'Contentment and joy.',
+        // meaning: 'Amazing grace.',
+        description: 'Warmth and the deepest friendship.',
+        meaning: 'Amiability',
         selected: false
     },
     lavender: {
         name: 'Lavender',
-        description: 'Oh! Tell me are you true?',
-        meaning: 'Devotion, mystery.',
+        // description: 'Oh! Tell me are you true?',
+        // meaning: 'Devotion, mystery.',
+        description: 'Unwavering devotion and faithfulness.',
+        meaning: 'Loyalty',
         selected: false
     },
     "lily-valley": {
         name: 'Lily of the Valley',
-        description: 'Paradise regained. Happiness returned.',
-        meaning: 'Lovers reunited.',
+        // description: 'Paradise regained. Happiness returned.',
+        // meaning: 'Lovers reunited.',
+        description: 'You’ve made my life complete. Paradise regained.',
+        meaning: 'Return of Happiness',
         selected: false
     },
     "orange-blossom": {
         name: 'Orange Blossom',
-        description: 'Because love is forever.',
-        meaning: 'Eternal amour.',
+        // description: 'Because love is forever.',
+        // meaning: 'Eternal amour.',
+        description: 'An everlasting and timeless love.',
+        meaning: 'Eternal Love',
         selected: false
     },
     rose: {
         name: 'Rose',
-        description: 'Because time is of the essence.',
-        meaning: 'Love, immediately.',
+        // description: 'Because time is of the essence.',
+        // meaning: 'Love, immediately.',
+        description: 'Forever indebted and grateful for your love.',
+        meaning: 'Thankfulness',
         selected: false
     },
     "white-iris": {
         name: 'White Iris',
-        description: 'As powerfully pure as innocence.',
-        meaning: 'As white as driven snow.',
+        // description: 'As powerfully pure as innocence.',
+        // meaning: 'As white as driven snow.',
+        description: 'A few words of wisdom go a long way.',
+        meaning: 'Wisdom',
         selected: false
     }
 };
