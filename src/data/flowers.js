@@ -4,7 +4,7 @@ const flowers = {
         // description: 'Your humble servant.',
         // meaning: 'Undying devotion.',
         description: 'Faithfull and dependable. The truest devotion.',
-        meaning: 'Constancy',
+        meaning: 'Constancy.',
         selected: false
     },
     gardenia: {
@@ -12,7 +12,7 @@ const flowers = {
         // description: 'A love that can not speak its name.',
         // meaning: 'Secrecy is sweet.',
         description: 'Untainted and unconditional love.',
-        meaning: 'Purity',
+        meaning: 'Purity.',
         selected: false
     },
     jasmine: {
@@ -20,7 +20,7 @@ const flowers = {
         // description: 'Contentment and joy.',
         // meaning: 'Amazing grace.',
         description: 'Warmth and the deepest friendship.',
-        meaning: 'Amiability',
+        meaning: 'Amiability.',
         selected: false
     },
     lavender: {
@@ -28,7 +28,7 @@ const flowers = {
         // description: 'Oh! Tell me are you true?',
         // meaning: 'Devotion, mystery.',
         description: 'Unwavering devotion and faithfulness.',
-        meaning: 'Loyalty',
+        meaning: 'Loyalty.',
         selected: false
     },
     "lily-valley": {
@@ -36,7 +36,7 @@ const flowers = {
         // description: 'Paradise regained. Happiness returned.',
         // meaning: 'Lovers reunited.',
         description: 'You’ve made my life complete. Paradise regained.',
-        meaning: 'Return of Happiness',
+        meaning: 'Return of Happiness.',
         selected: false
     },
     "orange-blossom": {
@@ -44,7 +44,7 @@ const flowers = {
         // description: 'Because love is forever.',
         // meaning: 'Eternal amour.',
         description: 'An everlasting and timeless love.',
-        meaning: 'Eternal Love',
+        meaning: 'Eternal Love.',
         selected: false
     },
     rose: {
@@ -52,7 +52,7 @@ const flowers = {
         // description: 'Because time is of the essence.',
         // meaning: 'Love, immediately.',
         description: 'Forever indebted and grateful for your love.',
-        meaning: 'Thankfulness',
+        meaning: 'Thankfulness.',
         selected: false
     },
     "white-iris": {
@@ -60,7 +60,7 @@ const flowers = {
         // description: 'As powerfully pure as innocence.',
         // meaning: 'As white as driven snow.',
         description: 'A few words of wisdom go a long way.',
-        meaning: 'Wisdom',
+        meaning: 'Wisdom.',
         selected: false
     }
 };
