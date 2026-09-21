@@ -38,8 +38,8 @@ export default class Share extends Component {
                 <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
                 <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
               </svg>*/}
-            <p><a id="penhaligons-link" href="https://www.penhaligons.com/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" title="Penhaligons">www.penhaligons.com</a></p>
-            <p><a href="https://flowers.penhaligons.com/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" title="The Language of Flowers">Click here</a> to create your own bouquet.</p>
+            <p><a id="penhaligons-link" href="https://www.penhaligons.com/" title="Penhaligons">www.penhaligons.com</a></p>
+            <p><a href="https://flowers.penhaligons.com/" title="The Language of Flowers">Click here</a> to create your own bouquet.</p>
           </div>
         </div>
       </div>

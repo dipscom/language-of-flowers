@@ -79,12 +79,6 @@ hr {
             margin: 10px 0 20px;
         }
     }
-
-
-}
-iframe,
-.tracking-pixel {
-    display: none !important;
 }
 
 #app {

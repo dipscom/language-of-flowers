@@ -7,6 +7,9 @@
 # ignore node dependency directories (used by grunt)
 node_modules/
 
+# ignore Vite build output
+dist/
+
 # ignore OS generated files
 ehthumbs.db
 Thumbs.db

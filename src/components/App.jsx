@@ -133,9 +133,6 @@ export default class App extends Component {
   //   localStorage.setItem('terms', nextState.terms);
   //   localStorage.setItem('accessTime', Date.now());
   // }
-  // componentDidUpdate() {
-  //   console.log('This is where we need to add Google analytics if it doesnt update page views automatically with react router');
-  // }
   mailChimp(){
     const decodeData = {
         EMAIL: this.state.recipient.email,
@@ -190,7 +187,6 @@ export default class App extends Component {
     localStorage.removeItem('steps');
     localStorage.removeItem('terms');
     localStorage.removeItem('accessTime');
-    ga('send', 'event', 'Navigation', 'Reset'); // eslint-disable-line
   }
   nextStep(e) {
     // e.currentTarget.setAttribute('disabled', true);
@@ -198,7 +194,6 @@ export default class App extends Component {
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current + 1;
     this.setState({ steps, navigation:{disabled:true} });
-    ga('send', 'event', 'Navigation', 'Next Step', 'Build Bouquet', this.state.steps.current + 1); // eslint-disable-line
   }
   prevStep(e) {
     // e.currentTarget.setAttribute('disabled', true);
@@ -206,13 +201,11 @@ export default class App extends Component {
     const steps = {...this.state.steps};
     steps['current'] = this.state.steps.current - 1;
     this.setState({ steps, navigation:{disabled:true} });
-    ga('send', 'event', 'Navigation', 'Previous Step', 'Build Bouquet', this.state.steps.current - 1); // eslint-disable-line
   }
   updateStep(i) {
     const steps = {...this.state.steps};
     steps['current'] = i;
     this.setState({ steps, navigation:{disabled:true} });
-    ga('send', 'event', 'Navigation', 'Form Navigation', 'Build Bouquet', i); // eslint-disable-line
   }
   enableButton() {
     // console.log("enableButton");

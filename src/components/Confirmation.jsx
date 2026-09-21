@@ -66,12 +66,6 @@ export default class Confirmation extends Component {
 	          </nav>
           </div>
         </div>
-        <script
-          dangerouslySetInnerHTML={{ __html: `
-            var axel = Math.random() + "";
-            var a = axel * 10000000000000;
-            document.write('<iframe src="https://6100181.fls.doubleclick.net/activityi;src=6100181;type=lof123;cat=penha0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
-          `}} />
       </div>
     )
   }

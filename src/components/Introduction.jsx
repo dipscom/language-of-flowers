@@ -19,7 +19,7 @@ class Introduction extends Component {
         <div>
           <div>
             <figure id="penhaligons-logo">
-              <a href="https://www.penhaligons.com/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" title="Penhaligon's" target="_blank"><img src="./images/penhalions-logo.svg" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" /></a>
+              <a href="https://www.penhaligons.com/" title="Penhaligon's" target="_blank"><img src="./images/penhalions-logo.svg" alt="Penhaligon's - est. London 1870 - Portraits" title="Penhaligon's - est. London 1870 - Portraits" /></a>
             </figure>
             <header>
               {/*<svg className="doubleline-decoration" viewBox="0 0 1400 40" preserveAspectRatio="xMidYMid">
@@ -46,12 +46,6 @@ class Introduction extends Component {
             </nav>
           </div>
         </div>
-        <script
-          dangerouslySetInnerHTML={{ __html: `
-            var axel = Math.random() + "";
-            var a = axel * 10000000000000;
-            document.write('<iframe src="https://6100181.fls.doubleclick.net/activityi;src=6100181;type=lof123;cat=penha00;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
-          `}} />
       </div>
     )
   }

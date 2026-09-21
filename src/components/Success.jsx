@@ -37,8 +37,6 @@ export default class Success extends Component{
     )
   }
   render() {
-    var axel = Math.random() + "";
-    var a = axel * 10000000000000;
     return (
       <div
         id="success"
@@ -49,7 +47,6 @@ export default class Success extends Component{
           }
         }
       >
-        <iframe src={"https://6100181.fls.doubleclick.net/activityi;src=6100181;type=lof123;cat=penha00;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=" + a + "?"} width="1" height="1" frameBorder="0"></iframe>
         <div id="scroller" onScroll={this.onScroll}>
           <div id="thank-you">
             <header>
@@ -63,7 +60,7 @@ export default class Success extends Component{
             <p><strong>Your encoded bouquet has been sent.</strong></p>
           </div>
           <div id="products">
-            <p><strong>Why not match one of our Penhaligon’s <a href="https://www.penhaligons.com/penhaligons-portraits/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" target="_blank" title="Portraits Fragrances">Portraits Collection</a> to your bouquet...</strong></p>
+            <p><strong>Why not match one of our Penhaligon’s <a href="https://www.penhaligons.com/penhaligons-portraits/" target="_blank" title="Portraits Fragrances">Portraits Collection</a> to your bouquet...</strong></p>
             {/*<svg className="doubleline-decoration" viewBox="0 0 1400 40">
               <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
               <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
@@ -80,20 +77,9 @@ export default class Success extends Component{
               <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
             </svg>*/}
             <hr className="reflected" />
-            <p><strong>Alternatively you can find your perfect Penhaligon's scent with our online <a href="http://profiling.penhaligons.com/?utm_source=Language%20of%20Flowers&utm_medium=Referral&utm_content=Website" target="_blank" title="Fragrance Profiling Experience">Fragrance Profiling Experience</a></strong></p>
+            <p><strong>Alternatively you can find your perfect Penhaligon's scent with our online <a href="http://profiling.penhaligons.com/" target="_blank" title="Fragrance Profiling Experience">Fragrance Profiling Experience</a></strong></p>
           </div>
         </div>
-        <script
-          dangerouslySetInnerHTML={{ __html: `
-            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-            document,'script','https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1799154187025873');
-            fbq('track', 'CompleteRegistration');
-          `}} />
-          <img className="tracking-pixel" height="1" width="1" role="presentation" src="https://www.facebook.com/tr?id=1799154187025873&ev=CompleteRegistration&noscript=1"/>
       </div>
     )
   }

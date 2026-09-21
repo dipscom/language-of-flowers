@@ -12,7 +12,7 @@ import Success from './components/Success';
 import MyBouquet from './components/MyBouquet';
 import Share from './components/Share';
 
-import '../styles/bundle.css';
+import '../styles/index.css';
 
 render(
   <Router history={browserHistory}>
