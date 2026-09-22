@@ -107,34 +107,7 @@ export default class App extends Component {
       });
     }
   }
-  mailChimp() {
-    const decodeData = {
-      EMAIL: this.state.recipient.email,
-      NAME: this.state.recipient.name,
-      SNAME: this.state.sender.name,
-      SEMAIL: this.state.sender.email,
-      BOUQUET: this.state.bouquet.toString(),
-    };
-    const senderData =
-      this.state.sender.name +
-      "," +
-      this.state.sender.email +
-      "," +
-      this.state.recipient.name +
-      "," +
-      this.state.recipient.email +
-      "," +
-      this.state.bouquet.toString() +
-      "," +
-      this.state.terms;
-    $.ajax({
-      // eslint-disable-line
-      url: "//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&amp;id=c0307ad06b",
-      data: decodeData,
-      dataType: "jsonp",
-    });
-    $.post("submit.php", { data: senderData }); // eslint-disable-line
-  }
+  mailChimp() {}
   reset() {
     localStorage.removeItem("bouquet");
     localStorage.removeItem("flowers");
@@ -186,10 +159,7 @@ export default class App extends Component {
     if (e.target.name === "terms") {
       this.setState({ terms: e.target.checked });
     } else if (e.target.name === "opt-in") {
-      $.post("opt-in.php", {
-        email: this.state.recipient.email,
-        optin: e.target.checked,
-      }); // eslint-disable-line
+      // no-op
     } else {
       const person = { ...this.state[e.target.className] };
       person[e.target.name] = e.target.value;

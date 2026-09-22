@@ -11,11 +11,6 @@ https://www.penhaligons.com/
     Introduction.jsx, Share.jsx
 
 
-EMAIL LIST / FORM SUBMISSION
-----------------------------
-//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&id=c0307ad06b
-    Mailchimp subscribe endpoint, JSONP (src/components/App.jsx, mailChimp()). ACTIVE.
-
 THIRD-PARTY LIBRARIES / FONTS (CDN)
 -----------------------------------
 https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
