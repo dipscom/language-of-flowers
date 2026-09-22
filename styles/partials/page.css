@@ -74,7 +74,7 @@
         list-style-type: none;
         padding: 20px 0;
 
-        @extend lovato;
+        @extend fraunces;
 
         @media (--height-650-below) {
             margin: 5px 0;
@@ -237,7 +237,7 @@
 }
 
 #products {
-    @extend lovato;
+    @extend fraunces;
     > p {
         margin: 0 !important;
         a {
@@ -365,7 +365,7 @@
         text-decoration: none;
         transition: color 0.3s;
 
-        @extend lovato;
+        @extend fraunces;
         &:hover {
             color: $green;
 
@@ -404,7 +404,7 @@
 }
 
 #my-bouquet {
-    @extend lovato;
+    @extend fraunces;
     hr {
         margin: 10px 0 0;
     }

@@ -122,7 +122,7 @@ hr {
     text-decoration: none;
     transition: 0.3s opacity;
 
-    @extend lovato;
+    @extend fraunces;
     appearance: none;
     &:hover {
         opacity: 1;
@@ -157,7 +157,7 @@ hr {
     width: auto;
     letter-spacing: 0;
 
-    @extend lovato;
+    @extend fraunces;
     @media (--phablet-medium-above) {
         font-size: 18px;
     }
@@ -216,7 +216,7 @@ hr {
     text-transform: uppercase;
     width: auto;
 
-    @extend lovato;
+    @extend fraunces;
     @media (orientation: landscape) {
         transform: translateY(130%);
     }

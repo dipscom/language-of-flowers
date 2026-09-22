@@ -1,21 +1,3 @@
-@font-face {
-    font-family: 'Lovato';
-    font-weight: bolder;
-    src: url('/fonts/lovato/black.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Lovato';
-    font-weight: bold;
-    src: url('/fonts/lovato/bold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Lovato';
-    font-weight: normal;
-    src: url('/fonts/lovato/regular.woff') format('woff');
-}
-
 h1 {
     font-weight: bolder;
     line-height: 1.1;
@@ -23,7 +5,7 @@ h1 {
     text-align: center;
     text-transform: uppercase;
 
-    @extend lovato;
+    @extend fraunces;
     @media (orientation: portrait) {
         text-align: center;
 
@@ -59,7 +41,7 @@ strong {
      font-size: 14px;
     text-transform: uppercase;
 
-     @extend lovato;
+     @extend fraunces;
     @media (--tablet-small-above) {
         font-size: 23px;
     }

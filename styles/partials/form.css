@@ -71,7 +71,7 @@
          @media (--tablet-small-above) {
            font-size: 34px;
         }
-         @extend lovato;
+         @extend fraunces;
         &:valid {
             color: $green;
         }
@@ -162,7 +162,7 @@
         color: $green;
         font-weight: bold;
 
-        @extend lovato;
+        @extend fraunces;
         @media (--tablet-small-below) {
             margin: 30px 0 0;
         }
@@ -206,7 +206,7 @@
             }
             p {
                 color: $main-color;
-                font-family: 'brandon-grotesque', sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-size: 16px;
                 font-weight: normal;
                 margin-left: 4px;
@@ -572,7 +572,7 @@
            margin-top: 20px; 
         }
 
-    @extend lovato;
+    @extend fraunces;
         @media (orientation: portrait) {
             width: 100%;
         }
