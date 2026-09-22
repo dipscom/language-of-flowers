@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import Anchor from './Anchor';
-import { AnimationIntro } from '../animation/AnimationIntro'
-
+import React, { Component } from "react";
+import Anchor from "./Anchor";
+import { AnimationIntro } from "../animation/AnimationIntro";
 
 class Description extends Component {
   render() {
@@ -10,12 +9,10 @@ class Description extends Component {
         id="description"
         key="description"
         className="page"
-        ref={
-          (el) => {
-            this.trg = el;
-          }
-        }
-        >
+        ref={(el) => {
+          this.trg = el;
+        }}
+      >
         <div>
           <div>
             {/*<img className="logo" src="./images/lof-logo.svg" alt="The Language of Flowers" title="The Language of Flowers" />*/}
@@ -28,22 +25,32 @@ class Description extends Component {
               {/*}<h1>Bouquets full of hidden meaning.</h1>*/}
               <h1>Blooming lovely bouquets</h1>
               <hr className="reflected" />
-                {/*<svg className="doubleline-decoration reflected" viewBox="0 0 1400 40">
+              {/*<svg className="doubleline-decoration reflected" viewBox="0 0 1400 40">
                     <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
                     <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
                   </svg>*/}
             </header>
-            {/*<p>With Penhaligon’s floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas — but what could be more (ah-em) improbable!</p>*/}
-            <p>With Penhaligon's floriography messages of love and admiration can be relayed to those dearest to your heart, those whose footsteps you follow and those who reside on top of a rather high pedestal.</p>
+            {/*<p>With Penhaligon's floriography, indiscrete messages can be relayed between sweethearts, paramours and sugar peas — but what could be more (ah-em) improbable!</p>*/}
+            <p>
+              With Penhaligon's floriography messages of love and admiration can
+              be relayed to those dearest to your heart, those whose footsteps
+              you follow and those who reside on top of a rather high pedestal.
+            </p>
             {/*}<p><strong>Choose the flowers and the recipient wisely</strong></p>*/}
-            <p><strong>Choose the flowers wisely...</strong></p>
+            <p>
+              <strong>Choose the flowers wisely...</strong>
+            </p>
             <nav className="navigation">
-              <Anchor cta="Let's create your bouquet" step="forward" target="buildbouquet" />
+              <Anchor
+                cta="Let's create your bouquet"
+                step="forward"
+                target="buildbouquet"
+              />
             </nav>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

@@ -1,55 +1,20 @@
 EXTERNAL URLS - Language of Flowers
 ====================================
-Compiled from the source in src/ and public/ (dist/, node_modules/ and generated
+Compiled from the source in src/ and index.html (dist/, node_modules/ and generated
 bundles excluded). Commented-out / unused references are marked [UNUSED].
 XML/SVG namespace URIs (http://www.w3.org/...) are omitted; they are not real requests.
 
 
 PENHALIGON'S SITES
 ------------------
-https://flowers.penhaligons.com
-    Production site. Canonical/og:url in public/index.html; share URL in src/components/Share.jsx.
-https://flowers.penhaligons.com/images/facebook-share.jpg
-    og:image (public/index.html)
-https://flowers.penhaligons.com/images/lof-logo.svg
-    JSON-LD organisation logo (public/index.html)
-https://flowers.penhaligons.com/
-    Share.jsx
-
 https://www.penhaligons.com/
     Introduction.jsx, Share.jsx
-https://www.penhaligons.com/penhaligons-portraits/
-    success.jsx
-http://profiling.penhaligons.com/
-    success.jsx (note: http, not https)
-https://www.penhaligons.com/competition-terms-conditions/
-    Confirmation.jsx, Share.jsx
-https://www.penhaligons.com/privacy-policy/
-    Confirmation.jsx, Share.jsx
-
-Product links (src/data/products.js)
-https://www.penhaligons.com/clandestine-clara-eau-de-parfum/
-https://www.penhaligons.com/roaring-radcliff-eau-de-parfum/
-https://www.penhaligons.com/the-coveted-duchess-rose-eau-de-parfum/
-
-
-SOCIAL SHARING
---------------
-https://twitter.com/intent/tweet?text=My%20Valentine%20has%20sent%20me%20a%20delightful%20Floriography%20bouquet.%20Perhaps%20you%20should%20send%20one%20to%20your%20sweetheart!%20https://flowers.penhaligons.com
-    Share.jsx
-https://www.facebook.com/sharer/sharer.php?u=https%3A//flowers.penhaligons.com
-    Share.jsx
 
 
 EMAIL LIST / FORM SUBMISSION
 ----------------------------
 //penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&id=c0307ad06b
     Mailchimp subscribe endpoint, JSONP (src/components/App.jsx, mailChimp()). ACTIVE.
-//penhaligons.us15.list-manage.com/subscribe/post?u=698a57fe6fe03b39ba31283b9&id=9ba6c73073
-    [UNUSED] Commented out in App.jsx (alternate Mailchimp list).
-https://docs.google.com/a/kotacreative.co.uk/forms/d/1_JANgXrIfqPR8NCaNo1wDaVOCt2275S5S11KTXaIsgs/formResponse
-    [UNUSED] Commented out in App.jsx (old Google Form).
-
 
 THIRD-PARTY LIBRARIES / FONTS (CDN)
 -----------------------------------
@@ -57,13 +22,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
     jQuery (local fallback: /scripts/jquery-3.1.1.min.js)
 https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js
     GSAP TweenMax (local fallback: /scripts/TweenMax.min.js)
-https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js
-    [UNUSED] Commented out in public/index.html
 https://use.typekit.net/<kitId>.js
-    Adobe Typekit fonts; kit id is set in the inline config in public/index.html
+    Adobe Typekit fonts; kit id is set in the inline config in index.html
 
-
-FORMER GIT REMOTE (removed)
----------------------------
-https://kota.git.beanstalkapp.com/language-of-flowers.git
-    Old `origin`. Disconnected from this repo; kept here for reference only.
