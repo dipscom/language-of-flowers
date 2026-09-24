@@ -1,9 +1,17 @@
-import React, { Component } from "react";
-import TransitionGroup from "react-addons-transition-group";
+import React, { Component, useEffect, useMemo } from "react";
+import { useLocation, useNavigate } from "react-router";
 import flowers from "../data/flowers";
 import products from "../data/products";
 import Background from "./Background";
 import Overlay from "./Overlay";
+import AnimatedSwitch from "./AnimatedSwitch";
+import Introduction from "./Introduction";
+import Description from "./Description";
+import Form from "./Form";
+import Confirmation from "./Confirmation";
+import Success from "./Success";
+import MyBouquet from "./MyBouquet";
+import Share from "./Share";
 
 const initialState = {
   bouquet: [],
@@ -29,10 +37,25 @@ const initialState = {
   },
 };
 
-export default class App extends Component {
-  constructor() {
-    super();
-    this.state = initialState;
+// Maps a pathname to the page component rendered for it. Kept as a plain
+// table (rather than nested <Route>/<Outlet>) so AnimatedSwitch can hold a
+// direct `component` reference + ref per route, the same way it already does
+// for Form's left/right columns and FlowerDetails' active flower.
+const routeTable = {
+  "/": { component: Introduction, key: "introduction" },
+  "/description": { component: Description, key: "description" },
+  "/buildbouquet": { component: Form, key: "buildbouquet" },
+  "/confirmation": { component: Confirmation, key: "confirmation" },
+  "/success": { component: Success, key: "success" },
+  "/mybouquet": { component: MyBouquet, key: "mybouquet" },
+  "/viewbouquet": { component: Form, key: "viewbouquet" },
+  "/share": { component: Share, key: "share" },
+};
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { ...initialState, ...props.initialOverrides };
     this.reset = this.reset.bind(this);
     this.selectFlower = this.selectFlower.bind(this);
     this.updateField = this.updateField.bind(this);
@@ -41,71 +64,6 @@ export default class App extends Component {
     this.prevStep = this.prevStep.bind(this);
     this.updateStep = this.updateStep.bind(this);
     this.enableButton = this.enableButton.bind(this);
-  }
-  componentWillMount() {
-    let bouquet, recipient, sender, flowers, products, steps;
-    const accessTime = Number(localStorage.getItem("accessTime")) + 20000,
-      timeStamp = Date.now(); // eslint-disable-line
-
-    if (Object.keys(this.props.location.query).length !== 0) {
-      if (
-        this.props.location.query.bouquet &&
-        this.props.location.query.name &&
-        this.props.location.query.email &&
-        this.props.location.query.sender
-      ) {
-        bouquet = this.props.location.query.bouquet.split(",");
-        recipient = {
-          name: this.props.location.query.name,
-          email: this.props.location.query.email,
-        };
-        sender = { name: this.props.location.query.sender };
-        flowers = flowers; // eslint-disable-line
-        this.setState({
-          steps: {
-            current: 0,
-          },
-        });
-      } else {
-        if (window.location.pathname !== "/") {
-          window.location = "/";
-        }
-      }
-    } else {
-      if (window.location.pathname !== "/") {
-        window.location = "/";
-      }
-    }
-    if (bouquet) {
-      this.setState({
-        bouquet: bouquet,
-      });
-    }
-    if (flowers) {
-      this.setState({
-        flowers: flowers,
-      });
-    }
-    if (products) {
-      this.setState({
-        products: products,
-      });
-    }
-    if (recipient) {
-      this.setState({
-        recipient: recipient,
-      });
-    }
-    if (sender) {
-      this.setState({
-        sender: sender,
-      });
-    }
-    if (steps) {
-      this.setState({
-        steps: steps,
-      });
-    }
   }
   mailChimp() {}
   reset() {
@@ -119,13 +77,17 @@ export default class App extends Component {
     localStorage.removeItem("accessTime");
   }
   nextStep(e) {
-    $("button.button, button.back-button").attr("disabled", true); // eslint-disable-line
+    document
+      .querySelectorAll("button.button, button.back-button")
+      .forEach((el) => el.setAttribute("disabled", true));
     const steps = { ...this.state.steps };
     steps["current"] = this.state.steps.current + 1;
     this.setState({ steps, navigation: { disabled: true } });
   }
   prevStep(e) {
-    $("button.button, button.back-button").attr("disabled", true); // eslint-disable-line
+    document
+      .querySelectorAll("button.button, button.back-button")
+      .forEach((el) => el.setAttribute("disabled", true));
     const steps = { ...this.state.steps };
     steps["current"] = this.state.steps.current - 1;
     this.setState({ steps, navigation: { disabled: true } });
@@ -172,25 +134,69 @@ export default class App extends Component {
     }
   }
   render() {
-    const { pathname } = this.props.location;
-    const key = pathname || "root";
+    const route = routeTable[this.props.location.pathname] || routeTable["/"];
     return (
-      <TransitionGroup component="div" id="container">
+      <div id="container">
         <Background reset={this.reset} />
-        {this.props.children &&
-          React.cloneElement(this.props.children, {
-            ...this.state,
-            mailChimp: this.mailChimp,
-            selectFlower: this.selectFlower,
-            updateField: this.updateField,
-            nextStep: this.nextStep,
-            prevStep: this.prevStep,
-            updateStep: this.updateStep,
-            key: key,
-            enableButton: this.enableButton,
-          })}
+        <AnimatedSwitch
+          component={route.component}
+          componentKey={route.key}
+          {...this.state}
+          mailChimp={this.mailChimp}
+          selectFlower={this.selectFlower}
+          updateField={this.updateField}
+          nextStep={this.nextStep}
+          prevStep={this.prevStep}
+          updateStep={this.updateStep}
+          enableButton={this.enableButton}
+        />
         <Overlay steps={this.state.steps} location={this.props.location} />
-      </TransitionGroup>
+      </div>
     );
   }
+}
+
+// Reads the bouquet/recipient/sender query string used for shared-bouquet
+// links (?bouquet=...&name=...&email=...&sender=...) and bounces back to "/"
+// when it's missing or incomplete on a deep-linked, non-root path.
+export default function AppRoute() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const { initialOverrides, needsRedirect } = useMemo(() => {
+    const query = new URLSearchParams(location.search);
+    if ([...query.keys()].length !== 0) {
+      if (
+        query.get("bouquet") &&
+        query.get("name") &&
+        query.get("email") &&
+        query.get("sender")
+      ) {
+        return {
+          initialOverrides: {
+            bouquet: query.get("bouquet").split(","),
+            recipient: {
+              name: query.get("name"),
+              email: query.get("email"),
+            },
+            sender: { name: query.get("sender") },
+            steps: { current: 0 },
+          },
+          needsRedirect: false,
+        };
+      }
+      return { initialOverrides: null, needsRedirect: location.pathname !== "/" };
+    }
+    return { initialOverrides: null, needsRedirect: location.pathname !== "/" };
+    // Only re-derive when the query string itself changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]);
+
+  useEffect(() => {
+    if (needsRedirect) {
+      navigate("/", { replace: true });
+    }
+  }, [needsRedirect, navigate]);
+
+  return <App location={location} initialOverrides={initialOverrides} />;
 }

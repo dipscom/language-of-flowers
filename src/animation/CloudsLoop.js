@@ -1,26 +1,29 @@
+import { gsap } from 'gsap';
+
 export default function CloudsLoop() {
-  let tl = new TimelineMax(); // eslint-disable-line
+  let tl = gsap.timeline();
 
   let paperWidth = document.getElementById("paper").getBoundingClientRect().width * 1.5;
 
   let cloudMove = function(el, dur) {
     let trg = document.getElementById(el);
     let distance = paperWidth + (trg.offsetWidth/2);
-    return TweenMax.to("#" + el, dur, {// eslint-disable-line
-      x:"+="+distance,
+    return gsap.to("#" + el, {
+      x: "+=" + distance,
       modifiers: {
-        x:function(x) {
+        x: function(x) {
           return x % distance;
         }
       },
       repeat: -1,
-      ease: "Linear.easeNone"
+      ease: "none",
+      duration: dur
     });
   }
 
-  tl.set(".cloud", {// eslint-disable-line
-    xPercent:-100,
-    x:function(i) {
+  tl.set(".cloud", {
+    xPercent: -100,
+    x: function(i) {
       return (i+1) * paperWidth/3;
     }
   }, 0)

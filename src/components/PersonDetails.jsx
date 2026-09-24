@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { gsap } from "gsap";
 import Button from "./Button";
 import Anchor from "./Anchor";
 import ResetScroller from "../animation/ResetScroller";
@@ -116,36 +117,35 @@ export default class PersonDetails extends Component {
   }
 
   /* Animation */
-  componentWillAppear(callback) {
-    // console.log("PersonInput will appear")
+  animateAppear(callback) {
     if (window.innerHeight > window.innerWidth) {
-      TweenMax.set("#hero-image", { className: "hide-portrait" }); // eslint-disable-line
+      document.getElementById("hero-image")?.classList.add("hide-portrait");
     }
 
     callback();
   }
 
-  componentWillEnter(callback) {
-    // console.log("PersonInput will enter");
+  animateEnter(callback) {
     let dly = 0.5;
 
     if (window.innerHeight > window.innerWidth) {
-      TweenMax.set("#hero-image", { className: "hide-portrait", delay: dly }); // eslint-disable-line
+      gsap.delayedCall(dly, () =>
+        document.getElementById("hero-image")?.classList.add("hide-portrait"),
+      );
     }
 
     // PersonDetails always loads on top of something else
-    TweenMax.set(this.el, {
-      // eslint-disable-line
+    gsap.set(this.el, {
       position: "absolute",
       top: 0,
       left: 0,
     });
 
     // HAAAAAAACK!
-    TweenMax.to({}, 1, {
-      // eslint-disable-line
+    gsap.to({}, {
+      duration: 1,
       onComplete: this.props.enableButton,
-      onCompleteScope: this,
+      callbackScope: this,
     });
 
     FadeIn(this.props.index, dly, callback);
@@ -153,14 +153,7 @@ export default class PersonDetails extends Component {
     ResetScroller("form", dly);
   }
 
-  componentDidEnter() {
-    // console.log("PersonInput did enter");
-  }
-  componentDidAppear() {
-    // console.log("PersonInput did appear");
-  }
-  componentWillLeave(callback) {
-    // console.log("PersonInput will leave");
+  animateLeave(callback) {
     FadeOut(this.props.index, callback);
   }
 }

@@ -13,10 +13,6 @@ https://www.penhaligons.com/
 
 THIRD-PARTY LIBRARIES / FONTS (CDN)
 -----------------------------------
-https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
-    jQuery (local fallback: /scripts/jquery-3.1.1.min.js)
-https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js
-    GSAP TweenMax (local fallback: /scripts/TweenMax.min.js)
 https://use.typekit.net/<kitId>.js
     Adobe Typekit fonts; kit id is set in the inline config in index.html
 

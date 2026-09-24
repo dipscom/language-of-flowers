@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { gsap } from "gsap";
 import Anchor from "./Anchor";
 import Flower from "./Flower";
 import FadeOut from "../animation/FadeOut";
@@ -17,11 +18,12 @@ export default class Confirmation extends Component {
     this.logoTl = null;
   }
   componentDidMount() {
-    this.logoTl = TweenMax.to("#lof-logo", 1, {
+    this.logoTl = gsap.to("#lof-logo", {
       autoAlpha: 0,
       paused: true,
-      ease: "Linear.easeNone",
-    }); // eslint-disable-line
+      ease: "none",
+      duration: 1,
+    });
   }
 
   render() {
@@ -109,7 +111,7 @@ export default class Confirmation extends Component {
 
   /* Animation */
   animateIn(callback, delay) {
-    let tl = new TimelineMax({ delay: delay || 0, onStart: callback }); // eslint-disable-line
+    let tl = gsap.timeline({ delay: delay || 0, onStart: callback });
     let currentTarget = this.el;
     let dur = 1.6;
 
@@ -120,24 +122,21 @@ export default class Confirmation extends Component {
 
     tl.add(OverlayIn());
 
-    tl.from(currentTarget, dur, { autoAlpha: 0 }, "-=" + dur);
+    tl.from(currentTarget, { autoAlpha: 0, duration: dur }, "-=" + dur);
   }
 
-  componentWillAppear(callback) {
-    // console.log("Confirmation Will appear");
+  animateAppear(callback) {
     this.animateIn(callback, 0.5);
 
     // Clouds infinite loop
     CloudsLoop();
   }
 
-  componentWillEnter(callback) {
-    // console.log("Confirmation Will enter");
+  animateEnter(callback) {
     this.animateIn(callback, 0.5);
   }
 
-  componentWillLeave(callback) {
-    // console.log("Confirmation Will leave");
+  animateLeave(callback) {
     FadeOut(this.el.id, callback);
   }
 

@@ -23,24 +23,15 @@ export default class HeroImage extends Component {
 
 
 	/* Animation */
-	componentWillAppear(callback) {
-		// console.log("HeroImage will appear")
+	animateAppear(callback) {
     // Intro animation is in BouquetDetails.jsx
     callback();
 	}
-	componentWillEnter(callback) {
-		// console.log("HeroImage will enter");
+	animateEnter(callback) {
     // Intro animation is in BouquetDetails.jsx
     callback();
 	}
-	componentDidEnter() {
-		// console.log("HeroImage did enter")
-	}
-	componentDidAppear() {
-		// console.log("HeroImage did appear")
-	}
-  componentWillLeave(callback) {
-    // console.log("HeroImage will leave");
+  animateLeave(callback) {
     FadeOut('hero-image', callback);
   }
 }

@@ -1,17 +1,21 @@
-export default function HeroImageIn(callback,delay) {
-  let tl = new TimelineMax({delay:delay || 0, onComplete:callback}); // eslint-disable-line
+import { gsap } from 'gsap';
 
-  TweenMax.set("#hero-image", {position:"absolute"}); // eslint-disable-line
+export default function HeroImageIn(delay) {
+  let tl = gsap.timeline({delay:delay || 0});
 
-  tl.fromTo("#hero-image", 3, {
+  gsap.set("#hero-image", {position:"absolute"});
+
+  tl.fromTo("#hero-image", {
     autoAlpha: 0,
     scale: 0.95,
   }, {
     autoAlpha: 1,
     scale: 1,
-    ease: "power1.easeInOut",
+    ease: "power1.inOut",
+    duration: 3,
     onStart:function () {
-      TweenMax.set("#hero-image", {position:"relative", className:"-=hide-portrait"}); // eslint-disable-line
+      gsap.set("#hero-image", {position:"relative"});
+      document.getElementById("hero-image")?.classList.remove("hide-portrait");
     }
   });
   return tl

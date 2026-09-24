@@ -1,22 +1,27 @@
+import { gsap } from 'gsap';
+
 export default function BackgroundIn() {
-  let tl = new TimelineMax(); // eslint-disable-line
+  let tl = gsap.timeline();
 
-  tl.from(["#background",".cloud"], 1, {
-    autoAlpha:0,
-    ease:"Power2.easeInOut"
+  tl.from(["#background", ".cloud"], {
+    autoAlpha: 0,
+    ease: "power2.inOut",
+    duration: 1
   }, 0.3)
-    .to("#forest figure", 1.5, {scale:1.025}, 0)
+    .to("#forest figure", { scale: 1.025, duration: 1.5 }, 0)
 
-    .from("#paper", 1, {autoAlpha:0})
+    .from("#paper", { autoAlpha: 0, duration: 1 })
 
     .add("PaperLines", "-=0.5")
-    .from(".straight-segment", 0.8, {
+    .from(".straight-segment", {
       drawSVG: "50% 50%",
-      ease: "Power1.easeInOut"
+      ease: "power1.inOut",
+      duration: 0.8
     }, "PaperLines")
-    .from(["#line-top .segment",".corner"], 0.8, {
+    .from(["#line-top .segment", ".corner"], {
       drawSVG: 0,
-      ease: "Power1.easeInOut"
+      ease: "power1.inOut",
+      duration: 0.8
     }, "PaperLines")
 
 

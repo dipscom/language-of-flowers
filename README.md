@@ -10,23 +10,24 @@ Node 20.19 or later (developed on Node 24).
 
 ```
 npm install
-npm run watch     # dev server on http://localhost:5173 (same as `npm start`)
+npm run dev     # dev server on http://localhost:5173
 npm run build     # production build into dist/
 npm run preview   # serve the production build (dist/) locally
 ```
 
 ## Stack
 
-- React 15, react-router 3, `react-addons-transition-group` (the animation code relies on its `componentWillAppear/Enter/Leave` hooks)
-- Vite for dev and build (`vite.config.mjs`). `@vitejs/plugin-react` is not used, because React 15 has no automatic JSX runtime, so JSX is compiled with the classic transform.
-- jQuery and GSAP (TweenMax 1.19 plus the DrawSVG, ScrollTo and Modifiers plugins in `public/scripts/`) are loaded as globals from `index.html`.
-- CSS in `styles/`, processed by PostCSS (`postcss.config.mjs`): imports, `$variables`, nesting, Sass-style `@define-extend` / `@extend` (a small plugin in the config, which emits one grouped rule at the definition like the old precss did), `@custom-media`, px to rem and autoprefixer.
+- React 19 and react-router 7 (declarative `<BrowserRouter>`/`<Routes>`, no data APIs). `src/components/App.jsx` maps the current pathname to a page component directly rather than nesting `<Route>`s, so it can hand each page a stable component reference + ref for animation.
+- `src/components/AnimatedSwitch.jsx` replaces `react-addons-transition-group`: it wraps `react-transition-group`'s `TransitionGroup`/`Transition` and drives each page's `animateAppear(done)`/`animateEnter(done)`/`animateLeave(done)` instance methods (the modern equivalents of the old `componentWillAppear/Enter/Leave(callback)` hooks) via `addEndListener`.
+- GSAP (`gsap` npm package, v3 API) drives all animation, imported as ES modules rather than loaded as CDN/global scripts.
+- Vite for dev and build (`vite.config.mjs`), with `@vitejs/plugin-react` for JSX (React 19 uses the automatic runtime).
+- CSS in `styles/`, processed by PostCSS (`postcss.config.mjs`): imports, native CSS custom properties (`--var`), `postcss-preset-env` for nesting/`@custom-media`/modern range media queries/autoprefixing, a small custom plugin for Sass-style `@define-extend`/`@extend` (emits one grouped rule at the definition like the old precss did), and px to rem.
 
 ## Deploying
 
-Deployed on Netlify (`netlify.toml`): the build command is `npm run build`, and the publish directory is `dist`. Vite writes hashed `assets/` plus a verbatim copy of everything in `public/` (images, fonts, scripts, favicons, `manifest.json`, `_redirects`) into `dist/`. `dist/` is git-ignored, so Netlify builds it from source on each deploy.
+Deployed on Netlify (`netlify.toml`): the build command is `npm run build`, and the publish directory is `dist`. Vite writes hashed `assets/` plus a verbatim copy of everything in `public/` (images, favicons, `manifest.json`, `_redirects`) into `dist/`. `dist/` is git-ignored, so Netlify builds it from source on each deploy.
 
-The routes use `browserHistory`, so the web server must serve `index.html` for every path. `public/_redirects` (`/* /index.html 200`) handles this on Netlify.
+The routes use `<BrowserRouter>` (HTML5 `pushState`), so the web server must serve `index.html` for every path. `public/_redirects` (`/* /index.html 200`) handles this on Netlify.
 
 ## Things to know
 

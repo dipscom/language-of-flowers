@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { gsap } from 'gsap';
 import FadeOut from './FadeOut';
 import BackgroundIn from './BackgroundIn';
 import CloudsLoop from './CloudsLoop';
@@ -8,11 +9,11 @@ import PeopleIn from './PeopleIn';
 import ResetScroller from './ResetScroller';
 
 export var AnimationIntro = WrappedComponent => class extends Component {
-  componentWillAppear(callback) {
+  animateAppear(callback) {
 
     // Hide the LOF logo and Start again button initially
-    TweenMax.set("#lof-logo", {xPercent:-50, autoAlpha:0}); // eslint-disable-line
-    TweenMax.set("#reset-button", {autoAlpha:0}); // eslint-disable-line
+    gsap.set("#lof-logo", {xPercent:-50, autoAlpha:0});
+    gsap.set("#reset-button", {autoAlpha:0});
 
     // Reset the scroller position
     ResetScroller(this.element.trg.id);
@@ -21,7 +22,7 @@ export var AnimationIntro = WrappedComponent => class extends Component {
     CloudsLoop();
 
     // Intro animation
-    let tl = new TimelineMax(); // eslint-disable-line
+    let tl = gsap.timeline();
 
     // Background section
     tl.add(BackgroundIn())
@@ -40,13 +41,14 @@ export var AnimationIntro = WrappedComponent => class extends Component {
       tl.add(this.hideLOF(), "Content")
     } else {
       tl.add(this.showLOF(), "Content")
-        .to("#reset-button", 0.5, {autoAlpha:1}, "Content")
+        .to("#reset-button", {autoAlpha:1, duration: 0.5}, "Content")
     }
 
     // Make sure the space for the logo is closed
-    tl.to("#line-top > .segment", 0.8, {
+    tl.to("#line-top > .segment", {
       drawSVG: "0% 100%",
-      ease: "Power2.easeInOut"
+      ease: "power2.inOut",
+      duration: 0.8
     }, "Content");
 
     // Them people
@@ -56,11 +58,11 @@ export var AnimationIntro = WrappedComponent => class extends Component {
   }
 
 
-  componentWillEnter(callback) {
+  animateEnter(callback) {
     // Reset the scroller position
     ResetScroller(this.element.trg.id);
 
-    let tl = new TimelineMax(); // eslint-disable-line
+    let tl = gsap.timeline();
 
     // Use this label to offset the whole animation
     tl.add("Start", 0.5)
@@ -73,43 +75,44 @@ export var AnimationIntro = WrappedComponent => class extends Component {
       tl.add(this.hideLOF(), "Start")
     } else {
       tl.add(this.showLOF(), "Start")
-        .to("#reset-button", 0.5, {autoAlpha:1}, "Start")
+        .to("#reset-button", {autoAlpha:1, duration: 0.5}, "Start")
     }
     // Make sure the space for the logo is closed
-    tl.to("#line-top > .segment", 0.8, {
+    tl.to("#line-top > .segment", {
       drawSVG: "0% 100%",
-      ease: "Power2.easeInOut"
+      ease: "power2.inOut",
+      duration: 0.8
     }, "Start");
 
   }
 
-  componentWillLeave(callback) {
+  animateLeave(callback) {
     FadeOut(this.element.trg.id, callback);
   }
 
 
   showLOF() {
-    let tl = new TimelineMax(); // eslint-disable-line
+    let tl = gsap.timeline();
 
     // Make sure the logo is centered on its x-axis
     tl.set("#lof-logo", {xPercent:-50})
 
     // Show the spare logo in the background component
-    tl.to("#lof-logo", 0.8, {autoAlpha:1, scale:1, yPercent:0, ease:"Power2.easeInOut"}, 0);
+    tl.to("#lof-logo", {autoAlpha:1, scale:1, yPercent:0, ease:"power2.inOut", duration: 0.8}, 0);
 
     return tl;
   }
 
   hideLOF() {
-    let tl = new TimelineMax(); // eslint-disable-line
+    let tl = gsap.timeline();
 
     // Hide the spare logo in the background component
-    tl.to("#lof-logo", 0.5, {autoAlpha:0, ease: "Power4.easeInOut"}, 0);
+    tl.to("#lof-logo", {autoAlpha:0, ease: "power4.inOut", duration: 0.5}, 0);
 
     return tl;
   }
 
   render() {
-    return <WrappedComponent ref={ el => this.element = el } />
+    return <WrappedComponent ref={ el => this.element = el } {...this.props} />
   }
 }

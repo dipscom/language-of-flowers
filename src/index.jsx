@@ -1,30 +1,20 @@
 import React from "react";
-import { render } from "react-dom";
-import { Router, Route, IndexRoute, browserHistory } from "react-router";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router";
+import { gsap } from "gsap";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-import App from "./components/App";
-import Form from "./components/Form";
-import Introduction from "./components/Introduction";
-import Description from "./components/Description";
-import Confirmation from "./components/Confirmation";
-import Success from "./components/Success";
-import MyBouquet from "./components/MyBouquet";
-import Share from "./components/Share";
+gsap.registerPlugin(DrawSVGPlugin, ScrollToPlugin);
+
+import AppRoute from "./components/App";
 
 import "../styles/index.css";
 
-render(
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Introduction} />
-      <Route component={Description} path="description" />
-      <Route component={Form} path="buildbouquet" />
-      <Route component={Confirmation} path="confirmation" />
-      <Route component={Success} path="success" />
-      <Route component={MyBouquet} path="mybouquet" />
-      <Route component={Form} path="viewbouquet" />
-      <Route component={Share} path="share" />
-    </Route>
-  </Router>,
-  document.getElementById("app"),
+createRoot(document.getElementById("app")).render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/*" element={<AppRoute />} />
+    </Routes>
+  </BrowserRouter>,
 );

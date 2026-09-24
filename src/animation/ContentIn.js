@@ -1,22 +1,29 @@
+import { gsap } from 'gsap';
+
 export default function DescriptionContent(el, callback) {
-  let tl = new TimelineMax(); // eslint-disable-line
+  let tl = gsap.timeline();
   let trg = "#" + el.id;
   let dur = 1.5;
 
   if(trg === "#introduction") {
-    tl.from("#penhaligons-logo", dur, {autoAlpha:0, ease:"Power1.easeOut"}, "StaggerContent" )
+    tl.from("#penhaligons-logo", {autoAlpha:0, ease:"power1.out", duration: dur}, "StaggerContent" )
   }
-  tl.staggerFrom([trg+" hr", trg+" h1", trg+" p"], dur, {
+  tl.from([trg+" hr", trg+" h1", trg+" p"], {
       autoAlpha:0,
-      ease:"Power1.easeOut"
-    }, 0.3, "StaggerContent")
-    .staggerFrom([trg+" hr", trg+" h1", trg+" p"], dur, {
+      ease:"power1.out",
+      duration: dur,
+      stagger: 0.3
+    }, "StaggerContent")
+    .from([trg+" hr", trg+" h1", trg+" p"], {
       y:10,
-      ease:"Power4.easeOut"
-    }, 0.3, "StaggerContent")
-    .from(trg+" .button", 0.5, {
+      ease:"power4.out",
+      duration: dur,
+      stagger: 0.3
+    }, "StaggerContent")
+    .from(trg+" .button", {
       autoAlpha:0,
-      ease:"Power4.easeInOut",
+      ease:"power4.inOut",
+      duration: 0.5,
       onStart:callback
     }, "-=0.5")
 

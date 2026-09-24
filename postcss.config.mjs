@@ -1,11 +1,7 @@
 import postcss from 'postcss';
 import postcssImport from 'postcss-import';
-import advancedVariables from 'postcss-advanced-variables';
-import nested from 'postcss-nested';
-import customMedia from 'postcss-custom-media';
-import mediaMinmax from '@csstools/postcss-media-minmax';
+import postcssPresetEnv from 'postcss-preset-env';
 import pxtorem from 'postcss-pxtorem';
-import autoprefixer from 'autoprefixer';
 import sortMediaQueries from 'postcss-sort-media-queries';
 
 // Sass-style @extend, as the old precss pipeline did it: the declarations of `@define-extend name { ... }`
@@ -39,20 +35,26 @@ const extendHoist = () => ({
 });
 extendHoist.postcss = true;
 
-// Plugin order mirrors the old precss pipeline: variables, nesting and extends, then the rest.
+// Plugin order mirrors the old precss pipeline: nesting and extends, then the rest.
+// postcss-preset-env handles nesting, @custom-media, modern range media queries, and
+// autoprefixing (driven by the browserslist field in package.json) in one plugin.
 export default {
     plugins: [
         postcssImport,
-        advancedVariables,
-        nested,
+        postcssPresetEnv({
+            stage: 2,
+            features: {
+                'nesting-rules': true,
+                'custom-media-queries': true,
+                'media-query-ranges': true
+            },
+            autoprefixer: {}
+        }),
         extendHoist,
-        customMedia,
-        mediaMinmax,
         pxtorem({
             propList: ['*'],
             mediaQuery: true
         }),
-        autoprefixer,
         sortMediaQueries({
             sort: 'mobile-first'
         })

@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
-import TransitionGroup from 'react-addons-transition-group';
+import React, { Component, createRef } from 'react';
+import { gsap } from 'gsap';
+import AnimatedSwitch from './AnimatedSwitch';
 import Button from './Button';
 import Flower from './Flower';
 export default class FlowerDetails extends Component {
+  listRef = createRef();
+
   render() {
   	const disabled = (this.props.bouquetLength >= 3 ? false : true );
     return (
       <div  id="flower-details">
-        <ul>
-  	      {
-            <TransitionGroup>
-              <Flower
-                index={this.props.activeFlower}
-                key={this.props.activeFlower}
-                details={this.props.flowers[this.props.activeFlower]}/>
-            </TransitionGroup>
-  	      }
+        <ul ref={this.listRef}>
+          <AnimatedSwitch
+            component={Flower}
+            componentKey={this.props.activeFlower}
+            sharedNodeRef={this.listRef}
+            index={this.props.activeFlower}
+            details={this.props.flowers[this.props.activeFlower]}
+          />
         </ul>
         <Button className="button" cta={this.props.nextCta} disabled={disabled} step={this.props.nextStep} />
       </div>
@@ -26,36 +28,29 @@ export default class FlowerDetails extends Component {
 
 
   /* Animation */
-  componentWillAppear(callback) {
-    // console.log("FlowerDetails will appear")
+  animateAppear(callback) {
     callback();
   }
-  componentWillEnter(callback) {
-    // console.log("FlowerDetails will enter")
-    TweenMax.set("#flower-details", { // eslint-disable-line
+  animateEnter(callback) {
+    gsap.set("#flower-details", {
       position:"absolute"
     });
 
-    TweenMax.from("#flower-details", 0.5, { // eslint-disable-line
+    gsap.from("#flower-details", {
       autoAlpha:0,
       delay: 0.5,
+      duration: 0.5,
       onStart:function () {
-        TweenMax.set("#flower-details", {position:"relative"}); // eslint-disable-line
+        gsap.set("#flower-details", {position:"relative"});
 
       }
     })
     callback();
   }
-  componentDidEnter() {
-    // console.log("FlowerDetails did enter")
-  }
-  componentDidAppear() {
-    // console.log("FlowerDetails did appear")
-  }
-  componentWillLeave(callback) {
-    // console.log("FlowerDetails will leave");
-    TweenMax.to("#flower-details", 0.5, { // eslint-disable-line
+  animateLeave(callback) {
+    gsap.to("#flower-details", {
       autoAlpha:0,
+      duration: 0.5,
       onComplete:callback
     });
   }

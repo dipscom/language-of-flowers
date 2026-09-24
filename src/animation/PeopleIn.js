@@ -1,9 +1,11 @@
-export default function PeopleIn() {
-  let tl = new TimelineMax(); // eslint-disable-line
+import { gsap } from 'gsap';
 
-  tl.from(["#man","#lady"], 1, {autoAlpha:0}, "People")
-    .from("#man", 2, {xPercent:10}, "People")
-    .from("#lady", 2, {xPercent:-10}, "People")
+export default function PeopleIn() {
+  let tl = gsap.timeline();
+
+  tl.from(["#man","#lady"], {autoAlpha:0, duration: 1}, "People")
+    .from("#man", {xPercent:10, duration: 2}, "People")
+    .from("#lady", {xPercent:-10, duration: 2}, "People")
 
   return tl;
 }

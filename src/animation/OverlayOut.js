@@ -1,8 +1,10 @@
+import { gsap } from 'gsap';
+
 export default function OverlayIn() {
-  let tl = new TimelineMax(); // eslint-disable-line
+  let tl = gsap.timeline();
 
   let fadeOut = function(el, opts = {xP:0, yP:0} ) {
-    return TweenMax.to(el, 1, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:Back.easeIn.config(3)}); // eslint-disable-line
+    return gsap.to(el, {xPercent:opts.xP, yPercent:opts.yP, autoAlpha:0, ease:"back.in(3)", duration: 1});
   }
 
   tl.add(fadeOut('#flowersBottom', {xP:0, yP:10}), "Foliage")

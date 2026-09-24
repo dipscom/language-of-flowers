@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { gsap } from "gsap";
 import Anchor from "./Anchor";
 import FadeOut from "../animation/FadeOut";
 import BackgroundIn from "../animation/BackgroundIn";
@@ -58,9 +59,9 @@ export default class MyBouquet extends Component {
     );
   }
 
-  componentWillAppear(callback) {
+  animateAppear(callback) {
     // Hide the LOF logo and Start again button initially
-    TweenMax.set("#lof-logo", { xPercent: -50, autoAlpha: 0 }); // eslint-disable-line
+    gsap.set("#lof-logo", { xPercent: -50, autoAlpha: 0 });
 
     // Reset the scroller position
     ResetScroller(this.el.id);
@@ -69,7 +70,7 @@ export default class MyBouquet extends Component {
     CloudsLoop();
 
     // Intro animation
-    let tl = new TimelineMax(); // eslint-disable-line
+    let tl = gsap.timeline();
 
     // Background section
     tl.add(BackgroundIn());
@@ -89,8 +90,7 @@ export default class MyBouquet extends Component {
     } else {
       tl.add(this.showLOF(), "Content").to(
         "#reset-button",
-        0.5,
-        { autoAlpha: 1 },
+        { autoAlpha: 1, duration: 0.5 },
         "Content",
       );
     }
@@ -99,11 +99,11 @@ export default class MyBouquet extends Component {
     tl.add("People", "-=1").add(PeopleIn(), "People");
   }
 
-  componentWillEnter(callback) {
+  animateEnter(callback) {
     // Reset the scroller position
     ResetScroller(this.el.id);
 
-    let tl = new TimelineMax(); // eslint-disable-line
+    let tl = gsap.timeline();
 
     // Use this label to offset the whole animation
     tl.add("Start", 0.5);
@@ -117,37 +117,28 @@ export default class MyBouquet extends Component {
     } else {
       tl.add(this.showLOF(), "Start").to(
         "#reset-button",
-        0.5,
-        { autoAlpha: 1 },
+        { autoAlpha: 1, duration: 0.5 },
         "Start",
       );
     }
     // Make sure the space for the logo is closed
     tl.to(
       "#line-top > .segment",
-      0.8,
       {
         drawSVG: "0% 100%",
-        ease: "Power2.easeInOut",
+        ease: "power2.inOut",
+        duration: 0.8,
       },
       "Start",
     );
   }
 
-  componentDidAppear() {
-    // console.log("Introduction Did appear");
-  }
-
-  componentWillLeave(callback) {
+  animateLeave(callback) {
     FadeOut(this.el.id, callback);
   }
 
-  componentDidLeave() {
-    // console.log("Introduction Did leave");
-  }
-
   showLOF() {
-    let tl = new TimelineMax(); // eslint-disable-line
+    let tl = gsap.timeline();
 
     // Make sure the logo is centered on its x-axis
     tl.set("#lof-logo", { xPercent: -50 });
@@ -155,8 +146,7 @@ export default class MyBouquet extends Component {
     // Show the spare logo in the background component
     tl.to(
       "#lof-logo",
-      0.8,
-      { autoAlpha: 1, scale: 1, yPercent: 0, ease: "Power2.easeInOut" },
+      { autoAlpha: 1, scale: 1, yPercent: 0, ease: "power2.inOut", duration: 0.8 },
       0,
     );
 
@@ -164,10 +154,10 @@ export default class MyBouquet extends Component {
   }
 
   hideLOF() {
-    let tl = new TimelineMax(); // eslint-disable-line
+    let tl = gsap.timeline();
 
     // Hide the spare logo in the background component
-    tl.to("#lof-logo", 0.5, { autoAlpha: 0, ease: "Power4.easeInOut" }, 0);
+    tl.to("#lof-logo", { autoAlpha: 0, ease: "power4.inOut", duration: 0.5 }, 0);
 
     return tl;
   }

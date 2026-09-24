@@ -1,5 +1,7 @@
-$main-color: #373332;
-$green: #689778;
+:root {
+    --main-color: #373332;
+    --green: #689778;
+}
 
 @define-extend fraunces {
     font-family: 'Fraunces';

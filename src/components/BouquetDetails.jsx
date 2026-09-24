@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { gsap } from 'gsap';
 import Anchor from './Anchor';
 import Button from './Button';
 import Flower from './Flower';
@@ -54,38 +55,43 @@ export default class BouquetDetails extends Component {
 
   /* Animation */
   animateIn(callback, delay) {
-    let tl = new TimelineMax({delay:delay || 0, onComplete:callback}); // eslint-disable-line
+    let tl = gsap.timeline({delay:delay || 0, onComplete:callback});
     let dur = 1.5;
 
     // Reset the scroller position
     ResetScroller('form', delay);
 
-    HeroImageIn(callback, 0.5)
+    HeroImageIn(0.5)
 
-    TweenMax.set("#bouquet-details", {position:"absolute"})// eslint-disable-line
+    gsap.set("#bouquet-details", {position:"absolute"})
 
     tl.add("Details", 0.1)
     if(window.innerHeight > window.innerWidth){
-      tl.from("#bouquet-details header", dur, {
+      tl.from("#bouquet-details header", {
         autoAlpha: 0,
-        ease: "Power4.easeInOut"
+        ease: "power4.inOut",
+        duration: dur
       }, "Details");
     }
-    tl.staggerFrom("#bouquet-details li", dur, {
+    tl.from("#bouquet-details li", {
       autoAlpha: 0,
-      ease: "Power4.easeInOut",
+      ease: "power4.inOut",
+      duration: dur,
+      stagger: 0.25,
       onStart:function () {
-        TweenMax.set("#bouquet-details", {position:"relative"}); // eslint-disable-line
+        gsap.set("#bouquet-details", {position:"relative"});
       }
-    }, 0.25, "Details")
-    tl.staggerFrom(["#bouquet-details button"], dur, {
+    }, "Details")
+    tl.from(["#bouquet-details button"], {
       autoAlpha: 0,
-      ease: "Power4.easeInOut"
-    }, 0.25, "-=0.5")
+      ease: "power4.inOut",
+      duration: dur,
+      stagger: 0.25
+    }, "-=0.5")
     tl.set("#bouquet-details", {clearProps:"all"})
 
     if(this.props.enableButton) {
-      tl.addCallback(this.props.enableButton, "+=0", [], this)
+      tl.call(this.props.enableButton.bind(this), null, "+=0")
     }
 
 
@@ -93,26 +99,18 @@ export default class BouquetDetails extends Component {
     return tl;
   }
 
-  componentWillAppear(callback) {
-    // console.log("BouquetDetails will appear")
+  animateAppear(callback) {
     this.animateIn(callback, 0.5);
   }
-  componentWillEnter(callback) {
-    // console.log("BouquetDetails will enter");
+  animateEnter(callback) {
     this.animateIn(callback, 0.5);
   }
-  componentDidEnter() {
-    // console.log("BouquetDetails did enter")
-  }
-  componentDidAppear() {
-    // console.log("BouquetDetails did appear")
-  }
-  componentWillLeave(callback) {
-    // console.log("BouquetDetails will leave");
+  animateLeave(callback) {
     // If in portrait mode
     if(window.innerHeight > window.innerWidth) {
-        TweenMax.to("#hero-image", 0.5, { // eslint-disable-line
-          autoAlpha:0
+        gsap.to("#hero-image", {
+          autoAlpha:0,
+          duration: 0.5
         });
     }
 

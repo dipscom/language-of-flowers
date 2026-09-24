@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { gsap } from 'gsap';
 
 export default class Flower extends Component {
 
@@ -46,31 +47,25 @@ export default class Flower extends Component {
 
 
 
-  componentWillAppear(callback) {
-    // console.log("Flower will appear")
+  animateAppear(callback) {
     callback();
   }
-  componentWillEnter(callback) {
-    // console.log("Flower will enter");
-
+  animateEnter(callback) {
     let currentTarget = "#" + this.el.id;
 
-    TweenMax.from("#flower-details " + currentTarget + " figure", 0.8, { // eslint-disable-line
+    gsap.from("#flower-details " + currentTarget + " figure", {
       autoAlpha:0,
-      ease: "Power4.easeInOut",
+      ease: "power4.inOut",
+      duration: 0.8,
     });
 
-    TweenMax.staggerFrom("#flower-details " + currentTarget + " .word", 0.3, { // eslint-disable-line
+    gsap.from("#flower-details " + currentTarget + " .word", {
       autoAlpha: 0,
-      ease: "Power2.easeOut",
-    }, 0.05);
+      ease: "power2.out",
+      duration: 0.3,
+      stagger: 0.05,
+    });
 
     callback();
-  }
-  componentDidEnter() {
-    // console.log("Flower did enter")
-  }
-  componentDidAppear() {
-    // console.log("Flower did appear")
   }
 }

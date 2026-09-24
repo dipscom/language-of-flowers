@@ -63,13 +63,13 @@
     }
     p {
         span {
-            color: $green;
+            color: var(--green);
         }
     }
     .bouquet-list {
-        border-bottom: 1px solid $main-color;
-        border-top: 1px solid $main-color;
-        color: $green;
+        border-bottom: 1px solid var(--main-color);
+        border-top: 1px solid var(--main-color);
+        color: var(--green);
         font-weight: bold;
         list-style-type: none;
         padding: 20px 0;
@@ -277,7 +277,7 @@
 
             &:hover {
                 h2, p:not(:last-child) {
-                    color: $green;
+                    color: var(--green);
                 }
             }
         }
@@ -367,10 +367,10 @@
 
         @extend fraunces;
         &:hover {
-            color: $green;
+            color: var(--green);
 
             path {
-                fill: $green;
+                fill: var(--green);
             }
         }
     }

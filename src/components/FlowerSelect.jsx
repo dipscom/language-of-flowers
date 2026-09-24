@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TransitionGroup from 'react-addons-transition-group';
+import { gsap } from 'gsap';
 import Flower from './Flower';
 import ResetScroller from '../animation/ResetScroller';
 import FadeOut from '../animation/FadeOut';
@@ -34,8 +34,7 @@ export default class FlowerSelect extends Component {
                 />)
       		}
       	</ul>
-        <TransitionGroup>
-      	<ol key="thisIsHere" className="bouquet-list">
+      	<ol className="bouquet-list">
             {this.props.bouquet
               .map(key =>
                 <Flower
@@ -44,7 +43,6 @@ export default class FlowerSelect extends Component {
                   details={this.props.flowers[key]} />)
                 }
       	</ol>
-        </TransitionGroup>
       </div>
     )
   }
@@ -53,38 +51,32 @@ export default class FlowerSelect extends Component {
 
 
   /* Animation */
-  componentWillAppear(callback) {
-    // console.log("FlowerSelect will appear")
+  animateAppear(callback) {
     callback();
     // Reset the scroller position
     ResetScroller('form', 0.5);
 
   }
-  componentWillEnter(callback) {
-    // console.log("FlowerSelect will enter")
-    TweenMax.set("#flower-select", {position:"absolute"}); // eslint-disable-line
-    TweenMax.staggerFrom("#flower-list > li", 0.5, { // eslint-disable-line
+  animateEnter(callback) {
+    gsap.set("#flower-select", {position:"absolute"});
+    gsap.from("#flower-list > li", {
       autoAlpha:0,
       delay:0.5,
+      duration: 0.5,
+      stagger: 0.1,
       onStart:function () {
-        TweenMax.set("#flower-select", {position:"relative"}); // eslint-disable-line
-      }
-    }, 0.1, this.props.enableButton, [], this);
+        gsap.set("#flower-select", {position:"relative"});
+      },
+      onComplete: this.props.enableButton,
+      callbackScope: this
+    });
 
     callback();
     // Reset the scroller position
     ResetScroller('form', 0.5);
 
   }
-  componentDidEnter() {
-    // console.log("FlowerSelect did enter")
-
-  }
-  componentDidAppear() {
-    // console.log("FlowerSelect did appear")
-  }
-  componentWillLeave(callback) {
-    // console.log("FlowerSelect will leave");
+  animateLeave(callback) {
     FadeOut('flower-select', callback);
   }
 }
