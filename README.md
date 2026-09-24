@@ -24,12 +24,12 @@ npm run preview   # serve the production build (dist/) locally
 
 ## Deploying
 
-`npm run build` writes Vite's default output folder, `dist/`, copying everything in `public/` unchanged (images, fonts, scripts, favicons, `manifest.json`, `submit.php`, `opt-in.php`) next to the generated `index.html` and hashed `assets/`. `dist/` is git-ignored. The build empties `dist/` first, including its copy of `responses.csv`, so do not build inside a directory the live site writes to, and deploy without overwriting the server's own `responses.csv` and `opt-in.csv`.
+Deployed on Netlify (`netlify.toml`): the build command is `npm run build`, and the publish directory is `dist`. Vite writes hashed `assets/` plus a verbatim copy of everything in `public/` (images, fonts, scripts, favicons, `manifest.json`, `_redirects`) into `dist/`. `dist/` is git-ignored, so Netlify builds it from source on each deploy.
 
-The routes use `browserHistory`, so the web server must serve `index.html` for every path.
+The routes use `browserHistory`, so the web server must serve `index.html` for every path. `public/_redirects` (`/* /index.html 200`) handles this on Netlify.
 
 ## Things to know
 
-- `submit.php` and `opt-in.php` do not run under the dev server, so form POSTs return 404 there. The Mailchimp call goes to the live list.
 - The site has no analytics or tracking code, and outbound links carry no `utm_*` parameters.
+- There is no form backend: the bouquet-submission and opt-in data are not sent or logged anywhere, and the Mailchimp signup call has been removed.
 - External URLs used by the site are listed in `EXTERNAL_URLS.txt`.
