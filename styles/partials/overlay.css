@@ -6,94 +6,99 @@
   position: absolute;
   top: 0;
   width: 100%;
-
-  > img {
-    height: auto;
-    position: absolute;
+}
+#overlay > img {
+  height: auto;
+  position: absolute;
+}
+#overlay > .top {
+  top: -1%;
+}
+#overlay > .right {
+  right: -1%;
+}
+#overlay > .bottom {
+  bottom: -1%;
+}
+#overlay > .left {
+  left: -1%;
+}
+#overlay > #flowersBottom {
+  bottom: -7%;
+  width: 100%;
+}
+@media (orientation: portrait) {
+  #overlay > #flowersBottom {
+    bottom: -2%;
+    left: -40%;
+    width: 200%;
   }
-  > .top {
-    top: -1%;
+}
+#overlay > #flowersBottomRight {
+  bottom: -10%;
+  right: -2.5%;
+  width: 18%;
+}
+@media (orientation: portrait) {
+  #overlay > #flowersBottomRight {
+    display: none;
   }
-  > .right {
-    right: -1%;
+}
+#overlay > #flowersMidLeft {
+  bottom: 10%;
+  left: -2%;
+  width: 18%;
+}
+@media (orientation: portrait) {
+  #overlay > #flowersMidLeft {
+    display: none;
   }
-  > .bottom {
-    bottom: -1%;
+}
+#overlay > #flowersTopLeft {
+  left: -2%;
+  width: 25%;
+}
+@media (orientation: portrait) {
+  #overlay > #flowersTopLeft {
+    left: 0;
+    width: 30%;
   }
-  > .left {
-    left: -1%;
+}
+#overlay > #flowersTopRight {
+  width: 22%;
+}
+@media (orientation: portrait) {
+  #overlay > #flowersTopRight {
+    width: 32%;
   }
-  > #flowersBottom {
-    bottom: -7%;
-    width: 100%;
-
-    @media (orientation: portrait) {
-      bottom: -2%;
-      left: -40%;
-      width: 200%;
-    }
+}
+#overlay > #lady {
+  bottom: 2%;
+  left: 7%;
+  width: 15%;
+}
+@media (orientation: portrait) {
+  #overlay > #lady {
+    display: none;
   }
-  > #flowersBottomRight {
-    bottom: -10%;
-    right: -2.5%;
-    width: 18%;
-
-    @media (orientation: portrait) {
-      display: none;
-    }
+}
+#overlay > #man {
+  bottom: -14%;
+  right: 6%;
+  width: 13%;
+}
+@media (orientation: portrait) {
+  #overlay > #man {
+    display: none;
   }
-  > #flowersMidLeft {
-    bottom: 10%;
-    left: -2%;
-    width: 18%;
-
-    @media (orientation: portrait) {
-      display: none;
-    }
-  }
-  > #flowersTopLeft {
-    left: -2%;
-    width: 25%;
-
-    @media (orientation: portrait) {
-      left: 0;
-      width: 30%;
-    }
-  }
-  > #flowersTopRight {
-    width: 22%;
-
-    @media (orientation: portrait) {
-      width: 32%;
-    }
-  }
-  > #lady {
-    bottom: 2%;
-    left: 7%;
-    width: 15%;
-
-    @media (orientation: portrait) {
-      display: none;
-    }
-  }
-  > #man {
-    bottom: -14%;
-    right: 6%;
-    width: 13%;
-
-    @media (orientation: portrait) {
-      display: none;
-    }
-  }
-  > #peacock {
-    bottom: -10%;
-    left: 1%;
-    width: 22%;
-  }
-  > #stag {
-    bottom: -10%;
-    right: 0;
-    width: 22%;
-  }
-
+}
+#overlay > #peacock {
+  bottom: -10%;
+  left: 1%;
+  width: 22%;
+}
+#overlay > #stag {
+  bottom: -10%;
+  right: 0;
+  width: 22%;
 }

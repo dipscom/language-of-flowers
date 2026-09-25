@@ -1,10 +1,24 @@
 :root {
-    --main-color: #373332;
-    --green: #689778;
+  --main-color: #373332;
+  --green: #689778;
+  --border-width: 0.06rem;
+  --page-padding: 3.13rem;
+  --selection-outline: 0.5rem;
 }
 
-@define-extend fraunces {
-    font-family: 'Fraunces';
-    letter-spacing: -0.0515em;
-    text-indent: -0.0515em;
+h1,
+strong,
+.back-button,
+.button,
+#reset-button,
+.page .bouquet-list,
+#products,
+#share a,
+#my-bouquet,
+#form input,
+#flower-select .bouquet-list,
+.person-details label {
+  font-family: "Fraunces";
+  letter-spacing: -0.0515em;
+  text-indent: -0.0515em;
 }

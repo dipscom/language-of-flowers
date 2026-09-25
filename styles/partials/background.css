@@ -1,181 +1,190 @@
 #background {
-    height: 100%;
-    width: 100%;
-
-    @media (orientation: landscape) {
-        padding: 3.125%;
-    }
-    @media (orientation: portrait) {
-        @media (--desktop-small-below) {
-            padding: 6.25%;
-        }
-        @media (--desktop-small-above) {
-            padding: 50px;
-        }
-    }
-    #forest {
-        height: 100%;
-        left: 50%;
-        overflow: hidden;
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-
-        figure {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-
-            @media (orientation: landscape) {
-                background-image: url('/images/background/landscape.jpg');
-            }
-            @media (orientation: portrait) {
-                background-image: url('/images/background/portrait.jpg');
-            }
-        }
-    }
-    .corner {
-        height: auto;
-        position: absolute;
-        width: 3.75%;
-
-        @media (orientation: portrait) {
-            display: none;
-        }
-    }
-    #top-left {
-        left: 0;
-        margin: 1.25% 0 0 1.25%;
-        top: 0;
-        transform: rotate(-90deg);
-    }
-    #top-right {
-        margin: 1.25% 1.25% 0 0;
-        right: 0;
-        top: 0;
-    }
-    #bottom-left {
-        bottom: 0;
-        left: 0;
-        margin: 0 0 1.25% 1.25%;
-        transform: rotate(180deg);
-    }
-    #bottom-right {
-        bottom: 0;
-        margin: 0 1.25% 1.25% 0;
-        right: 0;
-        transform: rotate(90deg);
-    }
-    .logo {
-        display: block;
-        height: 15%;
-        left: 50%;
-        position: absolute;
-        top: 7%;
-        transform: translateX(-50%);
-
-         @media (orientation: portrait) {
-           height: auto;
-            max-width: 180px;
-            top: 3.5%;
-         }
-
-    }
-    .logo.hidden {
-        visibility: hidden;
-    }
-    .logo.compact {
-        @media (orientation: portrait) {
-            transform: translateX(-50%) translateY(-30%) scale(0.7);
-        }
-        @media (orientation: landscape) {
-            transform: translateX(-50%) translateY(-45%) scale(0.8);
-        }
-    }
+  height: 100%;
+  width: 100%;
+}
+@media (orientation: landscape) {
+  #background {
+    padding: 3.125%;
+  }
+}
+@media (orientation: portrait) and (max-width: 799px) {
+  #background {
+    padding: 6.25%;
+  }
+}
+@media (orientation: portrait) and (min-width: 800px) {
+  #background {
+    padding: var(--page-padding);
+  }
+}
+#background #forest {
+  height: 100%;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+#background #forest figure {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+@media (orientation: landscape) {
+  #background #forest figure {
+    background-image: url("/images/background/landscape.jpg");
+  }
+}
+@media (orientation: portrait) {
+  #background #forest figure {
+    background-image: url("/images/background/portrait.jpg");
+  }
+}
+#background .corner {
+  height: auto;
+  position: absolute;
+  width: 3.75%;
+}
+@media (orientation: portrait) {
+  #background .corner {
+    display: none;
+  }
+}
+#background #top-left {
+  left: 0;
+  margin: 1.25% 0 0 1.25%;
+  top: 0;
+  transform: rotate(-90deg);
+}
+#background #top-right {
+  margin: 1.25% 1.25% 0 0;
+  right: 0;
+  top: 0;
+}
+#background #bottom-left {
+  bottom: 0;
+  left: 0;
+  margin: 0 0 1.25% 1.25%;
+  transform: rotate(180deg);
+}
+#background #bottom-right {
+  bottom: 0;
+  margin: 0 1.25% 1.25% 0;
+  right: 0;
+  transform: rotate(90deg);
+}
+#background .logo {
+  display: block;
+  height: 15%;
+  left: 50%;
+  position: absolute;
+  top: 7%;
+  transform: translateX(-50%);
+}
+@media (orientation: portrait) {
+  #background .logo {
+    height: auto;
+    max-width: 11.25rem;
+    top: 3.5%;
+  }
+}
+#background .logo.hidden {
+  visibility: hidden;
+}
+@media (orientation: portrait) {
+  #background .logo.compact {
+    transform: translateX(-50%) translateY(-30%) scale(0.7);
+  }
+}
+@media (orientation: landscape) {
+  #background .logo.compact {
+    transform: translateX(-50%) translateY(-45%) scale(0.8);
+  }
 }
 
 #paper {
-    background-color: rgba(255, 255, 255, 0.95);
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-
-    .line-decoration {
-        width: 100%;
-        height: 100%;
-        @media (orientation: portrait) {
-            display: none;
-        }
-    }
-
-    #line-top-wrapper {
-        height: 50px;
-        margin: 1.5% 0;
-        padding: 0 6%;
-        width: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-    }
-    #line-left-wrapper {
-        height: 100%;
-        margin: 0 1.5%;
-        padding: 6% 0;
-        right: auto;
-        width: 2px;
-        left: 0;
-        position: absolute;
-        top: 0;
-    }
-    #line-right-wrapper {
-        height: 100%;
-        left: auto;
-        margin: 0 1.5%;
-        padding: 6% 0;
-        right: 0;
-        width: 2px;
-        position: absolute;
-        top: 0;
-    }
-    #line-bottom-wrapper {
-        bottom: 0;
-        height: 10px;
-        margin: 1.5% 0;
-        padding: 0 6%;
-        width: 100%;
-        left: 0;
-        position: absolute;
-
-    }
-    .cloud {
-        height: auto;
-        left: 0;
-        position: absolute;
-        @media (orientation: portrait) {
-          @media (--tablet-small-below) {
-                width: 80vw;
-            }
-            @media (--tablet-small-above) {
-                width: 480px;
-            }
-        }
-
-        @media (orientation: landscape) {
-            @media (--largescreen-below) {
-                width: 30vw;
-            }
-            @media (--largescreen-above) {
-                width: 480px;
-            }
-        }
-        /* mix-blend-mode: multiply; */
-    }
-    #cloud1 {
-        top: 5%;
-    }
-    #cloud2 {
-        top: 60%;
-    }
+  background-color: rgba(255, 255, 255, 0.95);
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+#paper .line-decoration {
+  width: 100%;
+  height: 100%;
+}
+@media (orientation: portrait) {
+  #paper .line-decoration {
+    display: none;
+  }
+}
+#paper #line-top-wrapper {
+  height: 3.13rem;
+  margin: 1.5% 0;
+  padding: 0 6%;
+  width: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+#paper #line-left-wrapper {
+  height: 100%;
+  margin: 0 1.5%;
+  padding: 6% 0;
+  right: auto;
+  width: 0.13rem;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+#paper #line-right-wrapper {
+  height: 100%;
+  left: auto;
+  margin: 0 1.5%;
+  padding: 6% 0;
+  right: 0;
+  width: 0.13rem;
+  position: absolute;
+  top: 0;
+}
+#paper #line-bottom-wrapper {
+  bottom: 0;
+  height: 0.63rem;
+  margin: 1.5% 0;
+  padding: 0 6%;
+  width: 100%;
+  left: 0;
+  position: absolute;
+}
+#paper .cloud {
+  height: auto;
+  left: 0;
+  position: absolute;
+}
+@media (orientation: portrait) and (max-width: 599px) {
+  #paper .cloud {
+    width: 80vw;
+  }
+}
+@media (orientation: portrait) and (min-width: 600px) {
+  #paper .cloud {
+    width: 30rem;
+  }
+}
+@media (orientation: landscape) and (max-width: 1599px) {
+  #paper .cloud {
+    width: 30vw;
+  }
+}
+@media (orientation: landscape) and (min-width: 1600px) {
+  #paper .cloud {
+    width: 30rem;
+  }
+}
+#paper #cloud1 {
+  top: 5%;
+}
+#paper #cloud2 {
+  top: 60%;
 }

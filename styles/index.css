@@ -1,5 +1,4 @@
 /* Modules and Variables */
-@import "./modules/breakpoints.css";
 @import "./modules/variables.css";
 
 /* Third-party */
@@ -12,7 +11,3 @@
 @import "./partials/base.css";
 @import "./partials/page.css";
 @import "./partials/form.css";
-
-/* @import "./partials/confirmation.css"; */
-/* @import "./partials/success.css"; */
-/* @import "./partials/my-bouquet.css"; */
