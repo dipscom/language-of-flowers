@@ -1,21 +1,15 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from "react-router";
 
-export default class Anchor extends Component {
-  render() {
-  	let classes = (this.props.className ? this.props.className : '' );
-  		if (this.props.step === 'forward') {
-  			classes += ' button';
-  		} else if (this.props.step === 'backward') {
-  			classes += ' back-button';
-  		}
-    return (
-      <Link
-        className={classes}
-        to={"/" + this.props.target}
-        onClick={this.props.click}>
-          {this.props.cta}
-      </Link> 
-    )
+export default function Anchor({ className, step, target, click, cta }) {
+  let classes = className ? className : "";
+  if (step === "forward") {
+    classes += " button";
+  } else if (step === "backward") {
+    classes += " back-button";
   }
+  return (
+    <Link className={classes} to={"/" + target} onClick={click}>
+      {cta}
+    </Link>
+  );
 }

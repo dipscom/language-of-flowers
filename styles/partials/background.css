@@ -19,6 +19,7 @@
         overflow: hidden;
         position: absolute;
         top: 50%;
+        transform: translate(-50%, -50%);
         width: 100%;
 
         figure {
@@ -73,6 +74,7 @@
         left: 50%;
         position: absolute;
         top: 7%;
+        transform: translateX(-50%);
 
          @media (orientation: portrait) {
            height: auto;
@@ -80,6 +82,17 @@
             top: 3.5%;
          }
 
+    }
+    .logo.hidden {
+        visibility: hidden;
+    }
+    .logo.compact {
+        @media (orientation: portrait) {
+            transform: translateX(-50%) translateY(-30%) scale(0.7);
+        }
+        @media (orientation: landscape) {
+            transform: translateX(-50%) translateY(-45%) scale(0.8);
+        }
     }
 }
 

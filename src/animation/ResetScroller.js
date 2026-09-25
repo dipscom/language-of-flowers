@@ -1,6 +1,4 @@
-import { gsap } from 'gsap';
-
-export default function ResetScroller(el, delay) {
-  let trg = "#" + el;
-  return gsap.set(trg + " > div", {scrollTo:0, delay:delay || 0});
+export default function ResetScroller(el) {
+  const target = document.querySelector("#" + el + " > div");
+  if (target) target.scrollTop = 0;
 }

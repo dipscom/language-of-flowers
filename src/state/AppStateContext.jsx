@@ -1,0 +1,88 @@
+import { createContext, useContext, useReducer } from "react";
+import { appReducer, createInitialState } from "./appReducer";
+
+const AppStateContext = createContext(null);
+
+export function AppStateProvider({ flowers, products, overrides, children }) {
+  const [state, dispatch] = useReducer(appReducer, undefined, () =>
+    createInitialState(flowers, products, overrides),
+  );
+
+  function reset() {
+    localStorage.removeItem("bouquet");
+    localStorage.removeItem("flowers");
+    localStorage.removeItem("products");
+    localStorage.removeItem("recipient");
+    localStorage.removeItem("sender");
+    localStorage.removeItem("steps");
+    localStorage.removeItem("terms");
+    localStorage.removeItem("accessTime");
+  }
+
+  function mailChimp() {}
+
+  function selectFlower(key) {
+    dispatch({ type: "SELECT_FLOWER", key });
+  }
+
+  function updateField(e) {
+    const isEmail = e.target.type === "email";
+    dispatch({
+      type: "UPDATE_FIELD",
+      field: e.target.className,
+      name: e.target.name,
+      value: e.target.value,
+      checked: e.target.checked,
+      isEmail,
+      valid: isEmail ? e.target.checkValidity() : undefined,
+    });
+  }
+
+  function nextStep() {
+    document
+      .querySelectorAll("button.button, button.back-button")
+      .forEach((el) => el.setAttribute("disabled", true));
+    dispatch({ type: "NEXT_STEP" });
+  }
+
+  function prevStep() {
+    document
+      .querySelectorAll("button.button, button.back-button")
+      .forEach((el) => el.setAttribute("disabled", true));
+    dispatch({ type: "PREV_STEP" });
+  }
+
+  function updateStep(step) {
+    dispatch({ type: "UPDATE_STEP", step });
+  }
+
+  function enableButton() {
+    dispatch({ type: "ENABLE_BUTTON" });
+  }
+
+  const value = {
+    ...state,
+    reset,
+    mailChimp,
+    selectFlower,
+    updateField,
+    nextStep,
+    prevStep,
+    updateStep,
+    enableButton,
+  };
+
+  return (
+    <AppStateContext.Provider value={value}>
+      {children}
+    </AppStateContext.Provider>
+  );
+}
+
+export function useAppState() {
+  const ctx = useContext(AppStateContext);
+  if (!ctx) {
+    throw new Error("useAppState must be used within an AppStateProvider");
+  }
+  return ctx;
+}
