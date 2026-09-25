@@ -16,11 +16,7 @@ class Introduction extends Component {
         <div>
           <div>
             <figure id="penhaligons-logo">
-              <a
-                href="https://www.penhaligons.com/"
-                title="Penhaligon's"
-                target="_blank"
-              >
+              <a href="#" title="Penhaligon's" target="_blank">
                 <img
                   src="./images/penhalions-logo.svg"
                   alt="Penhaligon's - est. London 1870 - Portraits"

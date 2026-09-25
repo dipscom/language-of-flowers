@@ -110,15 +110,6 @@ export default class Share extends Component {
             </a>
             <hr className="reflected" />
             <p>
-              <a
-                id="penhaligons-link"
-                href="https://www.penhaligons.com/"
-                title="Penhaligons"
-              >
-                www.penhaligons.com
-              </a>
-            </p>
-            <p>
               <a href="#" title="The Language of Flowers">
                 Click here
               </a>{" "}
