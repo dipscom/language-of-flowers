@@ -46,9 +46,7 @@ export default class Confirmation extends Component {
               <hr />
             </header>
             <p>
-              <strong>
-                On this fine day Penhaligon's will send your message of:
-              </strong>
+              <strong>On this fine day we will send your message of:</strong>
             </p>
             <ol className="bouquet-list">
               {this.props.bouquet.map((key) => (
@@ -66,29 +64,6 @@ export default class Confirmation extends Component {
                 from <span>{this.props.sender.name}</span>{" "}
                 <span>({this.props.sender.email})</span>.
               </strong>
-            </p>
-            <p className="terms">
-              <label htmlFor="terms">
-                Be in with a chance to win the full Penhaligon's Portraits
-                Collection.
-                <br />
-                Plus join the very Penhaligon's club and discover our online
-                secrets (I agree with the{" "}
-                <a href="#" title="Terms and Conditions" target="_blank">
-                  Terms and Conditions
-                </a>
-                /
-                <a href="#" title="Privacy Policy" target="_blank">
-                  Privacy Policy
-                </a>
-                ).{" "}
-              </label>
-              <input
-                type="checkbox"
-                id="terms"
-                name="terms"
-                onChange={(e) => this.props.updateField(e)}
-              />
             </p>
             <nav className="navigation">
               <Anchor

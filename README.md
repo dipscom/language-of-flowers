@@ -1,6 +1,6 @@
 # The Language of Flowers
 
-Penhaligon's campaign site. Visitors pick three flowers, address the bouquet to someone, and the recipient gets a link to a page that decodes it.
+Visitors pick three flowers, address the bouquet to someone, and the recipient gets a link to a page that decodes it.
 
 ## Requirements
 

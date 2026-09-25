@@ -15,12 +15,11 @@ class Introduction extends Component {
       >
         <div>
           <div>
-            <figure id="penhaligons-logo">
-              <a href="#" title="Penhaligon's" target="_blank">
+            <figure id="main-logo">
+              <a href="#" title="" target="_blank">
                 <img
                   src="./images/penhalions-logo.svg"
-                  alt="Penhaligon's - est. London 1870 - Portraits"
-                  title="Penhaligon's - est. London 1870 - Portraits"
+                  alt="Logo - est. London 1870 - Portraits"
                 />
               </a>
             </figure>
@@ -38,23 +37,17 @@ class Introduction extends Component {
                   <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
                 </svg>*/}
             </header>
-            {/* }<p>Thank Heavens for floriography. A mysterious language of love. Cryptic communications, hidden revelations and coded declarations!</p>*/}
 
             <p>
               All hail mother, the creator and matriarch. The woman with
               extraordinarily good taste who deserves the very best. Thank
-              Heavens for floriography. A language or love.
+              Heavens for floriography. A language of love.
             </p>
 
             <p>
               <strong>
-                Penhaligon&#39;s invites you to send your very own
-                coded&nbsp;bouquet.
+                We invite you to send your very own coded bouquet.
               </strong>
-            </p>
-            <p>
-              (And be in with a chance to win the Penhaligon's Portraits
-              Collection)
             </p>
             <nav className="navigation">
               <Anchor cta="Let's begin" step="forward" target="description" />

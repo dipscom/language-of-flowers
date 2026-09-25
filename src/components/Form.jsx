@@ -135,7 +135,7 @@ export default class Form extends Component {
           props: {
             bouquet: this.props.bouquet,
             flowers: this.props.flowers,
-            nextCta: "Win Penhaligon's Portraits",
+            nextCta: "Win prizes",
             step: this.props.steps.current,
           },
         };

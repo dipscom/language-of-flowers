@@ -62,7 +62,7 @@ export default class Success extends Component {
           <div id="products">
             <p>
               <strong>
-                Why not match one of our Penhaligon's{" "}
+                Why not match one of our
                 <a href="#" target="_blank" title="Portraits Fragrances">
                   Portraits Collection
                 </a>{" "}
@@ -74,8 +74,7 @@ export default class Success extends Component {
             <hr className="reflected" />
             <p>
               <strong>
-                Alternatively you can find your perfect Penhaligon's scent with
-                our online{" "}
+                Alternatively you can find your perfect scent with our online{" "}
                 <a
                   href="#"
                   target="_blank"

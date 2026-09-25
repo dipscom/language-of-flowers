@@ -1,79 +1,78 @@
 h1 {
-    font-weight: bolder;
-    line-height: 1.1;
-    margin: 0;
+  font-weight: bolder;
+  line-height: 1.1;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  @extend fraunces;
+  @media (orientation: portrait) {
     text-align: center;
-    text-transform: uppercase;
 
-    @extend fraunces;
-    @media (orientation: portrait) {
-        text-align: center;
-
-        @media (--phablet-large-below) {
-            font-size: 6.25vw;
-        }
-        @media (--phablet-large-above) {
-            font-size: 31px;
-        }
+    @media (--phablet-large-below) {
+      font-size: 6.25vw;
     }
-    @media (orientation: landscape) {
-        @media (--largescreen-below) {
-            font-size: 2.4375vw;
-        }
-        @media (--largescreen-above) {
-            font-size: 39px;
-        }
+    @media (--phablet-large-above) {
+      font-size: 31px;
     }
+  }
+  @media (orientation: landscape) {
+    @media (--largescreen-below) {
+      font-size: 2.4375vw;
+    }
+    @media (--largescreen-above) {
+      font-size: 39px;
+    }
+  }
 }
 
 .sub-heading,
 .flower h1,
 .bouquet-list,
-#penhaligons-link {
-    font-size: 20px;
+#logo-link {
+  font-size: 20px;
 
-    @media (--desktop-small-above) {
-        font-size: 23px;
-    }
+  @media (--desktop-small-above) {
+    font-size: 23px;
+  }
 }
 
 strong {
-     font-size: 14px;
-    text-transform: uppercase;
+  font-size: 14px;
+  text-transform: uppercase;
 
-     @extend fraunces;
-    @media (--tablet-small-above) {
-        font-size: 23px;
-    }
+  @extend fraunces;
+  @media (--tablet-small-above) {
+    font-size: 23px;
+  }
 }
 p {
-    font-size: 15px;
-    margin-bottom: 0 !important;
+  font-size: 15px;
+  margin-bottom: 0 !important;
 
-    @media (--tablet-small-below) {
-        margin: 10px 0;
+  @media (--tablet-small-below) {
+    margin: 10px 0;
+  }
+  @media (orientation: portrait) {
+    @media (--tablet-small-above) {
+      font-size: 22px;
     }
-    @media (orientation: portrait) {
-        @media (--tablet-small-above) {
-        font-size: 22px;
+  }
+  @media (orientation: landscape) {
+    @media (--height-650-below) {
+      margin: 5px 0;
     }
+    @media (--height-650-above) and (--height-700-below) {
+      margin: 10px 0;
     }
-    @media (orientation: landscape) {
-        @media (--height-650-below) {
-            margin: 5px 0;
-        }
-        @media (--height-650-above) and (--height-700-below) {
-            margin: 10px 0;
-        }      
-        @media (--height-700-above) and (--height-750-below) {
-            margin: 15px 0;
-        }
-        @media (--height-750-above) {
-            margin: 20px 0;
-        }
-        @media (--tablet-small-above) {
-            font-size: 16px;
-        }
+    @media (--height-700-above) and (--height-750-below) {
+      margin: 15px 0;
     }
-
+    @media (--height-750-above) {
+      margin: 20px 0;
+    }
+    @media (--tablet-small-above) {
+      font-size: 16px;
+    }
+  }
 }
