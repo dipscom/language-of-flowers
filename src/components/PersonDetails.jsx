@@ -17,6 +17,7 @@ export default function PersonDetails(props) {
     nextStep,
     updateField,
     enableButton,
+    navigation,
   } = props;
   const person = props[index];
 
@@ -31,19 +32,12 @@ export default function PersonDetails(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const isValid = person.name !== "" && person.valid;
   let disabled;
   if (typeof nextStep === "string") {
-    if (person.name !== "" && person.valid) {
-      disabled = undefined;
-    } else {
-      disabled = "disabled";
-    }
+    disabled = isValid && !navigation.disabled ? undefined : "disabled";
   } else {
-    if (person.name !== "" && person.valid) {
-      disabled = undefined;
-    } else {
-      disabled = true;
-    }
+    disabled = isValid && !navigation.disabled ? undefined : true;
   }
   return (
     <div id={index} className="person-details">
@@ -85,6 +79,7 @@ export default function PersonDetails(props) {
           className="back-button"
           cta={prevCta}
           step={prevStep}
+          disabled={navigation.disabled}
           autocomplete="off"
           tabIndex="2"
         />

@@ -1,14 +1,18 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter } from "react-router";
 
 import AppRoute from "./components/App";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 import "../styles/index.css";
 
 createRoot(document.getElementById("app")).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/*" element={<AppRoute />} />
-    </Routes>
-  </BrowserRouter>,
+  <StrictMode>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <AppRoute />
+      </BrowserRouter>
+    </ErrorBoundary>
+  </StrictMode>,
 );

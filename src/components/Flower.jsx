@@ -1,4 +1,6 @@
-export default function Flower({
+import { memo } from "react";
+
+function Flower({
   bouquetLength,
   details,
   index,
@@ -48,3 +50,5 @@ export default function Flower({
     </li>
   );
 }
+
+export default memo(Flower);

@@ -1,3 +1,5 @@
+import Anchor from "./Anchor";
+
 export default function Share() {
   return (
     <div id="share" key="share" className="page">
@@ -76,9 +78,7 @@ export default function Share() {
           </a>
           <hr className="reflected" />
           <p>
-            <a href="#" title="The Language of Flowers">
-              Click here
-            </a>{" "}
+            <Anchor target="" cta="Click here" />{" "}
             to create your own bouquet.
           </p>
         </div>

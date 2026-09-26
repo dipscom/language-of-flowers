@@ -7,8 +7,9 @@ export default function FlowerDetails({
   activeFlower,
   nextCta,
   nextStep,
+  navigation,
 }) {
-  const disabled = bouquetLength >= 3 ? false : true;
+  const disabled = bouquetLength >= 3 ? navigation.disabled : true;
   return (
     <div id="flower-details">
       <ul>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import HeroImage from "./HeroImage";
 import BouquetDetails from "./BouquetDetails";
 import FlowerSelect from "./FlowerSelect";
@@ -31,11 +31,9 @@ export default function Form() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function updateActiveFlower(key) {
-    if (activeFlower !== key) {
-      setActiveFlower(key);
-    }
-  }
+  const updateActiveFlower = useCallback((key) => {
+    setActiveFlower((current) => (current !== key ? key : current));
+  }, []);
 
   function formStepLeft() {
     switch (steps.current) {
@@ -75,6 +73,7 @@ export default function Form() {
             activeFlower,
             nextCta: "View your bouquet",
             nextStep,
+            navigation,
           },
         };
       case 2:
@@ -90,6 +89,7 @@ export default function Form() {
             prevStep,
             step: steps.current,
             enableButton,
+            navigation,
           },
         };
       case 3:
@@ -106,6 +106,7 @@ export default function Form() {
             nextStep,
             prevStep,
             enableButton,
+            navigation,
           },
         };
 
@@ -123,6 +124,7 @@ export default function Form() {
             prevStep,
             nextStep: "confirmation",
             enableButton,
+            navigation,
           },
         };
       default:

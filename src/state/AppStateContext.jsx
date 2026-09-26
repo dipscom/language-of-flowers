@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useCallback, useContext, useReducer } from "react";
 import { appReducer, createInitialState } from "./appReducer";
 
 const AppStateContext = createContext(null);
@@ -8,13 +8,13 @@ export function AppStateProvider({ flowers, products, children }) {
     createInitialState(flowers, products),
   );
 
-  function mailChimp() {}
+  const mailChimp = useCallback(() => {}, []);
 
-  function selectFlower(key) {
+  const selectFlower = useCallback((key) => {
     dispatch({ type: "SELECT_FLOWER", key });
-  }
+  }, []);
 
-  function updateField(e) {
+  const updateField = useCallback((e) => {
     const isEmail = e.target.type === "email";
     dispatch({
       type: "UPDATE_FIELD",
@@ -24,29 +24,23 @@ export function AppStateProvider({ flowers, products, children }) {
       isEmail,
       valid: isEmail ? e.target.checkValidity() : undefined,
     });
-  }
+  }, []);
 
-  function nextStep() {
-    document
-      .querySelectorAll("button.button, button.back-button")
-      .forEach((el) => el.setAttribute("disabled", true));
+  const nextStep = useCallback(() => {
     dispatch({ type: "NEXT_STEP" });
-  }
+  }, []);
 
-  function prevStep() {
-    document
-      .querySelectorAll("button.button, button.back-button")
-      .forEach((el) => el.setAttribute("disabled", true));
+  const prevStep = useCallback(() => {
     dispatch({ type: "PREV_STEP" });
-  }
+  }, []);
 
-  function updateStep(step) {
+  const updateStep = useCallback((step) => {
     dispatch({ type: "UPDATE_STEP", step });
-  }
+  }, []);
 
-  function enableButton() {
+  const enableButton = useCallback(() => {
     dispatch({ type: "ENABLE_BUTTON" });
-  }
+  }, []);
 
   const value = {
     ...state,

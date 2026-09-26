@@ -13,6 +13,7 @@ export default function BouquetDetails({
   prevStep,
   nextStep,
   enableButton,
+  navigation,
 }) {
   useEffect(() => {
     ResetScroller("form");
@@ -46,12 +47,22 @@ export default function BouquetDetails({
           ))}
         </ol>
         {step === 2 ? (
-          <Button className="back-button" cta={prevCta} step={prevStep} />
+          <Button
+            className="back-button"
+            cta={prevCta}
+            step={prevStep}
+            disabled={navigation.disabled}
+          />
         ) : (
           ""
         )}
         {step === 2 ? (
-          <Button className="button" cta={nextCta} step={nextStep} />
+          <Button
+            className="button"
+            cta={nextCta}
+            step={nextStep}
+            disabled={navigation.disabled}
+          />
         ) : (
           <Anchor
             className="center"
