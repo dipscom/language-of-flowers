@@ -1,4 +1,4 @@
-export function createInitialState(flowers, products, overrides) {
+export function createInitialState(flowers, products) {
   return {
     bouquet: [],
     flowers,
@@ -6,9 +6,7 @@ export function createInitialState(flowers, products, overrides) {
     recipient: { name: "", email: "", valid: false },
     sender: { name: "", email: "", valid: false },
     steps: { current: 1, total: 4 },
-    terms: false,
     navigation: { disabled: false },
-    ...overrides,
   };
 }
 
@@ -33,12 +31,6 @@ export function appReducer(state, action) {
       };
     }
     case "UPDATE_FIELD": {
-      if (action.field === "terms") {
-        return { ...state, terms: action.checked };
-      }
-      if (action.field === "opt-in") {
-        return state;
-      }
       const person = { ...state[action.field], [action.name]: action.value };
       if (action.isEmail) {
         person.valid = action.valid;

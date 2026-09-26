@@ -3,21 +3,10 @@ import { appReducer, createInitialState } from "./appReducer";
 
 const AppStateContext = createContext(null);
 
-export function AppStateProvider({ flowers, products, overrides, children }) {
+export function AppStateProvider({ flowers, products, children }) {
   const [state, dispatch] = useReducer(appReducer, undefined, () =>
-    createInitialState(flowers, products, overrides),
+    createInitialState(flowers, products),
   );
-
-  function reset() {
-    localStorage.removeItem("bouquet");
-    localStorage.removeItem("flowers");
-    localStorage.removeItem("products");
-    localStorage.removeItem("recipient");
-    localStorage.removeItem("sender");
-    localStorage.removeItem("steps");
-    localStorage.removeItem("terms");
-    localStorage.removeItem("accessTime");
-  }
 
   function mailChimp() {}
 
@@ -32,7 +21,6 @@ export function AppStateProvider({ flowers, products, overrides, children }) {
       field: e.target.className,
       name: e.target.name,
       value: e.target.value,
-      checked: e.target.checked,
       isEmail,
       valid: isEmail ? e.target.checkValidity() : undefined,
     });
@@ -62,7 +50,6 @@ export function AppStateProvider({ flowers, products, overrides, children }) {
 
   const value = {
     ...state,
-    reset,
     mailChimp,
     selectFlower,
     updateField,
