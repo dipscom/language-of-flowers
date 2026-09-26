@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Anchor from "./Anchor";
 import ResetScroller from "../animation/ResetScroller";
-import { useAppState } from "../state/AppStateContext";
+import { useAppState } from "../state/useAppState";
 
 export default function MyBouquet() {
   const { recipient, sender } = useAppState();
@@ -29,7 +29,7 @@ export default function MyBouquet() {
           <p>A message that speaks a 1000 as yet unknown words...</p>
           <p>
             <strong>
-              Find out <span>{sender.name}'s</span> innermost feelings for you.
+              Find out <span>{sender.name}&rsquo;s</span> innermost feelings for you.
             </strong>
           </p>
           <nav className="navigation">

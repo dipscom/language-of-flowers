@@ -10,7 +10,7 @@ import BouquetDetails from "./BouquetDetails";
 import FlowerSelect from "./FlowerSelect";
 import FlowerDetails from "./FlowerDetails";
 import PersonDetails from "./PersonDetails";
-import { useAppState } from "../state/AppStateContext";
+import { useAppState } from "../state/useAppState";
 
 interface FormStep {
   component: ComponentType<any>;
@@ -170,8 +170,8 @@ export default function Form() {
   const right = formStepRight();
   const LeftComponent = left.component;
   const RightComponent = right.component;
-  let diamonds = [],
-    classes: string | null = null,
+  const diamonds = [];
+  let classes: string | null = null,
     disabled = false;
   for (let i = 1; i <= steps.total; i++) {
     if (i === steps.current) {

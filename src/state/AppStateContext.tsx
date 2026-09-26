@@ -1,15 +1,12 @@
 import {
-  createContext,
   useCallback,
-  useContext,
   useReducer,
   type ChangeEvent,
   type ReactNode,
 } from "react";
 import { appReducer, createInitialState } from "./appReducer";
+import AppStateContext from "./appStateContext";
 import type { AppContextValue, FlowersById, ProductsById } from "../types";
-
-const AppStateContext = createContext<AppContextValue | null>(null);
 
 interface AppStateProviderProps {
   flowers: FlowersById;
@@ -76,12 +73,4 @@ export function AppStateProvider({
       {children}
     </AppStateContext.Provider>
   );
-}
-
-export function useAppState(): AppContextValue {
-  const ctx = useContext(AppStateContext);
-  if (!ctx) {
-    throw new Error("useAppState must be used within an AppStateProvider");
-  }
-  return ctx;
 }

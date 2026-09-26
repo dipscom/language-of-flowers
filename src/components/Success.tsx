@@ -1,4 +1,4 @@
-import { useAppState } from "../state/AppStateContext";
+import { useAppState } from "../state/useAppState";
 import type { ProductsById } from "../types";
 
 function renderProduct(products: ProductsById, key: string) {

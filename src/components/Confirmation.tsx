@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Anchor from "./Anchor";
 import Flower from "./Flower";
 import ResetScroller from "../animation/ResetScroller";
-import { useAppState } from "../state/AppStateContext";
+import { useAppState } from "../state/useAppState";
 
 export default function Confirmation() {
   const { bouquet, flowers, recipient, sender, mailChimp } = useAppState();

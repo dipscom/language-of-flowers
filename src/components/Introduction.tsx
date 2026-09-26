@@ -15,7 +15,7 @@ export default function Introduction() {
           </figure>
           <header>
             <hr />
-            <h1>Mother knows best and she'd rather like some flowers...</h1>
+            <h1>Mother knows best and she&rsquo;d rather like some flowers...</h1>
             <hr className="reflected" />
           </header>
 

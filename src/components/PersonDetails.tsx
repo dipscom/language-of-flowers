@@ -99,7 +99,7 @@ export default function PersonDetails(props: PersonDetailsProps) {
         {index === "recipient" ? (
           <p className="terms">
             Contact details for the recipient should only be provided with that
-            person's consent, and that person may be told who provided their
+            person&rsquo;s consent, and that person may be told who provided their
             details.
           </p>
         ) : (
