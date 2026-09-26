@@ -1,13 +1,29 @@
 import { useEffect } from "react";
+import type { ChangeEvent } from "react";
 import Button from "./Button";
 import Anchor from "./Anchor";
 import ResetScroller from "../animation/ResetScroller";
+import type { Navigation, Person } from "../types";
 
-function capitalizeFirstLetter(string) {
+function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export default function PersonDetails(props) {
+interface PersonDetailsProps {
+  index: "recipient" | "sender";
+  recipient?: Person;
+  sender?: Person;
+  heading: string;
+  prevCta: string;
+  nextCta: string;
+  prevStep: () => void;
+  nextStep: string | (() => void);
+  updateField: (e: ChangeEvent<HTMLInputElement>) => void;
+  enableButton: () => void;
+  navigation: Navigation;
+}
+
+export default function PersonDetails(props: PersonDetailsProps) {
   const {
     index,
     heading,
@@ -19,7 +35,7 @@ export default function PersonDetails(props) {
     enableButton,
     navigation,
   } = props;
-  const person = props[index];
+  const person = index === "recipient" ? props.recipient! : props.sender!;
 
   useEffect(() => {
     if (window.innerHeight > window.innerWidth) {
@@ -29,11 +45,10 @@ export default function PersonDetails(props) {
       enableButton();
     }
     ResetScroller("form");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isValid = person.name !== "" && person.valid;
-  let disabled;
+  let disabled: boolean | "disabled" | undefined;
   if (typeof nextStep === "string") {
     disabled = isValid && !navigation.disabled ? undefined : "disabled";
   } else {
@@ -54,13 +69,13 @@ export default function PersonDetails(props) {
           id="name"
           className={index}
           name="name"
-          maxLength="20"
+          maxLength={20}
           value={person.name}
           placeholder="Full Name"
           required
           onChange={(e) => updateField(e)}
           autoComplete="off"
-          tabIndex="1"
+          tabIndex={1}
         />
         <label htmlFor="email">
           {capitalizeFirstLetter(index)}&rsquo;s email
@@ -80,8 +95,6 @@ export default function PersonDetails(props) {
           cta={prevCta}
           step={prevStep}
           disabled={navigation.disabled}
-          autocomplete="off"
-          tabIndex="2"
         />
         {index === "recipient" ? (
           <p className="terms">
@@ -95,7 +108,7 @@ export default function PersonDetails(props) {
       </form>
       {typeof nextStep === "string" ? (
         <Anchor
-          className={disabled}
+          className={typeof disabled === "string" ? disabled : undefined}
           cta={nextCta}
           step="forward"
           target="confirmation"
@@ -104,7 +117,7 @@ export default function PersonDetails(props) {
         <Button
           className="button"
           cta={nextCta}
-          disabled={disabled}
+          disabled={typeof disabled === "boolean" ? disabled : false}
           step={nextStep}
         />
       )}

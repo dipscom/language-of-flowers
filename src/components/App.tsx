@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router";
+import { Routes, Route, useLocation, type Location } from "react-router";
 import flowers from "../data/flowers";
 import products from "../data/products";
 import Background from "./Background";
@@ -12,7 +12,11 @@ import MyBouquet from "./MyBouquet";
 import Share from "./Share";
 import { AppStateProvider } from "../state/AppStateContext";
 
-function App({ location }) {
+interface AppProps {
+  location: Location;
+}
+
+function App({ location }: AppProps) {
   return (
     <div id="container">
       <Background location={location} />

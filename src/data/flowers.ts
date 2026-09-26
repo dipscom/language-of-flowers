@@ -1,4 +1,6 @@
-const flowers = {
+import type { FlowersById } from "../types";
+
+const flowers: FlowersById = {
   bluebell: {
     name: "Bluebell",
     description: "Faithfull and dependable. The truest devotion.",

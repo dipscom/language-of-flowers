@@ -1,4 +1,10 @@
-export default function Background({ location }) {
+import type { Location } from "react-router";
+
+interface BackgroundProps {
+  location: Location;
+}
+
+export default function Background({ location }: BackgroundProps) {
   const pathname = location && location.pathname;
   const hideLogo = pathname === "/";
   const compactLogo =

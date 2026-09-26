@@ -1,4 +1,6 @@
-const products = {
+import type { ProductsById } from "../types";
+
+const products: ProductsById = {
   clara: {
     name: "Clandestine Clara",
     description: "Nothing shy here",

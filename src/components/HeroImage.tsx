@@ -1,4 +1,8 @@
-export default function HeroImage({ bouquet }) {
+interface HeroImageProps {
+  bouquet: string[];
+}
+
+export default function HeroImage({ bouquet }: HeroImageProps) {
   return (
     <div id="hero-image">
       <header>

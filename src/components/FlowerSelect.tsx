@@ -1,6 +1,15 @@
 import { useEffect } from "react";
 import Flower from "./Flower";
 import ResetScroller from "../animation/ResetScroller";
+import type { FlowersById } from "../types";
+
+interface FlowerSelectProps {
+  bouquet: string[];
+  flowers: FlowersById;
+  selectFlower: (key: string) => void;
+  updateActiveFlower: (key: string) => void;
+  enableButton: () => void;
+}
 
 export default function FlowerSelect({
   bouquet,
@@ -8,13 +17,12 @@ export default function FlowerSelect({
   selectFlower,
   updateActiveFlower,
   enableButton,
-}) {
+}: FlowerSelectProps) {
   useEffect(() => {
     ResetScroller("form");
     if (enableButton) {
       enableButton();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

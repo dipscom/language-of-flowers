@@ -1,4 +1,13 @@
 import { memo } from "react";
+import type { FlowerData } from "../types";
+
+interface FlowerProps {
+  bouquetLength?: number;
+  details: FlowerData;
+  index: string;
+  selectFlower?: (key: string) => void;
+  updateActiveFlower?: (key: string) => void;
+}
 
 function Flower({
   bouquetLength,
@@ -6,11 +15,11 @@ function Flower({
   index,
   selectFlower,
   updateActiveFlower,
-}) {
+}: FlowerProps) {
   let classes = "";
   if (details.selected) {
     classes += "checked";
-  } else if (bouquetLength >= 3 && !details.selected) {
+  } else if (bouquetLength !== undefined && bouquetLength >= 3 && !details.selected) {
     classes += "disabled";
   }
   return (

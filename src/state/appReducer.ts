@@ -1,4 +1,9 @@
-export function createInitialState(flowers, products) {
+import type { AppAction, AppState, FlowersById, ProductsById } from "../types";
+
+export function createInitialState(
+  flowers: FlowersById,
+  products: ProductsById,
+): AppState {
   return {
     bouquet: [],
     flowers,
@@ -10,7 +15,7 @@ export function createInitialState(flowers, products) {
   };
 }
 
-export function appReducer(state, action) {
+export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
     case "SELECT_FLOWER": {
       const index = state.bouquet.indexOf(action.key);
@@ -33,7 +38,7 @@ export function appReducer(state, action) {
     case "UPDATE_FIELD": {
       const person = { ...state[action.field], [action.name]: action.value };
       if (action.isEmail) {
-        person.valid = action.valid;
+        person.valid = action.valid ?? false;
       }
       return { ...state, [action.field]: person };
     }

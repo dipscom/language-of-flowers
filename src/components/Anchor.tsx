@@ -1,6 +1,21 @@
+import type { MouseEventHandler } from "react";
 import { Link } from "react-router";
 
-export default function Anchor({ className, step, target, click, cta }) {
+interface AnchorProps {
+  className?: string;
+  step?: "forward" | "backward";
+  target: string;
+  click?: MouseEventHandler<HTMLAnchorElement>;
+  cta: string;
+}
+
+export default function Anchor({
+  className,
+  step,
+  target,
+  click,
+  cta,
+}: AnchorProps) {
   let classes = className ? className : "";
   if (step === "forward") {
     classes += " button";

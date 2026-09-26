@@ -3,6 +3,19 @@ import Anchor from "./Anchor";
 import Button from "./Button";
 import Flower from "./Flower";
 import ResetScroller from "../animation/ResetScroller";
+import type { FlowersById, Navigation } from "../types";
+
+interface BouquetDetailsProps {
+  bouquet: string[];
+  flowers: FlowersById;
+  step?: number;
+  prevCta?: string;
+  nextCta: string;
+  prevStep?: () => void;
+  nextStep?: () => void;
+  enableButton?: () => void;
+  navigation: Navigation;
+}
 
 export default function BouquetDetails({
   bouquet,
@@ -14,13 +27,12 @@ export default function BouquetDetails({
   nextStep,
   enableButton,
   navigation,
-}) {
+}: BouquetDetailsProps) {
   useEffect(() => {
     ResetScroller("form");
     if (enableButton) {
       enableButton();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -49,8 +61,8 @@ export default function BouquetDetails({
         {step === 2 ? (
           <Button
             className="back-button"
-            cta={prevCta}
-            step={prevStep}
+            cta={prevCta!}
+            step={prevStep!}
             disabled={navigation.disabled}
           />
         ) : (
@@ -60,7 +72,7 @@ export default function BouquetDetails({
           <Button
             className="button"
             cta={nextCta}
-            step={nextStep}
+            step={nextStep!}
             disabled={navigation.disabled}
           />
         ) : (

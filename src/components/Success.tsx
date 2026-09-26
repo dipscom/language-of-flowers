@@ -1,6 +1,7 @@
 import { useAppState } from "../state/AppStateContext";
+import type { ProductsById } from "../types";
 
-function renderProduct(products, key) {
+function renderProduct(products: ProductsById, key: string) {
   const product = products[key];
   const styles = {
     backgroundImage: "url(/images/products/" + key + ".png)",
