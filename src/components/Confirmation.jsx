@@ -59,12 +59,23 @@ export default class Confirmation extends Component {
                 <span>({this.props.sender.email})</span>.
               </strong>
             </p>
+            {this.props.sendStatus === "error" && (
+              <p className="send-error">
+                {this.props.sendError} Please try again.
+              </p>
+            )}
             <nav className="navigation">
               <Anchor
-                cta="Send now"
+                cta={
+                  this.props.sendStatus === "sending" ? "Sending…" : "Send now"
+                }
                 step="forward"
                 target="success"
-                click={this.props.mailChimp}
+                click={
+                  this.props.sendStatus === "sending"
+                    ? (e) => e.preventDefault()
+                    : this.props.sendBouquet
+                }
               />
               <Anchor
                 cta="Change details"

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { browserHistory } from "react-router";
 import TransitionGroup from "react-addons-transition-group";
 import flowers from "../data/flowers";
 import products from "../data/products";
@@ -27,6 +28,8 @@ const initialState = {
   navigation: {
     disabled: false,
   },
+  sendStatus: "idle",
+  sendError: null,
 };
 
 export default class App extends Component {
@@ -36,7 +39,8 @@ export default class App extends Component {
     this.reset = this.reset.bind(this);
     this.selectFlower = this.selectFlower.bind(this);
     this.updateField = this.updateField.bind(this);
-    this.mailChimp = this.mailChimp.bind(this);
+    this.buildShareLink = this.buildShareLink.bind(this);
+    this.sendBouquet = this.sendBouquet.bind(this);
     this.nextStep = this.nextStep.bind(this);
     this.prevStep = this.prevStep.bind(this);
     this.updateStep = this.updateStep.bind(this);
@@ -107,7 +111,47 @@ export default class App extends Component {
       });
     }
   }
-  mailChimp() {}
+  buildShareLink() {
+    const bouquet = this.state.bouquet.join(",");
+    const name = encodeURIComponent(this.state.recipient.name);
+    const email = encodeURIComponent(this.state.recipient.email);
+    const sender = encodeURIComponent(this.state.sender.name);
+    return `${window.location.origin}/viewbouquet?bouquet=${bouquet}&name=${name}&email=${email}&sender=${sender}`;
+  }
+  async sendBouquet(e) {
+    e.preventDefault();
+    this.setState({ sendStatus: "sending" });
+
+    const link = this.buildShareLink();
+    try {
+      const resp = await fetch("/.netlify/functions/send-bouquet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          recipientName: this.state.recipient.name,
+          recipientEmail: this.state.recipient.email,
+          senderName: this.state.sender.name,
+          link,
+          bouquetSize: this.state.bouquet.length,
+        }),
+      });
+      const result = await resp.json();
+      if (resp.ok && result.ok) {
+        this.setState({ sendStatus: "sent" });
+        browserHistory.push("/success");
+      } else {
+        this.setState({
+          sendStatus: "error",
+          sendError: result.error || "Something went wrong",
+        });
+      }
+    } catch (err) {
+      this.setState({
+        sendStatus: "error",
+        sendError: "Network error — please try again",
+      });
+    }
+  }
   reset() {
     localStorage.removeItem("bouquet");
     localStorage.removeItem("flowers");
@@ -180,7 +224,8 @@ export default class App extends Component {
         {this.props.children &&
           React.cloneElement(this.props.children, {
             ...this.state,
-            mailChimp: this.mailChimp,
+            buildShareLink: this.buildShareLink,
+            sendBouquet: this.sendBouquet,
             selectFlower: this.selectFlower,
             updateField: this.updateField,
             nextStep: this.nextStep,

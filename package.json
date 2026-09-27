@@ -8,6 +8,7 @@
   "devDependencies": {
     "@csstools/postcss-media-minmax": "^3.0.5",
     "autoprefixer": "^10.6.1",
+    "netlify-cli": "^27.10.0",
     "normalize-css": "^2.3.1",
     "postcss": "^8.5.28",
     "postcss-advanced-variables": "^5.0.0",
@@ -28,7 +29,8 @@
     "dev": "vite",
     "watch": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "netlify:dev": "netlify dev"
   },
   "browserslist": [
     ">0.2%",

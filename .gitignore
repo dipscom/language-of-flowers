@@ -3,6 +3,7 @@
 ~*
 
 !.gitignore
+!.env.example
 
 # ignore node dependency directories (used by grunt)
 node_modules/
@@ -41,3 +42,5 @@ Thumbs.db
 *.rar
 *.tar
 *.zip
+# Local Netlify folder
+.netlify
