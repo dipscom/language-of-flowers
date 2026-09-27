@@ -37,16 +37,10 @@ export default class Confirmation extends Component {
           <div>
             <header>
               <h1>Confirm & Send</h1>
-              {/*<svg className="doubleline-decoration" viewBox="0 0 1400 40">
-          			<path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke"  />
-          			<path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke"  />
-            </svg>*/}
               <hr />
             </header>
             <p>
-              <strong>
-                On this fine day Penhaligon's will send your message of:
-              </strong>
+              <strong>On this fine day we will send your message of:</strong>
             </p>
             <ol className="bouquet-list">
               {this.props.bouquet.map((key) => (
@@ -64,29 +58,6 @@ export default class Confirmation extends Component {
                 from <span>{this.props.sender.name}</span>{" "}
                 <span>({this.props.sender.email})</span>.
               </strong>
-            </p>
-            <p className="terms">
-              <label htmlFor="terms">
-                Be in with a chance to win the full Penhaligon's Portraits
-                Collection.
-                <br />
-                Plus join the very Penhaligon's club and discover our online
-                secrets (I agree with the{" "}
-                <a href="#" title="Terms and Conditions" target="_blank">
-                  Terms and Conditions
-                </a>
-                /
-                <a href="#" title="Privacy Policy" target="_blank">
-                  Privacy Policy
-                </a>
-                ).{" "}
-              </label>
-              <input
-                type="checkbox"
-                id="terms"
-                name="terms"
-                onChange={(e) => this.props.updateField(e)}
-              />
             </p>
             <nav className="navigation">
               <Anchor

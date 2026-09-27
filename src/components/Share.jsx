@@ -20,30 +20,6 @@ export default class Share extends Component {
                 bouquet.
               </strong>
             </p>
-            <p>
-              <span>
-                Be in with a chance to win a Penhaligon's Portraits Collection.
-                Plus join the Very Penhaligon's Club and discover our online
-                secrets.{" "}
-                <input
-                  type="checkbox"
-                  id="opt-in"
-                  name="opt-in"
-                  onChange={(e) => this.props.updateField(e)}
-                />
-              </span>
-            </p>
-            <p className="terms">
-              (I agree with the{" "}
-              <a href="#" title="Terms and Conditions" target="_blank">
-                Terms and Conditions
-              </a>
-              /
-              <a href="#" title="Privacy Policy" target="_blank">
-                Privacy Policy
-              </a>
-              ).
-            </p>
             <a
               href="#"
               className="share-link"
@@ -109,15 +85,6 @@ export default class Share extends Component {
               </svg>
             </a>
             <hr className="reflected" />
-            <p>
-              <a
-                id="penhaligons-link"
-                href="https://www.penhaligons.com/"
-                title="Penhaligons"
-              >
-                www.penhaligons.com
-              </a>
-            </p>
             <p>
               <a href="#" title="The Language of Flowers">
                 Click here

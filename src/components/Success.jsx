@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import Anchor from "./Anchor";
 import FadeOut from "../animation/FadeOut";
 import CloudsLoop from "../animation/CloudsLoop";
 
 export default class Success extends Component {
   constructor() {
     super();
-    this.renderProduct = this.renderProduct.bind(this);
 
     this.latestKnownScrollY = 0;
     this.ticking = false;
@@ -19,24 +19,6 @@ export default class Success extends Component {
       paused: true,
       ease: "Linear.easeNone",
     }); // eslint-disable-line
-  }
-  renderProduct(key) {
-    const product = this.props.products[key];
-    const styles = {
-      backgroundImage: "url(/images/products/" + key + ".png)",
-    };
-    return (
-      <li key={key}>
-        <a href={product.link} target="_blank" title={product.name}>
-          <figure style={styles}></figure>
-          <div>
-            <h2>{product.name}</h2>
-            <p>{product.description}</p>
-            <p>Buy now</p>
-          </div>
-        </a>
-      </li>
-    );
   }
   render() {
     return (
@@ -56,32 +38,10 @@ export default class Success extends Component {
             <p>
               <strong>Your encoded bouquet has been sent.</strong>
             </p>
-          </div>
-          <div id="products">
+
+            <p>Would you like to send another bouquet?</p>
             <p>
-              <strong>
-                Why not match one of our Penhaligon's{" "}
-                <a href="#" target="_blank" title="Portraits Fragrances">
-                  Portraits Collection
-                </a>{" "}
-                to your bouquet...
-              </strong>
-            </p>
-            <hr />
-            <ul>{Object.keys(this.props.products).map(this.renderProduct)}</ul>
-            <hr className="reflected" />
-            <p>
-              <strong>
-                Alternatively you can find your perfect Penhaligon's scent with
-                our online{" "}
-                <a
-                  href="#"
-                  target="_blank"
-                  title="Fragrance Profiling Experience"
-                >
-                  Fragrance Profiling Experience
-                </a>
-              </strong>
+              <Anchor cta="start again" step="forward" target="/" />
             </p>
           </div>
         </div>
@@ -97,19 +57,8 @@ export default class Success extends Component {
 
     // Make sure the logo is centered on its x-axis
     tl.set("#lof-logo", { xPercent: -50 });
-    // And that the products are hidden
-    tl.set("#products", { autoAlpha: 0 });
 
     tl.from(currentTarget, dur, { autoAlpha: 0 });
-
-    tl.add("Crossfade", "+=2")
-      .to("#thank-you", dur, { autoAlpha: 0, ease: "Power2.easeInOut" })
-      .to(
-        "#products",
-        dur,
-        { autoAlpha: 1, ease: "Power2.easeInOut" },
-        "-=0.6",
-      );
   }
 
   componentWillAppear(callback) {

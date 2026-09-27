@@ -25,7 +25,7 @@
     "react-router": "^3.0.0"
   },
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
     "watch": "vite",
     "build": "vite build",
     "preview": "vite preview"

@@ -4,7 +4,7 @@ export default function DescriptionContent(el, callback) {
   let dur = 1.5;
 
   if(trg === "#introduction") {
-    tl.from("#penhaligons-logo", dur, {autoAlpha:0, ease:"Power1.easeOut"}, "StaggerContent" )
+    tl.from("#main-logo", dur, {autoAlpha:0, ease:"Power1.easeOut"}, "StaggerContent" )
   }
   tl.staggerFrom([trg+" hr", trg+" h1", trg+" p"], dur, {
       autoAlpha:0,
