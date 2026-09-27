@@ -21,17 +21,12 @@ export default class MyBouquet extends Component {
       >
         <div>
           <div>
-            {/*<img className="logo" src="./images/lof-logo.png" alt="The Language of Flowers" title="The Language of Flowers" />*/}
             <header>
               <h1>
                 Dear <span>{this.props.recipient.name}...</span>
               </h1>
               <hr />
             </header>
-            {/*<svg className="doubleline-decoration" viewBox="0 0 1400 40">
-              <path className="segment" d="M0 1.5 H660 Q690 1.5, 700 20.5 Q710 1.5, 740 1.5 H1400" vectorEffect="non-scaling-stroke" />
-              <path className="segment" d="M0 8.5 H660 Q690 8.5, 700 28.5 Q710 8.5, 740 8.5 H1400" vectorEffect="non-scaling-stroke" />
-            </svg>*/}
 
             <p>
               <strong>
