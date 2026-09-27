@@ -62,7 +62,7 @@ exports.handler = async (event) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Language of Flowers <onboarding@resend.dev>",
+        from: `Language of Flowers <${process.env.SEND_EMAIL_FROM}>`,
         to: [recipientEmail],
         subject: `${senderName} has sent you a bouquet`,
         html: `<p>${senderName} has sent you a bouquet from the Language of Flowers.</p>
