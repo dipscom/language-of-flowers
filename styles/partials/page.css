@@ -186,7 +186,7 @@
 }
 
 #description header {
-  width: 100% !important;
+  width: 100%;
 }
 #description p {
   max-width: 40.63rem;
@@ -222,7 +222,7 @@
 }
 
 .bouquet-list .message {
-  margin: 0 0 0.63rem !important;
+  margin: 0 0 0.63rem;
 }
 
 .terms {
@@ -230,7 +230,7 @@
 }
 
 #products > p {
-  margin: 0 !important;
+  margin: 0;
 }
 #products > p a {
   color: #80a78d;

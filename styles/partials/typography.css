@@ -57,7 +57,7 @@ strong {
 }
 p {
   font-size: 0.94rem;
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 @media (max-width: 599px) {
   p {

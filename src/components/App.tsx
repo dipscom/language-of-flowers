@@ -1,4 +1,8 @@
+import { useRef } from "react";
 import { Routes, Route, useLocation, type Location } from "react-router";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import initialLoad from "../animation/initialLoad";
 import flowers from "../data/flowers";
 import products from "../data/products";
 import Background from "./Background";
@@ -12,13 +16,23 @@ import MyBouquet from "./MyBouquet";
 import Share from "./Share";
 import { AppStateProvider } from "../state/AppStateContext";
 
+gsap.registerPlugin(useGSAP);
+
 interface AppProps {
   location: Location;
 }
 
 function App({ location }: AppProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Initial-load animation only: this runs once when `App` first mounts
+  // (i.e. on a hard page load) and never again, since `App` stays mounted
+  // for the lifetime of the SPA session — client-side navigation only ever
+  // swaps the routed page content below, it doesn't remount this component.
+  useGSAP(initialLoad, { scope: containerRef, dependencies: [] });
+
   return (
-    <div id="container">
+    <div id="container" ref={containerRef}>
       <Background location={location} />
       <Routes>
         <Route path="/" element={<Introduction />} />

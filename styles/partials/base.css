@@ -44,7 +44,7 @@ main {
 
 svg {
   fill: none;
-  stroke: rgba(0, 0, 0, 0.3);
+  stroke: rgb(0, 0, 0);
 
   stroke-linejoin: miter;
   stroke-width: 1;
@@ -52,7 +52,7 @@ svg {
 
 header {
   display: inline-block;
-  width: auto !important;
+  width: auto;
 }
 
 hr {
@@ -101,6 +101,7 @@ hr {
   height: 100%;
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
 @media (orientation: portrait) {
