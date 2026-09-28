@@ -6,9 +6,12 @@ import products from "../data/products";
 import Background from "./Background";
 import Overlay from "./Overlay";
 
-const initialState = {
+const getInitialState = () => ({
   bouquet: [],
-  flowers: flowers,
+  flowers: Object.keys(flowers).reduce((acc, key) => {
+    acc[key] = { ...flowers[key], selected: false };
+    return acc;
+  }, {}),
   products: products,
   recipient: {
     name: "",
@@ -30,12 +33,12 @@ const initialState = {
   },
   sendStatus: "idle",
   sendError: null,
-};
+});
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = initialState;
+    this.state = getInitialState();
     this.reset = this.reset.bind(this);
     this.selectFlower = this.selectFlower.bind(this);
     this.updateField = this.updateField.bind(this);
@@ -161,6 +164,7 @@ export default class App extends Component {
     localStorage.removeItem("steps");
     localStorage.removeItem("terms");
     localStorage.removeItem("accessTime");
+    this.setState(getInitialState());
   }
   nextStep(e) {
     $("button.button, button.back-button").attr("disabled", true); // eslint-disable-line
@@ -224,6 +228,7 @@ export default class App extends Component {
         {this.props.children &&
           React.cloneElement(this.props.children, {
             ...this.state,
+            reset: this.reset,
             buildShareLink: this.buildShareLink,
             sendBouquet: this.sendBouquet,
             selectFlower: this.selectFlower,

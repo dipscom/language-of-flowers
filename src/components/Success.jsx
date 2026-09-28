@@ -41,7 +41,12 @@ export default class Success extends Component {
 
             <p>Would you like to send another bouquet?</p>
             <p>
-              <Anchor cta="start again" step="forward" target="/" />
+              <Anchor
+                cta="start again"
+                step="forward"
+                target="/"
+                click={this.props.reset}
+              />
             </p>
           </div>
         </div>
