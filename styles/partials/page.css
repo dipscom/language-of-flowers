@@ -326,63 +326,6 @@
   text-transform: none;
 }
 
-#share p {
-  margin: 0 auto;
-}
-#share p > span {
-  max-width: 34.38rem;
-  opacity: 1;
-  color: inherit;
-  display: block;
-  margin: 1.25rem auto 0;
-}
-#share strong {
-  text-transform: none;
-}
-#share strong span {
-  margin: 0;
-  opacity: 1;
-}
-#share a {
-  color: inherit;
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-#share a:hover {
-  color: var(--green);
-}
-#share a:hover path {
-  fill: var(--green);
-}
-#share .share-link {
-  align-items: center;
-  display: flex;
-  margin: 1.88rem 1.88rem 0;
-  width: auto;
-}
-#share #twitter,
-#share #facebook {
-  height: 3.13rem;
-  opacity: 1;
-  width: 3.13rem;
-}
-#share span {
-  margin: 0 0.25rem 0 0.63rem;
-  opacity: 0.5;
-}
-#share .share {
-  height: 0.94rem;
-  opacity: 0.5;
-  width: 1.25rem;
-}
-#share path {
-  transition: fill 0.3s;
-}
-#share #logo-link {
-  display: inline-block;
-  margin-top: 1.25rem;
-}
 
 #my-bouquet hr {
   margin: 0.63rem 0 0;

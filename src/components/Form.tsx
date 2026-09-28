@@ -153,7 +153,6 @@ export default function Form() {
         const stepProps = {
           bouquet,
           flowers,
-          nextCta: "Win prizes",
           step: steps.current,
           navigation,
         } satisfies ComponentProps<typeof BouquetDetails>;

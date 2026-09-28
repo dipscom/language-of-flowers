@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Anchor from "./Anchor";
 import Button from "./Button";
 import Flower from "./Flower";
 import ResetScroller from "../animation/ResetScroller";
@@ -10,7 +9,7 @@ interface BouquetDetailsProps {
   flowers: FlowersById;
   step?: number;
   prevCta?: string;
-  nextCta: string;
+  nextCta?: string;
   prevStep?: () => void;
   nextStep?: () => void;
   enableButton?: () => void;
@@ -68,19 +67,12 @@ export default function BouquetDetails({
         ) : (
           ""
         )}
-        {step === 2 ? (
+        {step === 2 && (
           <Button
             className="button"
-            cta={nextCta}
+            cta={nextCta!}
             step={nextStep!}
             disabled={navigation.disabled}
-          />
-        ) : (
-          <Anchor
-            className="center"
-            cta={nextCta}
-            step="forward"
-            target="share"
           />
         )}
       </div>

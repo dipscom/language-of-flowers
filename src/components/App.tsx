@@ -13,7 +13,6 @@ import Form from "./Form";
 import Confirmation from "./Confirmation";
 import Success from "./Success";
 import MyBouquet from "./MyBouquet";
-import Share from "./Share";
 import { AppStateProvider } from "../state/AppStateContext";
 
 gsap.registerPlugin(useGSAP);
@@ -42,7 +41,6 @@ function App({ location }: AppProps) {
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/success" element={<Success />} />
         <Route path="/mybouquet" element={<MyBouquet />} />
-        <Route path="/share" element={<Share />} />
         <Route path="*" element={<Introduction />} />
       </Routes>
       <Overlay />
