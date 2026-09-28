@@ -1,5 +1,6 @@
 import Anchor from "./Anchor";
 import { useAppState } from "../state/useAppState";
+import ParagraphDecoration from "./ParagraphDecoration";
 
 export default function Success() {
   const { reset } = useAppState();
@@ -9,7 +10,7 @@ export default function Success() {
         <div id="thank-you">
           <header>
             <h1>Thank You!</h1>
-            <hr />
+            <ParagraphDecoration />
           </header>
           <p>
             <strong>Your encoded bouquet has been sent.</strong>

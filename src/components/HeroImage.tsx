@@ -1,3 +1,5 @@
+import ParagraphDecoration from "./ParagraphDecoration";
+
 interface HeroImageProps {
   bouquet: string[];
 }
@@ -7,7 +9,7 @@ export default function HeroImage({ bouquet }: HeroImageProps) {
     <div id="hero-image">
       <header>
         <h1>Your Bouquet</h1>
-        <hr />
+        <ParagraphDecoration />
       </header>
       <figure
         style={{

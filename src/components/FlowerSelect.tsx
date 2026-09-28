@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Flower from "./Flower";
 import ResetScroller from "../animation/ResetScroller";
 import type { FlowersById } from "../types";
+import ParagraphDecoration from "./ParagraphDecoration";
 
 interface FlowerSelectProps {
   bouquet: string[];
@@ -29,7 +30,7 @@ export default function FlowerSelect({
     <div id="flower-select">
       <header>
         <h1>Create your bouquet</h1>
-        <hr />
+        <ParagraphDecoration />
       </header>
       <strong className="sub-heading">Select 3 flowers:</strong>
       <ul id="flower-list">

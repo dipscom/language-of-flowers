@@ -6,7 +6,7 @@ import initialLoad from "../animation/initialLoad";
 import flowers from "../data/flowers";
 import Background from "./Background";
 import Overlay from "./Overlay";
-import Introduction from "./Introduction";
+import Introduction from "./introduction/Introduction";
 import Description from "./Description";
 import Form from "./Form";
 import Confirmation from "./Confirmation";

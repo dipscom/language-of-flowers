@@ -3,6 +3,7 @@ import Anchor from "./Anchor";
 import Flower from "./Flower";
 import ResetScroller from "../animation/ResetScroller";
 import { useAppState } from "../state/useAppState";
+import ParagraphDecoration from "./ParagraphDecoration";
 
 export default function Confirmation() {
   const { bouquet, flowers, recipient, sender, mailChimp } = useAppState();
@@ -17,7 +18,7 @@ export default function Confirmation() {
         <div>
           <header>
             <h1>Confirm & Send</h1>
-            <hr />
+            <ParagraphDecoration />
           </header>
           <p>
             <strong>On this fine day we will send your message of:</strong>

@@ -1,4 +1,5 @@
 import Anchor from "./Anchor";
+import ParagraphDecoration from "./ParagraphDecoration";
 
 export default function Description() {
   return (
@@ -6,9 +7,9 @@ export default function Description() {
       <div>
         <div>
           <header>
-            <hr />
+            <ParagraphDecoration />
             <h1>Bouquets full of hidden meaning.</h1>
-            <hr className="reflected" />
+            <ParagraphDecoration reflected />
           </header>
           <p>
             With floriography, indiscrete messages can be relayed between

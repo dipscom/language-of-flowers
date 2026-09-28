@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Anchor from "./Anchor";
 import ResetScroller from "../animation/ResetScroller";
 import { useAppState } from "../state/useAppState";
+import ParagraphDecoration from "./ParagraphDecoration";
 
 export default function MyBouquet() {
   const { recipient, sender } = useAppState();
@@ -18,7 +19,7 @@ export default function MyBouquet() {
             <h1>
               Dear <span>{recipient.name}...</span>
             </h1>
-            <hr />
+            <ParagraphDecoration />
           </header>
 
           <p>

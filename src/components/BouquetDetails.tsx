@@ -3,6 +3,7 @@ import Button from "./Button";
 import Flower from "./Flower";
 import ResetScroller from "../animation/ResetScroller";
 import type { FlowersById, Navigation } from "../types";
+import ParagraphDecoration from "./ParagraphDecoration";
 
 interface BouquetDetailsProps {
   bouquet: string[];
@@ -39,7 +40,7 @@ export default function BouquetDetails({
       <div>
         <header>
           <h1>Your Bouquet</h1>
-          <hr />
+          <ParagraphDecoration />
         </header>
         <ol className="bouquet-list">
           {step !== 2 ? (

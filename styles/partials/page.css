@@ -65,7 +65,7 @@
   .page > * > * {
     align-items: center;
     align-content: center;
-    max-width: 50rem;
+    max-width: 58rem;
     height: 100%;
     width: 80%;
   }
@@ -106,7 +106,7 @@
   display: inline;
 }
 .page .bouquet-list figure,
-.page .bouquet-list h1,
+.page .bouquet-list,
 .page .bouquet-list svg,
 .page .bouquet-list strong,
 .page .bouquet-list p:last-child {
@@ -114,30 +114,6 @@
 }
 .page .bouquet-list p {
   margin-right: 0.25rem;
-}
-
-@media (orientation: portrait) and (max-width: 599px) {
-  #introduction > div {
-    padding-top: 10.714285714285714%;
-  }
-}
-@media (orientation: portrait) and (min-width: 600px) {
-  #introduction > div {
-    padding-top: 7.8125%;
-  }
-}
-@media (orientation: landscape) {
-  #introduction > div strong {
-    display: block;
-    margin: 0 auto;
-    width: 80%;
-  }
-}
-#introduction p:first-of-type {
-  max-width: 40.63rem;
-}
-#introduction p:last-of-type {
-  max-width: 28.13rem;
 }
 
 #description header {
@@ -184,9 +160,6 @@
   font-size: 0.81rem;
 }
 
-#my-bouquet hr {
-  margin: 0.63rem 0 0;
-}
 #my-bouquet strong {
   text-transform: none;
 }

@@ -4,6 +4,7 @@ import Button from "./Button";
 import Anchor from "./Anchor";
 import ResetScroller from "../animation/ResetScroller";
 import type { Navigation, Person } from "../types";
+import ParagraphDecoration from "./ParagraphDecoration";
 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -59,7 +60,7 @@ export default function PersonDetails(props: PersonDetailsProps) {
       <form>
         <header>
           <h1>{heading}</h1>
-          <hr />
+          <ParagraphDecoration />
         </header>
         <label htmlFor="name">
           {capitalizeFirstLetter(index)}&rsquo;s full name

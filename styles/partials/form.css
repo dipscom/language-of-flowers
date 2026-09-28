@@ -190,8 +190,7 @@
   }
 }
 #flower-select .bouquet-list figure,
-#flower-select .bouquet-list svg,
-#flower-select .bouquet-list hr {
+#flower-select .bouquet-list svg {
   display: none;
 }
 @media (max-width: 599px) {
@@ -334,8 +333,7 @@
 #flower-list h1 {
   text-align: left;
 }
-#flower-list svg,
-#flower-list hr {
+#flower-list svg {
   display: none;
 }
 @media (orientation: landscape) {
@@ -525,8 +523,7 @@
   margin: 0;
   padding: 0;
 }
-#bouquet-details .bouquet-list svg,
-#bouquet-details .bouquet-list hr {
+#bouquet-details .bouquet-list svg {
   display: none;
 }
 #bouquet-details .bouquet-list li:not(:first-child) {

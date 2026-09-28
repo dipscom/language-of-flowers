@@ -1,5 +1,6 @@
 import { memo } from "react";
 import type { FlowerData } from "../types";
+import ParagraphDecoration from "./ParagraphDecoration";
 
 interface FlowerProps {
   bouquetLength?: number;
@@ -48,7 +49,7 @@ function Flower({
         </figure>
         <div className="flower-details">
           <h1 className="word">{details.name}</h1>
-          <hr />
+          <ParagraphDecoration />
           <strong className="sub-heading word">Meaning</strong>
           <div>
             <p className="word">{details.meaning}</p>
