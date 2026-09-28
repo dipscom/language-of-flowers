@@ -9,8 +9,14 @@ exports.handler = async (event) => {
   }
 
   const origin = event.headers.origin || event.headers.referer || "";
-  const allowedHost = process.env.URL || process.env.DEPLOY_URL || "";
-  if (allowedHost && origin && !origin.startsWith(allowedHost)) {
+  const allowedOrigins = [process.env.URL, process.env.CUSTOM_DOMAIN_URL].filter(Boolean);
+  let requestOrigin = "";
+  try {
+    requestOrigin = origin ? new URL(origin).origin : "";
+  } catch (e) {
+    requestOrigin = "invalid";
+  }
+  if (requestOrigin && !allowedOrigins.includes(requestOrigin)) {
     return {
       statusCode: 403,
       body: JSON.stringify({ ok: false, error: "Forbidden" }),
