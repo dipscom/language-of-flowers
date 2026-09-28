@@ -1,13 +1,9 @@
-import type { AppAction, AppState, FlowersById, ProductsById } from "../types";
+import type { AppAction, AppState, FlowersById } from "../types";
 
-export function createInitialState(
-  flowers: FlowersById,
-  products: ProductsById,
-): AppState {
+export function createInitialState(flowers: FlowersById): AppState {
   return {
     bouquet: [],
     flowers,
-    products,
     recipient: { name: "", email: "", valid: false },
     sender: { name: "", email: "", valid: false },
     steps: { current: 1, total: 4 },
@@ -62,6 +58,8 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       };
     case "ENABLE_BUTTON":
       return { ...state, navigation: { disabled: false } };
+    case "RESET":
+      return action.initialState;
     default:
       return state;
   }

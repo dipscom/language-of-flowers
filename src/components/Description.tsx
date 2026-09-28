@@ -7,13 +7,13 @@ export default function Description() {
         <div>
           <header>
             <hr />
-            <h1>Blooming lovely bouquets</h1>
+            <h1>Bouquets full of hidden meaning.</h1>
             <hr className="reflected" />
           </header>
           <p>
-            With our floriography messages of love and admiration can be relayed
-            to those dearest to your heart, those whose footsteps you follow and
-            those who reside on top of a rather high pedestal.
+            With floriography, indiscrete messages can be relayed between
+            sweethearts, paramours and sugar peas — but what could be more
+            (ah-em) improbable!
           </p>
           <p>
             <strong>Choose the flowers wisely...</strong>

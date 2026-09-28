@@ -6,21 +6,16 @@ import {
 } from "react";
 import { appReducer, createInitialState } from "./appReducer";
 import AppStateContext from "./appStateContext";
-import type { AppContextValue, FlowersById, ProductsById } from "../types";
+import type { AppContextValue, FlowersById } from "../types";
 
 interface AppStateProviderProps {
   flowers: FlowersById;
-  products: ProductsById;
   children: ReactNode;
 }
 
-export function AppStateProvider({
-  flowers,
-  products,
-  children,
-}: AppStateProviderProps) {
+export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
   const [state, dispatch] = useReducer(appReducer, undefined, () =>
-    createInitialState(flowers, products),
+    createInitialState(flowers),
   );
 
   const mailChimp = useCallback(() => {}, []);
@@ -57,6 +52,10 @@ export function AppStateProvider({
     dispatch({ type: "ENABLE_BUTTON" });
   }, []);
 
+  const reset = useCallback(() => {
+    dispatch({ type: "RESET", initialState: createInitialState(flowers) });
+  }, [flowers]);
+
   const value: AppContextValue = {
     ...state,
     mailChimp,
@@ -66,6 +65,7 @@ export function AppStateProvider({
     prevStep,
     updateStep,
     enableButton,
+    reset,
   };
 
   return (

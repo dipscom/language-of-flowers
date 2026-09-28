@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import initialLoad from "../animation/initialLoad";
 import flowers from "../data/flowers";
-import products from "../data/products";
 import Background from "./Background";
 import Overlay from "./Overlay";
 import Introduction from "./Introduction";
@@ -52,7 +51,7 @@ export default function AppRoute() {
   const location = useLocation();
 
   return (
-    <AppStateProvider flowers={flowers} products={products}>
+    <AppStateProvider flowers={flowers}>
       <App location={location} />
     </AppStateProvider>
   );

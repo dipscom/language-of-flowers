@@ -9,14 +9,6 @@ export interface FlowerData {
 
 export type FlowersById = Record<string, FlowerData>;
 
-export interface Product {
-  name: string;
-  description: string;
-  link: string;
-}
-
-export type ProductsById = Record<string, Product>;
-
 export interface Person {
   name: string;
   email: string;
@@ -35,7 +27,6 @@ export interface Steps {
 export interface AppState {
   bouquet: string[];
   flowers: FlowersById;
-  products: ProductsById;
   recipient: Person;
   sender: Person;
   steps: Steps;
@@ -55,7 +46,8 @@ export type AppAction =
   | { type: "NEXT_STEP" }
   | { type: "PREV_STEP" }
   | { type: "UPDATE_STEP"; step: number }
-  | { type: "ENABLE_BUTTON" };
+  | { type: "ENABLE_BUTTON" }
+  | { type: "RESET"; initialState: AppState };
 
 export interface AppContextValue extends AppState {
   mailChimp: () => void;
@@ -65,4 +57,5 @@ export interface AppContextValue extends AppState {
   prevStep: () => void;
   updateStep: (step: number) => void;
   enableButton: () => void;
+  reset: () => void;
 }

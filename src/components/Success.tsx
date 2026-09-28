@@ -1,27 +1,8 @@
+import Anchor from "./Anchor";
 import { useAppState } from "../state/useAppState";
-import type { ProductsById } from "../types";
-
-function renderProduct(products: ProductsById, key: string) {
-  const product = products[key];
-  const styles = {
-    backgroundImage: "url(/images/products/" + key + ".png)",
-  };
-  return (
-    <li key={key}>
-      <a href={product.link} target="_blank" title={product.name}>
-        <figure style={styles}></figure>
-        <div>
-          <h2>{product.name}</h2>
-          <p>{product.description}</p>
-          <p>Buy now</p>
-        </div>
-      </a>
-    </li>
-  );
-}
 
 export default function Success() {
-  const { products } = useAppState();
+  const { reset } = useAppState();
   return (
     <div id="success" className="page">
       <div id="scroller">
@@ -33,33 +14,11 @@ export default function Success() {
           <p>
             <strong>Your encoded bouquet has been sent.</strong>
           </p>
-        </div>
-        <div id="products">
+
+          <p>Would you like to send another bouquet?</p>
+
           <p>
-            <strong>
-              Why not match one of our
-              <a href="#" target="_blank" title="Portraits Fragrances">
-                Portraits Collection
-              </a>{" "}
-              to your bouquet...
-            </strong>
-          </p>
-          <hr />
-          <ul>
-            {Object.keys(products).map((key) => renderProduct(products, key))}
-          </ul>
-          <hr className="reflected" />
-          <p>
-            <strong>
-              Alternatively you can find your perfect scent with our online{" "}
-              <a
-                href="#"
-                target="_blank"
-                title="Fragrance Profiling Experience"
-              >
-                Fragrance Profiling Experience
-              </a>
-            </strong>
+            <Anchor cta="start again" step="forward" target="" click={reset} />
           </p>
         </div>
       </div>
