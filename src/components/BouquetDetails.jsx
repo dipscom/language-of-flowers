@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Anchor from './Anchor';
 import Button from './Button';
 import Flower from './Flower';
 import ResetScroller from '../animation/ResetScroller';
@@ -36,9 +35,8 @@ export default class BouquetDetails extends Component {
             <Button className="back-button" cta={this.props.prevCta} step={this.props.prevStep} /> :
             ''
           }
-          { this.props.step === 2 ?
-            <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} /> :
-            <Anchor className="center" cta={this.props.nextCta} step="forward" target="share" />
+          { this.props.step === 2 &&
+            <Button className="button" cta={this.props.nextCta} step={this.props.nextStep} />
           }
         </div>
 	    </div>

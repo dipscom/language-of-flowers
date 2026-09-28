@@ -9,7 +9,6 @@ import Description from "./components/Description";
 import Confirmation from "./components/Confirmation";
 import Success from "./components/Success";
 import MyBouquet from "./components/MyBouquet";
-import Share from "./components/Share";
 
 import "../styles/index.css";
 
@@ -23,7 +22,6 @@ render(
       <Route component={Success} path="success" />
       <Route component={MyBouquet} path="mybouquet" />
       <Route component={Form} path="viewbouquet" />
-      <Route component={Share} path="share" />
     </Route>
   </Router>,
   document.getElementById("app"),
