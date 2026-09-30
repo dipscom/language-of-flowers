@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import BouquetBuilder from "../bouquetbuilder/BouquetBuilder";
 import BouquetVisualiser from "../bouquetvisualiser/BouquetVisualiser";
 import PersonDetails from "../PersonDetails";
@@ -19,15 +20,27 @@ export default function BuildBouquet() {
     nextStep,
     prevStep,
     enableButton,
+    mailChimp,
+    reset,
   } = useAppState();
 
   const { resetScroll } = useScrollContainer();
+  const navigate = useNavigate();
   const [hoveredFlower, setHoveredFlower] = useState<string | null>(null);
 
   useEffect(() => {
     resetScroll();
     enableButton();
   }, [steps.current]);
+
+  function confirm() {
+    mailChimp(); // placeholder for the external send, implemented later
+    // Hand the sent bouquet to /success through the navigation state, then clear
+    // the app state so going back starts a fresh journey. Both happen in one
+    // event handler, so React batches them into a single render.
+    navigate("/success", { state: { bouquet } });
+    reset();
+  }
 
   return (
     <div className={styles["build-bouquet"]}>
@@ -56,6 +69,7 @@ export default function BuildBouquet() {
             prevCta="Change bouquet"
             nextCta="Confirm"
             prevStep={prevStep}
+            confirm={confirm}
             navigation={navigation}
           />
         </div>

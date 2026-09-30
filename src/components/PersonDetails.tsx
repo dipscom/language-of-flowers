@@ -1,6 +1,5 @@
 import type { ChangeEvent } from "react";
 import Button from "./Button";
-import Anchor from "./Anchor";
 import type { Navigation, Person, Sender } from "../types";
 import ParagraphDecoration from "./ParagraphDecoration";
 
@@ -10,6 +9,7 @@ interface PersonDetailsProps {
   prevCta: string;
   nextCta: string;
   prevStep: () => void;
+  confirm: () => void;
   updateField: (e: ChangeEvent<HTMLInputElement>) => void;
   navigation: Navigation;
 }
@@ -20,11 +20,12 @@ export default function PersonDetails({
   prevCta,
   nextCta,
   prevStep,
+  confirm,
   updateField,
   navigation,
 }: PersonDetailsProps) {
   const isValid = sender.name !== "" && recipient.name !== "" && recipient.valid;
-  const disabled = isValid && !navigation.disabled ? undefined : "disabled";
+  const disabled = !isValid || navigation.disabled;
   return (
     <div id="person-details" className="person-details">
       <form>
@@ -82,11 +83,11 @@ export default function PersonDetails({
           details.
         </p>
       </form>
-      <Anchor
-        className={disabled}
+      <Button
+        className="button"
         cta={nextCta}
-        step="forward"
-        target="confirmation"
+        disabled={disabled}
+        step={confirm}
       />
     </div>
   );
