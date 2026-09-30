@@ -11,7 +11,6 @@ import Introduction from "./introduction/Introduction";
 import Form from "./Form";
 import Confirmation from "./Confirmation";
 import Success from "./Success";
-import MyBouquet from "./MyBouquet";
 import { AppStateProvider } from "../state/AppStateContext";
 
 gsap.registerPlugin(useGSAP);
@@ -31,11 +30,10 @@ function App() {
       <Routes>
         <Route element={<ScrollContainer />}>
           <Route path="/" element={<Introduction />} />
-          <Route path="/buildbouquet" element={<Form />} />
-          <Route path="/viewbouquet" element={<Form />} />
+          <Route path="/build-bouquet" element={<Form />} />
+          <Route path="/view-bouquet" element={<Form />} />
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/success" element={<Success />} />
-          <Route path="/mybouquet" element={<MyBouquet />} />
           <Route path="*" element={<Introduction />} />
         </Route>
       </Routes>

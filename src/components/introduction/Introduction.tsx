@@ -29,7 +29,7 @@ export default function Introduction() {
       </p>
 
       <nav className="navigation">
-        <Anchor cta="Let's begin" step="forward" target="buildbouquet" />
+        <Anchor cta="Let's begin" step="forward" target="build-bouquet" />
       </nav>
     </div>
   );

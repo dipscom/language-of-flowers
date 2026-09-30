@@ -37,7 +37,7 @@ export default function Confirmation() {
         <Anchor
           cta="Change details"
           step="backward"
-          target="buildbouquet"
+          target="build-bouquet"
         />
       </nav>
     </div>
