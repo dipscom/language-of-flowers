@@ -25,10 +25,10 @@ export default function BouquetBuilder({
 }: BouquetBuilderProps) {
   return (
     <div id="bouquet-builder">
-      <header>
-        <h1>Create your bouquet</h1>
+      <div className="heading">
+        <p>Create your bouquet</p>
         <ParagraphDecoration />
-      </header>
+      </div>
       <strong className="sub-heading">Select {MAX_FLOWERS} flowers:</strong>
       <ul id="flower-list">
         {Object.keys(flowers).map((key) => {

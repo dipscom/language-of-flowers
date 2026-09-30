@@ -7,10 +7,10 @@ interface HeroImageProps {
 export default function HeroImage({ bouquet }: HeroImageProps) {
   return (
     <div id="hero-image">
-      <header>
-        <h1>Your Bouquet</h1>
+      <div className="heading">
+        <p>Your Bouquet</p>
         <ParagraphDecoration />
-      </header>
+      </div>
       <figure
         style={{
           backgroundImage:

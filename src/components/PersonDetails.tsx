@@ -29,10 +29,10 @@ export default function PersonDetails({
   return (
     <div id="person-details" className="person-details">
       <form>
-        <header>
-          <h1>Your details</h1>
+        <div className="heading">
+          <p>Your details</p>
           <ParagraphDecoration />
-        </header>
+        </div>
         <label htmlFor="sender-name">Your full name</label>
         <input
           type="text"

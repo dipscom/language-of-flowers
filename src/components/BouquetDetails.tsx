@@ -14,10 +14,10 @@ export default function BouquetDetails({
   return (
     <div id="bouquet-details">
       <div>
-        <header>
-          <h1>Your Bouquet</h1>
+        <div className="heading">
+          <p>Your Bouquet</p>
           <ParagraphDecoration />
-        </header>
+        </div>
         <ol className="bouquet-list">
           <li>
             <p className="message">
