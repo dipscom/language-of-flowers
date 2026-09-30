@@ -1,5 +1,4 @@
 import Button from "../Button";
-import ParagraphDecoration from "../ParagraphDecoration";
 import type { FlowersById, Navigation } from "../../types";
 
 const MAX_FLOWERS = 3;
@@ -25,10 +24,6 @@ export default function BouquetBuilder({
 }: BouquetBuilderProps) {
   return (
     <div id="bouquet-builder">
-      <div className="heading">
-        <p>Create your bouquet</p>
-        <ParagraphDecoration />
-      </div>
       <strong className="sub-heading">Select {MAX_FLOWERS} flowers:</strong>
       <ul id="flower-list">
         {Object.keys(flowers).map((key) => {

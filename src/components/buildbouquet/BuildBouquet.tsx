@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import BouquetBuilder from "../bouquetbuilder/BouquetBuilder";
 import BouquetVisualiser from "../bouquetvisualiser/BouquetVisualiser";
+import ParagraphDecoration from "../ParagraphDecoration";
 import PersonDetails from "../PersonDetails";
 import styles from "./BuildBouquet.module.css";
 import useScrollContainer from "../scrollcontainer/useScrollContainer";
@@ -48,8 +49,12 @@ export default function BuildBouquet() {
         <BouquetVisualiser bouquet={bouquet} hovered={hoveredFlower} />
       </div>
       <span className={styles.divider}></span>
-      {steps.current === 1 ? (
-        <div className="column">
+      <div className="column">
+        <header>
+          <h1>Create your bouquet</h1>
+          <ParagraphDecoration />
+        </header>
+        {steps.current === 1 ? (
           <BouquetBuilder
             bouquet={bouquet}
             flowers={flowers}
@@ -59,9 +64,7 @@ export default function BuildBouquet() {
             nextStep={nextStep}
             navigation={navigation}
           />
-        </div>
-      ) : (
-        <div className="column">
+        ) : (
           <PersonDetails
             recipient={recipient}
             sender={sender}
@@ -72,8 +75,8 @@ export default function BuildBouquet() {
             confirm={confirm}
             navigation={navigation}
           />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import type { ChangeEvent } from "react";
 import Button from "./Button";
 import type { Navigation, Person, Sender } from "../types";
-import ParagraphDecoration from "./ParagraphDecoration";
 
 interface PersonDetailsProps {
   recipient: Person;
@@ -29,10 +28,6 @@ export default function PersonDetails({
   return (
     <div id="person-details" className="person-details">
       <form>
-        <div className="heading">
-          <p>Your details</p>
-          <ParagraphDecoration />
-        </div>
         <label htmlFor="sender-name">Your full name</label>
         <input
           type="text"

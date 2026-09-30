@@ -4,15 +4,14 @@ import ParagraphDecoration from "../ParagraphDecoration";
 export default function Introduction() {
   return (
     <div className="main-column">
-      <div className="heading">
+      <header>
+        <h1>
+          Some things are unutterable and secret.
+          <br />
+          Other thoughts are so hard to say...
+        </h1>
         <ParagraphDecoration />
-
-        <p>Some things are unutterable and secret.</p>
-
-        <p>Other thoughts are so hard to say...</p>
-
-        <ParagraphDecoration reflected />
-      </div>
+      </header>
 
       <div className="description">
         <p>

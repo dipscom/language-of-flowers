@@ -25,10 +25,10 @@ export default function Success() {
       <span className={styles.divider}></span>
       <div className="column">
         <div id="thank-you">
-          <div className="heading">
-            <p>Thank You!</p>
+          <header>
+            <h1>Thank You!</h1>
             <ParagraphDecoration />
-          </div>
+          </header>
           <p>
             <strong>Your encoded bouquet has been sent.</strong>
           </p>
