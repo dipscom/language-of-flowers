@@ -8,7 +8,8 @@ import Background from "./background/Background";
 import Overlay from "./overlay/Overlay";
 import ScrollContainer from "./scrollcontainer/ScrollContainer";
 import Introduction from "./introduction/Introduction";
-import Form from "./Form";
+import BuildBouquet from "./buildbouquet/BuildBouquet";
+import ViewBouquet from "./viewbouquet/ViewBouquet";
 import Confirmation from "./Confirmation";
 import Success from "./Success";
 import { AppStateProvider } from "../state/AppStateContext";
@@ -30,8 +31,8 @@ function App() {
       <Routes>
         <Route element={<ScrollContainer />}>
           <Route path="/" element={<Introduction />} />
-          <Route path="/build-bouquet" element={<Form />} />
-          <Route path="/view-bouquet" element={<Form />} />
+          <Route path="/build-bouquet" element={<BuildBouquet />} />
+          <Route path="/view-bouquet" element={<ViewBouquet />} />
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/success" element={<Success />} />
           <Route path="*" element={<Introduction />} />

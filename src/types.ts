@@ -19,16 +19,19 @@ export interface Navigation {
   disabled: boolean;
 }
 
+export interface Sender {
+  name: string;
+}
+
 export interface Steps {
   current: number;
-  total: number;
 }
 
 export interface AppState {
   bouquet: string[];
   flowers: FlowersById;
   recipient: Person;
-  sender: Person;
+  sender: Sender;
   steps: Steps;
   navigation: Navigation;
 }
@@ -45,7 +48,6 @@ export type AppAction =
     }
   | { type: "NEXT_STEP" }
   | { type: "PREV_STEP" }
-  | { type: "UPDATE_STEP"; step: number }
   | { type: "ENABLE_BUTTON" }
   | { type: "RESET"; initialState: AppState };
 
@@ -55,7 +57,6 @@ export interface AppContextValue extends AppState {
   updateField: (e: ChangeEvent<HTMLInputElement>) => void;
   nextStep: () => void;
   prevStep: () => void;
-  updateStep: (step: number) => void;
   enableButton: () => void;
   reset: () => void;
 }

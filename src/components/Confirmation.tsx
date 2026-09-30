@@ -24,7 +24,7 @@ export default function Confirmation() {
         <strong>
           ...to your dearest <span>{recipient.name}</span> at the email
           address of <span>{recipient.email}</span> from{" "}
-          <span>{sender.name}</span> <span>({sender.email})</span>.
+          <span>{sender.name}</span>.
         </strong>
       </p>
       <nav className="navigation">

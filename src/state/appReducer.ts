@@ -5,8 +5,8 @@ export function createInitialState(flowers: FlowersById): AppState {
     bouquet: [],
     flowers,
     recipient: { name: "", email: "", valid: false },
-    sender: { name: "", email: "", valid: false },
-    steps: { current: 1, total: 4 },
+    sender: { name: "" },
+    steps: { current: 1 },
     navigation: { disabled: false },
   };
 }
@@ -32,11 +32,20 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       };
     }
     case "UPDATE_FIELD": {
-      const person = { ...state[action.field], [action.name]: action.value };
-      if (action.isEmail) {
-        person.valid = action.valid ?? false;
+      if (action.field === "sender") {
+        return {
+          ...state,
+          sender: { ...state.sender, [action.name]: action.value },
+        };
       }
-      return { ...state, [action.field]: person };
+      const recipient = {
+        ...state.recipient,
+        [action.name]: action.value,
+      };
+      if (action.isEmail) {
+        recipient.valid = action.valid ?? false;
+      }
+      return { ...state, recipient };
     }
     case "NEXT_STEP":
       return {
@@ -48,12 +57,6 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return {
         ...state,
         steps: { ...state.steps, current: state.steps.current - 1 },
-        navigation: { disabled: true },
-      };
-    case "UPDATE_STEP":
-      return {
-        ...state,
-        steps: { ...state.steps, current: action.step },
         navigation: { disabled: true },
       };
     case "ENABLE_BUTTON":

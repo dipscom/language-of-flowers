@@ -44,10 +44,6 @@ export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
     dispatch({ type: "PREV_STEP" });
   }, []);
 
-  const updateStep = useCallback((step: number) => {
-    dispatch({ type: "UPDATE_STEP", step });
-  }, []);
-
   const enableButton = useCallback(() => {
     dispatch({ type: "ENABLE_BUTTON" });
   }, []);
@@ -63,7 +59,6 @@ export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
     updateField,
     nextStep,
     prevStep,
-    updateStep,
     enableButton,
     reset,
   };

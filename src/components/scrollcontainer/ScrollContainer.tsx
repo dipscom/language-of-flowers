@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router";
 import styles from "./ScrollContainer.module.css";
 import type { ScrollContainerContext } from "./useScrollContainer";
@@ -6,7 +6,6 @@ import type { ScrollContainerContext } from "./useScrollContainer";
 export default function ScrollContainer() {
   const { pathname } = useLocation();
   const scrollerRef = useRef<HTMLDivElement>(null);
-  const [footer, setFooter] = useState<HTMLDivElement | null>(null);
 
   const resetScroll = useCallback(() => {
     if (scrollerRef.current) scrollerRef.current.scrollTop = 0;
@@ -16,7 +15,7 @@ export default function ScrollContainer() {
     resetScroll();
   }, [pathname, resetScroll]);
 
-  const context: ScrollContainerContext = { resetScroll, footer };
+  const context: ScrollContainerContext = { resetScroll };
 
   return (
     <div className={styles.scrollContainer}>
@@ -29,7 +28,6 @@ export default function ScrollContainer() {
         />
         <Outlet context={context} />
       </div>
-      <div ref={setFooter}></div>
     </div>
   );
 }

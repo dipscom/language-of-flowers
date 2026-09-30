@@ -3,45 +3,14 @@ import type { FlowerData } from "../types";
 import ParagraphDecoration from "./ParagraphDecoration";
 
 interface FlowerProps {
-  bouquetLength?: number;
   details: FlowerData;
   index: string;
-  selectFlower?: (key: string) => void;
-  updateActiveFlower?: (key: string) => void;
 }
 
-function Flower({
-  bouquetLength,
-  details,
-  index,
-  selectFlower,
-  updateActiveFlower,
-}: FlowerProps) {
-  let classes = "";
-  if (details.selected) {
-    classes += "checked";
-  } else if (bouquetLength !== undefined && bouquetLength >= 3 && !details.selected) {
-    classes += "disabled";
-  }
+function Flower({ details, index }: FlowerProps) {
   return (
     <li id={index} className="flower">
-      <div
-        className={classes}
-        onClick={
-          selectFlower
-            ? () => {
-                selectFlower(index);
-              }
-            : undefined
-        }
-        onMouseOver={
-          updateActiveFlower
-            ? () => {
-                updateActiveFlower(index);
-              }
-            : undefined
-        }
-      >
+      <div>
         <figure
           style={{ backgroundImage: "url(/images/flowers/" + index + ".png)" }}
         >

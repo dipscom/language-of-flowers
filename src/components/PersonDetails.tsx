@@ -1,94 +1,71 @@
-import { useEffect } from "react";
 import type { ChangeEvent } from "react";
 import Button from "./Button";
 import Anchor from "./Anchor";
-import useScrollContainer from "./scrollcontainer/useScrollContainer";
-import type { Navigation, Person } from "../types";
+import type { Navigation, Person, Sender } from "../types";
 import ParagraphDecoration from "./ParagraphDecoration";
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 interface PersonDetailsProps {
-  index: "recipient" | "sender";
-  recipient?: Person;
-  sender?: Person;
-  heading: string;
+  recipient: Person;
+  sender: Sender;
   prevCta: string;
   nextCta: string;
   prevStep: () => void;
-  nextStep: string | (() => void);
   updateField: (e: ChangeEvent<HTMLInputElement>) => void;
-  enableButton: () => void;
   navigation: Navigation;
 }
 
-export default function PersonDetails(props: PersonDetailsProps) {
-  const {
-    index,
-    heading,
-    prevCta,
-    nextCta,
-    prevStep,
-    nextStep,
-    updateField,
-    enableButton,
-    navigation,
-  } = props;
-  const person = index === "recipient" ? props.recipient! : props.sender!;
-
-  const { resetScroll } = useScrollContainer();
-
-  useEffect(() => {
-    if (window.innerHeight > window.innerWidth) {
-      document.getElementById("hero-image")?.classList.add("hide-portrait");
-    }
-    if (enableButton) {
-      enableButton();
-    }
-    resetScroll();
-  }, []);
-
-  const isValid = person.name !== "" && person.valid;
-  let disabled: boolean | "disabled" | undefined;
-  if (typeof nextStep === "string") {
-    disabled = isValid && !navigation.disabled ? undefined : "disabled";
-  } else {
-    disabled = isValid && !navigation.disabled ? undefined : true;
-  }
+export default function PersonDetails({
+  recipient,
+  sender,
+  prevCta,
+  nextCta,
+  prevStep,
+  updateField,
+  navigation,
+}: PersonDetailsProps) {
+  const isValid = sender.name !== "" && recipient.name !== "" && recipient.valid;
+  const disabled = isValid && !navigation.disabled ? undefined : "disabled";
   return (
-    <div id={index} className="person-details">
+    <div id="person-details" className="person-details">
       <form>
         <header>
-          <h1>{heading}</h1>
+          <h1>Your details</h1>
           <ParagraphDecoration />
         </header>
-        <label htmlFor="name">
-          {capitalizeFirstLetter(index)}&rsquo;s full name
-        </label>
+        <label htmlFor="sender-name">Your full name</label>
         <input
           type="text"
-          id="name"
-          className={index}
+          id="sender-name"
+          className="sender"
           name="name"
           maxLength={20}
-          value={person.name}
+          value={sender.name}
           placeholder="Full Name"
           required
           onChange={(e) => updateField(e)}
           autoComplete="off"
           tabIndex={1}
         />
-        <label htmlFor="email">
-          {capitalizeFirstLetter(index)}&rsquo;s email
-        </label>
+        <label htmlFor="recipient-name">Recipient&rsquo;s full name</label>
+        <input
+          type="text"
+          id="recipient-name"
+          className="recipient"
+          name="name"
+          maxLength={20}
+          value={recipient.name}
+          placeholder="Full Name"
+          required
+          onChange={(e) => updateField(e)}
+          autoComplete="off"
+        />
+        <label htmlFor="recipient-email">Recipient&rsquo;s email</label>
         <input
           type="email"
-          id="email"
-          className={index}
+          id="recipient-email"
+          className="recipient"
           name="email"
-          value={person.email}
+          value={recipient.email}
           placeholder="Email"
           required
           onChange={(e) => updateField(e)}
@@ -99,31 +76,18 @@ export default function PersonDetails(props: PersonDetailsProps) {
           step={prevStep}
           disabled={navigation.disabled}
         />
-        {index === "recipient" ? (
-          <p className="terms">
-            Contact details for the recipient should only be provided with that
-            person&rsquo;s consent, and that person may be told who provided their
-            details.
-          </p>
-        ) : (
-          ""
-        )}
+        <p className="terms">
+          Contact details for the recipient should only be provided with that
+          person&rsquo;s consent, and that person may be told who provided their
+          details.
+        </p>
       </form>
-      {typeof nextStep === "string" ? (
-        <Anchor
-          className={typeof disabled === "string" ? disabled : undefined}
-          cta={nextCta}
-          step="forward"
-          target="confirmation"
-        />
-      ) : (
-        <Button
-          className="button"
-          cta={nextCta}
-          disabled={typeof disabled === "boolean" ? disabled : false}
-          step={nextStep}
-        />
-      )}
+      <Anchor
+        className={disabled}
+        cta={nextCta}
+        step="forward"
+        target="confirmation"
+      />
     </div>
   );
 }
