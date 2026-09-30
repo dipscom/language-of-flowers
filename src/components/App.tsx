@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Routes, Route, useLocation, type Location } from "react-router";
+import { Routes, Route } from "react-router";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import initialLoad from "../animation/initialLoad";
@@ -17,11 +17,7 @@ import { AppStateProvider } from "../state/AppStateContext";
 
 gsap.registerPlugin(useGSAP);
 
-interface AppProps {
-  location: Location;
-}
-
-function App({ location }: AppProps) {
+function App() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Initial-load animation only: this runs once when `App` first mounts
@@ -32,7 +28,7 @@ function App({ location }: AppProps) {
 
   return (
     <main id="container" ref={containerRef}>
-      <Background location={location} />
+      <Background />
       <Routes>
         <Route element={<ScrollContainer />}>
           <Route path="/" element={<Introduction />} />
@@ -51,11 +47,9 @@ function App({ location }: AppProps) {
 }
 
 export default function AppRoute() {
-  const location = useLocation();
-
   return (
     <AppStateProvider flowers={flowers}>
-      <App location={location} />
+      <App />
     </AppStateProvider>
   );
 }

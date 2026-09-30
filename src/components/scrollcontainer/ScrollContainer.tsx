@@ -16,14 +16,17 @@ export default function ScrollContainer() {
     resetScroll();
   }, [pathname, resetScroll]);
 
-  // The logo is hidden on the introduction, so it needs less room above it.
-  const scrollerClasses =
-    styles.scroller + (pathname === "/" ? " " + styles.noLogo : "");
   const context: ScrollContainerContext = { resetScroll, footer };
 
   return (
     <div className={styles.scrollContainer}>
-      <div className={scrollerClasses} ref={scrollerRef}>
+      <div className={styles.scroller} ref={scrollerRef}>
+        <img
+          className={styles.logo}
+          src="/images/lof-logo.svg"
+          alt="The Language of Flowers"
+          title="The Language of Flowers"
+        />
         <Outlet context={context} />
       </div>
       <div ref={setFooter}></div>

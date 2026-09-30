@@ -1,22 +1,6 @@
-import type { Location } from "react-router";
 import styles from "./Background.module.css";
 
-interface BackgroundProps {
-  location: Location;
-}
-
-export default function Background({ location }: BackgroundProps) {
-  const pathname = location && location.pathname;
-  const hideLogo = pathname === "/";
-  const compactLogo =
-    pathname === "/buildbouquet" || pathname === "/viewbouquet";
-  const logoClasses = [
-    styles.logo,
-    hideLogo && styles.hidden,
-    compactLogo && styles.compact,
-  ]
-    .filter(Boolean)
-    .join(" ");
+export default function Background() {
   return (
     <div className={styles.background}>
       <div className={styles.forest}></div>
@@ -95,12 +79,6 @@ export default function Background({ location }: BackgroundProps) {
           role="presentation"
           className={`${styles.corner} ${styles.bottomRight}`}
           src="/images/background/detail-corner.svg"
-        />
-        <img
-          className={logoClasses}
-          src="./images/lof-logo.svg"
-          alt="The Language of Flowers"
-          title="The Language of Flowers"
         />
       </div>
     </div>
