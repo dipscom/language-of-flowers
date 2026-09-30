@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Button from "./Button";
 import Flower from "./Flower";
-import ResetScroller from "../animation/ResetScroller";
+import useScrollContainer from "./scrollcontainer/useScrollContainer";
 import type { FlowersById, Navigation } from "../types";
 import ParagraphDecoration from "./ParagraphDecoration";
 
@@ -28,8 +28,10 @@ export default function BouquetDetails({
   enableButton,
   navigation,
 }: BouquetDetailsProps) {
+  const { resetScroll } = useScrollContainer();
+
   useEffect(() => {
-    ResetScroller("form");
+    resetScroll();
     if (enableButton) {
       enableButton();
     }

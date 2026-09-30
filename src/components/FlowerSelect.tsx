@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Flower from "./Flower";
-import ResetScroller from "../animation/ResetScroller";
+import useScrollContainer from "./scrollcontainer/useScrollContainer";
 import type { FlowersById } from "../types";
 import ParagraphDecoration from "./ParagraphDecoration";
 
@@ -19,8 +19,10 @@ export default function FlowerSelect({
   updateActiveFlower,
   enableButton,
 }: FlowerSelectProps) {
+  const { resetScroll } = useScrollContainer();
+
   useEffect(() => {
-    ResetScroller("form");
+    resetScroll();
     if (enableButton) {
       enableButton();
     }

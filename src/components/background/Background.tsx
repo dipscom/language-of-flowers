@@ -1,4 +1,5 @@
 import type { Location } from "react-router";
+import styles from "./Background.module.css";
 
 interface BackgroundProps {
   location: Location;
@@ -9,30 +10,30 @@ export default function Background({ location }: BackgroundProps) {
   const hideLogo = pathname === "/";
   const compactLogo =
     pathname === "/buildbouquet" || pathname === "/viewbouquet";
-  const logoClasses =
-    "logo" + (hideLogo ? " hidden" : "") + (compactLogo ? " compact" : "");
+  const logoClasses = [
+    styles.logo,
+    hideLogo && styles.hidden,
+    compactLogo && styles.compact,
+  ]
+    .filter(Boolean)
+    .join(" ");
   return (
-    <div id="background">
-      <div id="forest">
-        <figure></figure>
-      </div>
-      <div id="paper">
+    <div className={styles.background}>
+      <div className={styles.forest}></div>
+      <div className={styles.paper}>
         <img
           role="presentation"
-          id="cloud1"
-          className="cloud"
+          className={`${styles.cloud} ${styles.cloud1}`}
           src="/images/background/cloud-1.png"
         />
         <img
           role="presentation"
-          id="cloud2"
-          className="cloud"
+          className={`${styles.cloud} ${styles.cloud2}`}
           src="/images/background/cloud-2.png"
         />
-        <div id="line-top-wrapper">
+        <div className={styles.lineTopWrapper}>
           <svg
-            id="line-top"
-            className="line-decoration"
+            className={styles.lineDecoration}
             viewBox="0 0 1400 50"
             preserveAspectRatio="xMidYMin"
           >
@@ -48,8 +49,8 @@ export default function Background({ location }: BackgroundProps) {
             />
           </svg>
         </div>
-        <div id="line-left-wrapper">
-          <svg id="line-left" className="line-decoration" viewBox="0 0 2 860">
+        <div className={styles.lineLeftWrapper}>
+          <svg className={styles.lineDecoration} viewBox="0 0 2 860">
             <path
               className="straight-segment"
               d="M0.5 0 V860"
@@ -57,8 +58,8 @@ export default function Background({ location }: BackgroundProps) {
             />
           </svg>
         </div>
-        <div id="line-right-wrapper">
-          <svg id="line-right" className="line-decoration" viewBox="0 0 2 860">
+        <div className={styles.lineRightWrapper}>
+          <svg className={styles.lineDecoration} viewBox="0 0 2 860">
             <path
               className="straight-segment"
               d="M0.5 0 V860"
@@ -66,12 +67,8 @@ export default function Background({ location }: BackgroundProps) {
             />
           </svg>
         </div>
-        <div id="line-bottom-wrapper">
-          <svg
-            id="line-bottom"
-            className="line-decoration"
-            viewBox="0 0 1400 2"
-          >
+        <div className={styles.lineBottomWrapper}>
+          <svg className={styles.lineDecoration} viewBox="0 0 1400 2">
             <path
               className="straight-segment"
               d="M0 0.5 H1400"
@@ -81,30 +78,25 @@ export default function Background({ location }: BackgroundProps) {
         </div>
         <img
           role="presentation"
-          id="top-left"
-          className="corner"
+          className={`${styles.corner} ${styles.topLeft}`}
           src="/images/background/detail-corner.svg"
         />
         <img
           role="presentation"
-          id="top-right"
-          className="corner"
+          className={`${styles.corner} ${styles.topRight}`}
           src="/images/background/detail-corner.svg"
         />
         <img
           role="presentation"
-          id="bottom-left"
-          className="corner"
+          className={`${styles.corner} ${styles.bottomLeft}`}
           src="/images/background/detail-corner.svg"
         />
         <img
           role="presentation"
-          id="bottom-right"
-          className="corner"
+          className={`${styles.corner} ${styles.bottomRight}`}
           src="/images/background/detail-corner.svg"
         />
         <img
-          id="lof-logo"
           className={logoClasses}
           src="./images/lof-logo.svg"
           alt="The Language of Flowers"

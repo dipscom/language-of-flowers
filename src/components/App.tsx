@@ -4,8 +4,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import initialLoad from "../animation/initialLoad";
 import flowers from "../data/flowers";
-import Background from "./Background";
-import Overlay from "./Overlay";
+import Background from "./background/Background";
+import Overlay from "./overlay/Overlay";
+import ScrollContainer from "./scrollcontainer/ScrollContainer";
 import Introduction from "./introduction/Introduction";
 import Description from "./Description";
 import Form from "./Form";
@@ -30,20 +31,22 @@ function App({ location }: AppProps) {
   useGSAP(initialLoad, { scope: containerRef, dependencies: [] });
 
   return (
-    <div id="container" ref={containerRef}>
+    <main id="container" ref={containerRef}>
       <Background location={location} />
       <Routes>
-        <Route path="/" element={<Introduction />} />
-        <Route path="/description" element={<Description />} />
-        <Route path="/buildbouquet" element={<Form />} />
-        <Route path="/viewbouquet" element={<Form />} />
-        <Route path="/confirmation" element={<Confirmation />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/mybouquet" element={<MyBouquet />} />
-        <Route path="*" element={<Introduction />} />
+        <Route element={<ScrollContainer />}>
+          <Route path="/" element={<Introduction />} />
+          <Route path="/description" element={<Description />} />
+          <Route path="/buildbouquet" element={<Form />} />
+          <Route path="/viewbouquet" element={<Form />} />
+          <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/mybouquet" element={<MyBouquet />} />
+          <Route path="*" element={<Introduction />} />
+        </Route>
       </Routes>
       <Overlay />
-    </div>
+    </main>
   );
 }
 

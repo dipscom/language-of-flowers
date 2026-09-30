@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import {
   useCallback,
   useEffect,
@@ -10,6 +11,7 @@ import BouquetDetails from "./BouquetDetails";
 import FlowerSelect from "./FlowerSelect";
 import FlowerDetails from "./FlowerDetails";
 import PersonDetails from "./PersonDetails";
+import useScrollContainer from "./scrollcontainer/useScrollContainer";
 import { useAppState } from "../state/useAppState";
 
 interface FormStep {
@@ -34,6 +36,7 @@ export default function Form() {
     enableButton,
   } = useAppState();
 
+  const { footer } = useScrollContainer();
   const [activeFlower, setActiveFlower] = useState(Object.keys(flowers)[0]);
 
   useEffect(() => {
@@ -194,21 +197,23 @@ export default function Form() {
     );
   }
   return (
-    <div id="form">
-      <div id="scroller">
-        <div>
-          <div className="column">
-            <LeftComponent key={left.key} {...left.props} />
-          </div>
-          <span id="divider"></span>
-          <div className="column">
-            <RightComponent key={right.key} {...right.props} />
-          </div>
+    <>
+      <div>
+        <div className="column">
+          <LeftComponent key={left.key} {...left.props} />
+        </div>
+        <span id="divider"></span>
+        <div className="column">
+          <RightComponent key={right.key} {...right.props} />
         </div>
       </div>
-      <nav id="form-navigation">
-        <div>{diamonds}</div>
-      </nav>
-    </div>
+      {footer &&
+        createPortal(
+          <nav id="form-navigation">
+            <div>{diamonds}</div>
+          </nav>,
+          footer,
+        )}
+    </>
   );
 }

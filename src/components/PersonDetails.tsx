@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import type { ChangeEvent } from "react";
 import Button from "./Button";
 import Anchor from "./Anchor";
-import ResetScroller from "../animation/ResetScroller";
+import useScrollContainer from "./scrollcontainer/useScrollContainer";
 import type { Navigation, Person } from "../types";
 import ParagraphDecoration from "./ParagraphDecoration";
 
@@ -38,6 +38,8 @@ export default function PersonDetails(props: PersonDetailsProps) {
   } = props;
   const person = index === "recipient" ? props.recipient! : props.sender!;
 
+  const { resetScroll } = useScrollContainer();
+
   useEffect(() => {
     if (window.innerHeight > window.innerWidth) {
       document.getElementById("hero-image")?.classList.add("hide-portrait");
@@ -45,7 +47,7 @@ export default function PersonDetails(props: PersonDetailsProps) {
     if (enableButton) {
       enableButton();
     }
-    ResetScroller("form");
+    resetScroll();
   }, []);
 
   const isValid = person.name !== "" && person.valid;
