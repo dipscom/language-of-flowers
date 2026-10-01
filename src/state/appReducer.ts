@@ -4,7 +4,7 @@ export function createInitialState(flowers: FlowersById): AppState {
   return {
     bouquet: [],
     flowers,
-    recipient: { name: "", email: "", valid: false },
+    recipient: { name: "", email: "" },
     sender: { name: "" },
     steps: { current: 1 },
     navigation: { disabled: false },
@@ -13,39 +13,21 @@ export function createInitialState(flowers: FlowersById): AppState {
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
-    case "SELECT_FLOWER": {
-      const index = state.bouquet.indexOf(action.key);
+    case "SET_BOUQUET": {
+      const bouquet = action.keys.slice(0, 3);
       const flowers = { ...state.flowers };
-      if (index === -1) {
-        if (state.bouquet.length >= 3) return state;
-        flowers[action.key] = { ...flowers[action.key], selected: true };
-        return { ...state, bouquet: [...state.bouquet, action.key], flowers };
+      for (const key of Object.keys(flowers)) {
+        flowers[key] = { ...flowers[key], selected: bouquet.includes(key) };
       }
-      flowers[action.key] = { ...flowers[action.key], selected: false };
+      return { ...state, bouquet, flowers };
+    }
+    case "SAVE_PERSON_DETAILS": {
+      const { senderName, recipientName, recipientEmail } = action.details;
       return {
         ...state,
-        bouquet: [
-          ...state.bouquet.slice(0, index),
-          ...state.bouquet.slice(index + 1),
-        ],
-        flowers,
+        sender: { name: senderName },
+        recipient: { name: recipientName, email: recipientEmail },
       };
-    }
-    case "UPDATE_FIELD": {
-      if (action.field === "sender") {
-        return {
-          ...state,
-          sender: { ...state.sender, [action.name]: action.value },
-        };
-      }
-      const recipient = {
-        ...state.recipient,
-        [action.name]: action.value,
-      };
-      if (action.isEmail) {
-        recipient.valid = action.valid ?? false;
-      }
-      return { ...state, recipient };
     }
     case "NEXT_STEP":
       return {

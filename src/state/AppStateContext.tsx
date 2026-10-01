@@ -1,12 +1,11 @@
-import {
-  useCallback,
-  useReducer,
-  type ChangeEvent,
-  type ReactNode,
-} from "react";
+import { useCallback, useReducer, type ReactNode } from "react";
 import { appReducer, createInitialState } from "./appReducer";
 import AppStateContext from "./appStateContext";
-import type { AppContextValue, FlowersById } from "../types";
+import type {
+  AppContextValue,
+  FlowersById,
+  PersonDetailsValues,
+} from "../types";
 
 interface AppStateProviderProps {
   flowers: FlowersById;
@@ -20,20 +19,12 @@ export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
 
   const mailChimp = useCallback(() => {}, []);
 
-  const selectFlower = useCallback((key: string) => {
-    dispatch({ type: "SELECT_FLOWER", key });
+  const selectFlowers = useCallback((keys: string[]) => {
+    dispatch({ type: "SET_BOUQUET", keys });
   }, []);
 
-  const updateField = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const isEmail = e.target.type === "email";
-    dispatch({
-      type: "UPDATE_FIELD",
-      field: e.target.className as "recipient" | "sender",
-      name: e.target.name,
-      value: e.target.value,
-      isEmail,
-      valid: isEmail ? e.target.checkValidity() : undefined,
-    });
+  const savePersonDetails = useCallback((details: PersonDetailsValues) => {
+    dispatch({ type: "SAVE_PERSON_DETAILS", details });
   }, []);
 
   const nextStep = useCallback(() => {
@@ -55,8 +46,8 @@ export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
   const value: AppContextValue = {
     ...state,
     mailChimp,
-    selectFlower,
-    updateField,
+    selectFlowers,
+    savePersonDetails,
     nextStep,
     prevStep,
     enableButton,

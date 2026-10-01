@@ -1,4 +1,3 @@
-import Button from "../Button";
 import type { FlowersById, Navigation } from "../../types";
 
 const MAX_FLOWERS = 3;
@@ -6,7 +5,7 @@ const MAX_FLOWERS = 3;
 interface BouquetBuilderProps {
   bouquet: string[];
   flowers: FlowersById;
-  selectFlower: (key: string) => void;
+  selectFlowers: (keys: string[]) => void;
   onHover: (key: string | null) => void;
   nextCta: string;
   nextStep: () => void;
@@ -16,14 +15,22 @@ interface BouquetBuilderProps {
 export default function BouquetBuilder({
   bouquet,
   flowers,
-  selectFlower,
+  selectFlowers,
   onHover,
   nextCta,
   nextStep,
   navigation,
 }: BouquetBuilderProps) {
   return (
-    <div id="bouquet-builder">
+    <form
+      id="bouquet-builder"
+      action={nextStep}
+      onChange={(e) =>
+        selectFlowers(
+          new FormData(e.currentTarget).getAll("flowers") as string[],
+        )
+      }
+    >
       <strong className="sub-heading">Select {MAX_FLOWERS} flowers:</strong>
       <ul id="flower-list">
         {Object.keys(flowers).map((key) => {
@@ -39,9 +46,10 @@ export default function BouquetBuilder({
               <label onMouseEnter={preview} onMouseLeave={stopPreview}>
                 <input
                   type="checkbox"
-                  checked={checked}
+                  name="flowers"
+                  value={key}
+                  defaultChecked={checked}
                   disabled={disabled}
-                  onChange={() => selectFlower(key)}
                   onFocus={preview}
                   onBlur={stopPreview}
                 />
@@ -51,12 +59,12 @@ export default function BouquetBuilder({
           );
         })}
       </ul>
-      <Button
+      <button
         className="button"
-        cta={nextCta}
         disabled={bouquet.length < MAX_FLOWERS || navigation.disabled}
-        step={nextStep}
-      />
-    </div>
+      >
+        {nextCta}
+      </button>
+    </form>
   );
 }

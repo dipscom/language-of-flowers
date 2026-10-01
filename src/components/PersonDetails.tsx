@@ -1,6 +1,4 @@
-import type { ChangeEvent } from "react";
-import Button from "./Button";
-import type { Navigation, Person, Sender } from "../types";
+import type { PersonDetailsValues, Person, Sender } from "../types";
 
 interface PersonDetailsProps {
   recipient: Person;
@@ -9,8 +7,15 @@ interface PersonDetailsProps {
   nextCta: string;
   prevStep: () => void;
   confirm: () => void;
-  updateField: (e: ChangeEvent<HTMLInputElement>) => void;
-  navigation: Navigation;
+  savePersonDetails: (details: PersonDetailsValues) => void;
+}
+
+function readDetails(data: FormData): PersonDetailsValues {
+  return {
+    senderName: String(data.get("senderName") ?? ""),
+    recipientName: String(data.get("recipientName") ?? ""),
+    recipientEmail: String(data.get("recipientEmail") ?? ""),
+  };
 }
 
 export default function PersonDetails({
@@ -20,70 +25,62 @@ export default function PersonDetails({
   nextCta,
   prevStep,
   confirm,
-  updateField,
-  navigation,
+  savePersonDetails,
 }: PersonDetailsProps) {
-  const isValid = sender.name !== "" && recipient.name !== "" && recipient.valid;
-  const disabled = !isValid || navigation.disabled;
   return (
     <div id="person-details" className="person-details">
-      <form>
-        <label htmlFor="sender-name">Your full name</label>
+      <form
+        action={(data) => {
+          savePersonDetails(readDetails(data));
+          confirm();
+        }}
+      >
+        <label htmlFor="sender-name">Your name</label>
         <input
           type="text"
           id="sender-name"
-          className="sender"
-          name="name"
+          name="senderName"
           maxLength={20}
-          value={sender.name}
-          placeholder="Full Name"
+          defaultValue={sender.name}
+          placeholder="Yours Truly"
           required
-          onChange={(e) => updateField(e)}
-          autoComplete="off"
-          tabIndex={1}
         />
-        <label htmlFor="recipient-name">Recipient&rsquo;s full name</label>
+        <label htmlFor="recipient-name">Their name</label>
         <input
           type="text"
           id="recipient-name"
-          className="recipient"
-          name="name"
+          name="recipientName"
           maxLength={20}
-          value={recipient.name}
-          placeholder="Full Name"
+          defaultValue={recipient.name}
+          placeholder="Darling Sweetheart"
           required
-          onChange={(e) => updateField(e)}
-          autoComplete="off"
         />
-        <label htmlFor="recipient-email">Recipient&rsquo;s email</label>
+        <label htmlFor="recipient-email">Their email</label>
         <input
           type="email"
           id="recipient-email"
-          className="recipient"
-          name="email"
-          value={recipient.email}
-          placeholder="Email"
+          name="recipientEmail"
+          defaultValue={recipient.email}
+          placeholder="my.darling@example.com"
           required
-          onChange={(e) => updateField(e)}
         />
-        <Button
+        <button
+          type="button"
           className="back-button"
-          cta={prevCta}
-          step={prevStep}
-          disabled={navigation.disabled}
-        />
+          onClick={(e) => {
+            savePersonDetails(readDetails(new FormData(e.currentTarget.form!)));
+            prevStep();
+          }}
+        >
+          {prevCta}
+        </button>
         <p className="terms">
           Contact details for the recipient should only be provided with that
           person&rsquo;s consent, and that person may be told who provided their
           details.
         </p>
+        <button className="button">{nextCta}</button>
       </form>
-      <Button
-        className="button"
-        cta={nextCta}
-        disabled={disabled}
-        step={confirm}
-      />
     </div>
   );
 }

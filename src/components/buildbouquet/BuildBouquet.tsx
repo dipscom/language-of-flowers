@@ -16,8 +16,8 @@ export default function BuildBouquet() {
     sender,
     steps,
     navigation,
-    selectFlower,
-    updateField,
+    selectFlowers,
+    savePersonDetails,
     nextStep,
     prevStep,
     enableButton,
@@ -58,7 +58,7 @@ export default function BuildBouquet() {
           <BouquetBuilder
             bouquet={bouquet}
             flowers={flowers}
-            selectFlower={selectFlower}
+            selectFlowers={selectFlowers}
             onHover={setHoveredFlower}
             nextCta="Delivery details"
             nextStep={nextStep}
@@ -68,12 +68,11 @@ export default function BuildBouquet() {
           <PersonDetails
             recipient={recipient}
             sender={sender}
-            updateField={updateField}
+            savePersonDetails={savePersonDetails}
             prevCta="Change bouquet"
             nextCta="Confirm"
             prevStep={prevStep}
             confirm={confirm}
-            navigation={navigation}
           />
         )}
       </div>
