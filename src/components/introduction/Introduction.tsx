@@ -1,30 +1,31 @@
 import Anchor from "../Anchor";
 import ParagraphDecoration from "../ParagraphDecoration";
+import styles from "./Introduction.module.css";
 
 export default function Introduction() {
   return (
-    <div className="main-column">
+    <div className={styles.singleColumn}>
       <header>
-        <h1>
-          Some things are unutterable and secret.
-          <br />
-          Other thoughts are so hard to say...
-        </h1>
         <ParagraphDecoration />
+        <h1>
+          <span>Some things are unutterable and secret.</span>
+          <span>Other thoughts are so hard to say...</span>
+        </h1>
+        <ParagraphDecoration reflected />
       </header>
 
       <div className="description">
-        <p>
-          Thank Heavens for floriography. A mysterious language of love.
-        </p>
+        <p>Thank Heavens for floriography. A mysterious language of love.</p>
 
         <p>
           Cryptic communications, hidden revelations and coded declarations!
         </p>
       </div>
 
-      <p className="cta">
-        We would like to invite you to send your very own coded bouquet.
+      <p className={styles.cta}>
+        We would like to invite you
+        <br />
+        to send your very own coded bouquet.
       </p>
 
       <nav className="navigation">

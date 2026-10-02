@@ -1,6 +1,6 @@
 import Flower from "./Flower";
 import type { FlowersById } from "../types";
-import ParagraphDecoration from "./ParagraphDecoration";
+import PageHeader from "./PageHeader";
 
 interface BouquetDetailsProps {
   bouquet: string[];
@@ -14,10 +14,7 @@ export default function BouquetDetails({
   return (
     <div id="bouquet-details">
       <div>
-        <header>
-          <h1>Your Bouquet</h1>
-          <ParagraphDecoration />
-        </header>
+        <PageHeader title="Your Bouquet" />
         <ol className="bouquet-list">
           <li>
             <p className="message">

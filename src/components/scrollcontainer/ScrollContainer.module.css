@@ -1,0 +1,38 @@
+.scrollContainer {
+  display: grid;
+  margin: var(--size-1);
+  max-height: 100%;
+  overflow: hidden;
+  padding: clamp(0px, calc((100vw - 30rem) * 0.0586), 2rem);
+}
+
+.scrollContainer > * {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.scroller {
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* Matches the padding of the decoration in .paper then removes 1px so we can see the line */
+  margin: calc(1.5% + 1px);
+  padding: var(--size-2);
+  position: relative; /* ensures the scroller is above the decoration in .paper */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.logo {
+  margin: 0 auto;
+  width: clamp(60%, 20vw, 300px);
+}
+
+.smallLogo {
+  width: 10rem;
+}
+
+.logo > img {
+  margin: 0 auto;
+}

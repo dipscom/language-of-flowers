@@ -1,20 +1,21 @@
 import BouquetDetails from "../BouquetDetails";
 import HeroImage from "../HeroImage";
-import styles from "./ViewBouquet.module.css";
+import TwoColumn, { Column } from "../twocolumn/TwoColumn";
+import { useSmallLogo } from "../scrollcontainer/useScrollContainer";
 import { useAppState } from "../../state/useAppState";
 
 export default function ViewBouquet() {
+  useSmallLogo();
   const { bouquet, flowers } = useAppState();
 
   return (
-    <div className={styles["view-bouquet"]}>
-      <div className="column">
+    <TwoColumn>
+      <Column>
         <HeroImage bouquet={bouquet} />
-      </div>
-      <span className={styles.divider}></span>
-      <div className="column">
+      </Column>
+      <Column>
         <BouquetDetails bouquet={bouquet} flowers={flowers} />
-      </div>
-    </div>
+      </Column>
+    </TwoColumn>
   );
 }

@@ -3,13 +3,13 @@ import styles from "./Overlay.module.css";
 export default function Overlay() {
   return (
     <div className={styles.overlay} key="overlay">
-      <img className={styles.man} src="/images/overlay/man.png" alt="" />
-
-      <img
+      {/* <img
         src="/images/overlay/flowers-bottomright.png"
         alt=""
         className={`${styles.flowersBottomRight} ${styles.bottom} ${styles.right}`}
       />
+
+      <img className={styles.man} src="/images/overlay/man.png" alt="" />
 
       <img
         src="/images/overlay/flowers-midleft.png"
@@ -37,8 +37,12 @@ export default function Overlay() {
         className={`${styles.flowersTopRight} ${styles.top} ${styles.right}`}
       />
 
-      <img className={styles.peacock} src="/images/overlay/peacock.png" alt="" />
-      <img className={styles.stag} src="/images/overlay/stag.png" alt="" />
+      <img
+        className={styles.peacock}
+        src="/images/overlay/peacock.png"
+        alt=""
+      />
+      <img className={styles.stag} src="/images/overlay/stag.png" alt="" /> */}
     </div>
   );
 }

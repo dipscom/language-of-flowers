@@ -1,4 +1,4 @@
-import ParagraphDecoration from "./ParagraphDecoration";
+import PageHeader from "./PageHeader";
 
 interface HeroImageProps {
   bouquet: string[];
@@ -7,10 +7,7 @@ interface HeroImageProps {
 export default function HeroImage({ bouquet }: HeroImageProps) {
   return (
     <div id="hero-image">
-      <header>
-        <h1>Your Bouquet</h1>
-        <ParagraphDecoration />
-      </header>
+      <PageHeader title="Your Bouquet" />
       <figure
         style={{
           backgroundImage:

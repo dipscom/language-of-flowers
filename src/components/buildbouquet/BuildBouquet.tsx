@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import BouquetBuilder from "../bouquetbuilder/BouquetBuilder";
 import BouquetVisualiser from "../bouquetvisualiser/BouquetVisualiser";
-import ParagraphDecoration from "../ParagraphDecoration";
+import PageHeader from "../PageHeader";
 import PersonDetails from "../PersonDetails";
-import styles from "./BuildBouquet.module.css";
-import useScrollContainer from "../scrollcontainer/useScrollContainer";
+import TwoColumn, { Column } from "../twocolumn/TwoColumn";
+import useScrollContainer, {
+  useSmallLogo,
+} from "../scrollcontainer/useScrollContainer";
 import { useAppState } from "../../state/useAppState";
 
 export default function BuildBouquet() {
@@ -24,6 +26,8 @@ export default function BuildBouquet() {
     mailChimp,
     reset,
   } = useAppState();
+
+  useSmallLogo();
 
   const { resetScroll } = useScrollContainer();
   const navigate = useNavigate();
@@ -44,23 +48,15 @@ export default function BuildBouquet() {
   }
 
   return (
-    <div className={styles["build-bouquet"]}>
-      <div className="column">
-        <BouquetVisualiser bouquet={bouquet} hovered={hoveredFlower} />
-      </div>
-      <span className={styles.divider}></span>
-      <div className="column">
-        <header>
-          <h1>Create your bouquet</h1>
-          <ParagraphDecoration />
-        </header>
+    <TwoColumn>
+      <Column>
+        <PageHeader title="Create your bouquet" />
         {steps.current === 1 ? (
           <BouquetBuilder
             bouquet={bouquet}
             flowers={flowers}
             selectFlowers={selectFlowers}
             onHover={setHoveredFlower}
-            nextCta="Delivery details"
             nextStep={nextStep}
             navigation={navigation}
           />
@@ -69,13 +65,14 @@ export default function BuildBouquet() {
             recipient={recipient}
             sender={sender}
             savePersonDetails={savePersonDetails}
-            prevCta="Change bouquet"
-            nextCta="Confirm"
             prevStep={prevStep}
             confirm={confirm}
           />
         )}
-      </div>
-    </div>
+      </Column>
+      <Column>
+        <BouquetVisualiser bouquet={bouquet} hovered={hoveredFlower} />
+      </Column>
+    </TwoColumn>
   );
 }

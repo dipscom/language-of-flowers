@@ -1,14 +1,16 @@
 import { Navigate, useLocation } from "react-router";
 import Anchor from "../Anchor";
 import BouquetVisualiser from "../bouquetvisualiser/BouquetVisualiser";
-import ParagraphDecoration from "../ParagraphDecoration";
-import styles from "./Success.module.css";
+import PageHeader from "../PageHeader";
+import { useSmallLogo } from "../scrollcontainer/useScrollContainer";
+import TwoColumn, { Column } from "../twocolumn/TwoColumn";
 
 interface SuccessLocationState {
   bouquet: string[];
 }
 
 export default function Success() {
+  useSmallLogo();
   const state = useLocation().state as SuccessLocationState | null;
 
   // The sent bouquet arrives through the navigation state; without it (e.g. a
@@ -18,28 +20,20 @@ export default function Success() {
   }
 
   return (
-    <div className={styles.success}>
-      <div className="column">
+    <TwoColumn>
+      <Column>
+        <PageHeader title="Thank You!" />
+        <p>Your encoded bouquet has been sent.</p>
+
+        <p>Would you like to send another bouquet?</p>
+
+        <p>
+          <Anchor cta="start again" step="forward" target="build-bouquet" />
+        </p>
+      </Column>
+      <Column>
         <BouquetVisualiser bouquet={state.bouquet} />
-      </div>
-      <span className={styles.divider}></span>
-      <div className="column">
-        <div id="thank-you">
-          <header>
-            <h1>Thank You!</h1>
-            <ParagraphDecoration />
-          </header>
-          <p>
-            <strong>Your encoded bouquet has been sent.</strong>
-          </p>
-
-          <p>Would you like to send another bouquet?</p>
-
-          <p>
-            <Anchor cta="start again" step="forward" target="build-bouquet" />
-          </p>
-        </div>
-      </div>
-    </div>
+      </Column>
+    </TwoColumn>
   );
 }

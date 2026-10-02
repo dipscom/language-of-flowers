@@ -1,0 +1,62 @@
+.flowerList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  justify-content: start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  align-items: center;
+  border: var(--size-1) solid transparent;
+  display: grid;
+  gap: var(--size-1);
+  grid-template-columns: var(--size-4) 1fr;
+}
+
+/* Visually hidden but still focusable and available to assistive tech. */
+.checkbox {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.thumbnail {
+  aspect-ratio: 557 / 760;
+  height: var(--size-4);
+  object-fit: contain;
+  width: 100%;
+}
+
+.checkbox:checked + .card {
+  background-color: var(--color-main-1);
+  border-color: var(--color-main-10);
+}
+
+.checkbox:disabled + .card {
+  opacity: 0.4;
+}
+
+.checkbox:focus-visible + .card {
+  outline: 2px solid var(--color-main-10);
+  outline-offset: 2px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.name {
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  font-size: var(--size-2);
+}
