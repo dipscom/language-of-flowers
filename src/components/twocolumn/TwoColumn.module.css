@@ -1,13 +1,13 @@
-/* Columns stack below 50rem. From 50rem up they sit side by side: the first
-   takes all the space the second leaves, and the second is as wide as its
-   content. */
+/* Columns stack below --landscape. From --landscape up they sit side by side:
+   the first takes all the space the second leaves, and the second is as wide
+   as its content. */
 .two-column {
   align-items: start;
   display: grid;
   gap: var(--size-3) 0;
 }
 
-@media (min-width: 64rem) {
+@media (min-width: 1024px) /* --landscape */ {
   .two-column {
     grid-template-columns: minmax(0, 1fr) auto;
   }

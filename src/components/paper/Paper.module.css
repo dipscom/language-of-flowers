@@ -82,24 +82,12 @@
   position: absolute;
 }
 
-@media (orientation: portrait) and (max-width: 599px) {
-  .cloud {
-    width: 80vw;
-  }
+.cloud {
+  width: min(80vw, 30rem);
 }
-@media (orientation: portrait) and (min-width: 600px) {
+@media (min-width: 1024px) /* --landscape */ {
   .cloud {
-    width: 30rem;
-  }
-}
-@media (orientation: landscape) and (max-width: 1599px) {
-  .cloud {
-    width: 30vw;
-  }
-}
-@media (orientation: landscape) and (min-width: 1600px) {
-  .cloud {
-    width: 30rem;
+    width: min(30vw, 30rem);
   }
 }
 .cloud1 {

@@ -1,4 +1,9 @@
 :root {
+  /* Width at which the layout switches from stacked (mobile) to two columns
+     (landscape). CSS can't use variables in @media conditions, so every
+     "@media (min-width: 1024px)" in the project must be kept in sync with
+     this value. */
+  --landscape: 1024px;
   --color-highlight-1: #705d85;
   --color-main-1: #fdfbf7;
   --color-main-10: #313131;

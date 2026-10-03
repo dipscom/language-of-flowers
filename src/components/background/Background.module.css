@@ -11,13 +11,11 @@
   background-size: cover;
   height: 100%;
 }
-@media (orientation: landscape) {
+.forest {
+  background-image: url("/images/background/portrait.jpg");
+}
+@media (min-width: 1024px) /* --landscape */ {
   .forest {
     background-image: url("/images/background/landscape.jpg");
-  }
-}
-@media (orientation: portrait) {
-  .forest {
-    background-image: url("/images/background/portrait.jpg");
   }
 }
