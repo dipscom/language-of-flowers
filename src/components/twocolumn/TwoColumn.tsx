@@ -9,6 +9,19 @@ export default function TwoColumn({ children }: TwoColumnProps) {
   return <div className={styles["two-column"]}>{children}</div>;
 }
 
-export function Column({ children }: TwoColumnProps) {
-  return <div className={styles.column}>{children}</div>;
+interface ColumnProps extends TwoColumnProps {
+  /** Vertically centre the content from --landscape up. */
+  centered?: boolean;
+}
+
+export function Column({ children, centered }: ColumnProps) {
+  return (
+    <div
+      className={
+        centered ? `${styles.column} ${styles.centered}` : styles.column
+      }
+    >
+      {children}
+    </div>
+  );
 }

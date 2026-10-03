@@ -19,7 +19,7 @@ export default function Success() {
 
   return (
     <TwoColumn>
-      <Column>
+      <Column centered>
         <PageHeader title="Thank You!" />
         <p>Your encoded bouquet has been sent.</p>
 

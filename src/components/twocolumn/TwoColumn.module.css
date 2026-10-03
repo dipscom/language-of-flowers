@@ -30,4 +30,26 @@
     overflow-y: auto;
     position: relative; /* contains absolutely positioned children (e.g. the hidden checkboxes) so they can't extend the scroller */
   }
+
+  /* The logo is absolutely positioned over the top of the scroller in
+     landscape; leave room for it (70px, its height) above the left column. */
+  .column:first-child {
+    padding-top: 70px;
+  }
+
+  /* `safe` falls back to start alignment if the content is taller than the
+     column, so the top stays reachable by scrolling. */
+  .column:last-child,
+  .column.centered {
+    align-content: safe center;
+  }
+
+  /* A centred column also centres horizontally, header included. */
+  .column.centered {
+    text-align: center;
+  }
+
+  .column.centered header {
+    justify-self: center;
+  }
 }

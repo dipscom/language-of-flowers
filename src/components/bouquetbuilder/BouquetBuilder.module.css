@@ -1,6 +1,11 @@
 .flowerList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  /* A column is at least 15rem wide and at least half the list, so there are
+     never more than two (the list has no gap, otherwise subtract it). */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, max(15rem, 50%)), 1fr)
+  );
   justify-content: start;
   list-style: none;
   margin: 0;
@@ -55,8 +60,18 @@
   text-align: start;
 }
 
+@media (min-width: 1024px) /* --landscape */ {
+  /* Fluid against the two-column container's width (cqw): 0.8rem at ~900px
+     wide, the container's width when the viewport is 1024px, growing to 1rem
+     at ~1300px, then capped. The children size themselves in em. */
+  .text {
+    font-size: clamp(0.7rem, 0.35rem + 0.8cqw, 0.9rem);
+  }
+}
+
 .name {
   font-family: "Fraunces", serif;
   font-weight: 700;
-  font-size: var(--size-2);
+  /* Relative to .text, so it scales with it (1.5rem when .text is 1rem). */
+  font-size: 1.5em;
 }

@@ -38,13 +38,44 @@
   max-width: 10rem;
 }
 
+/* Header titles are 1.5rem and only grow from --landscape up (below). */
+.scroller:not(:has(:global(#introduction))) header h1 {
+  font-size: 1.5rem;
+}
+
 @media (min-width: 1024px) /* --landscape */ {
+  /* Text is centred by default; outside the Introduction it starts at the
+     block's start edge. */
+  /* :where() keeps these rules' specificity low so a page's own column (e.g. a
+     centred one) can override them. */
+  .scroller:where(:not(:has(:global(#introduction)))) {
+    text-align: start;
+  }
+
+  .scroller:where(:not(:has(:global(#introduction)))) header {
+    justify-self: start;
+  }
+
+  /* Buttons are centred by default (.button sets justify-self: center). */
+  .scroller:where(:not(:has(:global(#introduction)))) :global(.button),
+  .scroller:where(:not(:has(:global(#introduction)))) :global(.back-button) {
+    justify-self: start;
+  }
+
+  /* Fluid against the two-column container's width (cqw): 1.5rem (24px) at
+     ~900px wide, the container's width when the viewport is 1024px, growing
+     2cqw per px to 2rem (32px) at ~1300px, then capped. */
+  .scroller:not(:has(:global(#introduction))) header h1 {
+    font-size: clamp(1.5rem, 0.375rem + 2cqw, 2rem);
+  }
+
   .scroller:not(:has(:global(#introduction))) .logo {
     left: 0;
     margin: 0 auto;
     position: absolute;
     right: 0;
     top: 2%;
+    z-index: 1;
   }
 }
 
