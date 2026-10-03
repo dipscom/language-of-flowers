@@ -1,16 +1,20 @@
 .bouquetVisualiser {
-  aspect-ratio: 557 / 760;
+  aspect-ratio: 1;
   margin: 0 auto;
-  max-height: 655px;
   max-width: 100%;
-  position: relative;
   width: 480px; /* a definite width so an auto-sized grid track can size to it */
 }
 
-.flower {
+/* In landscape the column's height sets the size: the whole square fits
+   without scrolling, and never takes more than half the width. */
+@media (min-width: 1024px) /* --landscape */ {
+  .bouquetVisualiser {
+    width: min(100cqh, 50cqw);
+  }
+}
+
+.bouquetVisualiser > canvas {
+  aspect-ratio: 1;
+  display: block;
   height: 100%;
-  inset: 0;
-  object-fit: contain;
-  position: absolute;
-  width: 100%;
 }
