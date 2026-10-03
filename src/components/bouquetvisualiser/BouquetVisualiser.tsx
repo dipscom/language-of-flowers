@@ -9,6 +9,7 @@ const FADE_SECONDS = 0.25;
 const ROTATE_SECONDS = 0.3;
 
 interface BouquetVisualiserProps {
+  // Flowers by position; "" leaves that position empty.
   bouquet: string[];
   hovered?: string | null;
 }
@@ -95,10 +96,9 @@ export default function BouquetVisualiser({
       const animate =
         visible.current &&
         !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const targets: [string, number][] = bouquet.map((key, i) => [
-        key,
-        ROTATIONS[i] ?? 0,
-      ]);
+      const targets: [string, number][] = bouquet.flatMap((key, i) =>
+        key ? [[key, ROTATIONS[i] ?? 0] as [string, number]] : [],
+      );
       if (hovered && !bouquet.includes(hovered)) targets.push([hovered, 0]);
 
       const previous = new Map(

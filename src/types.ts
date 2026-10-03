@@ -31,7 +31,12 @@ export interface Steps {
 }
 
 export interface AppState {
+  // Selected flowers, compacted, in slot order.
   bouquet: string[];
+  // Fixed-size positions in the visualiser; "" marks an empty slot.
+  slots: string[];
+  // Empty slot indexes, in the order they were vacated.
+  freeSlots: number[];
   flowers: FlowersById;
   recipient: Person;
   sender: Sender;

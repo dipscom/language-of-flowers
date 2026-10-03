@@ -10,6 +10,7 @@ import { useAppState } from "../../state/useAppState";
 export default function BuildBouquet() {
   const {
     bouquet,
+    slots,
     flowers,
     recipient,
     sender,
@@ -64,7 +65,7 @@ export default function BuildBouquet() {
         )}
       </Column>
       <Column>
-        <BouquetVisualiser bouquet={bouquet} hovered={hoveredFlower} />
+        <BouquetVisualiser bouquet={slots} hovered={hoveredFlower} />
       </Column>
     </TwoColumn>
   );
