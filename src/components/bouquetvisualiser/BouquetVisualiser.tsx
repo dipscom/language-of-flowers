@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import styles from "./BouquetVisualiser.module.css";
 
 // Degrees by position in the bouquet; negative is anti-clockwise.
-const ROTATIONS = [-10, 10, 0];
+const ROTATIONS = [-15, 15, 0];
 const FADE_SECONDS = 0.25;
 const ROTATE_SECONDS = 0.3;
 
@@ -38,6 +38,7 @@ export default function BouquetVisualiser({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const layers = useRef<Layer[]>([]);
   const mounted = useRef(false);
+  const visible = useRef(false);
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -74,14 +75,26 @@ export default function BouquetVisualiser({
     return () => observer.disconnect();
   }, [draw]);
 
+  // Animations only play while the canvas can be seen.
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      visible.current = entry.isIntersecting;
+    });
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, []);
+
   // Selected flowers in selection order, then a hovered preview on top. The
   // preview is unrotated until it is selected. Frames are only requested by
   // the GSAP tweens below, so nothing runs once they finish.
   useGSAP(
     () => {
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
+      // Off-screen or reduced-motion changes are applied in a single draw.
+      const animate =
+        visible.current &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const targets: [string, number][] = bouquet.map((key, i) => [
         key,
         ROTATIONS[i] ?? 0,
@@ -95,7 +108,7 @@ export default function BouquetVisualiser({
         const layer = previous.get(key);
         loadImage(key, draw);
         if (!layer) {
-          const fadeIn = mounted.current && !reduceMotion;
+          const fadeIn = mounted.current && animate;
           const added = { key, rotation, alpha: fadeIn ? 0 : 1 };
           if (fadeIn) {
             gsap.to(added, {
@@ -107,14 +120,16 @@ export default function BouquetVisualiser({
           return added;
         }
         if (layer.rotation !== rotation) {
-          if (reduceMotion) layer.rotation = rotation;
-          else {
+          if (animate) {
             gsap.to(layer, {
               rotation,
               duration: ROTATE_SECONDS,
               overwrite: "auto",
               onUpdate: draw,
             });
+          } else {
+            gsap.killTweensOf(layer);
+            layer.rotation = rotation;
           }
         }
         return layer;

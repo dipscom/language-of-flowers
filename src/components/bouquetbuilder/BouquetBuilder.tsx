@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from "react";
 import type { FlowersById, Navigation } from "../../types";
 import form from "../BuildForm.module.css";
 import styles from "./BouquetBuilder.module.css";
@@ -8,7 +9,7 @@ interface BouquetBuilderProps {
   bouquet: string[];
   flowers: FlowersById;
   selectFlowers: (keys: string[]) => void;
-  onHover: (key: string | null) => void;
+  onHover: Dispatch<SetStateAction<string | null>>;
   nextStep: () => void;
   navigation: Navigation;
 }
@@ -41,7 +42,9 @@ export default function BouquetBuilder({
           const preview = () => {
             if (!checked && !disabled) onHover(key);
           };
-          const stopPreview = () => onHover(null);
+          // Only stops this flower's preview, never another flower's.
+          const stopPreview = () =>
+            onHover((current) => (current === key ? null : current));
           return (
             <li key={key} className="flower">
               <input
@@ -53,13 +56,20 @@ export default function BouquetBuilder({
                 defaultChecked={checked}
                 disabled={disabled}
                 onFocus={preview}
-                onBlur={stopPreview}
+                onBlur={(e) => {
+                  // Pressing a label blurs the focused checkbox just before the
+                  // click focuses the new one, so don't stop while the pointer
+                  // is over this card.
+                  if (!e.currentTarget.labels?.[0]?.matches(":hover")) {
+                    stopPreview();
+                  }
+                }}
               />
               <label
                 htmlFor={"flower-" + key}
                 className={styles.card}
-                onMouseEnter={preview}
-                onMouseLeave={stopPreview}
+                onPointerEnter={preview}
+                onPointerLeave={stopPreview}
               >
                 <img
                   className={styles.thumbnail}
