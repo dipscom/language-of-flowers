@@ -7,13 +7,27 @@
   gap: var(--size-3) 0;
 }
 
-@media (min-width: 1024px) /* --landscape */ {
-  .two-column {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-}
-
 .column {
   display: grid;
   gap: var(--size-2);
+}
+
+@media (min-width: 1024px) /* --landscape */ {
+  /* Fill the height left under the logo and stop there, so a column that is
+     too tall scrolls on its own instead of scrolling the whole page. */
+  .two-column {
+    align-items: stretch;
+    container-type: size; /* lets children size themselves with cqh/cqw */
+    flex: 1 1 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .column {
+    align-content: start;
+    min-height: 0;
+    overflow-y: auto;
+    position: relative; /* contains absolutely positioned children (e.g. the hidden checkboxes) so they can't extend the scroller */
+  }
 }

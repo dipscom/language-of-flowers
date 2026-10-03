@@ -1,7 +1,10 @@
 .scrollContainer {
   display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  height: 100%;
   margin: var(--size-1);
   max-height: 100%;
+  min-height: 0;
   overflow: hidden;
   padding: clamp(0px, calc((100vw - 30rem) * 0.0586), 2rem);
 }
@@ -18,6 +21,7 @@
   gap: 0;
   /* Matches the padding of the decoration in .paper then removes 1px so we can see the line */
   margin: calc(1.5% + 1px);
+  min-height: 0;
   padding: var(--size-2);
   position: relative; /* ensures the scroller is above the decoration in .paper */
   overflow-x: hidden;
@@ -29,8 +33,19 @@
   width: clamp(60%, 20vw, 300px);
 }
 
-.smallLogo {
-  width: 10rem;
+/* Every page except the Introduction gets a smaller logo. */
+.scroller:not(:has(:global(#introduction))) .logo {
+  max-width: 10rem;
+}
+
+@media (min-width: 1024px) /* --landscape */ {
+  .scroller:not(:has(:global(#introduction))) .logo {
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 2%;
+  }
 }
 
 .logo > img {

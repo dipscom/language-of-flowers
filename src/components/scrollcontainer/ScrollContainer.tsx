@@ -1,36 +1,21 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Link, Outlet, useLocation } from "react-router";
 import Paper from "../paper/Paper";
 import styles from "./ScrollContainer.module.css";
-import type { ScrollContainerContext } from "./useScrollContainer";
 
 export default function ScrollContainer() {
   const { pathname } = useLocation();
-  const [smallLogo, setSmallLogo] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
 
-  const resetScroll = useCallback(() => {
-    if (scrollerRef.current) scrollerRef.current.scrollTop = 0;
-  }, []);
-
   useEffect(() => {
-    resetScroll();
-  }, [pathname, resetScroll]);
-
-  const logoClasses = [styles.logo, smallLogo && styles.smallLogo]
-    .filter(Boolean)
-    .join(" ");
-
-  const context: ScrollContainerContext = {
-    resetScroll,
-    setSmallLogo,
-  };
+    if (scrollerRef.current) scrollerRef.current.scrollTop = 0;
+  }, [pathname]);
 
   return (
     <div className={styles.scrollContainer}>
       <Paper />
       <div className={styles.scroller} ref={scrollerRef}>
-        <Link className={logoClasses} to="/">
+        <Link className={styles.logo} to="/">
           <img
             alt="The Language of Flowers"
             className={styles.logoImage}
@@ -40,7 +25,7 @@ export default function ScrollContainer() {
             width="300"
           />
         </Link>
-        <Outlet context={context} />
+        <Outlet />
       </div>
     </div>
   );

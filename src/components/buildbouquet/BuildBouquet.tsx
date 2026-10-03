@@ -5,9 +5,6 @@ import BouquetVisualiser from "../bouquetvisualiser/BouquetVisualiser";
 import PageHeader from "../PageHeader";
 import PersonDetails from "../PersonDetails";
 import TwoColumn, { Column } from "../twocolumn/TwoColumn";
-import useScrollContainer, {
-  useSmallLogo,
-} from "../scrollcontainer/useScrollContainer";
 import { useAppState } from "../../state/useAppState";
 
 export default function BuildBouquet() {
@@ -27,14 +24,10 @@ export default function BuildBouquet() {
     reset,
   } = useAppState();
 
-  useSmallLogo();
-
-  const { resetScroll } = useScrollContainer();
   const navigate = useNavigate();
   const [hoveredFlower, setHoveredFlower] = useState<string | null>(null);
 
   useEffect(() => {
-    resetScroll();
     enableButton();
   }, [steps.current]);
 

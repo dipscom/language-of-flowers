@@ -2,7 +2,6 @@ import { Navigate, useLocation } from "react-router";
 import Anchor from "../Anchor";
 import BouquetVisualiser from "../bouquetvisualiser/BouquetVisualiser";
 import PageHeader from "../PageHeader";
-import { useSmallLogo } from "../scrollcontainer/useScrollContainer";
 import TwoColumn, { Column } from "../twocolumn/TwoColumn";
 
 interface SuccessLocationState {
@@ -10,7 +9,6 @@ interface SuccessLocationState {
 }
 
 export default function Success() {
-  useSmallLogo();
   const state = useLocation().state as SuccessLocationState | null;
 
   // The sent bouquet arrives through the navigation state; without it (e.g. a

@@ -4,7 +4,7 @@ import styles from "./Introduction.module.css";
 
 export default function Introduction() {
   return (
-    <div className={styles.singleColumn}>
+    <div id="introduction" className={styles.singleColumn}>
       <header>
         <ParagraphDecoration />
         <h1>
