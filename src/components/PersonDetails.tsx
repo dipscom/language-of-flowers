@@ -36,7 +36,9 @@ export default function PersonDetails({
     >
       <p className={form["sub-heading"]}>Enter the delivery details</p>
 
-      <p style={{ justifySelf: "start" }}>All fields are required.</p>
+      <p className={styles.terms} style={{ justifySelf: "start" }}>
+        All fields are required.
+      </p>
       <div className={form.field}>
         <label htmlFor="sender-name">Your name*</label>
         <input

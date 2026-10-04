@@ -21,9 +21,9 @@ export default function Success() {
     <TwoColumn>
       <Column>
         <PageHeader title="Thank You!" />
-        <p>Your encoded bouquet has been sent.</p>
+        <p>Your bouquet has been sent.</p>
 
-        <p>Would you like to send another bouquet?</p>
+        <p>Would you like to send another?</p>
 
         <p>
           <Anchor cta="start again" step="forward" target="build-bouquet" />

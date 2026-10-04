@@ -6,6 +6,7 @@
   --landscape: 1024px;
   --color-highlight-1: #705d85;
   --color-main-1: #fdfbf7;
+  --color-main-9: #616161;
   --color-main-10: #313131;
   --size-1: 0.5rem;
   --size-2: 1.5rem;
@@ -71,7 +72,7 @@ h1 {
   font-family: "Fraunces", serif;
   font-size: clamp(1.5rem, 7vw - 0.6rem, 2rem);
   font-weight: 700;
-  gap: var(--size-2);
+  gap: var(--size-1);
   letter-spacing: -0.0515em;
   line-height: 1;
   text-transform: uppercase;
@@ -102,6 +103,7 @@ h1 {
 }
 
 .button {
+  align-self: start;
   background-color: var(--color-highlight-1);
   border: 2px solid var(--color-main-10);
   box-shadow: 0.125rem 0.125rem var(--color-main-10);
@@ -117,4 +119,12 @@ h1 {
   text-transform: uppercase;
   white-space: nowrap;
   width: auto;
+}
+
+.button:disabled {
+  background-color: var(--color-main-10);
+  box-shadow: none;
+  color: var(--color-main-9);
+  cursor: not-allowed;
+  opacity: 0.5;
 }
