@@ -1,0 +1,98 @@
+.corner {
+  height: auto;
+  position: absolute;
+  width: 3.75%;
+}
+
+.top-left {
+  left: 0;
+  margin: 1.25% 0 0 1.25%;
+  top: 0;
+  transform: rotate(-90deg);
+}
+
+.top-right {
+  margin: 1.25% 1.25% 0 0;
+  right: 0;
+  top: 0;
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+  margin: 0 0 1.25% 1.25%;
+  transform: rotate(180deg);
+}
+
+.bottom-right {
+  bottom: 0;
+  margin: 0 1.25% 1.25% 0;
+  right: 0;
+  transform: rotate(90deg);
+}
+
+.paper {
+  background-color: rgba(255, 255, 255, 0.95);
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Percentage margins and insets resolve against the paper's width, so the lines
+   keep the same spacing at any height. */
+.line-top-wrapper {
+  border-top: 1px solid var(--color-main-10);
+  left: 6%;
+  margin-top: 1.5%;
+  position: absolute;
+  right: 6%;
+  top: 0;
+}
+
+.line-left-wrapper {
+  border-left: 1px solid var(--color-main-10);
+  bottom: 0;
+  left: 0;
+  margin: 6% 1.5%;
+  position: absolute;
+  top: 0;
+}
+
+.line-right-wrapper {
+  border-right: 1px solid var(--color-main-10);
+  bottom: 0;
+  margin: 6% 1.5%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.line-bottom-wrapper {
+  border-bottom: 1px solid var(--color-main-10);
+  bottom: 0;
+  left: 6%;
+  margin-bottom: 1.5%;
+  position: absolute;
+  right: 6%;
+}
+
+.cloud {
+  height: auto;
+  left: 0;
+  position: absolute;
+}
+
+.cloud {
+  width: min(80vw, 30rem);
+}
+@media (min-width: 1024px) /* --landscape */ {
+  .cloud {
+    width: min(30vw, 30rem);
+  }
+}
+.cloud1 {
+  top: 5%;
+}
+.cloud2 {
+  top: 60%;
+}

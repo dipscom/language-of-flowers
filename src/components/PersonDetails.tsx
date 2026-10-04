@@ -1,126 +1,95 @@
-import { useEffect } from "react";
-import type { ChangeEvent } from "react";
-import Button from "./Button";
-import Anchor from "./Anchor";
-import ResetScroller from "../animation/ResetScroller";
-import type { Navigation, Person } from "../types";
-
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+import type { PersonDetailsValues, Person, Sender } from "../types";
+import form from "./BuildForm.module.css";
+import styles from "./PersonDetails.module.css";
 
 interface PersonDetailsProps {
-  index: "recipient" | "sender";
-  recipient?: Person;
-  sender?: Person;
-  heading: string;
-  prevCta: string;
-  nextCta: string;
+  recipient: Person;
+  sender: Sender;
   prevStep: () => void;
-  nextStep: string | (() => void);
-  updateField: (e: ChangeEvent<HTMLInputElement>) => void;
-  enableButton: () => void;
-  navigation: Navigation;
+  confirm: () => void;
+  savePersonDetails: (details: PersonDetailsValues) => void;
 }
 
-export default function PersonDetails(props: PersonDetailsProps) {
-  const {
-    index,
-    heading,
-    prevCta,
-    nextCta,
-    prevStep,
-    nextStep,
-    updateField,
-    enableButton,
-    navigation,
-  } = props;
-  const person = index === "recipient" ? props.recipient! : props.sender!;
+function readDetails(data: FormData): PersonDetailsValues {
+  return {
+    senderName: String(data.get("senderName") ?? ""),
+    recipientName: String(data.get("recipientName") ?? ""),
+    recipientEmail: String(data.get("recipientEmail") ?? ""),
+  };
+}
 
-  useEffect(() => {
-    if (window.innerHeight > window.innerWidth) {
-      document.getElementById("hero-image")?.classList.add("hide-portrait");
-    }
-    if (enableButton) {
-      enableButton();
-    }
-    ResetScroller("form");
-  }, []);
-
-  const isValid = person.name !== "" && person.valid;
-  let disabled: boolean | "disabled" | undefined;
-  if (typeof nextStep === "string") {
-    disabled = isValid && !navigation.disabled ? undefined : "disabled";
-  } else {
-    disabled = isValid && !navigation.disabled ? undefined : true;
-  }
+export default function PersonDetails({
+  recipient,
+  sender,
+  prevStep,
+  confirm,
+  savePersonDetails,
+}: PersonDetailsProps) {
   return (
-    <div id={index} className="person-details">
-      <form>
-        <header>
-          <h1>{heading}</h1>
-          <hr />
-        </header>
-        <label htmlFor="name">
-          {capitalizeFirstLetter(index)}&rsquo;s full name
-        </label>
+    <form
+      id="person-details"
+      className={[form.form, styles.form].join(" ")}
+      action={(data) => {
+        savePersonDetails(readDetails(data));
+        confirm();
+      }}
+    >
+      <p className={form["sub-heading"]}>Enter the delivery details</p>
+
+      <p className={styles.terms} style={{ justifySelf: "start" }}>
+        All fields are required.
+      </p>
+      <div className={form.field}>
+        <label htmlFor="sender-name">Your name*</label>
         <input
           type="text"
-          id="name"
-          className={index}
-          name="name"
+          id="sender-name"
+          name="senderName"
           maxLength={20}
-          value={person.name}
-          placeholder="Full Name"
+          defaultValue={sender.name}
+          placeholder="Yours Truly"
           required
-          onChange={(e) => updateField(e)}
-          autoComplete="off"
-          tabIndex={1}
         />
-        <label htmlFor="email">
-          {capitalizeFirstLetter(index)}&rsquo;s email
-        </label>
+      </div>
+      <div className={form.field}>
+        <label htmlFor="recipient-name">Their name*</label>
+        <input
+          type="text"
+          id="recipient-name"
+          name="recipientName"
+          maxLength={20}
+          defaultValue={recipient.name}
+          placeholder="Darling Sweetheart"
+          required
+        />
+      </div>
+      <div className={form.field}>
+        <label htmlFor="recipient-email">Their email*</label>
         <input
           type="email"
-          id="email"
-          className={index}
-          name="email"
-          value={person.email}
-          placeholder="Email"
+          id="recipient-email"
+          name="recipientEmail"
+          defaultValue={recipient.email}
+          placeholder="my.darling@example.com"
           required
-          onChange={(e) => updateField(e)}
         />
-        <Button
-          className="back-button"
-          cta={prevCta}
-          step={prevStep}
-          disabled={navigation.disabled}
-        />
-        {index === "recipient" ? (
-          <p className="terms">
-            Contact details for the recipient should only be provided with that
-            person&rsquo;s consent, and that person may be told who provided their
-            details.
-          </p>
-        ) : (
-          ""
-        )}
-      </form>
-      {typeof nextStep === "string" ? (
-        <Anchor
-          className={typeof disabled === "string" ? disabled : undefined}
-          cta={nextCta}
-          step="forward"
-          target="confirmation"
-        />
-      ) : (
-        <Button
-          className="button"
-          cta={nextCta}
-          disabled={typeof disabled === "boolean" ? disabled : false}
-          step={nextStep}
-        />
-      )}
-    </div>
+      </div>
+      <button
+        type="button"
+        className="button back-button"
+        onClick={(e) => {
+          savePersonDetails(readDetails(new FormData(e.currentTarget.form!)));
+          prevStep();
+        }}
+      >
+        Change bouquet
+      </button>
+      <p className={styles.terms}>
+        Contact details for the recipient should only be provided with that
+        person&rsquo;s consent, and that person may be told who provided their
+        details.
+      </p>
+      <button className="button">Send bouquet</button>
+    </form>
   );
 }

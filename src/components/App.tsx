@@ -1,28 +1,21 @@
 import { useRef } from "react";
-import { Routes, Route, useLocation, type Location } from "react-router";
+import { Routes, Route } from "react-router";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import initialLoad from "../animation/initialLoad";
 import flowers from "../data/flowers";
-import products from "../data/products";
-import Background from "./Background";
-import Overlay from "./Overlay";
-import Introduction from "./Introduction";
-import Description from "./Description";
-import Form from "./Form";
-import Confirmation from "./Confirmation";
-import Success from "./Success";
-import MyBouquet from "./MyBouquet";
-import Share from "./Share";
+import Background from "./background/Background";
+import Overlay from "./overlay/Overlay";
+import ScrollContainer from "./scrollcontainer/ScrollContainer";
+import Introduction from "./introduction/Introduction";
+import BuildBouquet from "./buildbouquet/BuildBouquet";
+import ViewBouquet from "./viewbouquet/ViewBouquet";
+import Success from "./success/Success";
 import { AppStateProvider } from "../state/AppStateContext";
 
 gsap.registerPlugin(useGSAP);
 
-interface AppProps {
-  location: Location;
-}
-
-function App({ location }: AppProps) {
+function App() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Initial-load animation only: this runs once when `App` first mounts
@@ -32,30 +25,26 @@ function App({ location }: AppProps) {
   useGSAP(initialLoad, { scope: containerRef, dependencies: [] });
 
   return (
-    <div id="container" ref={containerRef}>
-      <Background location={location} />
+    <main id="container" ref={containerRef}>
+      <Background />
       <Routes>
-        <Route path="/" element={<Introduction />} />
-        <Route path="/description" element={<Description />} />
-        <Route path="/buildbouquet" element={<Form />} />
-        <Route path="/viewbouquet" element={<Form />} />
-        <Route path="/confirmation" element={<Confirmation />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/mybouquet" element={<MyBouquet />} />
-        <Route path="/share" element={<Share />} />
-        <Route path="*" element={<Introduction />} />
+        <Route element={<ScrollContainer />}>
+          <Route path="/" element={<Introduction />} />
+          <Route path="/build-bouquet" element={<BuildBouquet />} />
+          <Route path="/view-bouquet" element={<ViewBouquet />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="*" element={<Introduction />} />
+        </Route>
       </Routes>
       <Overlay />
-    </div>
+    </main>
   );
 }
 
 export default function AppRoute() {
-  const location = useLocation();
-
   return (
-    <AppStateProvider flowers={flowers} products={products}>
-      <App location={location} />
+    <AppStateProvider flowers={flowers}>
+      <App />
     </AppStateProvider>
   );
 }

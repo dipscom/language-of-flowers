@@ -1,46 +1,53 @@
-import type { AppAction, AppState, FlowersById, ProductsById } from "../types";
+import type { AppAction, AppState, FlowersById } from "../types";
 
-export function createInitialState(
-  flowers: FlowersById,
-  products: ProductsById,
-): AppState {
+const MAX_FLOWERS = 3;
+
+export function createInitialState(flowers: FlowersById): AppState {
   return {
     bouquet: [],
+    slots: Array<string>(MAX_FLOWERS).fill(""),
+    freeSlots: Array.from({ length: MAX_FLOWERS }, (_, i) => i),
     flowers,
-    products,
-    recipient: { name: "", email: "", valid: false },
-    sender: { name: "", email: "", valid: false },
-    steps: { current: 1, total: 4 },
+    recipient: { name: "", email: "" },
+    sender: { name: "" },
+    steps: { current: 1 },
     navigation: { disabled: false },
   };
 }
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
-    case "SELECT_FLOWER": {
-      const index = state.bouquet.indexOf(action.key);
-      const flowers = { ...state.flowers };
-      if (index === -1) {
-        if (state.bouquet.length >= 3) return state;
-        flowers[action.key] = { ...flowers[action.key], selected: true };
-        return { ...state, bouquet: [...state.bouquet, action.key], flowers };
+    case "SET_BOUQUET": {
+      const keys = action.keys.slice(0, MAX_FLOWERS);
+      const slots = [...state.slots];
+      const freeSlots = [...state.freeSlots];
+      // Deselected flowers vacate their slot, queued in the order vacated.
+      slots.forEach((key, i) => {
+        if (key && !keys.includes(key)) {
+          slots[i] = "";
+          freeSlots.push(i);
+        }
+      });
+      // Newly selected flowers take the earliest vacated slot.
+      for (const key of keys) {
+        if (slots.includes(key)) continue;
+        const slot = freeSlots.shift();
+        if (slot !== undefined) slots[slot] = key;
       }
-      flowers[action.key] = { ...flowers[action.key], selected: false };
+      const bouquet = slots.filter(Boolean);
+      const flowers = { ...state.flowers };
+      for (const key of Object.keys(flowers)) {
+        flowers[key] = { ...flowers[key], selected: bouquet.includes(key) };
+      }
+      return { ...state, bouquet, slots, freeSlots, flowers };
+    }
+    case "SAVE_PERSON_DETAILS": {
+      const { senderName, recipientName, recipientEmail } = action.details;
       return {
         ...state,
-        bouquet: [
-          ...state.bouquet.slice(0, index),
-          ...state.bouquet.slice(index + 1),
-        ],
-        flowers,
+        sender: { name: senderName },
+        recipient: { name: recipientName, email: recipientEmail },
       };
-    }
-    case "UPDATE_FIELD": {
-      const person = { ...state[action.field], [action.name]: action.value };
-      if (action.isEmail) {
-        person.valid = action.valid ?? false;
-      }
-      return { ...state, [action.field]: person };
     }
     case "NEXT_STEP":
       return {
@@ -54,14 +61,10 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         steps: { ...state.steps, current: state.steps.current - 1 },
         navigation: { disabled: true },
       };
-    case "UPDATE_STEP":
-      return {
-        ...state,
-        steps: { ...state.steps, current: action.step },
-        navigation: { disabled: true },
-      };
     case "ENABLE_BUTTON":
       return { ...state, navigation: { disabled: false } };
+    case "RESET":
+      return action.initialState;
     default:
       return state;
   }

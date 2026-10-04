@@ -1,0 +1,66 @@
+.scroll-container {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  height: 100%;
+  margin: var(--size-1);
+  max-height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(0px, calc((100vw - 30rem) * 0.0586), 2rem);
+}
+
+.scroll-container > * {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.scroller {
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* Matches the padding of the decoration in .paper then removes 1px so we can see the line */
+  margin: calc(1.5% + 1px);
+  min-height: 0;
+  padding: var(--size-2);
+  position: relative; /* ensures the scroller is above the decoration in .paper */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.logo {
+  margin: 0 auto;
+  width: clamp(60%, 20vw, 300px);
+}
+
+/* Every page except the Introduction gets a smaller logo. */
+.scroller:not(:has(:global(#introduction))) .logo {
+  max-width: 10rem;
+}
+
+/* Header titles are 1.5rem and only grow from --landscape up (below). */
+.scroller:not(:has(:global(#introduction))) header h1 {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 1024px) /* --landscape */ {
+  /* Fluid against the two-column container's width (cqw): 1.5rem (24px) at
+     ~900px wide, the container's width when the viewport is 1024px, growing
+     2cqw per px to 2rem (32px) at ~1300px, then capped. */
+  .scroller:not(:has(:global(#introduction))) header h1 {
+    font-size: clamp(1.5rem, 0.375rem + 2cqw, 2rem);
+  }
+
+  .scroller:not(:has(:global(#introduction))) .logo {
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 2%;
+    z-index: 1;
+  }
+}
+
+.logo > img {
+  margin: 0 auto;
+}

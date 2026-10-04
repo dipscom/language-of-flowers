@@ -1,0 +1,21 @@
+.background {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.forest {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+.forest {
+  background-image: url("/images/background/portrait.jpg");
+}
+@media (min-width: 1024px) /* --landscape */ {
+  .forest {
+    background-image: url("/images/background/landscape.jpg");
+  }
+}

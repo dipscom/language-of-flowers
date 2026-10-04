@@ -1,0 +1,24 @@
+/* Shared by the forms in the build-bouquet step (BouquetBuilder and
+   PersonDetails) so they stack and space their content the same way. */
+.form {
+  display: grid;
+  gap: var(--size-2);
+}
+
+.sub-heading {
+  font-family: "Fraunces", serif;
+  font-size: var(--size-2);
+  font-weight: 700;
+  margin: 0;
+}
+
+.field {
+  display: grid;
+  gap: var(--size-1);
+  justify-items: start;
+}
+
+.field input {
+  max-width: 25rem;
+  width: 100%;
+}

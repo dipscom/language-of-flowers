@@ -1,0 +1,29 @@
+.paragraph-decoration {
+  --curve-width: 0.5rem;
+  --curve-height: 0.4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.2rem var(--curve-height);
+  width: 100%;
+}
+.reflected {
+  transform: scaleY(-100%);
+}
+.left,
+.right {
+  border-top: 1px solid black;
+}
+/* The first pair keeps the full curve height, overflowing into the second row */
+.left:nth-child(-n + 2),
+.right:nth-child(-n + 2) {
+  height: var(--curve-height);
+}
+.left {
+  border-right: 1px solid black;
+  border-top-right-radius: var(--curve-width) var(--curve-height);
+}
+.right {
+  border-left: 1px solid black;
+  border-top-left-radius: var(--curve-width) var(--curve-height);
+  margin-left: -1px;
+}

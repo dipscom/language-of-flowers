@@ -1,5 +1,3 @@
-import type { ChangeEvent } from "react";
-
 export interface FlowerData {
   name: string;
   description: string;
@@ -9,60 +7,57 @@ export interface FlowerData {
 
 export type FlowersById = Record<string, FlowerData>;
 
-export interface Product {
-  name: string;
-  description: string;
-  link: string;
-}
-
-export type ProductsById = Record<string, Product>;
-
 export interface Person {
   name: string;
   email: string;
-  valid: boolean;
+}
+
+export interface PersonDetailsValues {
+  senderName: string;
+  recipientName: string;
+  recipientEmail: string;
 }
 
 export interface Navigation {
   disabled: boolean;
 }
 
+export interface Sender {
+  name: string;
+}
+
 export interface Steps {
   current: number;
-  total: number;
 }
 
 export interface AppState {
+  // Selected flowers, compacted, in slot order.
   bouquet: string[];
+  // Fixed-size positions in the visualiser; "" marks an empty slot.
+  slots: string[];
+  // Empty slot indexes, in the order they were vacated.
+  freeSlots: number[];
   flowers: FlowersById;
-  products: ProductsById;
   recipient: Person;
-  sender: Person;
+  sender: Sender;
   steps: Steps;
   navigation: Navigation;
 }
 
 export type AppAction =
-  | { type: "SELECT_FLOWER"; key: string }
-  | {
-      type: "UPDATE_FIELD";
-      field: "recipient" | "sender";
-      name: string;
-      value: string;
-      isEmail: boolean;
-      valid?: boolean;
-    }
+  | { type: "SET_BOUQUET"; keys: string[] }
+  | { type: "SAVE_PERSON_DETAILS"; details: PersonDetailsValues }
   | { type: "NEXT_STEP" }
   | { type: "PREV_STEP" }
-  | { type: "UPDATE_STEP"; step: number }
-  | { type: "ENABLE_BUTTON" };
+  | { type: "ENABLE_BUTTON" }
+  | { type: "RESET"; initialState: AppState };
 
 export interface AppContextValue extends AppState {
   mailChimp: () => void;
-  selectFlower: (key: string) => void;
-  updateField: (e: ChangeEvent<HTMLInputElement>) => void;
+  selectFlowers: (keys: string[]) => void;
+  savePersonDetails: (details: PersonDetailsValues) => void;
   nextStep: () => void;
   prevStep: () => void;
-  updateStep: (step: number) => void;
   enableButton: () => void;
+  reset: () => void;
 }
