@@ -1,5 +1,5 @@
 import BouquetDetails from "../BouquetDetails";
-import HeroImage from "../HeroImage";
+import BouquetVisualiser from "../bouquetvisualiser/BouquetVisualiser";
 import TwoColumn, { Column } from "../twocolumn/TwoColumn";
 import { useAppState } from "../../state/useAppState";
 
@@ -9,7 +9,7 @@ export default function ViewBouquet() {
   return (
     <TwoColumn>
       <Column>
-        <HeroImage bouquet={bouquet} />
+        <BouquetVisualiser bouquet={bouquet} />
       </Column>
       <Column>
         <BouquetDetails bouquet={bouquet} flowers={flowers} />
