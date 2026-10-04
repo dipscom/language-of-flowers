@@ -42,7 +42,7 @@ export default function BuildBouquet() {
   }
 
   return (
-    <TwoColumn>
+    <TwoColumn scrollKey={steps.current}>
       <Column>
         <PageHeader title="Create your bouquet" />
         {steps.current === 1 ? (
