@@ -11,8 +11,8 @@ export default function ParagraphDecoration({
     <div
       className={
         reflected
-          ? `${styles.paragraphDecoration} ${styles.reflected}`
-          : styles.paragraphDecoration
+          ? `${styles["paragraph-decoration"]} ${styles.reflected}`
+          : styles["paragraph-decoration"]
       }
     >
       <div className={styles.left}></div>

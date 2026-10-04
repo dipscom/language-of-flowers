@@ -1,5 +1,6 @@
 import type { PersonDetailsValues, Person, Sender } from "../types";
 import form from "./BuildForm.module.css";
+import styles from "./PersonDetails.module.css";
 
 interface PersonDetailsProps {
   recipient: Person;
@@ -27,7 +28,7 @@ export default function PersonDetails({
   return (
     <form
       id="person-details"
-      className={form.form}
+      className={[form.form, styles.form].join(" ")}
       action={(data) => {
         savePersonDetails(readDetails(data));
         confirm();
@@ -81,7 +82,7 @@ export default function PersonDetails({
       >
         Change bouquet
       </button>
-      <p className="terms">
+      <p className={styles.terms}>
         Contact details for the recipient should only be provided with that
         person&rsquo;s consent, and that person may be told who provided their
         details.

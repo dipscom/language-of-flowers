@@ -27,33 +27,33 @@
 /* 200vw at 480px (30rem), scaling linearly down to 100vw at 1660px.
    Interpolates between (480px, 960px) and (1660px, 1660px):
    slope 700/1180 = 59.322vw, offset 960px - 480px * 700/1180 = 675.254px. */
-.flowersBottom {
+.flowers-bottom {
   --width: min(clamp(100vw, 59.322vw + 675.254px, 200vw), 1660px);
   bottom: -4%;
   width: var(--width);
   max-width: var(--width);
 }
 
-.flowersBottomRight {
+.flowers-bottom-right {
   bottom: 9%;
   right: -5%;
   width: 35%;
   max-width: 290px;
 }
 
-.flowersMidLeft {
+.flowers-mid-left {
   left: -20%;
   bottom: 0;
   width: 45%;
   max-width: 290px;
 }
 
-.flowersTopLeft {
+.flowers-top-left {
   width: 45%;
   max-width: 400px;
 }
 
-.flowersTopRight {
+.flowers-top-right {
   width: 45%;
   max-width: 350px;
 }

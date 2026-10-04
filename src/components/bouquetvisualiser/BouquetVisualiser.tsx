@@ -141,7 +141,7 @@ export default function BouquetVisualiser({
   );
 
   return (
-    <div className={styles.bouquetVisualiser}>
+    <div className={styles["bouquet-visualiser"]}>
       <canvas ref={canvasRef} aria-hidden="true" />
     </div>
   );

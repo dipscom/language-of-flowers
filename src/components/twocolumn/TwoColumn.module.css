@@ -31,6 +31,18 @@
     position: relative; /* contains absolutely positioned children (e.g. the hidden checkboxes) so they can't extend the scroller */
   }
 
+  /* A column holding a form keeps its heading put; the form is the scroller. */
+  .column:has(> form) {
+    grid-template-rows: auto minmax(0, 1fr);
+    overflow-y: hidden;
+  }
+
+  .column > form {
+    min-height: 0;
+    overflow-y: auto;
+    position: relative; /* keeps the hidden checkboxes inside the scroller */
+  }
+
   /* The logo is absolutely positioned over the top of the scroller in
      landscape; leave room for it (70px, its height) above the left column. */
   .column:first-child {
@@ -39,8 +51,7 @@
 
   /* `safe` falls back to start alignment if the content is taller than the
      column, so the top stays reachable by scrolling. */
-  .column:last-child,
-  .column.centered {
+  .column:last-child {
     align-content: safe center;
   }
 

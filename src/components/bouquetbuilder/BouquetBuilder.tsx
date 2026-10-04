@@ -34,7 +34,7 @@ export default function BouquetBuilder({
       }
     >
       <p className={form["sub-heading"]}>Select {MAX_FLOWERS} flowers:</p>
-      <ul id="flower-list" className={styles.flowerList}>
+      <ul id="flower-list" className={styles["flower-list"]}>
         {Object.keys(flowers).map((key) => {
           const checked = bouquet.includes(key);
           const disabled = !checked && bouquet.length >= MAX_FLOWERS;
@@ -46,7 +46,7 @@ export default function BouquetBuilder({
           const stopPreview = () =>
             onHover((current) => (current === key ? null : current));
           return (
-            <li key={key} className="flower">
+            <li key={key} className={styles.flower}>
               <input
                 id={"flower-" + key}
                 className={styles.checkbox}

@@ -1,0 +1,9 @@
+.form {
+  margin: 0 auto;
+  max-width: 40ch;
+}
+
+.terms {
+  font-size: 0.9em;
+  font-style: italic;
+}

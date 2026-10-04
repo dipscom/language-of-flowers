@@ -12,7 +12,7 @@ export default function ScrollContainer() {
   }, [pathname]);
 
   return (
-    <div className={styles.scrollContainer}>
+    <div className={styles["scroll-container"]}>
       <Paper />
       <div className={styles.scroller} ref={scrollerRef}>
         <Link className={styles.logo} to="/">

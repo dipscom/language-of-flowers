@@ -13,28 +13,28 @@ export default function Paper() {
         className={`${styles.cloud} ${styles.cloud2}`}
         src="/images/background/cloud-2.png"
       />
-      <div className={styles.lineTopWrapper} />
-      <div className={styles.lineLeftWrapper} />
-      <div className={styles.lineRightWrapper} />
-      <div className={styles.lineBottomWrapper} />
+      <div className={styles["line-top-wrapper"]} />
+      <div className={styles["line-left-wrapper"]} />
+      <div className={styles["line-right-wrapper"]} />
+      <div className={styles["line-bottom-wrapper"]} />
       <img
         role="presentation"
-        className={`${styles.corner} ${styles.topLeft}`}
+        className={`${styles.corner} ${styles["top-left"]}`}
         src="/images/background/detail-corner.svg"
       />
       <img
         role="presentation"
-        className={`${styles.corner} ${styles.topRight}`}
+        className={`${styles.corner} ${styles["top-right"]}`}
         src="/images/background/detail-corner.svg"
       />
       <img
         role="presentation"
-        className={`${styles.corner} ${styles.bottomLeft}`}
+        className={`${styles.corner} ${styles["bottom-left"]}`}
         src="/images/background/detail-corner.svg"
       />
       <img
         role="presentation"
-        className={`${styles.corner} ${styles.bottomRight}`}
+        className={`${styles.corner} ${styles["bottom-right"]}`}
         src="/images/background/detail-corner.svg"
       />
     </div>

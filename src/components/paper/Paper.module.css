@@ -4,27 +4,27 @@
   width: 3.75%;
 }
 
-.topLeft {
+.top-left {
   left: 0;
   margin: 1.25% 0 0 1.25%;
   top: 0;
   transform: rotate(-90deg);
 }
 
-.topRight {
+.top-right {
   margin: 1.25% 1.25% 0 0;
   right: 0;
   top: 0;
 }
 
-.bottomLeft {
+.bottom-left {
   bottom: 0;
   left: 0;
   margin: 0 0 1.25% 1.25%;
   transform: rotate(180deg);
 }
 
-.bottomRight {
+.bottom-right {
   bottom: 0;
   margin: 0 1.25% 1.25% 0;
   right: 0;
@@ -40,7 +40,7 @@
 
 /* Percentage margins and insets resolve against the paper's width, so the lines
    keep the same spacing at any height. */
-.lineTopWrapper {
+.line-top-wrapper {
   border-top: 1px solid var(--color-main-10);
   left: 6%;
   margin-top: 1.5%;
@@ -49,7 +49,7 @@
   top: 0;
 }
 
-.lineLeftWrapper {
+.line-left-wrapper {
   border-left: 1px solid var(--color-main-10);
   bottom: 0;
   left: 0;
@@ -58,7 +58,7 @@
   top: 0;
 }
 
-.lineRightWrapper {
+.line-right-wrapper {
   border-right: 1px solid var(--color-main-10);
   bottom: 0;
   margin: 6% 1.5%;
@@ -67,7 +67,7 @@
   top: 0;
 }
 
-.lineBottomWrapper {
+.line-bottom-wrapper {
   border-bottom: 1px solid var(--color-main-10);
   bottom: 0;
   left: 6%;

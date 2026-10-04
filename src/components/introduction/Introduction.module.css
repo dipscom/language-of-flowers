@@ -1,4 +1,4 @@
-.singleColumn {
+.single-column {
   display: grid;
   gap: var(--size-3);
   margin: var(--size-3) auto 0;

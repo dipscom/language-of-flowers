@@ -1,4 +1,4 @@
-.flowerList {
+.flower-list {
   display: grid;
   /* A column is at least 15rem wide and at least half the list, so there are
      never more than two (the list has no gap, otherwise subtract it). */
@@ -6,10 +6,13 @@
     auto-fit,
     minmax(min(100%, max(15rem, 50%)), 1fr)
   );
-  justify-content: start;
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.flower {
+  display: grid;
 }
 
 .card {
