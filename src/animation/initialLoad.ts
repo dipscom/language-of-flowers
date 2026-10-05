@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import createForestReveal from "./forestReveal";
+import { preloadFlowerImages } from "./flowerImages";
 
 // Resolves once an <img> has loaded; a failed image must never block the page.
 function imageReady(image: HTMLImageElement) {
@@ -12,6 +13,8 @@ function imageReady(image: HTMLImageElement) {
 
 interface InitialLoadOptions {
   scope: Element;
+  // Flowers whose PNGs the bouquet builder needs; preloaded behind the loader.
+  flowerKeys: string[];
   onReady: () => void;
   contextSafe: <T extends (...args: never[]) => unknown>(fn: T) => T;
 }
@@ -21,6 +24,7 @@ interface InitialLoadOptions {
 // Returns a cleanup that stops a pending wait (StrictMode runs effects twice).
 export default function initialLoad({
   scope,
+  flowerKeys,
   onReady,
   contextSafe,
 }: InitialLoadOptions) {
@@ -70,6 +74,7 @@ export default function initialLoad({
   Promise.all([
     document.fonts.ready,
     forest.ready,
+    preloadFlowerImages(flowerKeys),
     ...Array.from(scope.querySelectorAll("img"), imageReady),
   ]).then(() => {
     if (!cancelled) reveal();

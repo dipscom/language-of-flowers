@@ -28,6 +28,7 @@ function App() {
     (_context, contextSafe) =>
       initialLoad({
         scope: containerRef.current!,
+        flowerKeys: Object.keys(flowers),
         onReady: () => setReady(true),
         contextSafe: contextSafe!,
       }),

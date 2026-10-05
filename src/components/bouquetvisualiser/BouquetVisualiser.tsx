@@ -1,12 +1,19 @@
 import { useCallback, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { loadFlowerImage } from "../../animation/flowerImages";
+import splitIntoBands from "../../animation/tonalBands";
 import styles from "./BouquetVisualiser.module.css";
 
 // Degrees by position in the bouquet; negative is anti-clockwise.
 const ROTATIONS = [-15, 15, 0];
-const FADE_SECONDS = 0.25;
 const ROTATE_SECONDS = 0.3;
+// A new flower is printed in tonal passes (see animation/tonalBands.ts),
+// starting from the stem and quick enough for hover previews.
+const BAND_COUNT = 4;
+const BAND_BIAS = 0.3;
+const BAND_SECONDS = 0.2;
+const BAND_STAGGER = 0.06;
 
 interface BouquetVisualiserProps {
   // Flowers by position; "" leaves that position empty.
@@ -14,22 +21,33 @@ interface BouquetVisualiserProps {
   hovered?: string | null;
 }
 
+interface Band {
+  canvas: HTMLCanvasElement;
+  alpha: number;
+}
+
 interface Layer {
   key: string;
   rotation: number;
   alpha: number;
+  // Present only while the flower is being revealed.
+  bands?: Band[];
 }
 
-const images = new Map<string, HTMLImageElement>();
-
-function loadImage(key: string, onLoad: () => void) {
-  let image = images.get(key);
-  if (!image) {
-    image = new Image();
-    image.src = "/images/flowers/" + key + ".png";
-    images.set(key, image);
-  }
-  if (!image.complete) image.addEventListener("load", onLoad, { once: true });
+// Cuts a flower into tonal bands, spreading from its bottom centre.
+function createBands(image: HTMLImageElement) {
+  const { naturalWidth: width, naturalHeight: height } = image;
+  const source = document.createElement("canvas");
+  source.width = width;
+  source.height = height;
+  const context = source.getContext("2d", { willReadFrequently: true })!;
+  context.drawImage(image, 0, 0);
+  const pixels = context.getImageData(0, 0, width, height).data;
+  return splitIntoBands(pixels, width, height, {
+    count: BAND_COUNT,
+    bias: BAND_BIAS,
+    origin: { x: 0.5, y: 1 },
+  }).map<Band>((canvas) => ({ canvas, alpha: 0 }));
 }
 
 export default function BouquetVisualiser({
@@ -47,17 +65,24 @@ export default function BouquetVisualiser({
     if (!canvas || !context) return;
     const size = canvas.height;
     context.clearRect(0, 0, canvas.width, size);
-    for (const { key, rotation, alpha } of layers.current) {
-      const image = images.get(key);
-      if (!image?.complete || !image.naturalWidth) continue;
+    for (const { key, rotation, alpha, bands } of layers.current) {
+      const image = loadFlowerImage(key);
+      if (!image.complete || !image.naturalWidth) continue;
       const width = (size * image.naturalWidth) / image.naturalHeight;
       // Pivot on the bottom centre of the canvas, which is also the bottom
       // centre of the image.
       context.save();
-      context.globalAlpha = alpha;
       context.translate(canvas.width / 2, size);
       context.rotate((rotation * Math.PI) / 180);
-      context.drawImage(image, -width / 2, -size, width, size);
+      if (bands) {
+        for (const band of bands) {
+          context.globalAlpha = band.alpha;
+          context.drawImage(band.canvas, -width / 2, -size, width, size);
+        }
+      } else {
+        context.globalAlpha = alpha;
+        context.drawImage(image, -width / 2, -size, width, size);
+      }
       context.restore();
     }
   }, []);
@@ -91,7 +116,7 @@ export default function BouquetVisualiser({
   // preview is unrotated until it is selected. Frames are only requested by
   // the GSAP tweens below, so nothing runs once they finish.
   useGSAP(
-    () => {
+    (_context, contextSafe) => {
       // Off-screen or reduced-motion changes are applied in a single draw.
       const animate =
         visible.current &&
@@ -104,19 +129,53 @@ export default function BouquetVisualiser({
       const previous = new Map(
         layers.current.map((layer) => [layer.key, layer]),
       );
+      // Stop revealing flowers that were removed (a hover ending, say).
+      for (const layer of previous.values()) {
+        if (layer.bands && !targets.some(([key]) => key === layer.key)) {
+          gsap.killTweensOf(layer.bands);
+        }
+      }
+
+      // The image is normally preloaded, so this starts at once; otherwise it
+      // waits for the image to arrive.
+      const reveal = (layer: Layer) => {
+        const image = loadFlowerImage(layer.key);
+        const start = contextSafe!(() => {
+          if (!layers.current.includes(layer)) return;
+          if (!image.naturalWidth) {
+            layer.alpha = 1;
+            return;
+          }
+          const bands = createBands(image);
+          layer.bands = bands;
+          gsap.to(bands, {
+            alpha: 1,
+            duration: BAND_SECONDS,
+            ease: "power1.out",
+            stagger: BAND_STAGGER,
+            onUpdate: draw,
+            onComplete() {
+              // Back to the untouched image.
+              layer.bands = undefined;
+              layer.alpha = 1;
+              draw();
+            },
+          });
+        });
+        if (image.complete) start();
+        else image.addEventListener("load", start, { once: true });
+      };
+
+      const revealing: Layer[] = [];
       layers.current = targets.map(([key, rotation]) => {
         const layer = previous.get(key);
-        loadImage(key, draw);
+        const image = loadFlowerImage(key);
+        if (!image.complete)
+          image.addEventListener("load", draw, { once: true });
         if (!layer) {
           const fadeIn = mounted.current && animate;
-          const added = { key, rotation, alpha: fadeIn ? 0 : 1 };
-          if (fadeIn) {
-            gsap.to(added, {
-              alpha: 1,
-              duration: FADE_SECONDS,
-              onUpdate: draw,
-            });
-          }
+          const added: Layer = { key, rotation, alpha: fadeIn ? 0 : 1 };
+          if (fadeIn) revealing.push(added);
           return added;
         }
         if (layer.rotation !== rotation) {
@@ -134,6 +193,7 @@ export default function BouquetVisualiser({
         }
         return layer;
       });
+      revealing.forEach(reveal);
       mounted.current = true;
       draw();
     },

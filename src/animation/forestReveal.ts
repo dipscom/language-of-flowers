@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import splitIntoBands from "./tonalBands";
 
 // Must match the forest rules in Background.module.css and --landscape in
 // styles/index.css.
@@ -9,8 +10,7 @@ const FOREST_IMAGES = {
 };
 
 const BAND_COUNT = 6;
-// How much the distance from the centre delays a pixel, as a share of the
-// tonal range. Makes the plate bloom outward from the clearing.
+// Makes the plate bloom outward from the clearing (see splitIntoBands).
 const CENTRE_BIAS = 0.3;
 // Keeps the band layers small on phones and high-density screens.
 const MAX_PIXEL_RATIO = 1.5;
@@ -65,50 +65,16 @@ function drawCover(
   );
 }
 
-// Splits the image into tonal bands that partition its pixels: darkest (and
-// nearest the centre) first. Every pixel lands in exactly one band, so all
-// bands at full alpha reproduce the original image exactly.
+// Cuts the forest into tonal bands that spread outward from the centre.
 function createBands(image: HTMLImageElement, width: number, height: number) {
   const source = createCanvas(width, height);
   const sourceContext = source.getContext("2d", { willReadFrequently: true })!;
   drawCover(sourceContext, image, width, height);
   const pixels = sourceContext.getImageData(0, 0, width, height).data;
-
-  const outputs = Array.from(
-    { length: BAND_COUNT },
-    () => new ImageData(width, height),
-  );
-  const bandSize = (255 * (1 + CENTRE_BIAS)) / BAND_COUNT;
-  const centreX = width / 2;
-  const centreY = height / 2;
-  const columnDistance = Float32Array.from(
-    { length: width },
-    (_, x) => ((x - centreX) / centreX) ** 2,
-  );
-
-  for (let y = 0; y < height; y++) {
-    const rowDistance = ((y - centreY) / centreY) ** 2;
-    for (let x = 0; x < width; x++) {
-      const i = (y * width + x) * 4;
-      const luminance =
-        0.299 * pixels[i] + 0.587 * pixels[i + 1] + 0.114 * pixels[i + 2];
-      const distance = Math.sqrt((columnDistance[x] + rowDistance) / 2);
-      const band = Math.min(
-        BAND_COUNT - 1,
-        Math.floor((luminance + CENTRE_BIAS * 255 * distance) / bandSize),
-      );
-      const output = outputs[band].data;
-      output[i] = pixels[i];
-      output[i + 1] = pixels[i + 1];
-      output[i + 2] = pixels[i + 2];
-      output[i + 3] = pixels[i + 3];
-    }
-  }
-
-  return outputs.map((data) => {
-    const canvas = createCanvas(width, height);
-    canvas.getContext("2d")!.putImageData(data, 0, 0);
-    return canvas;
+  return splitIntoBands(pixels, width, height, {
+    count: BAND_COUNT,
+    bias: CENTRE_BIAS,
+    origin: { x: 0.5, y: 0.5 },
   });
 }
 
