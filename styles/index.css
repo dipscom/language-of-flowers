@@ -4,6 +4,8 @@
      "@media (min-width: 1024px)" in the project must be kept in sync with
      this value. */
   --landscape: 1024px;
+  --focus-outline: 2px dashed var(--color-main-9);
+  --focus-outline-offset: 2px;
   --color-highlight-1: #705d85;
   --color-main-1: #fdfbf7;
   --color-main-9: #616161;
@@ -132,4 +134,9 @@ h1 {
 .button:active {
   box-shadow: none;
   transform: translate(0.125rem, 0.125rem);
+}
+
+:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }

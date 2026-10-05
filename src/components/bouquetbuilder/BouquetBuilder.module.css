@@ -54,8 +54,8 @@
 }
 
 .checkbox:focus-visible + .card {
-  outline: 2px solid var(--color-main-10);
-  outline-offset: 2px;
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
 
 .text {
