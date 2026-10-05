@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import type { PersonDetailsValues, Person, Sender } from "../types";
 import form from "./BuildForm.module.css";
 import styles from "./PersonDetails.module.css";
@@ -25,8 +26,18 @@ export default function PersonDetails({
   confirm,
   savePersonDetails,
 }: PersonDetailsProps) {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [valid, setValid] = useState(false);
+
+  // Prefilled values may already make the form valid.
+  useEffect(() => {
+    setValid(formRef.current!.checkValidity());
+  }, []);
+
   return (
     <form
+      ref={formRef}
+      onChange={(e) => setValid(e.currentTarget.checkValidity())}
       id="person-details"
       className={[form.form, styles.form].join(" ")}
       action={(data) => {
@@ -89,7 +100,9 @@ export default function PersonDetails({
         person&rsquo;s consent, and that person may be told who provided their
         details.
       </p>
-      <button className="button">Send bouquet</button>
+      <button className="button" disabled={!valid}>
+        Send bouquet
+      </button>
     </form>
   );
 }
