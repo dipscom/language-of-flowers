@@ -23,7 +23,7 @@ export default function ScrollContainer() {
   );
 
   return (
-    <div className={styles["scroll-container"]}>
+    <div className={styles["scroll-container"]} data-load="paper">
       <Paper />
       <div className={styles.scroller} ref={scrollerRef}>
         <div className={`${styles.logo} ${styles.logoStatic}`}>{logo}</div>

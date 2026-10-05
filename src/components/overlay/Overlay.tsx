@@ -2,7 +2,7 @@ import styles from "./Overlay.module.css";
 
 export default function Overlay() {
   return (
-    <div className={styles.overlay} key="overlay">
+    <div className={styles.overlay} key="overlay" data-load="overlay">
       <img
         src="/images/overlay/flowers-bottomright.png"
         alt=""

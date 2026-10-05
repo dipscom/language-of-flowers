@@ -5,17 +5,10 @@
   width: 100%;
 }
 
+/* Painted by animation/forestReveal.ts, which also picks the portrait or
+   landscape image at the 1024px breakpoint. */
 .forest {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  display: block;
   height: 100%;
-}
-.forest {
-  background-image: url("/images/background/portrait.jpg");
-}
-@media (min-width: 1024px) /* --landscape */ {
-  .forest {
-    background-image: url("/images/background/landscape.jpg");
-  }
+  width: 100%;
 }

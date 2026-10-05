@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Routes, Route } from "react-router";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -18,14 +18,31 @@ gsap.registerPlugin(useGSAP);
 function App() {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const [ready, setReady] = useState(false);
+
   // Initial-load animation only: this runs once when `App` first mounts
   // (i.e. on a hard page load) and never again, since `App` stays mounted
   // for the lifetime of the SPA session — client-side navigation only ever
   // swaps the routed page content below, it doesn't remount this component.
-  useGSAP(initialLoad, { scope: containerRef, dependencies: [] });
+  useGSAP(
+    (_context, contextSafe) =>
+      initialLoad({
+        scope: containerRef.current!,
+        onReady: () => setReady(true),
+        contextSafe: contextSafe!,
+      }),
+    { scope: containerRef, dependencies: [] },
+  );
 
   return (
     <main id="container" ref={containerRef}>
+      {!ready && (
+        <p className="loader" role="status">
+          Loading<span>.</span>
+          <span>.</span>
+          <span>.</span>
+        </p>
+      )}
       <Background />
       <Routes>
         <Route element={<ScrollContainer />}>
