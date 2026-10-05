@@ -15,6 +15,7 @@ export default function ScrollContainer() {
     <img
       alt="The Language of Flowers"
       className={styles.logoImage}
+      data-load="logo"
       height="133"
       src="/images/lof-logo.svg"
       title="The Language of Flowers"

@@ -31,7 +31,13 @@ export default function initialLoad({
   const decorations = '[data-load="overlay"] > img';
   let cancelled = false;
 
+  // Both logo variants (static and link) are targeted; CSS shows only one.
+  const logo = '[data-load="logo"]';
+  const logoHidden = "inset(50% 0% 50% 0%)";
+  const logoShown = "inset(0% 0% 0% 0%)";
+
   gsap.set([paper, decorations], { autoAlpha: 0 });
+  gsap.set(logo, { clipPath: logoHidden });
 
   const reveal = contextSafe(() => {
     onReady();
@@ -39,6 +45,7 @@ export default function initialLoad({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       forest.showAll();
       gsap.set([paper, decorations], { autoAlpha: 1 });
+      gsap.set(logo, { clearProps: "clipPath" });
       return;
     }
 
@@ -46,7 +53,18 @@ export default function initialLoad({
       .timeline({ defaults: { duration: 0.8, ease: "power1.out" } })
       .add(forest.play())
       .to(paper, { autoAlpha: 1 }, ">+.2")
-      .to(decorations, { autoAlpha: 1, stagger: 0.05 }, ">-0.2");
+      .to(decorations, { autoAlpha: 1, stagger: 0.05 }, ">-0.2")
+      // An invisible horizontal line runs from the logo's centre to the top and bottom,
+      // revealing it as it goes. fromTo keeps both clip-paths as four-value
+      // insets: browsers read a set inset() back in shorthand ("0% 50%"), and
+      // GSAP then mismatches the values, so only one edge would animate.
+      .fromTo(
+        logo,
+        { clipPath: logoHidden },
+        { clipPath: logoShown, duration: 1.2, ease: "power4.inOut" },
+        "<",
+      )
+      .set(logo, { clearProps: "clipPath" });
   });
 
   Promise.all([
