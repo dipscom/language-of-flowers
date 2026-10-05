@@ -11,19 +11,24 @@ export default function ScrollContainer() {
     if (scrollerRef.current) scrollerRef.current.scrollTop = 0;
   }, [pathname]);
 
+  const logo = (
+    <img
+      alt="The Language of Flowers"
+      className={styles.logoImage}
+      height="133"
+      src="/images/lof-logo.svg"
+      title="The Language of Flowers"
+      width="300"
+    />
+  );
+
   return (
     <div className={styles["scroll-container"]}>
       <Paper />
       <div className={styles.scroller} ref={scrollerRef}>
-        <Link className={styles.logo} to="/">
-          <img
-            alt="The Language of Flowers"
-            className={styles.logoImage}
-            height="133"
-            src="/images/lof-logo.svg"
-            title="The Language of Flowers"
-            width="300"
-          />
+        <div className={`${styles.logo} ${styles.logoStatic}`}>{logo}</div>
+        <Link className={`${styles.logo} ${styles.logoLink}`} to="/">
+          {logo}
         </Link>
         <Outlet />
       </div>

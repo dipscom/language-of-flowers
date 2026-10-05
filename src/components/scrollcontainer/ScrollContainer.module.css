@@ -33,6 +33,13 @@
   width: clamp(60%, 20vw, 300px);
 }
 
+/* Both logos are rendered; the Introduction shows the static one, every other
+   page shows the link. */
+.scroller:has(:global(#introduction)) .logoLink,
+.scroller:not(:has(:global(#introduction))) .logoStatic {
+  display: none;
+}
+
 /* Every page except the Introduction gets a smaller logo. */
 .scroller:not(:has(:global(#introduction))) .logo {
   max-width: 10rem;
