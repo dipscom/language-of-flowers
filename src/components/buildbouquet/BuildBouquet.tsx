@@ -11,6 +11,7 @@ export default function BuildBouquet() {
   const {
     bouquet,
     slots,
+    freeSlots,
     flowers,
     recipient,
     sender,
@@ -65,7 +66,11 @@ export default function BuildBouquet() {
         )}
       </Column>
       <Column>
-        <BouquetVisualiser bouquet={slots} hovered={hoveredFlower} />
+        <BouquetVisualiser
+          bouquet={slots}
+          hovered={hoveredFlower}
+          hoveredSlot={freeSlots[0]}
+        />
       </Column>
     </TwoColumn>
   );

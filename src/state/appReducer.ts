@@ -2,11 +2,15 @@ import type { AppAction, AppState, FlowersById } from "../types";
 
 const MAX_FLOWERS = 3;
 
+function defaultFreeSlots() {
+  return Array.from({ length: MAX_FLOWERS }, (_, i) => i);
+}
+
 export function createInitialState(flowers: FlowersById): AppState {
   return {
     bouquet: [],
     slots: Array<string>(MAX_FLOWERS).fill(""),
-    freeSlots: Array.from({ length: MAX_FLOWERS }, (_, i) => i),
+    freeSlots: defaultFreeSlots(),
     flowers,
     recipient: { name: "", email: "" },
     sender: { name: "" },
@@ -35,6 +39,10 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         if (slot !== undefined) slots[slot] = key;
       }
       const bouquet = slots.filter(Boolean);
+      // With nothing selected, the slots go back to their default order.
+      if (bouquet.length === 0) {
+        freeSlots.splice(0, freeSlots.length, ...defaultFreeSlots());
+      }
       const flowers = { ...state.flowers };
       for (const key of Object.keys(flowers)) {
         flowers[key] = { ...flowers[key], selected: bouquet.includes(key) };

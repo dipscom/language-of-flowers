@@ -7,18 +7,25 @@ import styles from "./BouquetVisualiser.module.css";
 
 // Degrees by position in the bouquet; negative is anti-clockwise.
 const ROTATIONS = [-15, 15, 0];
-const ROTATE_SECONDS = 0.3;
 // A new flower is printed in tonal passes (see animation/tonalBands.ts),
 // starting from the stem and quick enough for hover previews.
 const BAND_COUNT = 4;
 const BAND_BIAS = 0.3;
 const BAND_SECONDS = 0.2;
 const BAND_STAGGER = 0.06;
+// A hovered flower is held 1.5% of the canvas above its resting position, along
+// its own stem direction, so rotated flowers are lifted diagonally. Selecting
+// it slides it into place, easing back slightly past the mark before settling.
+const HELD_LIFT = 0.015;
+const PLACE_SECONDS = 0.6;
+const PLACE_EASE = "back.out(1.4)";
 
 interface BouquetVisualiserProps {
   // Flowers by position; "" leaves that position empty.
   bouquet: string[];
   hovered?: string | null;
+  // The position a hovered flower would take if selected.
+  hoveredSlot?: number;
 }
 
 interface Band {
@@ -30,6 +37,10 @@ interface Layer {
   key: string;
   rotation: number;
   alpha: number;
+  // Distance held above the resting position, as a fraction of the canvas.
+  lift: number;
+  // True while the flower is sliding into place.
+  settling?: boolean;
   // Present only while the flower is being revealed.
   bands?: Band[];
 }
@@ -53,6 +64,7 @@ function createBands(image: HTMLImageElement) {
 export default function BouquetVisualiser({
   bouquet,
   hovered,
+  hoveredSlot,
 }: BouquetVisualiserProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const layers = useRef<Layer[]>([]);
@@ -65,7 +77,7 @@ export default function BouquetVisualiser({
     if (!canvas || !context) return;
     const size = canvas.height;
     context.clearRect(0, 0, canvas.width, size);
-    for (const { key, rotation, alpha, bands } of layers.current) {
+    for (const { key, rotation, alpha, lift, bands } of layers.current) {
       const image = loadFlowerImage(key);
       if (!image.complete || !image.naturalWidth) continue;
       const width = (size * image.naturalWidth) / image.naturalHeight;
@@ -74,6 +86,8 @@ export default function BouquetVisualiser({
       context.save();
       context.translate(canvas.width / 2, size);
       context.rotate((rotation * Math.PI) / 180);
+      // Along the flower's own (rotated) axis, so the lift is diagonal.
+      context.translate(0, -lift * size);
       if (bands) {
         for (const band of bands) {
           context.globalAlpha = band.alpha;
@@ -112,28 +126,37 @@ export default function BouquetVisualiser({
     return () => observer.disconnect();
   }, []);
 
-  // Selected flowers in selection order, then a hovered preview on top. The
-  // preview is unrotated until it is selected. Frames are only requested by
-  // the GSAP tweens below, so nothing runs once they finish.
+  // Flowers are stacked by position, back to front. A hovered preview takes
+  // the position it would get if selected (so it can sit behind or between
+  // the others), already at that position's angle. Frames are only requested
+  // by the GSAP tweens below, so nothing runs once they finish.
   useGSAP(
     (_context, contextSafe) => {
       // Off-screen or reduced-motion changes are applied in a single draw.
       const animate =
         visible.current &&
         !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const targets: [string, number][] = bouquet.flatMap((key, i) =>
+      const stack = bouquet.map((key) => key || null);
+      if (
+        hovered &&
+        !bouquet.includes(hovered) &&
+        hoveredSlot !== undefined &&
+        stack[hoveredSlot] === null
+      ) {
+        stack[hoveredSlot] = hovered;
+      }
+      const targets: [string, number][] = stack.flatMap((key, i) =>
         key ? [[key, ROTATIONS[i] ?? 0] as [string, number]] : [],
       );
-      if (hovered && !bouquet.includes(hovered)) targets.push([hovered, 0]);
 
       const previous = new Map(
         layers.current.map((layer) => [layer.key, layer]),
       );
-      // Stop revealing flowers that were removed (a hover ending, say).
+      // Stop animating flowers that were removed (a hover ending, say).
       for (const layer of previous.values()) {
-        if (layer.bands && !targets.some(([key]) => key === layer.key)) {
-          gsap.killTweensOf(layer.bands);
-        }
+        if (targets.some(([key]) => key === layer.key)) continue;
+        gsap.killTweensOf(layer);
+        if (layer.bands) gsap.killTweensOf(layer.bands);
       }
 
       // The image is normally preloaded, so this starts at once; otherwise it
@@ -174,21 +197,34 @@ export default function BouquetVisualiser({
           image.addEventListener("load", draw, { once: true });
         if (!layer) {
           const fadeIn = mounted.current && animate;
-          const added: Layer = { key, rotation, alpha: fadeIn ? 0 : 1 };
+          const added: Layer = {
+            key,
+            rotation,
+            alpha: fadeIn ? 0 : 1,
+            // Only a hover preview is held up.
+            lift: bouquet.includes(key) ? 0 : HELD_LIFT,
+          };
           if (fadeIn) revealing.push(added);
           return added;
         }
-        if (layer.rotation !== rotation) {
+        // A position never changes while a flower is selected; this only
+        // keeps the angle right if it does.
+        layer.rotation = rotation;
+        // Selected while held up: slide it into place.
+        if (bouquet.includes(key) && layer.lift !== 0 && !layer.settling) {
           if (animate) {
+            layer.settling = true;
             gsap.to(layer, {
-              rotation,
-              duration: ROTATE_SECONDS,
-              overwrite: "auto",
+              lift: 0,
+              duration: PLACE_SECONDS,
+              ease: PLACE_EASE,
               onUpdate: draw,
+              onComplete() {
+                layer.settling = false;
+              },
             });
           } else {
-            gsap.killTweensOf(layer);
-            layer.rotation = rotation;
+            layer.lift = 0;
           }
         }
         return layer;
@@ -197,7 +233,7 @@ export default function BouquetVisualiser({
       mounted.current = true;
       draw();
     },
-    { dependencies: [bouquet, hovered] },
+    { dependencies: [bouquet, hovered, hoveredSlot] },
   );
 
   return (
