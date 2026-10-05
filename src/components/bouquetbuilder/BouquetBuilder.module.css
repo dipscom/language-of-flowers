@@ -18,6 +18,7 @@
 .card {
   align-items: center;
   border: var(--size-1) solid transparent;
+  cursor: pointer;
   display: grid;
   gap: var(--size-1);
   grid-template-columns: var(--size-4) 1fr;
