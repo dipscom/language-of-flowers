@@ -1,40 +1,122 @@
-import { useEffect, useRef } from "react";
-import { Link, Outlet, useLocation } from "react-router";
+import {
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import {
+  Link,
+  UNSAFE_LocationContext as LocationContext,
+  useLocation,
+  useNavigationType,
+  type Location,
+} from "react-router";
+import createPageFlip, { type PageFlip } from "../../animation/pageFlip";
 import MainLogo from "../MainLogo";
 import Paper from "../paper/Paper";
 import styles from "./ScrollContainer.module.css";
 
-export default function ScrollContainer() {
-  const { pathname } = useLocation();
-  const scrollerRef = useRef<HTMLDivElement>(null);
+interface Page {
+  // Stays the same while the page does, so React keeps its DOM and state
+  // while it moves from being the current page to the one leaving.
+  id: string;
+  location: Location;
+}
 
-  useEffect(() => {
-    if (scrollerRef.current) scrollerRef.current.scrollTop = 0;
-  }, [pathname]);
+interface Pages {
+  current: Page;
+  leaving: Page | null;
+}
 
-  const logo = (
-    <MainLogo className={styles.logoImage} height="133" width="300" />
+interface ScrollContainerProps {
+  renderPage: (location: Location) => ReactNode;
+}
+
+const logo = <MainLogo className={styles.logoImage} height="133" width="300" />;
+
+// The paper with the routed page on it. Navigating to another page turns a
+// leaf back over the old one (see animation/pageFlip.ts): the old page stays
+// mounted, under the flap, until the flip is done.
+export default function ScrollContainer({ renderPage }: ScrollContainerProps) {
+  const location = useLocation();
+  const navigationType = useNavigationType();
+  const [pages, setPages] = useState<Pages>({
+    current: { id: location.key, location },
+    leaving: null,
+  });
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const incomingRef = useRef<HTMLDivElement>(null);
+  const outgoingRef = useRef<HTMLDivElement>(null);
+  const flipRef = useRef<PageFlip>(null);
+
+  if (location.key !== pages.current.location.key) {
+    const { current } = pages;
+    const flips =
+      location.pathname !== current.location.pathname &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setPages(
+      flips
+        ? {
+            current: { id: location.key, location },
+            leaving: current,
+          }
+        : { current: { id: current.id, location }, leaving: null },
+    );
+  }
+
+  useLayoutEffect(() => {
+    const flip = createPageFlip(canvasRef.current!);
+    flipRef.current = flip;
+    return () => {
+      flip.dispose();
+      flipRef.current = null;
+    };
+  }, []);
+
+  const leavingId = pages.leaving?.id;
+  useLayoutEffect(() => {
+    if (!leavingId) return;
+    flipRef.current!.play(incomingRef.current!, -1, outgoingRef.current).then(() => {
+      setPages((latest) =>
+        latest.leaving?.id === leavingId ? { ...latest, leaving: null } : latest,
+      );
+    });
+  }, [leavingId]);
+
+  const renderPageAt = (page: Page, incoming: boolean) => (
+    <div
+      className={styles.page}
+      data-load="content"
+      inert={!incoming}
+      key={page.id}
+      ref={incoming ? incomingRef : outgoingRef}
+    >
+      <div className={styles.scroller}>
+        <div className={`${styles.logo} ${styles.logoStatic}`}>{logo}</div>
+        <Link className={`${styles.logo} ${styles.logoLink}`} to="/">
+          {logo}
+        </Link>
+        {/* The leaving page keeps seeing its own location, not the new one. */}
+        <LocationContext.Provider
+          value={{ location: page.location, navigationType }}
+        >
+          {renderPage(page.location)}
+        </LocationContext.Provider>
+      </div>
+    </div>
   );
 
   return (
     <div className={styles["scroll-container"]}>
       <Paper />
-      <div
-        className={styles.scroller}
-        data-load="content"
-        ref={scrollerRef}
-      >
-        <div
-          className={`${styles.logo} ${styles.logoStatic}`}
-          data-load="logo"
-        >
-          {logo}
-        </div>
-        <Link className={`${styles.logo} ${styles.logoLink}`} to="/">
-          {logo}
-        </Link>
-        <Outlet />
-      </div>
+      {pages.leaving && renderPageAt(pages.leaving, false)}
+      {renderPageAt(pages.current, true)}
+      <canvas
+        aria-hidden="true"
+        className={styles.flip}
+        data-load="flip"
+        ref={canvasRef}
+      />
     </div>
   );
 }

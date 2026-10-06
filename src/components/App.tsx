@@ -9,6 +9,7 @@ import Overlay from "./overlay/Overlay";
 import ScrollContainer from "./scrollcontainer/ScrollContainer";
 import Introduction from "./introduction/Introduction";
 import BuildBouquet from "./buildbouquet/BuildBouquet";
+import Details from "./details/Details";
 import ViewBouquet from "./viewbouquet/ViewBouquet";
 import Success from "./success/Success";
 import { AppStateProvider } from "../state/AppStateContext";
@@ -45,15 +46,18 @@ function App() {
         </p>
       )}
       <Background />
-      <Routes>
-        <Route element={<ScrollContainer />}>
-          <Route path="/" element={<Introduction />} />
-          <Route path="/build-bouquet" element={<BuildBouquet />} />
-          <Route path="/view-bouquet" element={<ViewBouquet />} />
-          <Route path="/success" element={<Success />} />
-          <Route path="*" element={<Introduction />} />
-        </Route>
-      </Routes>
+      <ScrollContainer
+        renderPage={(location) => (
+          <Routes location={location}>
+            <Route path="/" element={<Introduction />} />
+            <Route path="/build-bouquet" element={<BuildBouquet />} />
+            <Route path="/details" element={<Details />} />
+            <Route path="/view-bouquet" element={<ViewBouquet />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="*" element={<Introduction />} />
+          </Routes>
+        )}
+      />
       <Overlay />
     </main>
   );

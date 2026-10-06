@@ -14,6 +14,25 @@
   grid-row-start: 1;
 }
 
+/* A routed page. Two exist at once only while a page is being turned. Its own
+   stacking context keeps the logo's z-index below the flip canvas. */
+.page {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  isolation: isolate;
+  min-height: 0;
+  position: relative;
+}
+
+/* Painted by animation/pageFlip.ts over the pages: the flap of the leaf. */
+.flip {
+  display: block;
+  height: 100%;
+  pointer-events: none;
+  position: relative;
+  width: 100%;
+}
+
 .scroller {
   -webkit-overflow-scrolling: touch;
   display: flex;

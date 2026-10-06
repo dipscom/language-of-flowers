@@ -27,18 +27,6 @@ export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
     dispatch({ type: "SAVE_PERSON_DETAILS", details });
   }, []);
 
-  const nextStep = useCallback(() => {
-    dispatch({ type: "NEXT_STEP" });
-  }, []);
-
-  const prevStep = useCallback(() => {
-    dispatch({ type: "PREV_STEP" });
-  }, []);
-
-  const enableButton = useCallback(() => {
-    dispatch({ type: "ENABLE_BUTTON" });
-  }, []);
-
   const reset = useCallback(() => {
     dispatch({ type: "RESET", initialState: createInitialState(flowers) });
   }, [flowers]);
@@ -48,9 +36,6 @@ export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
     mailChimp,
     selectFlowers,
     savePersonDetails,
-    nextStep,
-    prevStep,
-    enableButton,
     reset,
   };
 

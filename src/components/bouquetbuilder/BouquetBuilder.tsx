@@ -1,17 +1,15 @@
 import type { Dispatch, SetStateAction } from "react";
-import type { FlowersById, Navigation } from "../../types";
+import { useNavigate } from "react-router";
+import { MAX_FLOWERS } from "../../state/appReducer";
+import type { FlowersById } from "../../types";
 import form from "../BuildForm.module.css";
 import styles from "./BouquetBuilder.module.css";
-
-const MAX_FLOWERS = 3;
 
 interface BouquetBuilderProps {
   bouquet: string[];
   flowers: FlowersById;
   selectFlowers: (keys: string[]) => void;
   onHover: Dispatch<SetStateAction<string | null>>;
-  nextStep: () => void;
-  navigation: Navigation;
 }
 
 export default function BouquetBuilder({
@@ -19,14 +17,14 @@ export default function BouquetBuilder({
   flowers,
   selectFlowers,
   onHover,
-  nextStep,
-  navigation,
 }: BouquetBuilderProps) {
+  const navigate = useNavigate();
+
   return (
     <form
       id="bouquet-builder"
       className={form.form}
-      action={nextStep}
+      action={() => navigate("/details")}
       onChange={(e) =>
         selectFlowers(
           new FormData(e.currentTarget).getAll("flowers") as string[],
@@ -90,7 +88,7 @@ export default function BouquetBuilder({
       </ul>
       <button
         className="button"
-        disabled={bouquet.length < MAX_FLOWERS || navigation.disabled}
+        disabled={bouquet.length < MAX_FLOWERS}
       >
         Delivery details
       </button>

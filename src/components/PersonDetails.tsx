@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router";
 import type { PersonDetailsValues, Person, Sender } from "../types";
 import form from "./BuildForm.module.css";
 import styles from "./PersonDetails.module.css";
@@ -6,7 +7,6 @@ import styles from "./PersonDetails.module.css";
 interface PersonDetailsProps {
   recipient: Person;
   sender: Sender;
-  prevStep: () => void;
   confirm: () => void;
   savePersonDetails: (details: PersonDetailsValues) => void;
 }
@@ -22,10 +22,10 @@ function readDetails(data: FormData): PersonDetailsValues {
 export default function PersonDetails({
   recipient,
   sender,
-  prevStep,
   confirm,
   savePersonDetails,
 }: PersonDetailsProps) {
+  const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
   const [valid, setValid] = useState(false);
 
@@ -85,23 +85,23 @@ export default function PersonDetails({
           required
         />
       </div>
-      <button
-        type="button"
-        className="button back-button"
-        onClick={(e) => {
-          savePersonDetails(readDetails(new FormData(e.currentTarget.form!)));
-          prevStep();
-        }}
-      >
-        Change bouquet
+      <button className="button" disabled={!valid}>
+        Send bouquet
       </button>
       <p className={styles.terms}>
         Contact details for the recipient should only be provided with that
         person&rsquo;s consent, and that person may be told who provided their
         details.
       </p>
-      <button className="button" disabled={!valid}>
-        Send bouquet
+      <button
+        type="button"
+        className="button back-button"
+        onClick={(e) => {
+          savePersonDetails(readDetails(new FormData(e.currentTarget.form!)));
+          navigate("/build-bouquet");
+        }}
+      >
+        Change bouquet
       </button>
     </form>
   );

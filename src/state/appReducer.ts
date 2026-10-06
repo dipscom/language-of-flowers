@@ -1,6 +1,6 @@
 import type { AppAction, AppState, FlowersById } from "../types";
 
-const MAX_FLOWERS = 3;
+export const MAX_FLOWERS = 3;
 
 function defaultFreeSlots() {
   return Array.from({ length: MAX_FLOWERS }, (_, i) => i);
@@ -14,8 +14,6 @@ export function createInitialState(flowers: FlowersById): AppState {
     flowers,
     recipient: { name: "", email: "" },
     sender: { name: "" },
-    steps: { current: 1 },
-    navigation: { disabled: false },
   };
 }
 
@@ -57,20 +55,6 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         recipient: { name: recipientName, email: recipientEmail },
       };
     }
-    case "NEXT_STEP":
-      return {
-        ...state,
-        steps: { ...state.steps, current: state.steps.current + 1 },
-        navigation: { disabled: true },
-      };
-    case "PREV_STEP":
-      return {
-        ...state,
-        steps: { ...state.steps, current: state.steps.current - 1 },
-        navigation: { disabled: true },
-      };
-    case "ENABLE_BUTTON":
-      return { ...state, navigation: { disabled: false } };
     case "RESET":
       return action.initialState;
     default:

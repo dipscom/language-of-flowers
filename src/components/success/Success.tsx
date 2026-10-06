@@ -14,12 +14,12 @@ export default function Success() {
   // The sent bouquet arrives through the navigation state; without it (e.g. a
   // direct visit) there is nothing to show, so start the journey again.
   if (!state?.bouquet?.length) {
-    return <Navigate to="/build-bouquet" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return (
     <TwoColumn>
-      <Column>
+      <Column centered>
         <PageHeader title="Thank You!" />
         <p>Your bouquet has been sent.</p>
 
