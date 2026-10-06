@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import createForestReveal from "./forestReveal";
+import createCrumpledPaper from "./crumpledPaper";
 import { preloadFlowerImages } from "./flowerImages";
 
 // Resolves once an <img> has loaded; a failed image must never block the page.
@@ -20,7 +21,8 @@ interface InitialLoadOptions {
 }
 
 // Hides the page, waits for every asset, then reveals it back to front: the
-// forest is printed onto its canvas, then the paper and decorations fade in.
+// forest is printed onto its canvas, then the paper unfolds from a crumpled
+// ball, the content appears and the decorations fade in.
 // Returns a cleanup that stops a pending wait (StrictMode runs effects twice).
 export default function initialLoad({
   scope,
@@ -31,44 +33,35 @@ export default function initialLoad({
   const forest = createForestReveal(
     scope.querySelector<HTMLCanvasElement>('canvas[data-load="forest"]')!,
   );
-  const paper = '[data-load="paper"]';
+  const paperElement = scope.querySelector<HTMLElement>('[data-load="paper"]')!;
+  const crumpleCanvas = scope.querySelector<HTMLCanvasElement>(
+    'canvas[data-load="crumple"]',
+  )!;
+  const crumple = createCrumpledPaper(crumpleCanvas, paperElement);
+  const content = '[data-load="content"]';
   const decorations = '[data-load="overlay"] > img';
   let cancelled = false;
 
-  // Both logo variants (static and link) are targeted; CSS shows only one.
-  const logo = '[data-load="logo"]';
-  const logoHidden = "inset(50% 0% 50% 0%)";
-  const logoShown = "inset(0% 0% 0% 0%)";
-
-  gsap.set([paper, decorations], { autoAlpha: 0 });
-  gsap.set(logo, { clipPath: logoHidden });
+  gsap.set([paperElement, crumpleCanvas, content, decorations], {
+    autoAlpha: 0,
+  });
 
   const reveal = contextSafe(() => {
     onReady();
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       forest.showAll();
-      gsap.set([paper, decorations], { autoAlpha: 1 });
-      gsap.set(logo, { clearProps: "clipPath" });
+      crumple.showAll();
+      gsap.set([content, decorations], { autoAlpha: 1 });
       return;
     }
 
     gsap
       .timeline({ defaults: { duration: 0.8, ease: "power1.out" } })
       .add(forest.play())
-      .to(paper, { autoAlpha: 1 }, ">+.2")
-      .to(decorations, { autoAlpha: 1, stagger: 0.05 }, ">-0.2")
-      // An invisible horizontal line runs from the logo's centre to the top and bottom,
-      // revealing it as it goes. fromTo keeps both clip-paths as four-value
-      // insets: browsers read a set inset() back in shorthand ("0% 50%"), and
-      // GSAP then mismatches the values, so only one edge would animate.
-      .fromTo(
-        logo,
-        { clipPath: logoHidden },
-        { clipPath: logoShown, duration: 1.2, ease: "power4.inOut" },
-        "<",
-      )
-      .set(logo, { clearProps: "clipPath" });
+      .add(crumple.play(), ">+.2")
+      .set(content, { autoAlpha: 1 })
+      .to(decorations, { autoAlpha: 1, stagger: 0.05 }, ">-0.2");
   });
 
   Promise.all([
@@ -83,5 +76,6 @@ export default function initialLoad({
   return () => {
     cancelled = true;
     forest.dispose();
+    crumple.dispose();
   };
 }

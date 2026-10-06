@@ -15,7 +15,6 @@ export default function ScrollContainer() {
     <img
       alt="The Language of Flowers"
       className={styles.logoImage}
-      data-load="logo"
       height="133"
       src="/images/lof-logo.svg"
       title="The Language of Flowers"
@@ -24,9 +23,13 @@ export default function ScrollContainer() {
   );
 
   return (
-    <div className={styles["scroll-container"]} data-load="paper">
+    <div className={styles["scroll-container"]}>
       <Paper />
-      <div className={styles.scroller} ref={scrollerRef}>
+      <div
+        className={styles.scroller}
+        data-load="content"
+        ref={scrollerRef}
+      >
         <div className={`${styles.logo} ${styles.logoStatic}`}>{logo}</div>
         <Link className={`${styles.logo} ${styles.logoLink}`} to="/">
           {logo}

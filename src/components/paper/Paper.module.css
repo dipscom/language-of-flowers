@@ -31,8 +31,20 @@
   transform: rotate(90deg);
 }
 
+/* Painted by animation/crumpledPaper.ts over .paper during the initial load.
+   It is a sibling of .paper, not a child, so the clip-path that masks .paper
+   doesn't also cut off the crumpled paper's drop shadow. Both fill the same
+   grid cell of .scroll-container; position stacks it above .paper. */
+.crumple {
+  display: block;
+  height: 100%;
+  pointer-events: none;
+  position: relative;
+  width: 100%;
+}
+
 .paper {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: var(--color-main-1);
   height: 100%;
   overflow: hidden;
   position: relative;
