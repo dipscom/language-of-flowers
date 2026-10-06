@@ -68,6 +68,13 @@
   }
 }
 
-.logo > img {
+.logo > svg {
   margin: 0 auto;
+}
+
+/* The global svg rule sets height: auto, which would size the logo from the
+   viewBox (463.3 / 204.8). Pin the ratio of the width/height attributes so it
+   matches the <img> it replaced. */
+.logoImage {
+  aspect-ratio: 300 / 133;
 }

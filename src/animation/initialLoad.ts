@@ -2,6 +2,7 @@ import gsap from "gsap";
 import createForestReveal from "./forestReveal";
 import createCrumpledPaper from "./crumpledPaper";
 import { preloadFlowerImages } from "./flowerImages";
+import createLogoReveal from "./logoReveal";
 
 // Resolves once an <img> has loaded; a failed image must never block the page.
 function imageReady(image: HTMLImageElement) {
@@ -22,7 +23,7 @@ interface InitialLoadOptions {
 
 // Hides the page, waits for every asset, then reveals it back to front: the
 // forest is printed onto its canvas, then the paper unfolds from a crumpled
-// ball, the content appears and the decorations fade in.
+// ball, the content appears, the logo is drawn in and the decorations fade in.
 // Returns a cleanup that stops a pending wait (StrictMode runs effects twice).
 export default function initialLoad({
   scope,
@@ -38,6 +39,7 @@ export default function initialLoad({
     'canvas[data-load="crumple"]',
   )!;
   const crumple = createCrumpledPaper(crumpleCanvas, paperElement);
+  const logo = createLogoReveal(scope);
   const content = '[data-load="content"]';
   const decorations = '[data-load="overlay"] > img';
   let cancelled = false;
@@ -56,12 +58,14 @@ export default function initialLoad({
       return;
     }
 
+    logo.hide();
     gsap
       .timeline({ defaults: { duration: 0.8, ease: "power1.out" } })
       .add(forest.play())
-      .add(crumple.play(), ">+.2")
+      .add(crumple.play())
       .set(content, { autoAlpha: 1 })
-      .to(decorations, { autoAlpha: 1, stagger: 0.05 }, ">-0.2");
+      .add(logo.play(), "<")
+      .to(decorations, { autoAlpha: 1, stagger: 0.05 }, "<-0.2");
   });
 
   Promise.all([
