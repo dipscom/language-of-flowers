@@ -11,6 +11,7 @@ import {
   useNavigationType,
   type Location,
 } from "react-router";
+import { flipFor } from "../../animation/journey";
 import createPageFlip, { type PageFlip } from "../../animation/pageFlip";
 import MainLogo from "../MainLogo";
 import Paper from "../paper/Paper";
@@ -74,14 +75,22 @@ export default function ScrollContainer({ renderPage }: ScrollContainerProps) {
   }, []);
 
   const leavingId = pages.leaving?.id;
+  // Going back in the journey turns the page the other way (see journey.ts).
+  const kind = pages.leaving
+    ? flipFor(pages.leaving.location.pathname, pages.current.location.pathname)
+    : null;
   useLayoutEffect(() => {
-    if (!leavingId) return;
-    flipRef.current!.play(incomingRef.current!, -1, outgoingRef.current).then(() => {
-      setPages((latest) =>
-        latest.leaving?.id === leavingId ? { ...latest, leaving: null } : latest,
-      );
-    });
-  }, [leavingId]);
+    if (!leavingId || !kind) return;
+    flipRef.current!
+      .play(incomingRef.current!, kind, outgoingRef.current)
+      .then(() => {
+        setPages((latest) =>
+          latest.leaving?.id === leavingId
+            ? { ...latest, leaving: null }
+            : latest,
+        );
+      });
+  }, [leavingId, kind]);
 
   const renderPageAt = (page: Page, incoming: boolean) => (
     <div

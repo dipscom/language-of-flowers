@@ -7,9 +7,11 @@ const MAX_TILT = 0.14;
 // Width of the shadow the fold casts on the flap, as a fraction of the page.
 const FOLD_SHADE = 0.22;
 
-// 1 turns the leaf from the left to the right (back, in a book), -1 from the
-// right to the left (forward).
-export type FlipDirection = 1 | -1;
+// "forward" lifts the page and reveals the next one underneath it, the fold
+// running from the right to the left. "back" goes back in a book: the new page
+// is laid on top of the current one, the fold running from the left to the
+// right.
+export type FlipKind = "forward" | "back";
 
 export interface PageFlip {
   // Sweeps a leaf across the page: `incoming` is revealed behind the fold,
@@ -18,7 +20,7 @@ export interface PageFlip {
   // of paper covers the rest. Resolves when it is done (or when cancelled).
   play(
     incoming: HTMLElement,
-    direction: FlipDirection,
+    kind: FlipKind,
     outgoing?: HTMLElement | null,
   ): Promise<void>;
   // Jumps to the end of a running flip.
@@ -27,10 +29,12 @@ export interface PageFlip {
 }
 
 // Turns a page over: the fold runs across the page with the incoming page
-// revealed behind it. The flap is blank paper,
-// drawn on the canvas as the mirror image of what the fold has swept; the
-// incoming page is cut to the fold with a clip-path, so the real DOM shows
-// through. Everything is driven by one continuous tween (no stepping).
+// behind it. The flap is blank paper, drawn on the canvas as the mirror image
+// of one side of the fold; the pages are cut to the fold with clip-paths, so
+// the real DOM shows through. Going forward the flap is the swept part,
+// peeled and laid over the old page; going back it is the part still to be
+// laid, curled over the new page and shrinking as it lands. Everything is
+// driven by one continuous tween (no stepping).
 export default function createPageFlip(canvas: HTMLCanvasElement): PageFlip {
   const context = canvas.getContext("2d")!;
   let width = 0;
@@ -40,7 +44,7 @@ export default function createPageFlip(canvas: HTMLCanvasElement): PageFlip {
   let tween: gsap.core.Tween | undefined;
   let settle: (() => void) | undefined;
   const state = { progress: 0 };
-  let direction: FlipDirection = 1;
+  let kind: FlipKind = "forward";
   let incomingPage: HTMLElement | undefined;
 
   function layout() {
@@ -64,9 +68,11 @@ export default function createPageFlip(canvas: HTMLCanvasElement): PageFlip {
     return { x, tan: Math.tan(tilt), nx: Math.cos(tilt), ny: -Math.sin(tilt) };
   }
 
-  // The page's corners to the left of the fold, mirrored across it: the
-  // outline of the flap.
+  // The page's corners on one side of the fold, mirrored across it: the
+  // outline of the flap. That is the swept side (left) going forward, and the
+  // side still to be swept (right) going back.
   function flapOutline(x: number, nx: number, ny: number) {
+    const sign = kind === "forward" ? 1 : -1;
     const px = x;
     const py = height / 2;
     const corners = [
@@ -75,7 +81,7 @@ export default function createPageFlip(canvas: HTMLCanvasElement): PageFlip {
       [width, height],
       [0, height],
     ];
-    const side = (q: number[]) => (q[0] - px) * nx + (q[1] - py) * ny;
+    const side = (q: number[]) => sign * ((q[0] - px) * nx + (q[1] - py) * ny);
     const kept: number[][] = [];
     corners.forEach((q, index) => {
       const next = corners[(index + 1) % corners.length];
@@ -103,9 +109,9 @@ export default function createPageFlip(canvas: HTMLCanvasElement): PageFlip {
     const { x, tan, nx, ny } = fold(progress);
     const edge = (y: number) => x + (y - height / 2) * tan;
 
-    // The geometry is worked out for a fold sweeping left to right; the other
-    // direction is that, mirrored.
-    const mirror = (px: number) => (direction === 1 ? px : width - px);
+    // The geometry is worked out for a fold sweeping left to right, which is
+    // how a page goes back; going forward is that, mirrored.
+    const mirror = (px: number) => (kind === "back" ? px : width - px);
     const home = mirror(0);
     const away = mirror(width);
     const top = `${mirror(edge(0))}px 0`;
@@ -125,27 +131,30 @@ export default function createPageFlip(canvas: HTMLCanvasElement): PageFlip {
     const flap = flapOutline(x, nx, ny);
 
     context.save();
-    if (direction === 1) context.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (kind === "back") context.setTransform(dpr, 0, 0, dpr, 0, 0);
     else context.setTransform(-dpr, 0, 0, dpr, width * dpr, 0);
     // Only the page itself.
     context.beginPath();
     context.rect(0, 0, width, height);
     context.clip();
 
-    // The flap casts its shadow onto the outgoing page; the half-plane clip
-    // keeps it from falling back onto the page being revealed.
+    // The flap casts its shadow onto the page beneath it, which is on its own
+    // side of the fold: the half-plane clip keeps it from falling onto the
+    // other page.
     context.save();
     const keep = new Path2D();
+    const across = (kind === "forward" ? 1 : -1) * 3 * width;
     keep.moveTo(edge(-height), -height);
     keep.lineTo(edge(2 * height), 2 * height);
-    keep.lineTo(edge(2 * height) + 3 * width, 2 * height);
-    keep.lineTo(edge(-height) + 3 * width, -height);
+    keep.lineTo(edge(2 * height) + across, 2 * height);
+    keep.lineTo(edge(-height) + across, -height);
     keep.closePath();
     context.clip(keep);
     context.shadowColor = "rgba(0, 0, 0, 0.35)";
     context.shadowBlur = 22 * dpr;
-    // Shadow offsets ignore the transform, so they are mirrored by hand.
-    context.shadowOffsetX = direction * 7 * dpr;
+    // Shadow offsets ignore the transform. On screen the flap is always left
+    // of the fold, so the shadow is thrown to the left.
+    context.shadowOffsetX = -7 * dpr;
     context.shadowOffsetY = 3 * dpr;
     context.fillStyle = paperColor;
     context.fill(flap);
@@ -155,7 +164,7 @@ export default function createPageFlip(canvas: HTMLCanvasElement): PageFlip {
     // after it.
     context.save();
     context.clip(flap);
-    const reach = width * FOLD_SHADE;
+    const reach = (kind === "forward" ? 1 : -1) * width * FOLD_SHADE;
     const shade = context.createLinearGradient(
       x,
       height / 2,
@@ -190,9 +199,9 @@ export default function createPageFlip(canvas: HTMLCanvasElement): PageFlip {
   }
 
   return {
-    play(incoming, flipDirection, outgoing) {
+    play(incoming, flipKind, outgoing) {
       tween?.progress(1);
-      direction = flipDirection;
+      kind = flipKind;
       return new Promise<void>((resolve) => {
         settle = resolve;
         state.progress = 0;

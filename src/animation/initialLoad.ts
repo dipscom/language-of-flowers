@@ -68,7 +68,7 @@ export default function initialLoad({
       .call(() => {
         const page = scope.querySelector<HTMLElement>(content)!;
         gsap.set(page, { autoAlpha: 1 });
-        flip.play(page, -1);
+        flip.play(page, "forward");
       });
   });
 
