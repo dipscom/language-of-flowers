@@ -87,6 +87,12 @@
   }
 }
 
+/* Pressed like .button:active, but straight back into the page (it shrinks)
+   instead of sliding sideways onto a shadow. */
+.logoLink:active {
+  transform: scale(0.95);
+}
+
 .logo > svg {
   margin: 0 auto;
 }
