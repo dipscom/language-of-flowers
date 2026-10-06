@@ -157,6 +157,7 @@ a {
   border: 2px solid var(--color-main-10);
   box-shadow: 0.125rem 0.125rem var(--color-main-10);
   color: var(--color-main-1);
+  cursor: pointer;
   display: inline-block;
   font-family: "Fraunces", serif;
   font-weight: 700;

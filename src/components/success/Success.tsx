@@ -26,7 +26,7 @@ export default function Success() {
         <p>Would you like to send another?</p>
 
         <p>
-          <Anchor cta="start again" step="forward" target="build-bouquet" />
+          <Anchor cta="Start again" step="forward" target="build-bouquet" />
         </p>
       </Column>
       <Column>

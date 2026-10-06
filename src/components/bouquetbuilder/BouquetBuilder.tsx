@@ -86,10 +86,7 @@ export default function BouquetBuilder({
           );
         })}
       </ul>
-      <button
-        className="button"
-        disabled={bouquet.length < MAX_FLOWERS}
-      >
+      <button className="button" disabled={bouquet.length < MAX_FLOWERS}>
         Delivery details
       </button>
     </form>
