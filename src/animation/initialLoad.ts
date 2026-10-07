@@ -2,6 +2,7 @@ import gsap from "gsap";
 import createForestReveal from "./forestReveal";
 import createCrumpledPaper from "./crumpledPaper";
 import createPageFlip from "./pageFlip";
+import createOverlayReveal from "./overlayReveal";
 import { preloadFlowerImages } from "./flowerImages";
 
 // Resolves once an <img> has loaded; a failed image must never block the page.
@@ -43,9 +44,10 @@ export default function initialLoad({
     scope.querySelector<HTMLCanvasElement>('canvas[data-load="flip"]')!,
   );
   const content = '[data-load="content"]';
+  const overlay = '[data-load="overlay"]';
   let cancelled = false;
 
-  gsap.set([paperElement, crumpleCanvas, content], {
+  gsap.set([paperElement, crumpleCanvas, content, overlay], {
     autoAlpha: 0,
   });
 
@@ -55,21 +57,28 @@ export default function initialLoad({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       forest.showAll();
       crumple.showAll();
-      gsap.set(content, { autoAlpha: 1 });
+      gsap.set([content, overlay], { autoAlpha: 1 });
       return;
     }
 
-    gsap
-      .timeline({ defaults: { duration: 0.8, ease: "power1.out" } })
-      .add(forest.play())
+    const tl = gsap.timeline({
+      defaults: { duration: 0.8, ease: "power1.out" },
+    });
+
+    tl.add(forest.play())
       .add(crumple.play())
+      .add(createOverlayReveal(scope), "<=+0.5")
       // The content stays hidden until a leaf is turned over the paper, from
       // the right to the left, revealing it as the fold passes.
-      .call(() => {
-        const page = scope.querySelector<HTMLElement>(content)!;
-        gsap.set(page, { autoAlpha: 1 });
-        flip.play(page, "forward");
-      });
+      .call(
+        () => {
+          const page = scope.querySelector<HTMLElement>(content)!;
+          gsap.set(page, { autoAlpha: 1 });
+          flip.play(page, "forward");
+        },
+        undefined,
+        "-=1",
+      );
   });
 
   Promise.all([

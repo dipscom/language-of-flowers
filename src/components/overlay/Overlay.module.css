@@ -29,7 +29,7 @@
    slope 700/1180 = 59.322vw, offset 960px - 480px * 700/1180 = 675.254px. */
 .flowers-bottom {
   --width: min(clamp(100vw, 59.322vw + 675.254px, 200vw), 1660px);
-  bottom: -4%;
+  bottom: -6%;
   width: var(--width);
   max-width: var(--width);
 }
@@ -42,19 +42,19 @@
 }
 
 .flowers-mid-left {
-  left: -20%;
-  bottom: 0;
+  left: -8%;
+  bottom: 10%;
   width: 45%;
   max-width: 290px;
 }
 
 .flowers-top-left {
-  width: 45%;
+  width: 35%;
   max-width: 400px;
 }
 
 .flowers-top-right {
-  width: 45%;
+  width: 35%;
   max-width: 350px;
 }
 

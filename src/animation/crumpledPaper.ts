@@ -349,15 +349,16 @@ export default function createCrumpledPaper(
 
   return {
     play() {
-      return gsap
-        .timeline({ onComplete: showAll })
-        .set([paper, canvas], { autoAlpha: 1 })
-        .to(state, {
-          frame: FRAME_COUNT - 1,
-          duration: DURATION,
-          ease: `steps(${FRAME_COUNT - 1})`,
-          onUpdate: show,
-        });
+      const tl = gsap.timeline({ onComplete: showAll });
+
+      tl.set([paper, canvas], { autoAlpha: 1 }).to(state, {
+        frame: FRAME_COUNT - 1,
+        duration: DURATION,
+        ease: `steps(${FRAME_COUNT - 1})`,
+        onUpdate: show,
+      });
+
+      return tl;
     },
 
     // Reduced motion: skip straight to the flat sheet.

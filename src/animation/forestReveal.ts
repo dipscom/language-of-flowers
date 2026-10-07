@@ -172,13 +172,15 @@ export default function createForestReveal(canvas: HTMLCanvasElement) {
     ready,
 
     play() {
-      return gsap
-        .timeline({
-          defaults: { duration: 0.6, ease: "power4.in" },
-          onUpdate: draw,
-          onComplete: showAll,
-        })
-        .to(bands, { alpha: 1, stagger: 0.2 });
+      const tl = gsap.timeline({
+        defaults: { duration: 0.6, ease: "power4.in" },
+        onUpdate: draw,
+        onComplete: showAll,
+      });
+
+      tl.to(bands, { alpha: 1, stagger: 0.2 });
+
+      return tl;
     },
 
     // Reduced motion: skip the passes and show the finished plate.
