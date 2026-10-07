@@ -97,6 +97,7 @@ export default async function handler(req: Request) {
   const params = new URLSearchParams({
     bouquet: bouquet.join(","),
     sender: senderName,
+    recipient: recipientName,
   });
   const link = `${origin}${VIEW_BOUQUET_PATH}?${params}`;
 

@@ -2,6 +2,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { useNavigate } from "react-router";
 import { MAX_FLOWERS } from "../../state/appReducer";
 import type { FlowersById } from "../../types";
+import { DETAILS_PATH } from "../../routes";
 import form from "../BuildForm.module.css";
 import styles from "./BouquetBuilder.module.css";
 
@@ -24,7 +25,7 @@ export default function BouquetBuilder({
     <form
       id="bouquet-builder"
       className={form.form}
-      action={() => navigate("/details")}
+      action={() => navigate(DETAILS_PATH)}
       onChange={(e) =>
         selectFlowers(
           new FormData(e.currentTarget).getAll("flowers") as string[],

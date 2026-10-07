@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { useNavigate } from "react-router";
 import type { PersonDetailsValues, Person, Sender } from "../types";
+import { BUILD_BOUQUET_PATH } from "../routes";
 import form from "./BuildForm.module.css";
 import styles from "./PersonDetails.module.css";
 
@@ -121,7 +122,7 @@ export default function PersonDetails({
         className="button back-button"
         onClick={(e) => {
           savePersonDetails(readDetails(new FormData(e.currentTarget.form!)));
-          navigate("/build-bouquet");
+          navigate(BUILD_BOUQUET_PATH);
         }}
       >
         Change bouquet

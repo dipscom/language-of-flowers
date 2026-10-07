@@ -1,100 +1,82 @@
 import gsap from "gsap";
 
-// Returns a timeline meant to be added to the initial load.
-export default function createOverlayReveal(scope: Element) {
+export interface OverlayPieces {
+  show(): void;
+  hide(): void;
+  // Jumps to the shown or the hidden state, without animating.
+  set(visible: boolean): void;
+}
+
+// Every piece of the overlay (the flowers and the characters), which are only
+// on screen with the Introduction. Built hidden: each piece starts in its
+// off-screen state, and hiding plays the entrance backwards.
+export function createOverlayPieces(scope: Element): OverlayPieces {
   const el = (name: string) =>
     scope.querySelector<HTMLElement>(`[data-overlay="${name}"]`);
 
-  const flowers = {
-    topLeft: el("flowers-top-left"),
-    topRight: el("flowers-top-right"),
-    midLeft: el("flowers-mid-left"),
-    bottom: el("flowers-bottom"),
-    bottomRight: el("flowers-bottom-right"),
-  };
-  const characters = {
-    man: el("man"),
-    lady: el("lady"),
-    peacock: el("peacock"),
-    stag: el("stag"),
-  };
-
-  const tl = gsap.timeline({
-    defaults: { duration: 1.2, ease: "back.out(1)" },
-  });
-
-  // The overlay is hidden by initialLoad until this point; the tweens below
-  // have already moved each piece off-screen, so it can be shown straight away.
-  tl.set(scope.querySelector('[data-load="overlay"]'), { autoAlpha: 1 })
-    .from(flowers.bottom, {
-      yPercent: 100,
+  const tl = gsap
+    .timeline({
+      paused: true,
+      defaults: { duration: 1.2, ease: "back.out(1)" },
     })
+    .from(el("flowers-bottom"), { yPercent: 100 })
     .from(
-      flowers.topLeft,
-      {
-        yPercent: -100,
-        xPercent: -100,
-      },
+      el("flowers-top-left"),
+      { yPercent: -100, xPercent: -100 },
       "<=+0.1",
     )
     .from(
-      flowers.topRight,
-      {
-        yPercent: -100,
-        xPercent: 100,
-      },
+      el("flowers-top-right"),
+      { yPercent: -100, xPercent: 100 },
+      "<=+0.1",
+    )
+    .from(el("flowers-mid-left"), { xPercent: -100 }, "<=+0.1")
+    .from(el("flowers-bottom-right"), { xPercent: 100 }, "<=+0.1")
+    .from(
+      el("peacock"),
+      { yPercent: 100, xPercent: -20, autoAlpha: 0 },
       "<=+0.1",
     )
     .from(
-      flowers.midLeft,
-      {
-        xPercent: -100,
-      },
+      el("stag"),
+      { yPercent: 100, xPercent: 20, autoAlpha: 0 },
       "<=+0.1",
     )
     .from(
-      flowers.bottomRight,
-      {
-        xPercent: 100,
-      },
+      el("man"),
+      { xPercent: 50, autoAlpha: 0, ease: "power4.out" },
       "<=+0.1",
     )
     .from(
-      characters.peacock,
-      {
-        yPercent: 100,
-        xPercent: -20,
-        autoAlpha: 0,
-      },
-      "<=+0.1",
-    )
-    .from(
-      characters.stag,
-      {
-        yPercent: 100,
-        xPercent: 20,
-        autoAlpha: 0,
-      },
-      "<=+0.1",
-    )
-    .from(
-      characters.man,
-      {
-        xPercent: 50,
-        autoAlpha: 0,
-        ease: "power4.out",
-      },
-      "<=+0.1",
-    )
-    .from(
-      characters.lady,
-      {
-        xPercent: -50,
-        autoAlpha: 0,
-        ease: "power4.out",
-      },
+      el("lady"),
+      { xPercent: -50, autoAlpha: 0, ease: "power4.out" },
       "<=+0.1",
     );
 
-  return tl;
+  return {
+    show: () => {
+      tl.play();
+    },
+    hide: () => {
+      tl.reverse();
+    },
+    set: (visible) => {
+      tl.progress(visible ? 1 : 0).pause();
+    },
+  };
+}
+
+// Returns a timeline meant to be added to the initial load: it shows the
+// overlay, then calls `onPieces` to bring the pieces in if they belong on the
+// page.
+export default function createOverlayReveal(
+  scope: Element,
+  onPieces: () => void,
+) {
+  // The overlay is hidden by initialLoad until this point; the pieces have
+  // already been moved off-screen, so it can be shown straight away.
+  return gsap
+    .timeline()
+    .set(scope.querySelector('[data-load="overlay"]'), { autoAlpha: 1 })
+    .call(onPieces);
 }
