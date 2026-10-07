@@ -48,7 +48,6 @@ interface Frame {
   folds: Fold[];
   // 1 while the paper is a ball, falling to 0 once flat.
   crumple: number;
-  clipPath: string;
   flat: boolean;
 }
 
@@ -66,9 +65,9 @@ const lerp = (from: number, to: number, amount: number) =>
   from + (to - from) * amount;
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 
-// Builds every stop-motion frame in normalized coordinates, so the clip-path
-// (percentages) and the canvas (pixels) describe exactly the same shape. The
-// aspect ratio only matters to keep the ball round rather than stretched.
+// Builds every stop-motion frame in normalized coordinates, so the outline
+// scales to any canvas size. The aspect ratio only matters to keep the ball
+// round rather than stretched.
 function buildFrames(aspect: number): Frame[] {
   const random = createRandom(7);
   const ballX = BALL_RADIUS * Math.min(1, 1 / aspect);
@@ -180,26 +179,19 @@ function buildFrames(aspect: number): Frame[] {
       },
     );
 
-    const clipPath = `polygon(${outline
-      .map(([x, y]) => `${(x * 100).toFixed(3)}% ${(y * 100).toFixed(3)}%`)
-      .join(", ")})`;
-
     return {
       outline,
       facets,
       folds,
       crumple,
-      clipPath,
       flat: progress === 1,
     };
   });
 }
 
-// A crumpled sheet that opens up in stop-motion over `paper`. The same outline
-// is drawn on `canvas` (with fold marks) and used as a clip-path on `paper`, so
-// only the part that has opened shows the real paper. `play()` returns the
-// timeline; when it completes the clip-path is removed and the canvas is left
-// empty.
+// A crumpled sheet that opens up in stop-motion on `canvas`, standing in for
+// `paper` (which stays hidden) until it is flat. `play()` returns the timeline;
+// when it completes the canvas is left empty and the real paper is shown.
 export default function createCrumpledPaper(
   canvas: HTMLCanvasElement,
   paper: HTMLElement,
@@ -303,7 +295,9 @@ export default function createCrumpledPaper(
     if (!force && index === shownFrame) return;
     shownFrame = index;
     if (frames[index]) {
-      paper.style.clipPath = frames[index].flat ? "" : frames[index].clipPath;
+      // While the ball is open the canvas stands in for the paper; showing both
+      // would stack two translucent layers and read darker than the flat sheet.
+      paper.style.visibility = frames[index].flat ? "" : "hidden";
     }
     draw();
   };
@@ -340,18 +334,18 @@ export default function createCrumpledPaper(
   resizeObserver.observe(canvas);
   layout();
 
-  // Ends on the flat sheet: the real paper is unclipped and the canvas is
+  // Ends on the flat sheet: the real paper is shown and the canvas is
   // left empty.
   const showAll = () => {
     state.frame = FRAME_COUNT - 1;
-    show();
+    show(true);
   };
 
   return {
     play() {
       const tl = gsap.timeline({ onComplete: showAll });
 
-      tl.set([paper, canvas], { autoAlpha: 1 }).to(state, {
+      tl.set(canvas, { visibility: "visible" }).to(state, {
         frame: FRAME_COUNT - 1,
         duration: DURATION,
         ease: `steps(${FRAME_COUNT - 1})`,
@@ -363,7 +357,7 @@ export default function createCrumpledPaper(
 
     // Reduced motion: skip straight to the flat sheet.
     showAll() {
-      gsap.set([paper, canvas], { autoAlpha: 1 });
+      gsap.set(canvas, { visibility: "visible" });
       showAll();
     },
 

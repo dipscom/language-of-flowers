@@ -47,9 +47,10 @@ export default function initialLoad({
   const overlay = '[data-load="overlay"]';
   let cancelled = false;
 
-  gsap.set([paperElement, crumpleCanvas, content, overlay], {
-    autoAlpha: 0,
-  });
+  // Only visibility is touched on the paper and the ball: their opacity comes
+  // from --paper-opacity and must not be overwritten by an inline value.
+  gsap.set([paperElement, crumpleCanvas], { visibility: "hidden" });
+  gsap.set([content, overlay], { autoAlpha: 0 });
 
   const reveal = contextSafe(() => {
     onReady();
