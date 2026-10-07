@@ -5,6 +5,7 @@ import PageHeader from "../PageHeader";
 import PersonDetails from "../PersonDetails";
 import TwoColumn, { Column } from "../twocolumn/TwoColumn";
 import { MAX_FLOWERS } from "../../state/appReducer";
+import { sendBouquet } from "../../api/sendBouquet";
 import { useAppState } from "../../state/useAppState";
 import type { PersonDetailsValues } from "../../types";
 
@@ -16,7 +17,6 @@ export default function Details() {
     recipient,
     sender,
     savePersonDetails,
-    sendBouquet,
     reset,
   } = useAppState();
 
@@ -43,9 +43,9 @@ export default function Details() {
 
   async function confirm(details: PersonDetailsValues) {
     setError(null);
-    const failure = await sendBouquet(details);
-    if (failure) {
-      setError(failure);
+    const result = await sendBouquet(details, bouquet);
+    if (!result.ok) {
+      setError(result.error);
       return;
     }
     // The sent bouquet is handed to /success through the navigation state.

@@ -17,36 +17,6 @@ export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
     createInitialState(flowers),
   );
 
-  const bouquetKeys = state.bouquet;
-  const sendBouquet = useCallback(
-    async (details: PersonDetailsValues) => {
-      const params = new URLSearchParams({
-        bouquet: bouquetKeys.join(","),
-        sender: details.senderName,
-      });
-      try {
-        const resp = await fetch("/.netlify/functions/send-bouquet", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            recipientName: details.recipientName,
-            recipientEmail: details.recipientEmail,
-            senderName: details.senderName,
-            link: `${window.location.origin}/view-bouquet?${params}`,
-            bouquetSize: bouquetKeys.length,
-          }),
-        });
-        const result = (await resp.json()) as { ok?: boolean; error?: string };
-        return resp.ok && result.ok
-          ? null
-          : (result.error ?? "Something went wrong");
-      } catch {
-        return "Network error — please try again";
-      }
-    },
-    [bouquetKeys],
-  );
-
   const selectFlowers = useCallback((keys: string[]) => {
     dispatch({ type: "SET_BOUQUET", keys });
   }, []);
@@ -61,7 +31,6 @@ export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
 
   const value: AppContextValue = {
     ...state,
-    sendBouquet,
     selectFlowers,
     savePersonDetails,
     reset,

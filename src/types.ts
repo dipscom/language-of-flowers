@@ -40,9 +40,6 @@ export type AppAction =
   | { type: "RESET"; initialState: AppState };
 
 export interface AppContextValue extends AppState {
-  // Emails the bouquet link to the recipient; resolves to an error message, or
-  // null once sent.
-  sendBouquet: (details: PersonDetailsValues) => Promise<string | null>;
   selectFlowers: (keys: string[]) => void;
   savePersonDetails: (details: PersonDetailsValues) => void;
   reset: () => void;

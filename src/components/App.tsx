@@ -12,6 +12,7 @@ import BuildBouquet from "./buildbouquet/BuildBouquet";
 import Details from "./details/Details";
 import ViewBouquet from "./viewbouquet/ViewBouquet";
 import Success from "./success/Success";
+import { VIEW_BOUQUET_PATH } from "../routes";
 import { AppStateProvider } from "../state/AppStateContext";
 
 gsap.registerPlugin(useGSAP);
@@ -52,7 +53,7 @@ function App() {
             <Route path="/" element={<Introduction />} />
             <Route path="/build-bouquet" element={<BuildBouquet />} />
             <Route path="/details" element={<Details />} />
-            <Route path="/view-bouquet" element={<ViewBouquet />} />
+            <Route path={VIEW_BOUQUET_PATH} element={<ViewBouquet />} />
             <Route path="/success" element={<Success />} />
             <Route path="*" element={<Introduction />} />
           </Routes>

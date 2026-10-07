@@ -45,3 +45,6 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# ignore the lockfile Netlify CLI generates for its local dev server
+deno.lock

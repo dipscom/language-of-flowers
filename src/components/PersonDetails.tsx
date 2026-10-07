@@ -41,6 +41,12 @@ export default function PersonDetails({
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
   const [valid, setValid] = useState(false);
+  const alertRef = useRef<HTMLParagraphElement>(null);
+
+  // Bring a send failure to the attention of keyboard and screen reader users.
+  useEffect(() => {
+    if (error) alertRef.current?.focus();
+  }, [error]);
 
   // Prefilled values may already make the form valid.
   useEffect(() => {
@@ -99,7 +105,11 @@ export default function PersonDetails({
           required
         />
       </div>
-      {error && <p role="alert">{error}. Please try again.</p>}
+      {error && (
+        <p role="alert" ref={alertRef} tabIndex={-1}>
+          {error}. Please try again.
+        </p>
+      )}
       <SendButton valid={valid} />
       <p className={styles.terms}>
         Contact details for the recipient should only be provided with that

@@ -32,5 +32,6 @@ The routes use `<BrowserRouter>` (HTML5 `pushState`), so the web server must ser
 ## Things to know
 
 - The site has no analytics or tracking code, and outbound links carry no `utm_*` parameters.
-- The only backend is the Netlify function `netlify/functions/send-bouquet.js`, shared with the v-2017 branch. It validates the request and emails the recipient a `/view-bouquet?bouquet=…` link through Resend. Nothing else is logged or stored. It needs `RESEND_API_KEY` and `SEND_EMAIL_FROM` set in Netlify (see `.env.example`); `npm run netlify:dev` runs it locally.
+- The only backend is the Netlify function `netlify/functions/send-bouquet.mts`, served at `/api/send-bouquet`. It deliberately differs from the v-2017 branch's `send-bouquet.js`: it builds the `/view-bouquet?bouquet=…&sender=…` link itself, validates and HTML-escapes all input, only accepts requests whose `Origin` is the site (`URL`, `CUSTOM_DOMAIN_URL` or `DEPLOY_PRIME_URL`), and is rate limited to 5 requests per minute per IP. It emails through Resend and needs `RESEND_API_KEY` and `SEND_EMAIL_FROM` set in Netlify (see `.env.example`). Nothing else is logged or stored. The default `/.netlify/functions/send-bouquet` URL still exists but is not rate limited; the origin check still applies. `npm run netlify:dev` runs it locally.
+- `npm test` runs the Vitest unit tests (the function and the client service). Netlify runs typecheck and the tests before building, so a failure stops the deploy.
 - External URLs used by the site are listed in `EXTERNAL_URLS.txt`.
