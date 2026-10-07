@@ -1,19 +1,16 @@
-import { Navigate, useLocation } from "react-router";
+import { Navigate } from "react-router";
 import Anchor from "../Anchor";
 import BouquetVisualiser from "../bouquetvisualiser/BouquetVisualiser";
 import PageHeader from "../PageHeader";
 import TwoColumn, { Column } from "../twocolumn/TwoColumn";
-
-interface SuccessLocationState {
-  bouquet: string[];
-}
+import { useAppState } from "../../state/useAppState";
 
 export default function Success() {
-  const state = useLocation().state as SuccessLocationState | null;
+  const { sentBouquet } = useAppState();
 
-  // The sent bouquet arrives through the navigation state; without it (e.g. a
-  // direct visit) there is nothing to show, so start the journey again.
-  if (!state?.bouquet?.length) {
+  // The sent bouquet only lives in memory; without it (a reload or a direct
+  // visit) there is nothing to show, so start the journey again.
+  if (!sentBouquet.length) {
     return <Navigate to="/" replace />;
   }
 
@@ -30,7 +27,7 @@ export default function Success() {
         </p>
       </Column>
       <Column>
-        <BouquetVisualiser bouquet={state.bouquet} />
+        <BouquetVisualiser bouquet={sentBouquet} />
       </Column>
     </TwoColumn>
   );

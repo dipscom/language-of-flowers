@@ -40,6 +40,9 @@ export type AppAction =
   | { type: "RESET"; initialState: AppState };
 
 export interface AppContextValue extends AppState {
+  // The bouquet that was just sent; memory only, so empty after a reload.
+  sentBouquet: string[];
+  markSent: (bouquet: string[]) => void;
   selectFlowers: (keys: string[]) => void;
   savePersonDetails: (details: PersonDetailsValues) => void;
   reset: () => void;

@@ -17,6 +17,7 @@ export default function Details() {
     recipient,
     sender,
     savePersonDetails,
+    markSent,
     reset,
   } = useAppState();
 
@@ -35,8 +36,8 @@ export default function Details() {
     [reset],
   );
 
-  // The bouquet only lives in memory, so a refresh or a direct visit arrives
-  // without one: start the journey again.
+  // The bouquet survives a refresh through session storage, so only a direct
+  // visit arrives without one: start the journey again.
   if (bouquet.length < MAX_FLOWERS) {
     return <Navigate to="/build-bouquet" replace />;
   }
@@ -48,9 +49,11 @@ export default function Details() {
       setError(result.error);
       return;
     }
-    // The sent bouquet is handed to /success through the navigation state.
+    // The sent bouquet is handed to /success through the app state, which also
+    // clears the session storage.
     confirmed.current = true;
-    navigate("/success", { state: { bouquet } });
+    markSent(bouquet);
+    navigate("/success");
   }
 
   return (
