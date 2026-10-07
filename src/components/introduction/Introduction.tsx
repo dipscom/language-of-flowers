@@ -1,5 +1,6 @@
 import Anchor from "../Anchor";
 import ParagraphDecoration from "../ParagraphDecoration";
+import { FLORIOGRAPHY_URL } from "../../routes";
 import styles from "./Introduction.module.css";
 
 export default function Introduction() {
@@ -15,7 +16,13 @@ export default function Introduction() {
       </header>
 
       <div className="description">
-        <p>Thank Heavens for floriography. A mysterious language of love.</p>
+        <p>
+          Thank Heavens for{" "}
+          <a href={FLORIOGRAPHY_URL} target="_blank" rel="noopener noreferrer">
+            floriography
+          </a>
+          . A mysterious language of love.
+        </p>
 
         <p>
           Cryptic communications, hidden revelations and coded declarations!

@@ -21,3 +21,7 @@ export function isIntroductionPath(pathname: string) {
 // Custom path of the Netlify function (a custom path is required for its rate
 // limit). Duplicated as a literal in the function's `config.path`.
 export const SEND_BOUQUET_ENDPOINT = "/api/send-bouquet";
+
+// External page about floriography, linked from the bouquet details.
+export const FLORIOGRAPHY_URL =
+  "https://en.wikipedia.org/wiki/Language_of_flowers";

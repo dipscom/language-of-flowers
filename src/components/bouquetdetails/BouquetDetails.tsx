@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import type { FlowersById } from "../../types";
 import { joinMeanings, joinNames } from "../../bouquetMessage";
+import { FLORIOGRAPHY_URL } from "../../routes";
 import styles from "./BouquetDetails.module.css";
 
 interface BouquetDetailsProps {
@@ -36,7 +37,7 @@ export default function BouquetDetails({
       <p>
         Are you a{" "}
         <a
-          href="https://en.wikipedia.org/wiki/Language_of_flowers"
+          href={FLORIOGRAPHY_URL}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.link}
