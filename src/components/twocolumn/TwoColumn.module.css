@@ -16,6 +16,12 @@
   min-width: 0;
 }
 
+@media (max-width: 1023.98px) /* below --landscape */ {
+  .stack-reversed > .column:last-child {
+    order: -1;
+  }
+}
+
 @media (min-width: 1024px) /* --landscape */ {
   /* Fill the height left under the logo and stop there, so a column that is
      too tall scrolls on its own instead of scrolling the whole page. */

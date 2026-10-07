@@ -25,7 +25,7 @@ export default function ViewBouquet() {
   const sender = params.get("sender")?.slice(0, MAX_NAME_LENGTH);
 
   return (
-    <TwoColumn>
+    <TwoColumn stackReversed>
       <Column>
         <PageHeader
           title={recipient ? `A bouquet for ${recipient}` : "A bouquet for you"}

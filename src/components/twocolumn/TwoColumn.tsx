@@ -7,6 +7,9 @@ interface TwoColumnProps {
 }
 
 interface TwoColumnLayoutProps extends TwoColumnProps {
+  // Stacks the second column above the first below --landscape. Side by side
+  // from --landscape up the order is unchanged.
+  stackReversed?: boolean;
   // Scrolls everything holding this content back to the top when it changes.
   scrollKey?: unknown;
 }
@@ -14,6 +17,7 @@ interface TwoColumnLayoutProps extends TwoColumnProps {
 export default function TwoColumn({
   children,
   scrollKey,
+  stackReversed,
 }: TwoColumnLayoutProps) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -35,7 +39,14 @@ export default function TwoColumn({
   }, [scrollKey]);
 
   return (
-    <div className={styles["two-column"]} ref={ref}>
+    <div
+      className={
+        stackReversed
+          ? `${styles["two-column"]} ${styles["stack-reversed"]}`
+          : styles["two-column"]
+      }
+      ref={ref}
+    >
       {children}
     </div>
   );
