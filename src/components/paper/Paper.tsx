@@ -4,16 +4,6 @@ export default function Paper() {
   return (
     <>
       <div className={styles.paper} data-load="paper">
-        <img
-          role="presentation"
-          className={`${styles.cloud} ${styles.cloud1}`}
-          src="/images/background/cloud-1.png"
-        />
-        <img
-          role="presentation"
-          className={`${styles.cloud} ${styles.cloud2}`}
-          src="/images/background/cloud-2.png"
-        />
         <div className={styles["line-top-wrapper"]} />
         <div className={styles["line-left-wrapper"]} />
         <div className={styles["line-right-wrapper"]} />
