@@ -1,8 +1,19 @@
 import type { FlipKind } from "./pageFlip";
+import {
+  BUILD_BOUQUET_PATH,
+  DETAILS_PATH,
+  INTRODUCTION_PATH,
+  SUCCESS_PATH,
+} from "../routes";
 
 // The pages in the order they are visited. Moving to an earlier one is going
 // back, however it happens: a button, or the browser's back or forward.
-const JOURNEY = ["/", "/build-bouquet", "/details", "/success"];
+const JOURNEY = [
+  INTRODUCTION_PATH,
+  BUILD_BOUQUET_PATH,
+  DETAILS_PATH,
+  SUCCESS_PATH,
+];
 
 export function flipFor(from: string, to: string): FlipKind {
   const was = JOURNEY.indexOf(from);

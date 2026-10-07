@@ -6,6 +6,7 @@ import PersonDetails from "../PersonDetails";
 import TwoColumn, { Column } from "../twocolumn/TwoColumn";
 import { MAX_FLOWERS } from "../../state/appReducer";
 import { sendBouquet } from "../../api/sendBouquet";
+import { BUILD_BOUQUET_PATH, SUCCESS_PATH } from "../../routes";
 import { useAppState } from "../../state/useAppState";
 import type { PersonDetailsValues } from "../../types";
 
@@ -39,7 +40,7 @@ export default function Details() {
   // The bouquet survives a refresh through session storage, so only a direct
   // visit arrives without one: start the journey again.
   if (bouquet.length < MAX_FLOWERS) {
-    return <Navigate to="/build-bouquet" replace />;
+    return <Navigate to={BUILD_BOUQUET_PATH} replace />;
   }
 
   async function confirm(details: PersonDetailsValues) {
@@ -53,7 +54,7 @@ export default function Details() {
     // clears the session storage.
     confirmed.current = true;
     markSent(bouquet);
-    navigate("/success");
+    navigate(SUCCESS_PATH);
   }
 
   return (

@@ -2,7 +2,7 @@ import gsap from "gsap";
 import createForestReveal from "./forestReveal";
 import createCrumpledPaper from "./crumpledPaper";
 import createPageFlip from "./pageFlip";
-import createOverlayReveal from "./overlayReveal";
+import createOverlayReveal, { type OverlayPieces } from "./overlayReveal";
 import { preloadFlowerImages } from "./flowerImages";
 
 // Resolves once an <img> has loaded; a failed image must never block the page.
@@ -19,6 +19,10 @@ interface InitialLoadOptions {
   // Flowers whose PNGs the bouquet builder needs; preloaded behind the loader.
   flowerKeys: string[];
   onReady: () => void;
+  // The pieces only come in when the page being landed on is the
+  // Introduction; otherwise they stay out until it is navigated to.
+  pieces: OverlayPieces;
+  isIntroduction: () => boolean;
   contextSafe: <T extends (...args: never[]) => unknown>(fn: T) => T;
 }
 
@@ -31,6 +35,8 @@ export default function initialLoad({
   scope,
   flowerKeys,
   onReady,
+  pieces,
+  isIntroduction,
   contextSafe,
 }: InitialLoadOptions) {
   const forest = createForestReveal(
@@ -60,6 +66,7 @@ export default function initialLoad({
       forest.showAll();
       crumple.showAll();
       gsap.set([content, overlay], { autoAlpha: 1 });
+      pieces.set(isIntroduction());
       return;
     }
 
@@ -75,7 +82,12 @@ export default function initialLoad({
     })
       .add(forest.play(), "-=0.2")
       .add(crumple.play())
-      .add(createOverlayReveal(scope), "<=+0.5")
+      .add(
+        createOverlayReveal(scope, () => {
+          if (isIntroduction()) pieces.show();
+        }),
+        "<+0.5",
+      )
       // The content stays hidden until a leaf is turned over the paper, from
       // the right to the left, revealing it as the fold passes.
       .call(
@@ -85,7 +97,7 @@ export default function initialLoad({
           flip.play(page, "forward");
         },
         undefined,
-        "-=1",
+        "-=0.25",
       );
   });
 
