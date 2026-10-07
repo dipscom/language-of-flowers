@@ -22,9 +22,10 @@ interface InitialLoadOptions {
   contextSafe: <T extends (...args: never[]) => unknown>(fn: T) => T;
 }
 
-// Hides the paper and content, waits for every asset, then reveals them back
-// to front: the forest is printed onto its canvas, the paper unfolds from a
-// crumpled ball, then a page is turned over it, revealing the content.
+// Hides the paper and content, waits for every asset, fades out the loader,
+// then reveals the rest back to front: the forest is printed onto its canvas,
+// the paper unfolds from a crumpled ball, then a page is turned over it,
+// revealing the content.
 // Returns a cleanup that stops a pending wait (StrictMode runs effects twice).
 export default function initialLoad({
   scope,
@@ -45,6 +46,7 @@ export default function initialLoad({
   );
   const content = '[data-load="content"]';
   const overlay = '[data-load="overlay"]';
+  const loader = '[data-load="loader"]';
   let cancelled = false;
 
   // Only visibility is touched on the paper and the ball: their opacity comes
@@ -53,9 +55,8 @@ export default function initialLoad({
   gsap.set([content, overlay], { autoAlpha: 0 });
 
   const reveal = contextSafe(() => {
-    onReady();
-
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      onReady();
       forest.showAll();
       crumple.showAll();
       gsap.set([content, overlay], { autoAlpha: 1 });
@@ -66,7 +67,13 @@ export default function initialLoad({
       defaults: { duration: 0.8, ease: "power1.out" },
     });
 
-    tl.add(forest.play())
+    // The loader fades out first; it is unmounted once it has gone.
+    tl.to(scope.querySelector(loader), {
+      autoAlpha: 0,
+      duration: 0.4,
+      onComplete: onReady,
+    })
+      .add(forest.play(), "-=0.2")
       .add(crumple.play())
       .add(createOverlayReveal(scope), "<=+0.5")
       // The content stays hidden until a leaf is turned over the paper, from

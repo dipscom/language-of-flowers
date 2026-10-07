@@ -40,11 +40,14 @@ function App() {
   return (
     <main id="container" ref={containerRef}>
       {!ready && (
-        <p className="loader" role="status">
-          Loading<span>.</span>
-          <span>.</span>
-          <span>.</span>
-        </p>
+        <div className="loader" role="status" data-load="loader">
+          <img
+            src="/images/penny-farthing-64.gif"
+            width={64}
+            height={64}
+            alt="Loading"
+          />
+        </div>
       )}
       <Background />
       <ScrollContainer
