@@ -3,7 +3,11 @@ import styles from "./Background.module.css";
 export default function Background() {
   return (
     <div className={styles.background}>
-      <div className={styles.forest}></div>
+      <canvas
+        aria-hidden="true"
+        className={styles.forest}
+        data-load="forest"
+      ></canvas>
     </div>
   );
 }

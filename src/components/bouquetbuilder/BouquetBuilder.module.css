@@ -18,9 +18,22 @@
 .card {
   align-items: center;
   border: var(--size-1) solid transparent;
+  cursor: pointer;
   display: grid;
   gap: var(--size-1);
   grid-template-columns: var(--size-4) 1fr;
+  transition: border-color 0.5s ease-in-out;
+}
+
+/* Disabled cards ignore the pointer, so they never match :hover. */
+@media (hover: hover) {
+  .card:hover {
+    border-color: var(--color-main-10);
+  }
+}
+
+.card:active {
+  transform: scale(0.97);
 }
 
 /* Visually hidden but still focusable and available to assistive tech. */
@@ -46,15 +59,17 @@
 .checkbox:checked + .card {
   background-color: var(--color-main-1);
   border-color: var(--color-main-10);
+  transform: scale(0.97);
 }
 
 .checkbox:disabled + .card {
   opacity: 0.4;
+  pointer-events: none;
 }
 
 .checkbox:focus-visible + .card {
-  outline: 2px solid var(--color-main-10);
-  outline-offset: 2px;
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
 
 .text {

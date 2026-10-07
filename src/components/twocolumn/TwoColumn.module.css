@@ -63,6 +63,7 @@
 
   /* A centred column also centres horizontally, header included. */
   .column.centered {
+    align-content: safe center;
     text-align: center;
   }
 

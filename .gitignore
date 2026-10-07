@@ -42,3 +42,9 @@ Thumbs.db
 *.tar
 *.zip
 *.tsbuildinfo
+
+# Local Netlify folder
+.netlify
+
+# ignore the lockfile Netlify CLI generates for its local dev server
+deno.lock

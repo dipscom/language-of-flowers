@@ -14,6 +14,25 @@
   grid-row-start: 1;
 }
 
+/* A routed page. Two exist at once only while a page is being turned. Its own
+   stacking context keeps the logo's z-index below the flip canvas. */
+.page {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  isolation: isolate;
+  min-height: 0;
+  position: relative;
+}
+
+/* Painted by animation/pageFlip.ts over the pages: the flap of the leaf. */
+.flip {
+  display: block;
+  height: 100%;
+  pointer-events: none;
+  position: relative;
+  width: 100%;
+}
+
 .scroller {
   -webkit-overflow-scrolling: touch;
   display: flex;
@@ -23,6 +42,11 @@
   margin: calc(1.5% + 1px);
   min-height: 0;
   padding: var(--size-2);
+  /* Room to overscroll past the last content so it can clear the overlay
+     decoration at the bottom of the paper. 30rem (480px) at 375px (23.4375rem)
+     tall, shrinking linearly to var(--size-2) (1.5rem, 24px) at 1020px tall:
+     slope -456/645 = -70.698vh, offset 480px + 375px * 456/645 = 745.116px. */
+  padding-bottom: clamp(var(--size-2), 745.116px - 70.698vh, 30rem);
   position: relative; /* ensures the scroller is above the decoration in .paper */
   overflow-x: hidden;
   overflow-y: auto;
@@ -31,6 +55,13 @@
 .logo {
   margin: 0 auto;
   width: clamp(60%, 20vw, 300px);
+}
+
+/* Both logos are rendered; the Introduction shows the static one, every other
+   page shows the link. */
+.scroller:has(:global(#introduction)) .logoLink,
+.scroller:not(:has(:global(#introduction))) .logoStatic {
+  display: none;
 }
 
 /* Every page except the Introduction gets a smaller logo. */
@@ -61,6 +92,19 @@
   }
 }
 
-.logo > img {
+/* Pressed like .button:active, but straight back into the page (it shrinks)
+   instead of sliding sideways onto a shadow. */
+.logoLink:active {
+  transform: scale(0.95);
+}
+
+.logo > svg {
   margin: 0 auto;
+}
+
+/* The global svg rule sets height: auto, which would size the logo from the
+   viewBox (463.3 / 204.8). Pin the ratio of the width/height attributes so it
+   matches the <img> it replaced. */
+.logoImage {
+  aspect-ratio: 300 / 133;
 }

@@ -4,10 +4,13 @@
      "@media (min-width: 1024px)" in the project must be kept in sync with
      this value. */
   --landscape: 1024px;
+  --focus-outline: 2px dashed var(--color-main-9);
+  --focus-outline-offset: 2px;
   --color-highlight-1: #705d85;
   --color-main-1: #fdfbf7;
   --color-main-9: #616161;
   --color-main-10: #313131;
+  --paper-opacity: 0.92;
   --size-1: 0.5rem;
   --size-2: 1.5rem;
   --size-3: 3rem;
@@ -78,6 +81,11 @@ h1 {
   text-transform: uppercase;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 #app {
   display: grid;
   height: 100vh;
@@ -102,12 +110,55 @@ h1 {
   grid-row-start: 1;
 }
 
+.loader {
+  align-self: center;
+  color: var(--color-main-10);
+  font-family: "Fraunces", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  justify-self: center;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+/* Dots switch on and off in turn (no fading). */
+.loader span {
+  animation: loader-dot 2.4s steps(1, end) infinite backwards;
+}
+
+.loader span:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.loader span:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+@keyframes loader-dot {
+  0% {
+    visibility: hidden;
+  }
+  17% {
+    visibility: visible;
+  }
+  83% {
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader span {
+    animation: none;
+  }
+}
+
 .button {
   align-self: start;
   background-color: var(--color-highlight-1);
   border: 2px solid var(--color-main-10);
   box-shadow: 0.125rem 0.125rem var(--color-main-10);
   color: var(--color-main-1);
+  cursor: pointer;
   display: inline-block;
   font-family: "Fraunces", serif;
   font-weight: 700;
@@ -127,4 +178,14 @@ h1 {
   color: var(--color-main-9);
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.button:active {
+  box-shadow: none;
+  transform: translate(0.125rem, 0.125rem);
+}
+
+:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }

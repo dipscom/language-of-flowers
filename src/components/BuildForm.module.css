@@ -19,6 +19,9 @@
 }
 
 .field input {
+  /* Room for the focus outline, so the scroller doesn't clip it. The width
+     leaves room for the margin on both sides. */
+  margin: 4px;
   max-width: 25rem;
-  width: 100%;
+  width: calc(100% - 8px);
 }

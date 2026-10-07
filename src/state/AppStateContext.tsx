@@ -17,8 +17,6 @@ export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
     createInitialState(flowers),
   );
 
-  const mailChimp = useCallback(() => {}, []);
-
   const selectFlowers = useCallback((keys: string[]) => {
     dispatch({ type: "SET_BOUQUET", keys });
   }, []);
@@ -27,30 +25,14 @@ export function AppStateProvider({ flowers, children }: AppStateProviderProps) {
     dispatch({ type: "SAVE_PERSON_DETAILS", details });
   }, []);
 
-  const nextStep = useCallback(() => {
-    dispatch({ type: "NEXT_STEP" });
-  }, []);
-
-  const prevStep = useCallback(() => {
-    dispatch({ type: "PREV_STEP" });
-  }, []);
-
-  const enableButton = useCallback(() => {
-    dispatch({ type: "ENABLE_BUTTON" });
-  }, []);
-
   const reset = useCallback(() => {
     dispatch({ type: "RESET", initialState: createInitialState(flowers) });
   }, [flowers]);
 
   const value: AppContextValue = {
     ...state,
-    mailChimp,
     selectFlowers,
     savePersonDetails,
-    nextStep,
-    prevStep,
-    enableButton,
     reset,
   };
 
