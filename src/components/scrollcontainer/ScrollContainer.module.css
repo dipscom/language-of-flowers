@@ -42,6 +42,11 @@
   margin: calc(1.5% + 1px);
   min-height: 0;
   padding: var(--size-2);
+  /* Room to overscroll past the last content so it can clear the overlay
+     decoration at the bottom of the paper. 30rem (480px) at 375px (23.4375rem)
+     tall, shrinking linearly to var(--size-2) (1.5rem, 24px) at 1020px tall:
+     slope -456/645 = -70.698vh, offset 480px + 375px * 456/645 = 745.116px. */
+  padding-bottom: clamp(var(--size-2), 745.116px - 70.698vh, 30rem);
   position: relative; /* ensures the scroller is above the decoration in .paper */
   overflow-x: hidden;
   overflow-y: auto;

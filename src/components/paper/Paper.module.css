@@ -106,8 +106,11 @@
   }
 }
 .cloud1 {
-  top: 5%;
+  top: 10%;
+  left: 5%;
 }
 .cloud2 {
   top: 60%;
+  left: auto;
+  right: 5%;
 }

@@ -3,10 +3,6 @@
   gap: var(--size-3);
   margin: var(--size-3) auto 0;
   max-width: 50rem;
-  /* 20rem (320px) at 375px (23.4375rem) tall, shrinking linearly to
-     var(--size-2) (1.5rem, 24px) at 1020px tall: slope -296/645 = -45.891vh,
-     offset 320px + 375px * 296/645 = 492.093px. */
-  padding-bottom: clamp(var(--size-2), 492.093px - 45.891vh, 20rem);
 }
 
 .cta {
