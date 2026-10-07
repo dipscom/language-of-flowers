@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useFormStatus } from "react-dom";
 import { useNavigate } from "react-router";
 import type { PersonDetailsValues, Person, Sender } from "../types";
 import form from "./BuildForm.module.css";
@@ -7,8 +8,19 @@ import styles from "./PersonDetails.module.css";
 interface PersonDetailsProps {
   recipient: Person;
   sender: Sender;
-  confirm: () => void;
+  confirm: (details: PersonDetailsValues) => Promise<void>;
+  error: string | null;
   savePersonDetails: (details: PersonDetailsValues) => void;
+}
+
+// Lives inside the form so useFormStatus can follow the pending send.
+function SendButton({ valid }: { valid: boolean }) {
+  const { pending } = useFormStatus();
+  return (
+    <button className="button" disabled={!valid || pending}>
+      {pending ? "Sending…" : "Send bouquet"}
+    </button>
+  );
 }
 
 function readDetails(data: FormData): PersonDetailsValues {
@@ -23,6 +35,7 @@ export default function PersonDetails({
   recipient,
   sender,
   confirm,
+  error,
   savePersonDetails,
 }: PersonDetailsProps) {
   const navigate = useNavigate();
@@ -40,9 +53,10 @@ export default function PersonDetails({
       onChange={(e) => setValid(e.currentTarget.checkValidity())}
       id="person-details"
       className={[form.form, styles.form].join(" ")}
-      action={(data) => {
-        savePersonDetails(readDetails(data));
-        confirm();
+      action={async (data) => {
+        const details = readDetails(data);
+        savePersonDetails(details);
+        await confirm(details);
       }}
     >
       <p className={form["sub-heading"]}>Enter the delivery details</p>
@@ -85,9 +99,8 @@ export default function PersonDetails({
           required
         />
       </div>
-      <button className="button" disabled={!valid}>
-        Send bouquet
-      </button>
+      {error && <p role="alert">{error}. Please try again.</p>}
+      <SendButton valid={valid} />
       <p className={styles.terms}>
         Contact details for the recipient should only be provided with that
         person&rsquo;s consent, and that person may be told who provided their

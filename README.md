@@ -32,5 +32,5 @@ The routes use `<BrowserRouter>` (HTML5 `pushState`), so the web server must ser
 ## Things to know
 
 - The site has no analytics or tracking code, and outbound links carry no `utm_*` parameters.
-- There is no form backend: the bouquet-submission and opt-in data are not sent or logged anywhere, and the Mailchimp signup call has been removed.
+- The only backend is the Netlify function `netlify/functions/send-bouquet.js`, shared with the v-2017 branch. It validates the request and emails the recipient a `/view-bouquet?bouquet=…` link through Resend. Nothing else is logged or stored. It needs `RESEND_API_KEY` and `SEND_EMAIL_FROM` set in Netlify (see `.env.example`); `npm run netlify:dev` runs it locally.
 - External URLs used by the site are listed in `EXTERNAL_URLS.txt`.

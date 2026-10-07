@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import BouquetVisualiser from "../bouquetvisualiser/BouquetVisualiser";
 import PageHeader from "../PageHeader";
@@ -6,6 +6,7 @@ import PersonDetails from "../PersonDetails";
 import TwoColumn, { Column } from "../twocolumn/TwoColumn";
 import { MAX_FLOWERS } from "../../state/appReducer";
 import { useAppState } from "../../state/useAppState";
+import type { PersonDetailsValues } from "../../types";
 
 export default function Details() {
   const {
@@ -15,12 +16,13 @@ export default function Details() {
     recipient,
     sender,
     savePersonDetails,
-    mailChimp,
+    sendBouquet,
     reset,
   } = useAppState();
 
   const navigate = useNavigate();
   const confirmed = useRef(false);
+  const [error, setError] = useState<string | null>(null);
 
   // After a confirmation the app state is cleared so going back starts a fresh
   // journey, but only once this page is gone: it stays mounted under the page
@@ -39,8 +41,13 @@ export default function Details() {
     return <Navigate to="/build-bouquet" replace />;
   }
 
-  function confirm() {
-    mailChimp(); // placeholder for the external send, implemented later
+  async function confirm(details: PersonDetailsValues) {
+    setError(null);
+    const failure = await sendBouquet(details);
+    if (failure) {
+      setError(failure);
+      return;
+    }
     // The sent bouquet is handed to /success through the navigation state.
     confirmed.current = true;
     navigate("/success", { state: { bouquet } });
@@ -55,6 +62,7 @@ export default function Details() {
           sender={sender}
           savePersonDetails={savePersonDetails}
           confirm={confirm}
+          error={error}
         />
       </Column>
       <Column>

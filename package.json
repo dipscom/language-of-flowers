@@ -15,6 +15,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
+    "netlify-cli": "^27.10.0",
     "normalize-css": "^2.3.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.70.1",
@@ -33,7 +34,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "netlify:dev": "netlify dev"
   },
   "browserslist": [
     ">0.2%",

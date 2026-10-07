@@ -42,3 +42,6 @@ Thumbs.db
 *.tar
 *.zip
 *.tsbuildinfo
+
+# Local Netlify folder
+.netlify
