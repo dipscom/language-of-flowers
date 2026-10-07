@@ -1,0 +1,29 @@
+.details {
+  display: grid;
+  gap: inherit;
+  margin: 0 auto;
+  max-width: 50ch;
+}
+
+.bouquet-list {
+  display: grid;
+  gap: var(--size-2);
+  list-style: none;
+  padding: 0;
+}
+
+.flower-meanings {
+  display: grid;
+  gap: var(--size-1);
+}
+
+.meaning-name {
+  font-size: var(--size-2);
+  font-weight: 600;
+  font-family: "Fraunces", serif;
+}
+
+.link {
+  display: inline-block;
+  margin-top: var(--size-3);
+}

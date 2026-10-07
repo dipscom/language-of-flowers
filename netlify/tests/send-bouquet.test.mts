@@ -69,6 +69,7 @@ describe("send-bouquet", () => {
     expect(sent.text).toContain(
       `${ORIGIN}/view-bouquet?bouquet=jasmine%2Cjasmine&sender=`,
     );
+    expect(sent.text).toContain("&recipient=Darling");
   });
 
   it("maps a provider failure to 502", async () => {
