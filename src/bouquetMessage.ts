@@ -18,8 +18,3 @@ export function joinNames(bouquet: string[], flowers: FlowersById) {
   const names = new Set(bouquet.map((key) => flowers[key].name));
   return list.format(names);
 }
-
-export function joinDescriptions(bouquet: string[], flowers: FlowersById) {
-  const descriptions = new Set(bouquet.map((key) => flowers[key].description));
-  return list.format(descriptions);
-}

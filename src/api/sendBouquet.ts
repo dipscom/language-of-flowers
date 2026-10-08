@@ -1,7 +1,7 @@
 import { SEND_BOUQUET_ENDPOINT } from "../routes";
 import type { PersonDetailsValues } from "../types";
 
-export type SendResult = { ok: true } | { ok: false; error: string };
+type SendResult = { ok: true } | { ok: false; error: string };
 
 interface ResponseBody {
   ok: boolean;
