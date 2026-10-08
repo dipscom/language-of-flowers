@@ -8,6 +8,12 @@ const MAX_EMAIL_LENGTH = 254;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // eslint-disable-next-line no-control-regex
 const CONTROL_CHARS_RE = /[\u0000-\u001f\u007f]/;
+// Format characters (zero-width, bidirectional controls and the like) can
+// hide or reorder text in a name that ends up in an email.
+const FORMAT_CHARS_RE = /[\p{Cf}\p{Zl}\p{Zp}]/u;
+// A name has no business containing a link or an address.
+const LINK_CHARS_RE = /[:/@\\]|\w\.\w{2,}/;
+const ENDPOINT_PATH = "/api/send-bouquet";
 
 export const config: Config = {
   // Must be a literal: Netlify reads `config` statically, so an imported
@@ -15,8 +21,8 @@ export const config: Config = {
   // with SEND_BOUQUET_ENDPOINT in src/routes.ts.
   path: "/api/send-bouquet",
   rateLimit: {
-    windowLimit: 5,
-    windowSize: 60,
+    windowLimit: 3,
+    windowSize: 600,
     aggregateBy: ["ip", "domain"],
   },
 };
@@ -39,17 +45,25 @@ function isName(value: unknown): value is string {
   return (
     typeof value === "string" &&
     value.trim().length > 0 &&
-    value.length <= MAX_NAME_LENGTH &&
-    !CONTROL_CHARS_RE.test(value)
+    // Counted in characters, as the form's maxLength is.
+    [...value].length <= MAX_NAME_LENGTH &&
+    value === value.normalize("NFKC") &&
+    !CONTROL_CHARS_RE.test(value) &&
+    !FORMAT_CHARS_RE.test(value) &&
+    !LINK_CHARS_RE.test(value)
   );
 }
 
 function allowedOrigins() {
-  return [
-    process.env.URL,
-    process.env.CUSTOM_DOMAIN_URL,
-    process.env.DEPLOY_PRIME_URL,
-  ].filter((origin): origin is string => Boolean(origin));
+  // Branch and preview deploys may only send mail from themselves, never in
+  // production.
+  const previewOrigin =
+    process.env.CONTEXT === "production"
+      ? undefined
+      : process.env.DEPLOY_PRIME_URL;
+  return [process.env.URL, process.env.CUSTOM_DOMAIN_URL, previewOrigin].filter(
+    (origin): origin is string => Boolean(origin),
+  );
 }
 
 export default async function handler(req: Request) {
@@ -57,10 +71,21 @@ export default async function handler(req: Request) {
     return json(405, { ok: false, error: "Method not allowed" });
   }
 
+  // Only the custom path is rate limited, not the default function URL.
+  if (new URL(req.url).pathname !== ENDPOINT_PATH) {
+    return json(404, { ok: false, error: "Not found" });
+  }
+
   // Browsers always send Origin on a POST, so a missing one means a
   // non-browser client.
   const origin = req.headers.get("origin");
   if (!origin || !allowedOrigins().includes(origin)) {
+    return json(403, { ok: false, error: "Forbidden" });
+  }
+
+  // Set by browsers and not by the page, so a cross-site request is refused.
+  const fetchSite = req.headers.get("sec-fetch-site");
+  if (fetchSite && fetchSite !== "same-origin") {
     return json(403, { ok: false, error: "Forbidden" });
   }
 
@@ -74,14 +99,20 @@ export default async function handler(req: Request) {
   const { recipientName, recipientEmail, senderName, bouquet } = data ?? {};
 
   if (!isName(recipientName) || !isName(senderName)) {
-    return json(400, { ok: false, error: "Missing or invalid names" });
+    return json(400, {
+      ok: false,
+      error: "Both names are required, in plain lettering",
+    });
   }
   if (
     typeof recipientEmail !== "string" ||
     recipientEmail.length > MAX_EMAIL_LENGTH ||
     !EMAIL_RE.test(recipientEmail)
   ) {
-    return json(400, { ok: false, error: "Invalid email address" });
+    return json(400, {
+      ok: false,
+      error: "That address does not appear to be genuine",
+    });
   }
   if (
     !Array.isArray(bouquet) ||
@@ -91,7 +122,10 @@ export default async function handler(req: Request) {
       (key) => typeof key === "string" && Object.hasOwn(flowers, key),
     )
   ) {
-    return json(400, { ok: false, error: "Invalid bouquet" });
+    return json(400, {
+      ok: false,
+      error: "The bouquet is not as it should be",
+    });
   }
 
   const params = new URLSearchParams({
@@ -112,21 +146,27 @@ export default async function handler(req: Request) {
       body: JSON.stringify({
         from: `Language of Flowers <${process.env.SEND_EMAIL_FROM}>`,
         to: [recipientEmail],
-        subject: `${senderName} has sent you a bouquet`,
-        html: `<p>${escapeHtml(senderName)} has sent you a bouquet from the Language of Flowers.</p>
-               <p><a href="${escapeHtml(link)}">View your bouquet</a></p>`,
-        text: `${senderName} has sent you a bouquet from the Language of Flowers.\n\nView your bouquet: ${link}`,
+        subject: `A bouquet has arrived for you, from ${senderName}`,
+        html: `<p>${escapeHtml(senderName)} has sent you a bouquet from the Language of Flowers. Each bloom carries a message; it is yours to decipher.</p>
+               <p><a href="${escapeHtml(link)}">Unveil your bouquet</a></p>`,
+        text: `${senderName} has sent you a bouquet from the Language of Flowers. Each bloom carries a message; it is yours to decipher.\n\nUnveil your bouquet: ${link}`,
       }),
     });
 
     if (!resp.ok) {
       console.error("Resend error", resp.status);
-      return json(502, { ok: false, error: "Email provider error" });
+      return json(502, { ok: false, error: "The post could not be delivered" });
     }
 
     return json(200, { ok: true });
   } catch (err) {
-    console.error("send-bouquet failure", err);
-    return json(500, { ok: false, error: "Unexpected server error" });
+    console.error(
+      "send-bouquet failure",
+      err instanceof Error ? err.message : "unknown",
+    );
+    return json(500, {
+      ok: false,
+      error: "An unforeseen difficulty has arisen",
+    });
   }
 }

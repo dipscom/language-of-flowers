@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -11,9 +12,9 @@ import {
   useNavigationType,
   type Location,
 } from "react-router";
+import { titleForPath } from "../../routes";
 import { flipFor } from "../../animation/journey";
 import createPageFlip, { type PageFlip } from "../../animation/pageFlip";
-import MainLogo from "../MainLogo";
 import Paper from "../paper/Paper";
 import styles from "./ScrollContainer.module.css";
 
@@ -33,7 +34,15 @@ interface ScrollContainerProps {
   renderPage: (location: Location) => ReactNode;
 }
 
-const logo = <MainLogo className={styles.logoImage} height="133" width="300" />;
+const logo = (alt: string) => (
+  <img
+    alt={alt}
+    className={styles.logoImage}
+    height="133"
+    src="/images/lof-logo.svg"
+    width="300"
+  />
+);
 
 // The paper with the routed page on it. Navigating to another page turns a
 // leaf back over the old one (see animation/pageFlip.ts): the old page stays
@@ -74,6 +83,25 @@ export default function ScrollContainer({ renderPage }: ScrollContainerProps) {
     };
   }, []);
 
+  // Each page gets its own title, and focus moves to its heading so keyboard
+  // and screen reader users land on the new content (the link they used is
+  // gone or inert by now). Not on the first load, where the browser starts
+  // from the top of the document anyway.
+  const currentPath = pages.current.location.pathname;
+  const firstPage = useRef(true);
+  useEffect(() => {
+    document.title = titleForPath(currentPath);
+    if (firstPage.current) {
+      firstPage.current = false;
+      return;
+    }
+    const heading = incomingRef.current?.querySelector("h1");
+    if (heading) {
+      heading.tabIndex = -1;
+      heading.focus({ preventScroll: true });
+    }
+  }, [currentPath]);
+
   const leavingId = pages.leaving?.id;
   // Going back in the journey turns the page the other way (see journey.ts).
   const kind = pages.leaving
@@ -81,8 +109,8 @@ export default function ScrollContainer({ renderPage }: ScrollContainerProps) {
     : null;
   useLayoutEffect(() => {
     if (!leavingId || !kind) return;
-    flipRef.current!
-      .play(incomingRef.current!, kind, outgoingRef.current)
+    flipRef
+      .current!.play(incomingRef.current!, kind, outgoingRef.current)
       .then(() => {
         setPages((latest) =>
           latest.leaving?.id === leavingId
@@ -101,9 +129,11 @@ export default function ScrollContainer({ renderPage }: ScrollContainerProps) {
       ref={incoming ? incomingRef : outgoingRef}
     >
       <div className={styles.scroller}>
-        <div className={`${styles.logo} ${styles.logoStatic}`}>{logo}</div>
+        <div className={`${styles.logo} ${styles.logoStatic}`}>
+          {logo("The Language of Flowers")}
+        </div>
         <Link className={`${styles.logo} ${styles.logoLink}`} to="/">
-          {logo}
+          {logo("The Language of Flowers: back to the beginning")}
         </Link>
         {/* The leaving page keeps seeing its own location, not the new one. */}
         <LocationContext.Provider

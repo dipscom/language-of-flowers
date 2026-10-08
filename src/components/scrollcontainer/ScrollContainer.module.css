@@ -45,6 +45,8 @@
   position: relative; /* ensures the scroller is above the decoration in .paper */
   overflow-x: hidden;
   overflow-y: auto;
+  /* Keeps a focused control clear of the edges and its outline unclipped. */
+  scroll-padding: var(--size-2);
 }
 
 .logo {
@@ -93,13 +95,6 @@
   transform: scale(0.95);
 }
 
-.logo > svg {
+.logo > * {
   margin: 0 auto;
-}
-
-/* The global svg rule sets height: auto, which would size the logo from the
-   viewBox (463.3 / 204.8). Pin the ratio of the width/height attributes so it
-   matches the <img> it replaced. */
-.logoImage {
-  aspect-ratio: 300 / 133;
 }

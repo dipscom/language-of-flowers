@@ -14,6 +14,22 @@ const OTHER_PATHS = [
   SUCCESS_PATH,
 ];
 
+const SITE_TITLE = "The Language of Flowers";
+
+const PAGE_TITLES: Record<string, string> = {
+  [BUILD_BOUQUET_PATH]: "Compose your bouquet",
+  [DETAILS_PATH]: "Name the recipient",
+  [VIEW_BOUQUET_PATH]: "A bouquet for you",
+  [SUCCESS_PATH]: "Safely dispatched",
+};
+
+// The document title for a path, so each page is told apart in the tab,
+// history and screen reader.
+export function titleForPath(pathname: string) {
+  const page = PAGE_TITLES[pathname];
+  return page ? `${page} \u2013 ${SITE_TITLE}` : SITE_TITLE;
+}
+
 export function isIntroductionPath(pathname: string) {
   return !OTHER_PATHS.includes(pathname);
 }

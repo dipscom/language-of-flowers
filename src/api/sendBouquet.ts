@@ -1,7 +1,7 @@
 import { SEND_BOUQUET_ENDPOINT } from "../routes";
 import type { PersonDetailsValues } from "../types";
 
-export type SendResult = { ok: true } | { ok: false; error: string };
+type SendResult = { ok: true } | { ok: false; error: string };
 
 interface ResponseBody {
   ok: boolean;
@@ -33,9 +33,9 @@ export async function sendBouquet(
     if (resp.ok && isResponseBody(body) && body.ok) return { ok: true };
     return {
       ok: false,
-      error: (isResponseBody(body) && body.error) || "Something went wrong",
+      error: (isResponseBody(body) && body.error) || "The message has gone astray",
     };
   } catch {
-    return { ok: false, error: "Network error" };
+    return { ok: false, error: "The telegraph lines are down" };
   }
 }

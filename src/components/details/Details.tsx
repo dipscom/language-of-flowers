@@ -60,7 +60,7 @@ export default function Details() {
   return (
     <TwoColumn>
       <Column>
-        <PageHeader title="Create your bouquet" />
+        <PageHeader title="Compose your bouquet" />
         <PersonDetails
           recipient={recipient}
           sender={sender}

@@ -3,7 +3,11 @@
   max-width: 40ch;
 }
 
+.required {
+  font-size: 0.875rem;
+  justify-self: start;
+}
+
 .terms {
-  font-size: 0.8em;
-  font-style: italic;
+  font-size: 0.875rem;
 }

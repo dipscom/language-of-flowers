@@ -17,13 +17,13 @@ export default function Success() {
   return (
     <TwoColumn>
       <Column centered>
-        <PageHeader title="Thank You!" />
-        <p>Your bouquet has been sent.</p>
+        <PageHeader title="Safely Dispatched" />
+        <p>Your bouquet is on its way, and your secret is safe with us.</p>
 
-        <p>Would you like to send another?</p>
+        <p>Is there another heart to be won?</p>
 
         <p>
-          <Anchor cta="Start again" step="forward" target="build-bouquet" />
+          <Anchor cta="Compose another" step="forward" target="build-bouquet" />
         </p>
       </Column>
       <Column>

@@ -5,17 +5,17 @@ import flowers from "./data/flowers";
 describe("joinMeanings", () => {
   it("joins meanings into a sentence fragment", () => {
     expect(joinMeanings(["rose", "jasmine", "white-iris"], flowers)).toBe(
-      "thankfulness, amiability and wisdom",
+      "gratitude, grace and wisdom",
     );
   });
 
   it("mentions a repeated flower's meaning once", () => {
-    expect(joinMeanings(["rose", "rose", "rose"], flowers)).toBe("thankfulness");
+    expect(joinMeanings(["rose", "rose", "rose"], flowers)).toBe("gratitude");
   });
 
   it("lowercases multi-word meanings", () => {
     expect(joinMeanings(["lily-valley", "rose"], flowers)).toBe(
-      "return of happiness and thankfulness",
+      "the return of happiness and gratitude",
     );
   });
 });

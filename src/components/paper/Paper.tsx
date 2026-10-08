@@ -9,22 +9,22 @@ export default function Paper() {
         <div className={styles["line-right-wrapper"]} />
         <div className={styles["line-bottom-wrapper"]} />
         <img
-          role="presentation"
+          alt=""
           className={`${styles.corner} ${styles["top-left"]}`}
           src="/images/background/detail-corner.svg"
         />
         <img
-          role="presentation"
+          alt=""
           className={`${styles.corner} ${styles["top-right"]}`}
           src="/images/background/detail-corner.svg"
         />
         <img
-          role="presentation"
+          alt=""
           className={`${styles.corner} ${styles["bottom-left"]}`}
           src="/images/background/detail-corner.svg"
         />
         <img
-          role="presentation"
+          alt=""
           className={`${styles.corner} ${styles["bottom-right"]}`}
           src="/images/background/detail-corner.svg"
         />

@@ -18,10 +18,10 @@ export default function BouquetDetails({
   return (
     <div id="bouquet-details" className={styles.details}>
       <p>
-        {sender ?? "Someone"} has picked{" "}
-        <strong>{joinNames(bouquet, flowers)}</strong> to make a beautiful
-        bouquet for you. Together they speak of{" "}
-        <strong>{joinMeanings(bouquet, flowers)}</strong>, a reflection of what
+        {sender ?? "A secret admirer"} has chosen{" "}
+        <strong>{joinNames(bouquet, flowers)}</strong> and bound them into a
+        bouquet for you. Together they whisper of{" "}
+        <strong>{joinMeanings(bouquet, flowers)}</strong>: a confession of what
         you mean to them.
       </p>
 
@@ -43,6 +43,7 @@ export default function BouquetDetails({
           className={styles.link}
         >
           floriography
+          <span className="sr-only"> (opens in a new tab)</span>
         </a>{" "}
         enthusiast?
       </p>
