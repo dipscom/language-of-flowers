@@ -13,7 +13,6 @@ import {
 } from "react-router";
 import { flipFor } from "../../animation/journey";
 import createPageFlip, { type PageFlip } from "../../animation/pageFlip";
-import MainLogo from "../MainLogo";
 import Paper from "../paper/Paper";
 import styles from "./ScrollContainer.module.css";
 
@@ -33,7 +32,15 @@ interface ScrollContainerProps {
   renderPage: (location: Location) => ReactNode;
 }
 
-const logo = <MainLogo className={styles.logoImage} height="133" width="300" />;
+const logo = (
+  <img
+    alt="The Language of Flowers"
+    className={styles.logoImage}
+    height="133"
+    src="/images/lof-logo.svg"
+    width="300"
+  />
+);
 
 // The paper with the routed page on it. Navigating to another page turns a
 // leaf back over the old one (see animation/pageFlip.ts): the old page stays

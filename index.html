@@ -37,14 +37,176 @@
       name="twitter:title"
       content="We would like to invite you to send your very own coded bouquet."
     />
+    <noscript>
+      <style>
+        .loader {
+          display: none;
+        }
+      </style>
+    </noscript>
   </head>
 
   <body>
     <div id="app">
       <main id="container">
         <div class="loader" role="status">
-          <img src="/images/penny-farthing-64.gif" width="64" height="64" alt="Loading" />
+          <img
+            src="/images/penny-farthing-64.gif"
+            width="64"
+            height="64"
+            alt="Loading"
+          />
         </div>
+
+        <noscript>
+          <div class="Background_background">
+            <picture>
+              <source
+                media="(min-width: 1024px)"
+                srcset="/images/background/landscape.jpg"
+              />
+              <img
+                src="/images/background/portrait.jpg"
+                alt=""
+                aria-hidden="true"
+                class="Background_forest"
+              />
+            </picture>
+          </div>
+
+          <div class="ScrollContainer_scroll-container">
+            <div class="Paper_paper">
+              <div class="Paper_line-top-wrapper"></div>
+              <div class="Paper_line-left-wrapper"></div>
+              <div class="Paper_line-right-wrapper"></div>
+              <div class="Paper_line-bottom-wrapper"></div>
+              <img
+                role="presentation"
+                class="Paper_corner Paper_top-left"
+                src="/images/background/detail-corner.svg"
+              />
+              <img
+                role="presentation"
+                class="Paper_corner Paper_top-right"
+                src="/images/background/detail-corner.svg"
+              />
+              <img
+                role="presentation"
+                class="Paper_corner Paper_bottom-left"
+                src="/images/background/detail-corner.svg"
+              />
+              <img
+                role="presentation"
+                class="Paper_corner Paper_bottom-right"
+                src="/images/background/detail-corner.svg"
+              />
+            </div>
+            <div class="ScrollContainer_page">
+              <div class="ScrollContainer_scroller">
+                <div id="introduction" class="Introduction_single-column">
+                  <div class="ScrollContainer_logo ScrollContainer_logoStatic">
+                    <img
+                      src="/images/lof-logo.svg"
+                      alt="The Language of Flowers"
+                      width="300"
+                      height="133"
+                      class="ScrollContainer_logoImage"
+                    />
+                  </div>
+
+                  <header>
+                    <div class="ParagraphDecoration_paragraph-decoration">
+                      <div class="ParagraphDecoration_left"></div>
+                      <div class="ParagraphDecoration_right"></div>
+                      <div class="ParagraphDecoration_left"></div>
+                      <div class="ParagraphDecoration_right"></div>
+                    </div>
+                    <h1>
+                      <span>We are very sorry</span>
+                    </h1>
+                    <div
+                      class="ParagraphDecoration_paragraph-decoration ParagraphDecoration_reflected"
+                    >
+                      <div class="ParagraphDecoration_left"></div>
+                      <div class="ParagraphDecoration_right"></div>
+                      <div class="ParagraphDecoration_left"></div>
+                      <div class="ParagraphDecoration_right"></div>
+                    </div>
+                  </header>
+
+                  <div class="description">
+                    <p>
+                      This is an interactive experience that requires JavaScript
+                      to be enabled.
+                    </p>
+                  </div>
+
+                  <p class="Introduction_cta">
+                    Please enable JavaScript on your browser if you would like
+                    to send a bouquet.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="Overlay_overlay">
+            <img
+              data-overlay="flowers-bottom-right"
+              src="/images/overlay/flowers-bottomright.png"
+              alt=""
+              class="Overlay_flowers-bottom-right Overlay_bottom Overlay_right"
+            />
+            <img
+              data-overlay="man"
+              class="Overlay_man"
+              src="/images/overlay/man.png"
+              alt=""
+            />
+            <img
+              data-overlay="flowers-mid-left"
+              src="/images/overlay/flowers-midleft.png"
+              alt=""
+              class="Overlay_flowers-mid-left Overlay_left"
+            />
+            <img
+              data-overlay="lady"
+              class="Overlay_lady"
+              src="/images/overlay/lady.png"
+              alt=""
+            />
+            <img
+              data-overlay="flowers-bottom"
+              class="Overlay_flowers-bottom Overlay_bottom Overlay_left"
+              src="/images/overlay/flowers-bottom.png"
+              alt=""
+            />
+            <img
+              data-overlay="flowers-top-left"
+              src="/images/overlay/flowers-topleft.png"
+              alt=""
+              class="Overlay_flowers-top-left Overlay_top Overlay_left"
+            />
+            <img
+              data-overlay="flowers-top-right"
+              src="/images/overlay/flowers-topright.png"
+              alt=""
+              class="Overlay_flowers-top-right Overlay_top Overlay_right"
+            />
+            <img
+              data-overlay="peacock"
+              class="Overlay_peacock"
+              src="/images/overlay/peacock.png"
+              alt=""
+            />
+            <img
+              data-overlay="stag"
+              class="Overlay_stag"
+              src="/images/overlay/stag.png"
+              alt=""
+            />
+          </div>
+        </noscript>
       </main>
     </div>
     <script type="module" src="/src/index.tsx"></script>

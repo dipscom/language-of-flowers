@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { basename, resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -31,6 +31,15 @@ function inlineCriticalCss() {
 
 export default defineConfig({
   plugins: [react(), inlineCriticalCss()],
+  css: {
+    modules: {
+      // Predictable class names (Overlay_stag) instead of hashes, so the
+      // <noscript> markup in index.html can reference the same classes the
+      // components use and share a single copy of each module's CSS.
+      generateScopedName: (name, filename) =>
+        `${basename(filename).replace(/\.module\.css.*$/, '')}_${name}`,
+    },
+  },
   build: {
     // Keeps min-width/max-width media queries instead of the newer range syntax (width >= 600px),
     // which iOS Safari before 16.4 does not understand.
