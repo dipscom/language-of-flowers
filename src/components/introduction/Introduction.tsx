@@ -22,6 +22,7 @@ export default function Introduction() {
           Thank Heavens for{" "}
           <a href={FLORIOGRAPHY_URL} target="_blank" rel="noopener noreferrer">
             floriography
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
           : the secret tongue of the heart, spoken in petals.
         </p>
@@ -35,9 +36,9 @@ export default function Introduction() {
         compose a bouquet of your own, and let the blooms speak in your stead.
       </p>
 
-      <nav className="navigation">
+      <div className="navigation">
         <Anchor cta="Pray, begin" step="forward" target="build-bouquet" />
-      </nav>
+      </div>
 
       <p className={styles["cookie-notice"]}>
         This site does not use cookies, and does not collect any personal data.

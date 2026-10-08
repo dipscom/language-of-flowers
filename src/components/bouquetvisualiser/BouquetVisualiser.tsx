@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { loadFlowerImage } from "../../animation/flowerImages";
 import splitIntoBands from "../../animation/tonalBands";
+import { joinNames } from "../../bouquetMessage";
+import { useAppState } from "../../state/useAppState";
 import styles from "./BouquetVisualiser.module.css";
 
 // Degrees by position in the bouquet; negative is anti-clockwise.
@@ -66,6 +68,7 @@ export default function BouquetVisualiser({
   hovered,
   hoveredSlot,
 }: BouquetVisualiserProps) {
+  const { flowers } = useAppState();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const layers = useRef<Layer[]>([]);
   const mounted = useRef(false);
@@ -236,8 +239,13 @@ export default function BouquetVisualiser({
     { dependencies: [bouquet, hovered, hoveredSlot] },
   );
 
+  const chosen = bouquet.filter((key) => key && Object.hasOwn(flowers, key));
+  const label = chosen.length
+    ? `Bouquet of ${joinNames(chosen, flowers)}`
+    : "An empty bouquet";
+
   return (
-    <div className={styles["bouquet-visualiser"]}>
+    <div className={styles["bouquet-visualiser"]} role="img" aria-label={label}>
       <canvas ref={canvasRef} aria-hidden="true" />
     </div>
   );

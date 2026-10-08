@@ -161,3 +161,35 @@ a {
   outline: var(--focus-outline);
   outline-offset: var(--focus-outline-offset);
 }
+
+.sr-only {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Programmatic focus lands on a page's heading, which isn't interactive. */
+h1:focus {
+  outline: none;
+}
+
+.button[aria-disabled="true"] {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

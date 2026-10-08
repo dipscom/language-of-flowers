@@ -25,8 +25,11 @@ export default class ErrorBoundary extends Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div id="error-boundary">
+        <div id="error-boundary" role="alert">
           <p>A misfortune has befallen us. Pray refresh the page and try once more.</p>
+          <button className="button" onClick={() => window.location.reload()}>
+            Refresh
+          </button>
         </div>
       );
     }

@@ -43,6 +43,7 @@ export default function BouquetDetails({
           className={styles.link}
         >
           floriography
+          <span className="sr-only"> (opens in a new tab)</span>
         </a>{" "}
         enthusiast?
       </p>

@@ -85,3 +85,11 @@
   width: 50%;
   max-width: 350px;
 }
+
+/* Short viewports (landscape phones, high zoom) have no room for the
+   decoration, which would cover the text. */
+@media (max-height: 30rem) {
+  .overlay {
+    display: none;
+  }
+}

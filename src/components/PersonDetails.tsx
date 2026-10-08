@@ -15,13 +15,49 @@ interface PersonDetailsProps {
 }
 
 // Lives inside the form so useFormStatus can follow the pending send.
-function SendButton({ valid }: { valid: boolean }) {
+function SendButton() {
   const { pending } = useFormStatus();
   return (
-    <button className="button" disabled={!valid || pending}>
-      {pending ? "Dispatching…" : "Dispatch"}
-    </button>
+    <>
+      {/* aria-disabled rather than disabled, so the button keeps focus. */}
+      <button
+        className="button"
+        aria-disabled={pending}
+        onClick={(e) => {
+          if (pending) e.preventDefault();
+        }}
+      >
+        {pending ? "Dispatching…" : "Dispatch"}
+      </button>
+      <p role="status" className="sr-only">
+        {pending ? "Dispatching your bouquet" : ""}
+      </p>
+    </>
   );
+}
+
+type FieldName = "senderName" | "recipientName" | "recipientEmail";
+type FieldErrors = Partial<Record<FieldName, string>>;
+
+const FIELD_IDS: Record<FieldName, string> = {
+  senderName: "sender-name",
+  recipientName: "recipient-name",
+  recipientEmail: "recipient-email",
+};
+
+function validate(details: PersonDetailsValues): FieldErrors {
+  const errors: FieldErrors = {};
+  if (!details.senderName.trim()) errors.senderName = "Pray enter your name.";
+  if (!details.recipientName.trim())
+    errors.recipientName = "Pray enter their name.";
+  const email = details.recipientEmail.trim();
+  if (!email) {
+    errors.recipientEmail = "Pray enter their email address.";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.recipientEmail =
+      "That email address looks amiss. Pray check it, e.g. dearest.one@example.com.";
+  }
+  return errors;
 }
 
 function readDetails(data: FormData): PersonDetailsValues {
@@ -41,7 +77,7 @@ export default function PersonDetails({
 }: PersonDetailsProps) {
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
-  const [valid, setValid] = useState(false);
+  const [errors, setErrors] = useState<FieldErrors>({});
   const alertRef = useRef<HTMLParagraphElement>(null);
 
   // Bring a send failure to the attention of keyboard and screen reader users.
@@ -49,24 +85,29 @@ export default function PersonDetails({
     if (error) alertRef.current?.focus();
   }, [error]);
 
-  // Prefilled values may already make the form valid.
-  useEffect(() => {
-    setValid(formRef.current!.checkValidity());
-  }, []);
-
   return (
     <form
       ref={formRef}
-      onChange={(e) => setValid(e.currentTarget.checkValidity())}
+      noValidate
       id="person-details"
       className={[form.form, styles.form].join(" ")}
       action={async (data) => {
         const details = readDetails(data);
+        const found = validate(details);
+        setErrors(found);
+        const first = (Object.keys(FIELD_IDS) as FieldName[]).find(
+          (name) => found[name],
+        );
+        if (first) {
+          document.getElementById(FIELD_IDS[first])?.focus();
+          return;
+        }
         savePersonDetails(details);
         await confirm(details);
       }}
     >
-      <p className={form["sub-heading"]}>To whom, and where?</p>
+      <h2 className={form["sub-heading"]}>To whom, and where?</h2>
+      <p className={styles.required}>Fields marked * are required.</p>
 
       <div className={form.field}>
         <label htmlFor="sender-name">Your name*</label>
@@ -74,11 +115,19 @@ export default function PersonDetails({
           type="text"
           id="sender-name"
           name="senderName"
+          autoComplete="name"
+          aria-required="true"
+          aria-invalid={!!errors.senderName}
+          aria-describedby={errors.senderName ? "sender-name-error" : undefined}
           maxLength={20}
           defaultValue={sender.name}
           placeholder="A Secret Admirer"
-          required
         />
+        {errors.senderName && (
+          <p id="sender-name-error" className={form.error}>
+            {errors.senderName}
+          </p>
+        )}
       </div>
       <div className={form.field}>
         <label htmlFor="recipient-name">Their name*</label>
@@ -86,11 +135,20 @@ export default function PersonDetails({
           type="text"
           id="recipient-name"
           name="recipientName"
+          aria-required="true"
+          aria-invalid={!!errors.recipientName}
+          aria-describedby={
+            errors.recipientName ? "recipient-name-error" : undefined
+          }
           maxLength={20}
           defaultValue={recipient.name}
           placeholder="Your Beloved"
-          required
         />
+        {errors.recipientName && (
+          <p id="recipient-name-error" className={form.error}>
+            {errors.recipientName}
+          </p>
+        )}
       </div>
       <div className={form.field}>
         <label htmlFor="recipient-email">Their email*</label>
@@ -98,17 +156,26 @@ export default function PersonDetails({
           type="email"
           id="recipient-email"
           name="recipientEmail"
+          aria-required="true"
+          aria-invalid={!!errors.recipientEmail}
+          aria-describedby={
+            errors.recipientEmail ? "recipient-email-error" : undefined
+          }
           defaultValue={recipient.email}
           placeholder="dearest.one@example.com"
-          required
         />
+        {errors.recipientEmail && (
+          <p id="recipient-email-error" className={form.error}>
+            {errors.recipientEmail}
+          </p>
+        )}
       </div>
       {error && (
-        <p role="alert" ref={alertRef} tabIndex={-1}>
+        <p ref={alertRef} tabIndex={-1}>
           {error}. Pray try again.
         </p>
       )}
-      <SendButton valid={valid} />
+      <SendButton />
       <p className={styles.terms}>
         Kindly provide the recipient&rsquo;s address only with their consent.
         Nothing is kept. The address is used solely to dispatch this one

@@ -45,6 +45,8 @@
   position: relative; /* ensures the scroller is above the decoration in .paper */
   overflow-x: hidden;
   overflow-y: auto;
+  /* Keeps a focused control clear of the edges and its outline unclipped. */
+  scroll-padding: var(--size-2);
 }
 
 .logo {
