@@ -88,7 +88,7 @@
 }
 
 .name {
-  font-family: "Fraunces", serif;
+  font-family: "Fraunces Variable", serif;
   font-weight: 700;
   /* Relative to .text, so it scales with it (1.5rem when .text is 1rem). */
   font-size: 1.5em;
