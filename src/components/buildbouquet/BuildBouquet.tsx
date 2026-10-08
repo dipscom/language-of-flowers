@@ -13,7 +13,7 @@ export default function BuildBouquet() {
   return (
     <TwoColumn>
       <Column>
-        <PageHeader title="Create your bouquet" />
+        <PageHeader title="Compose your bouquet" />
         <BouquetBuilder
           bouquet={bouquet}
           flowers={flowers}

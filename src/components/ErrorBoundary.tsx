@@ -26,7 +26,7 @@ export default class ErrorBoundary extends Component<
     if (this.state.hasError) {
       return (
         <div id="error-boundary">
-          <p>Something went wrong. Please refresh the page and try again.</p>
+          <p>A misfortune has befallen us. Pray refresh the page and try once more.</p>
         </div>
       );
     }

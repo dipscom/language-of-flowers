@@ -28,7 +28,7 @@ export default function ViewBouquet() {
     <TwoColumn stackReversed>
       <Column>
         <PageHeader
-          title={recipient ? `A bouquet for ${recipient}` : "A bouquet for you"}
+          title={recipient ? `A bouquet for ${recipient}` : "A bouquet, for you alone"}
         />
         <BouquetDetails
           bouquet={bouquet}

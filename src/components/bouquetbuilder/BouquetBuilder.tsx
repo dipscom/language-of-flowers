@@ -32,7 +32,7 @@ export default function BouquetBuilder({
         )
       }
     >
-      <p className={form["sub-heading"]}>Select {MAX_FLOWERS} flowers:</p>
+      <p className={form["sub-heading"]}>Choose three blooms:</p>
       <ul id="flower-list" className={styles["flower-list"]}>
         {Object.keys(flowers).map((key) => {
           const checked = bouquet.includes(key);
@@ -88,7 +88,7 @@ export default function BouquetBuilder({
         })}
       </ul>
       <button className="button" disabled={bouquet.length < MAX_FLOWERS}>
-        Delivery details
+        Name the recipient
       </button>
     </form>
   );

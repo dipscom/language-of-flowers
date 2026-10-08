@@ -74,14 +74,14 @@ export default async function handler(req: Request) {
   const { recipientName, recipientEmail, senderName, bouquet } = data ?? {};
 
   if (!isName(recipientName) || !isName(senderName)) {
-    return json(400, { ok: false, error: "Missing or invalid names" });
+    return json(400, { ok: false, error: "Both names are required, in plain lettering" });
   }
   if (
     typeof recipientEmail !== "string" ||
     recipientEmail.length > MAX_EMAIL_LENGTH ||
     !EMAIL_RE.test(recipientEmail)
   ) {
-    return json(400, { ok: false, error: "Invalid email address" });
+    return json(400, { ok: false, error: "That address does not appear to be genuine" });
   }
   if (
     !Array.isArray(bouquet) ||
@@ -91,7 +91,7 @@ export default async function handler(req: Request) {
       (key) => typeof key === "string" && Object.hasOwn(flowers, key),
     )
   ) {
-    return json(400, { ok: false, error: "Invalid bouquet" });
+    return json(400, { ok: false, error: "The bouquet is not as it should be" });
   }
 
   const params = new URLSearchParams({
@@ -112,21 +112,21 @@ export default async function handler(req: Request) {
       body: JSON.stringify({
         from: `Language of Flowers <${process.env.SEND_EMAIL_FROM}>`,
         to: [recipientEmail],
-        subject: `${senderName} has sent you a bouquet`,
-        html: `<p>${escapeHtml(senderName)} has sent you a bouquet from the Language of Flowers.</p>
-               <p><a href="${escapeHtml(link)}">View your bouquet</a></p>`,
-        text: `${senderName} has sent you a bouquet from the Language of Flowers.\n\nView your bouquet: ${link}`,
+        subject: `A bouquet has arrived for you, from ${senderName}`,
+        html: `<p>${escapeHtml(senderName)} has sent you a bouquet from the Language of Flowers. Each bloom carries a message; it is yours to decipher.</p>
+               <p><a href="${escapeHtml(link)}">Unveil your bouquet</a></p>`,
+        text: `${senderName} has sent you a bouquet from the Language of Flowers. Each bloom carries a message; it is yours to decipher.\n\nUnveil your bouquet: ${link}`,
       }),
     });
 
     if (!resp.ok) {
       console.error("Resend error", resp.status);
-      return json(502, { ok: false, error: "Email provider error" });
+      return json(502, { ok: false, error: "The post could not be delivered" });
     }
 
     return json(200, { ok: true });
   } catch (err) {
     console.error("send-bouquet failure", err);
-    return json(500, { ok: false, error: "Unexpected server error" });
+    return json(500, { ok: false, error: "An unforeseen difficulty has arisen" });
   }
 }

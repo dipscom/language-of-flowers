@@ -40,7 +40,7 @@ describe("sendBouquet", () => {
     respond("nope", 500);
     expect(await sendBouquet(details, ["jasmine"])).toEqual({
       ok: false,
-      error: "Something went wrong",
+      error: "The message has gone astray",
     });
   });
 
@@ -48,7 +48,7 @@ describe("sendBouquet", () => {
     vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new TypeError("x")));
     expect(await sendBouquet(details, ["jasmine"])).toEqual({
       ok: false,
-      error: "Network error",
+      error: "The telegraph lines are down",
     });
   });
 });

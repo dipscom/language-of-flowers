@@ -9,8 +9,10 @@ export default function Introduction() {
       <header>
         <ParagraphDecoration />
         <h1>
-          <span>Some things are unutterable and secret.</span>
-          <span>Other thoughts are so hard to say...</span>
+          <span>
+            Some matters are too delicate to utter, and too dear to confess.
+          </span>
+          <span>Other sentiments simply refuse to be spoken aloud...</span>
         </h1>
         <ParagraphDecoration reflected />
       </header>
@@ -21,23 +23,27 @@ export default function Introduction() {
           <a href={FLORIOGRAPHY_URL} target="_blank" rel="noopener noreferrer">
             floriography
           </a>
-          . A mysterious language of love.
+          : the secret tongue of the heart, spoken in petals.
         </p>
 
-        <p>
-          Cryptic communications, hidden revelations and coded declarations!
-        </p>
+        <p>Veiled messages, secret assignations and declarations in cipher!</p>
       </div>
 
       <p className={styles.cta}>
-        We would like to invite you
+        We should be honoured if you would
         <br />
-        to send your very own coded bouquet.
+        compose a bouquet of your own, and let the blooms speak in your stead.
       </p>
 
       <nav className="navigation">
-        <Anchor cta="Let's begin" step="forward" target="build-bouquet" />
+        <Anchor cta="Pray, begin" step="forward" target="build-bouquet" />
       </nav>
+
+      <p className={styles["cookie-notice"]}>
+        This site does not use cookies, and does not collect any personal data.
+        <br />
+        It is intended for personal use only, and is not a commercial service.
+      </p>
     </div>
   );
 }

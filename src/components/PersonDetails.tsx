@@ -19,7 +19,7 @@ function SendButton({ valid }: { valid: boolean }) {
   const { pending } = useFormStatus();
   return (
     <button className="button" disabled={!valid || pending}>
-      {pending ? "Sending…" : "Send bouquet"}
+      {pending ? "Dispatching…" : "Dispatch"}
     </button>
   );
 }
@@ -66,11 +66,8 @@ export default function PersonDetails({
         await confirm(details);
       }}
     >
-      <p className={form["sub-heading"]}>Enter the delivery details</p>
+      <p className={form["sub-heading"]}>To whom, and where?</p>
 
-      <p className={styles.terms} style={{ justifySelf: "start" }}>
-        All fields are required.
-      </p>
       <div className={form.field}>
         <label htmlFor="sender-name">Your name*</label>
         <input
@@ -79,7 +76,7 @@ export default function PersonDetails({
           name="senderName"
           maxLength={20}
           defaultValue={sender.name}
-          placeholder="Yours Truly"
+          placeholder="A Secret Admirer"
           required
         />
       </div>
@@ -91,7 +88,7 @@ export default function PersonDetails({
           name="recipientName"
           maxLength={20}
           defaultValue={recipient.name}
-          placeholder="Darling Sweetheart"
+          placeholder="Your Beloved"
           required
         />
       </div>
@@ -102,20 +99,20 @@ export default function PersonDetails({
           id="recipient-email"
           name="recipientEmail"
           defaultValue={recipient.email}
-          placeholder="my.darling@example.com"
+          placeholder="dearest.one@example.com"
           required
         />
       </div>
       {error && (
         <p role="alert" ref={alertRef} tabIndex={-1}>
-          {error}. Please try again.
+          {error}. Pray try again.
         </p>
       )}
       <SendButton valid={valid} />
       <p className={styles.terms}>
-        Contact details for the recipient should only be provided with that
-        person&rsquo;s consent, and that person may be told who provided their
-        details.
+        Kindly provide the recipient&rsquo;s address only with their consent.
+        Nothing is kept. The address is used solely to dispatch this one
+        message, and neither it nor any other detail is saved on our side.
       </p>
       <button
         type="button"
@@ -125,7 +122,7 @@ export default function PersonDetails({
           navigate(BUILD_BOUQUET_PATH);
         }}
       >
-        Change bouquet
+        Reconsider the blooms
       </button>
     </form>
   );

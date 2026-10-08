@@ -14,5 +14,9 @@
   font-family: "Fraunces", serif;
   font-weight: 700;
   font-size: 1.2rem;
-  line-height: 1;
+}
+
+.cookie-notice {
+  font-size: 0.7rem;
+  font-style: italic;
 }
