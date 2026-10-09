@@ -5,14 +5,20 @@
   align-items: start;
   display: grid;
   gap: var(--size-3) 0;
-  grid-template-columns: minmax(0, 1fr); /* an implicit auto track would grow to its widest content instead of the viewport */
+  grid-template-columns: minmax(
+    0,
+    1fr
+  ); /* an implicit auto track would grow to its widest content instead of the viewport */
   padding-top: var(--size-3);
 }
 
 .column {
   display: grid;
   gap: var(--size-2);
-  grid-template-columns: minmax(0, 1fr); /* same reason as .two-column: stop wide content (the visualiser) forcing the track wider than the column */
+  grid-template-columns: minmax(
+    0,
+    1fr
+  ); /* same reason as .two-column: stop wide content (the visualiser) forcing the track wider than the column */
   min-width: 0;
 }
 
@@ -58,7 +64,7 @@
   /* The logo is absolutely positioned over the top of the scroller in
      landscape; leave room for it (70px, its height) above the left column. */
   .column:first-child {
-    padding-top: 70px;
+    padding-top: 2rem;
   }
 
   /* `safe` falls back to start alignment if the content is taller than the

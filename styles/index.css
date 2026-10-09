@@ -71,7 +71,7 @@ select {
 
 header {
   display: grid;
-  gap: var(--size-2);
+  gap: var(--size-1);
   justify-self: center;
 }
 
