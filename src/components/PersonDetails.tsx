@@ -178,8 +178,8 @@ export default function PersonDetails({
       <SendButton />
       <p className={styles.terms}>
         Kindly provide the recipient&rsquo;s address only with their consent.
-        Nothing is kept. The address is used solely to dispatch this one
-        message, and neither it nor any other detail is saved on our side.
+        The address is used solely to dispatch this one message, and neither it
+        nor any other detail is used for anything else.
       </p>
       <button
         type="button"
